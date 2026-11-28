@@ -3,45 +3,45 @@ A 27-year-old woman who works as a school librarian is seen in the prenatal clin
 Which of the following is the most appropriate interpretation?
 A. One fasting result at or above 92 mg/dL makes the diagnosis on this test
 B. The test is normal because two of the three results must be high
-C. The fasting result meets nonpregnant criteria for diabetes at 126 mg/dL before the patient leaves
+C. The fasting result meets nonpregnant criteria for diabetes at 126 mg/dL
 D. A 100-g test is required before any diagnosis is made
 E. The 1-hour result is the only value that can establish the diagnosis
 
 ## S2N-002
-A 33-year-old woman who works as a graphic designer is seen in the obstetric office at 27 weeks of gestation after an overnight fast. Her first-trimester fasting glucose was 84 mg/dL and she was not treated with a glucose-lowering drug. She feels well. The fetal heart rate is 152/min. Temperature is 36.8°C, pulse is 88/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. On a morning 75-g test, plasma glucose is 88 mg/dL fasting, 186 mg/dL at 1 hour, and 146 mg/dL at 2 hours.
-Which of the following is the most appropriate interpretation?
-A. The test is nondiagnostic until the 2-hour result also exceeds 153 mg/dL
-B. The 1-hour result alone meets the one-step diagnostic threshold
-C. Fasting glucose below 92 mg/dL cancels an elevated 1-hour result
-D. The 1-hour cutoff on this test is 140 mg/dL, so 186 mg/dL is expected
-E. A result in this range should be ignored until after 32 weeks
+A 49-year-old woman who works as an editor is in the pulmonary clinic. Severe asthma has responded well to a biologic. She uses budesonide-formoterol for maintenance and relief and asks to stop that inhaler. Temperature is 36.6°C, pulse is 74/min, respirations are 14/min, and blood pressure is 120/76 mm Hg. FEV1 is 84% of predicted. She has had no exacerbation for 4 months.
+Which of the following is the most appropriate plan?
+A. Stop the inhaler now that the biologic is working
+B. Do not stop maintenance ICS-formoterol
+C. Replace the inhaler with albuterol alone
+D. Stop the biologic and the inhaler together
+E. Use oral theophylline as the only remaining medicine
 
 ## S2N-003
-A 29-year-old woman who works as a pharmacy technician is seen in the community prenatal clinic at 25 weeks of gestation for a 75-g tolerance test. She fasted for 9 hours. She has no polydipsia. Fundal height matches the stated dates, and the fetal heart rate is 146/min. Temperature is 36.6°C, pulse is 76/min, respirations are 16/min, and blood pressure is 110/68 mm Hg. Plasma glucose is 90 mg/dL fasting, 172 mg/dL at 1 hour, and 159 mg/dL at 2 hours.
-Which of the following is the most appropriate interpretation?
-A. All three results must exceed their cutoffs before the test is positive
-B. The 2-hour cutoff on this test is 140 mg/dL, so 159 mg/dL is borderline normal
-C. The 2-hour result at or above 153 mg/dL establishes the diagnosis
-D. A 2-hour result matters only when the fasting result exceeds 126 mg/dL
-E. The test should be repeated next week before any diagnosis is recorded
+A 15-year-old girl who works as a student is in the pediatric clinic. She is here for a checkup. She has no diagnosed mental health condition and describes her mood as usual. She has never been screened for depression. Temperature is 36.7°C, pulse is 76/min, respirations are 16/min, and blood pressure is 108/66 mm Hg. She weighs 52 kg. She is in the 9th grade and attends school daily.
+Which of the following is the most appropriate screening plan?
+A. Do not screen, because she has no risk factors
+B. Screen for suicide risk as a grade B service instead
+C. Screen for major depression
+D. Wait until age 19 for any depression question
+E. Start an antidepressant without asking about mood
 
 ## S2N-004
-A 24-year-old woman who works as a restaurant server is seen in the prenatal clinic at 26 weeks of gestation after a 12-hour overnight fast. Body mass index is 24 kg/m2. She takes a prenatal vitamin and no glucose-lowering medication. The fetal heart rate is 144/min. Temperature is 36.5°C, pulse is 80/min, respirations are 14/min, and blood pressure is 108/66 mm Hg. The 75-g test shows plasma glucose of 84 mg/dL fasting, 154 mg/dL at 1 hour, and 128 mg/dL at 2 hours.
-Which of the following is the most appropriate interpretation?
-A. The 1-hour result above 140 mg/dL makes the diagnosis
-B. The 2-hour result above 120 mg/dL makes the diagnosis
-C. Fasting glucose above 80 mg/dL is abnormal in pregnancy
-D. None of the three results meets a one-step diagnostic cutoff
-E. A 100-g test is the required next step after every 75-g test
+A 16-year-old boy who works as a student is in the pediatric clinic. He has no mood symptoms and no diagnosed mental health condition. A form offers a suicide-risk screen as a routine grade B test. Temperature is 36.6°C, pulse is 70/min, respirations are 16/min, and blood pressure is 112/68 mm Hg. He weighs 61 kg. He plays soccer 3 days a week.
+Which of the following is the most appropriate statement?
+A. Suicide-risk screening is a grade B recommendation equal to depression screening
+B. Depression screening is not recommended at age 16
+C. A suicide-risk screen replaces any question about depression
+D. Evidence is insufficient for routine suicide-risk screening
+E. Screening is deferred until age 21
 
 ## S2N-005
-A 36-year-old woman who works as an accountant is seen in the maternal-fetal clinic at 28 weeks of gestation for a 75-g tolerance test. She fasted for 11 hours. A first-trimester hemoglobin A1C was 5.2%. The fetal heart rate is 140/min. Temperature is 36.7°C, pulse is 78/min, respirations are 15/min, and blood pressure is 122/76 mm Hg. Plasma glucose is 91 mg/dL fasting, 179 mg/dL at 1 hour, and 152 mg/dL at 2 hours.
-Which of the following is the most appropriate interpretation?
-A. Fasting glucose of 91 mg/dL exceeds the 90 mg/dL pregnancy cutoff
-B. The 1-hour result of 179 mg/dL exceeds the 140 mg/dL diagnostic cutoff
-C. The 2-hour result of 152 mg/dL exceeds the 140 mg/dL diagnostic cutoff
-D. Values this close to the cutoffs should be treated as a positive test
-E. Each result is just below its cutoff, so the test is not diagnostic
+A 11-year-old girl who works as a student is in the pediatric clinic. She has no mood symptoms and no diagnosed mental health condition. Her parent asks whether the grade B adolescent depression screen applies today. Temperature is 36.7°C, pulse is 84/min, respirations are 18/min, and blood pressure is 104/64 mm Hg. She weighs 38 kg. She is in the 5th grade.
+Which of the following is the most appropriate statement?
+A. Screen today under the grade B rule for ages 12 to 18
+B. Suicide-risk screening is the grade B service at age 11
+C. An antidepressant is required before any question is asked
+D. The grade B rule applies only after age 19
+E. The grade B recommendation begins at age 12
 
 ## S2N-006
 A 31-year-old woman who works as a flight attendant is seen in the prenatal clinic at 26 weeks of gestation. She ate breakfast 3 hours before the visit and then drank the 75-g glucose load. She has no vomiting. The fetal heart rate is 150/min. Temperature is 36.9°C, pulse is 90/min, respirations are 16/min, and blood pressure is 116/72 mm Hg. Plasma glucose is 101 mg/dL before the load, 188 mg/dL at 1 hour, and 160 mg/dL at 2 hours.
@@ -55,7 +55,7 @@ E. Schedule the next glucose test for 36 weeks
 ## S2N-007
 A 30-year-old woman who works as a software engineer is seen in the obstetric clinic at 12 weeks of gestation. Body mass index is 33 kg/m2. She has no symptoms of hyperglycemia. She fasted for 10 hours. The fetal heart rate is 158/min. Temperature is 36.6°C, pulse is 84/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. A 75-g test shows plasma glucose of 94 mg/dL fasting, 170 mg/dL at 1 hour, and 148 mg/dL at 2 hours.
 Which of the following is the most appropriate interpretation?
-A. Fasting glucose of 94 mg/dL at 12 weeks meets the one-step diagnosis during today's visit
+A. Fasting glucose of 94 mg/dL at 12 weeks meets the one-step diagnosis
 B. The 24-to-28-week one-step cutoffs should not be used to label this early test
 C. Early testing with these cutoffs replaces the 24-to-28-week test
 D. A fasting value under 126 mg/dL rules out all later testing
@@ -80,40 +80,40 @@ D. One high fasting value does not meet the two-value rule
 E. These numbers are read with the 75-g one-step cutoffs
 
 ## S2N-010
-A 34-year-old woman who works as a ship navigator is seen in the harbor obstetric office at 26 weeks of gestation to review a completed 100-g test. She slept aboard ship, came straight to the lab, and tolerated the drink without dizziness. The fetus has been moving hourly by her count. Hemoglobin is 11.6 g/dL. Temperature is 36.6°C, pulse is 78/min, respirations are 14/min, and blood pressure is 112/70 mm Hg. Plasma glucose is 88 mg/dL fasting, 162 mg/dL at 1 hour, 140 mg/dL at 2 hours, and 152 mg/dL at 3 hours.
-Which of the following is the most appropriate interpretation?
-A. A 3-hour result of 152 mg/dL by itself makes the test positive
-B. The 2-hour result of 140 mg/dL meets the 3-hour cutoff
-C. Fasting glucose under 95 mg/dL erases a high 3-hour value and ends testing
-D. One abnormal 100-g value is read the same way as a 75-g test
-E. Only the 3-hour result is high, so two values are not met
+A 41-year-old woman who works as a pharmacist is in the emergency department. An asthma exacerbation is improving. Oxygen saturation is 94% on 2 liters of nasal oxygen. Temperature is 36.8°C, pulse is 96/min, respirations are 20/min, and blood pressure is 124/78 mm Hg. She speaks in full sentences. Peak flow has risen to 70% of her usual.
+Which of the following is the most appropriate oxygen plan?
+A. Change to a nonrebreather to reach 100%
+B. Stop oxygen immediately because 94% is too high
+C. Aim for a saturation under 90%
+D. Withhold oxygen until a corticosteroid is swallowed
+E. Keep the saturation in the 93% to 95% range
 
 ## S2N-011
-A 31-year-old woman who works as a pastry chef is seen in the market-district maternity clinic at 28 weeks of gestation after finishing a 100-g test. She avoided tasting batter after midnight and sat quietly between blood draws. Ankle edema is mild. Platelets are 242,000/mm3. The bedside tracing shows a fetal heart rate of 150/min. Temperature is 36.8°C, pulse is 88/min, respirations are 15/min, and blood pressure is 118/74 mm Hg. Plasma glucose is 99 mg/dL fasting, 174 mg/dL at 1 hour, 160 mg/dL at 2 hours, and 131 mg/dL at 3 hours.
-Which of the following is the most appropriate interpretation?
-A. The fasting and 2-hour results together meet the two-value rule
-B. The 1-hour result must also clear 180 mg/dL before the test counts
-C. A 3-hour result under 140 mg/dL keeps the whole test negative
-D. Fasting glucose must reach 126 mg/dL on a 100-g test
-E. Both the fasting and the 2-hour cutoffs are 140 mg/dL on this test
+A 36-year-old man who works as a courier is in the emergency department. He is having a severe asthma exacerbation. The pulse oximeter is broken. Temperature is 37.1°C, pulse is 118/min, respirations are 32/min, and blood pressure is 140/88 mm Hg. He is using accessory muscles. Peak flow is 35% of predicted.
+Which of the following is the most appropriate oxygen plan?
+A. Give oxygen; do not withhold it because oximetry is unavailable
+B. Withhold oxygen until a new oximeter arrives
+C. Give oxygen only after the saturation is known to be above 98%
+D. Use 100% oxygen as a required 2-hour goal
+E. Theophylline replaces oxygen
 
 ## S2N-012
-A 25-year-old woman who works as a court reporter is seen in the downtown obstetric office at 25 weeks of gestation for results of a 100-g test. She transcribed a long hearing yesterday and drank only water after 10 p.m. She has had no urinary frequency. Hemoglobin is 12.4 g/dL and the fundal height matches the dates. Temperature is 36.5°C, pulse is 76/min, respirations are 14/min, and blood pressure is 108/66 mm Hg. Plasma glucose is 91 mg/dL fasting, 191 mg/dL at 1 hour, 147 mg/dL at 2 hours, and 144 mg/dL at 3 hours.
-Which of the following is the most appropriate interpretation?
-A. A normal fasting result means the 100-g test cannot be positive
-B. The 1-hour and 3-hour results are a sufficient pair
-C. The 2-hour result must join the 1-hour result before two values exist
-D. The 3-hour cutoff on this test is 155 mg/dL, so 144 is low
-E. A 1-hour result matters only on the 50-g screen, not here
+A 9-year-old boy who works as a student is in the pediatric clinic. He has asthma and uses albuterol alone. He has never been prescribed an inhaled corticosteroid. Symptoms occur 2 days a week. Temperature is 36.7°C, pulse is 88/min, respirations are 18/min, and blood pressure is 102/64 mm Hg. Oxygen saturation is 98% on air. He weighs 30 kg.
+Which of the following is the most appropriate treatment principle?
+A. Continue albuterol alone because he is under 12
+B. Do not treat with a short-acting beta agonist alone
+C. Switch to oral albuterol as safer long-term treatment
+D. Use theophylline as the only controller
+E. Add a long-acting beta agonist with no inhaled corticosteroid
 
 ## S2N-013
-A 37-year-old woman who works as a violin restorer is seen in the university obstetric clinic at 27 weeks of gestation to go over a 100-g test drawn this morning. Workshop varnish fumes were the reason she asked for a first appointment slot. She reports steady fetal movement. Body mass index is 26 kg/m2. A catheterized urine sample shows no glucose. Temperature is 36.7°C, pulse is 72/min, respirations are 15/min, and blood pressure is 120/76 mm Hg. Plasma glucose is 94 mg/dL fasting, 179 mg/dL at 1 hour, 154 mg/dL at 2 hours, and 139 mg/dL at 3 hours.
-Which of the following is the most appropriate interpretation?
-A. Fasting 94 mg/dL meets the one-step line of 92 mg/dL on this test at this encounter
-B. A 2-hour result of 154 mg/dL meets the 100-g line of 153 mg/dL
-C. Each 100-g result is below its cutoff, so the test is not positive
-D. A result 1 mg/dL under a cutoff still counts as abnormal
-E. A 1-hour of 179 mg/dL is diagnostic by exceeding a treatment goal
+A 72-year-old man who works as a retired farmer is in the intensive care unit. He is in septic shock. He has had repeated hospitalizations and recent broad-spectrum antibiotics, and the risk of resistant gram-negative infection is high. Temperature is 38.5°C, pulse is 112/min, respirations are 24/min, and blood pressure is 86/48 mm Hg. Lactate is 4.4 mmol/L. Creatinine is 2.1 mg/dL.
+Which of the following is the most appropriate gram-negative plan?
+A. Use one gram-negative antibiotic because the risk is high
+B. Avoid gram-negative coverage until cultures return
+C. Use two antibiotics active against gram-negative bacteria
+D. Use MRSA coverage instead of any gram-negative drug
+E. Wait for procalcitonin before choosing the number of drugs
 
 ## S2N-014
 A 29-year-old woman who works as a park ranger is seen in the trailhead prenatal clinic at 26 weeks of gestation one hour after a 50-g glucose drink. She hiked a short patrol this morning before the visit and ate breakfast at dawn. This practice has posted its screen threshold as 140 mg/dL. Hemoglobin is 13.1 g/dL. Fetal movement is present. Temperature is 36.9°C, pulse is 90/min, respirations are 16/min, and blood pressure is 124/78 mm Hg. The 1-hour plasma glucose after the 50-g load is 133 mg/dL. A prior early fasting plasma glucose was 84 mg/dL.
@@ -134,20 +134,20 @@ D. Call the screen diagnostic and skip the 100-g test
 E. Proceed to the 100-g test because 130 mg/dL meets the chosen threshold
 
 ## S2N-016
-A 32-year-old woman who works as a grant writer is seen in the early-pregnancy consult clinic at 12 weeks of gestation after a clinician ordered a 100-g test. She has a body mass index of 34 kg/m2 and no polyuria, polydipsia, or weight loss. The crown-rump length matches 12 weeks. She is not taking a glucose-lowering drug. Temperature is 36.6°C, pulse is 80/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. Plasma glucose is 96 mg/dL fasting, 183 mg/dL at 1 hour, 144 mg/dL at 2 hours, and 121 mg/dL at 3 hours.
-Which of the following is the most appropriate interpretation?
-A. These 100-g cutoffs should not be used before 15 weeks
-B. Two high values on this 100-g test make the diagnosis at 12 weeks
-C. Fasting glucose of 96 mg/dL meets the nonpregnant line of 126 mg/dL
-D. A normal early test cancels the screen that belongs at 24 to 28 weeks
-E. One high value would have been enough on this 100-g test
+A 34-year-old woman who works as a student is in the emergency department. She has community pyelonephritis and sepsis without shock. She has no recent hospitalization, and the risk of resistant gram-negative infection is low. Temperature is 38.3°C, pulse is 100/min, respirations are 18/min, and blood pressure is 112/70 mm Hg. Lactate is 2.1 mmol/L. Creatinine is 0.8 mg/dL.
+Which of the following is the most appropriate gram-negative plan?
+A. Use one gram-negative antibiotic rather than two
+B. Use two gram-negative antibiotics because the risk is low
+C. Add MRSA coverage because the gram-negative risk is low
+D. Give no antibiotic for 12 hours
+E. Choose the regimen only after procalcitonin returns
 
 ## S2N-017
 A 39-year-old woman who works as a ceramicist is seen in the first-trimester intake clinic at 10 weeks of gestation for a new obstetric history. She fasted for 9 hours because a parent was in surgery at dawn. She reports no polyuria, no excess thirst, and no unplanned weight change. Ultrasound dating agrees with 10 weeks. Hemoglobin is 12.8 g/dL. Temperature is 36.5°C, pulse is 74/min, respirations are 14/min, and blood pressure is 122/76 mm Hg. Fasting plasma glucose is 136 mg/dL. A fingerstick check in the room is 141 mg/dL.
 Which of the following is the most appropriate interpretation?
 A. Wait until 24 weeks because no glucose result counts before then
 B. This fasting result meets the 126 mg/dL line and still needs confirmation
-C. Use the pregnancy fasting cutoff of 92 mg/dL at this 10-week visit during today's visit
+C. Use the pregnancy fasting cutoff of 92 mg/dL at this 10-week visit
 D. A fasting result of 136 mg/dL is in the 100 to 125 mg/dL range
 E. One fasting result of 136 mg/dL can be ignored before 15 weeks
 
@@ -245,7 +245,7 @@ E. A management indicator under 6.5% is the preconception rule at 28 weeks
 A 27-year-old woman who works as a milliner is seen in the hat-shop prenatal clinic at 27 weeks of gestation the afternoon a 100-g test was completed. She has never used a glucose-lowering drug and has no meal plan, no walking program, and no weight goal. She felt well during the test. Body mass index is 33 kg/m2. The fundal height is 27 cm. Temperature is 36.7°C, pulse is 82/min, respirations are 15/min, and blood pressure is 116/74 mm Hg. On the 100-g test, plasma glucose was 100 mg/dL fasting, 170 mg/dL at 1 hour, 162 mg/dL at 2 hours, and 130 mg/dL at 3 hours.
 Which of the following is the most appropriate next step?
 A. Start metformin today as the first glucose-lowering drug
-B. Start glyburide today because lifestyle measures can wait during today's visit
+B. Start glyburide today because lifestyle measures can wait
 C. Begin medical nutrition therapy, activity, and weight management
 D. Start insulin today before any meal or activity plan
 E. Defer all care until the postpartum glucose test
@@ -260,7 +260,7 @@ D. Raise carbohydrate intake to at least 175 g per day
 E. Stop counting carbohydrate until the postpartum visit
 
 ## S2N-030
-A 30-year-old woman who works as a stonemason is seen in the quarry-town obstetric clinic at 30 weeks of gestation after a dietitian added up her lunch pail. The pail has been rice cakes, an apple, and yogurt, and the tally is 168 g of carbohydrate. She lifts stone in the morning and walks the site road after work. Insulin doses have been stable. She denies sweating. Fundal height is 30 cm. Temperature is 36.7°C, pulse is 76/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. Fasting plasma glucose is 94 mg/dL. A 1-hour postlunch capillary glucose was 132 mg/dL.
+A 30-year-old woman who works as a stonemason is seen in the quarry-town obstetric clinic at 30 weeks of gestation after a dietitian added up her lunch pail. The pail has been rice cakes, an apple, and yogurt, and a 3-day food record averages 168 g of carbohydrate per day. She lifts stone in the morning and walks the site road after work. Insulin doses have been stable. She denies sweating. Fundal height is 30 cm. Temperature is 36.7°C, pulse is 76/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. Fasting plasma glucose is 94 mg/dL. A 1-hour postlunch capillary glucose was 132 mg/dL.
 Which of the following is the most appropriate interpretation of the carbohydrate tally?
 A. 168 g per day exceeds the pregnancy minimum, so no change is needed
 B. The minimum falls to 150 g per day after 28 weeks
@@ -269,61 +269,61 @@ D. Only sugar-sweetened drinks count toward the 175 g figure
 E. 168 g per day is still short of the 175 g daily minimum
 
 ## S2N-031
-A 28-year-old woman who works as a jeweler is seen in the arcade prenatal clinic at 24 weeks of gestation holding a dietitian printout. The printout, built from bench-side meals of rice, fruit, and beans, totals 175 g of carbohydrate. She sits at a bench lamp most of the day and walks home. Evening insulin was started two weeks ago. She has not felt shaky. Temperature is 36.5°C, pulse is 72/min, respirations are 14/min, and blood pressure is 110/68 mm Hg. Fasting plasma glucose is 89 mg/dL. Hemoglobin is 12.6 g/dL.
-Which of the following is the most appropriate interpretation?
-A. 175 g per day meets the pregnancy carbohydrate minimum
-B. 175 g per day is below the pregnancy minimum and must be raised
-C. The minimum is 200 g per day, so this printout falls short
-D. Trade carbohydrate for cheese to protect the fasting glucose
-E. Meeting 175 g per day means insulin can never be used later
+A 50-year-old man who works as a chef is in the emergency department. Antibiotics were started for possible sepsis. Imaging now shows a pulmonary embolism and no infection. He is not in shock. Temperature is 36.8°C, pulse is 104/min, respirations are 22/min, and blood pressure is 110/70 mm Hg. Lactate is 2.0 mmol/L. Oxygen saturation is 93% on air.
+Which of the following is the most appropriate antimicrobial plan?
+A. Stop the antibiotics and treat the embolism
+B. Continue a fixed 14-day antibiotic course
+C. Add a second gram-negative drug
+D. Add MRSA coverage because infection was not confirmed
+E. Use procalcitonin alone to extend the antibiotics
 
 ## S2N-032
-A 33-year-old woman who works as a night baker is seen in the bakery-row obstetric office at 28 weeks of gestation worried she is not eating enough starch. Shift meals are bread, fruit, and a bean stew. She weighed the portions and reached 236 g of carbohydrate. A coworker told her pregnant people must keep adding starch every week. Insulin and a meal plan are in place. She denies tremor. Temperature is 36.8°C, pulse is 84/min, respirations are 15/min, and blood pressure is 116/72 mm Hg. Fasting plasma glucose is 92 mg/dL. A 2-hour postsupper capillary glucose was 112 mg/dL.
-Which of the following is the most appropriate interpretation?
-A. She must climb from 236 g to at least 300 g per day
-B. 236 g per day already satisfies the 175 g minimum
-C. 236 g per day is dangerous because the minimum is also the maximum
-D. The 2-hour glucose of 112 mg/dL requires an immediate cut below 175 g
-E. Carbohydrate targets apply only in the first trimester
+A 55-year-old man who works as a driver is in the primary care clinic. He has dyslipidemia and no cardiovascular disease. His estimated 10-year risk is 10%. He agrees to treatment after the reason is explained. Temperature is 36.6°C, pulse is 74/min, respirations are 14/min, and blood pressure is 126/78 mm Hg. LDL cholesterol is 154 mg/dL. Hemoglobin A1C is 5.5%.
+Which of the following is the most appropriate plan?
+A. Selectively offer a statin, because 10% is under 10%
+B. Prescribe a statin; 10% meets the start threshold
+C. Do not use a statin unless the risk exceeds 20%
+D. Start aspirin 325 mg instead
+E. The recommendation excludes dyslipidemia
 
 ## S2N-033
-A 26-year-old woman who works as a radio dispatcher is seen in the night-shift prenatal clinic at 26 weeks of gestation asking whether to adopt a 90 g menu. She printed the menu to bring a fasting reading down. Current meals, eaten between calls, total about 180 g of carbohydrate. A meal plan and insulin began three weeks ago. She has not had a sweating episode. The fundus measures 26 cm. Temperature is 36.7°C, pulse is 80/min, respirations are 14/min, and blood pressure is 114/70 mm Hg. Fasting plasma glucose this morning is 102 mg/dL. Hemoglobin is 12.1 g/dL.
-Which of the following is the most appropriate statement?
-A. A 90 g menu is preferred because lower carbohydrate always lowers fasting glucose
-B. The pregnancy minimum is 90 g, so that menu is exactly on target
-C. Do not drop carbohydrate below 175 g per day to chase the glucose
-D. Replace the cut carbohydrate with cream so calories stay the same
-E. Fasting glucose of 102 mg/dL is already under the 95 mg/dL goal
+A 60-year-old woman who works as an editor is in the primary care clinic. She has hypertension and no cardiovascular disease. Her estimated 10-year risk is 7.5%. She asks whether a statin is required. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 138/84 mm Hg. LDL cholesterol is 126 mg/dL. She does not smoke.
+Which of the following is the most appropriate plan?
+A. Prescribe a statin as a required grade B start
+B. Do not mention a statin, because 7.5% has no possible benefit
+C. Selectively offer a statin rather than prescribe it automatically
+D. Start aspirin 325 mg instead
+E. Wait until the risk is under 5%
 
 ## S2N-034
-A 35-year-old woman who works as a cheese buyer is seen in the market obstetric clinic at 29 weeks of gestation after she rebuilt her plate around the cheese case. Pasta and fruit left the lunch bag. Wedges of cheese and olive oil took their place, and the carbohydrate tally fell to 70 g per day. She says the richer plate keeps her full on buying trips. Insulin is in use. She has had no tremor. Fetal movement is daily. Temperature is 36.6°C, pulse is 78/min, respirations are 15/min, and blood pressure is 120/76 mm Hg. Fasting plasma glucose is 101 mg/dL. A 1-hour postlunch capillary glucose was 136 mg/dL.
-Which of the following is the most appropriate nutrition advice?
-A. Keep the cheese-and-oil plate because 70 g of carbohydrate is plenty
-B. The fasting goal is under 110 mg/dL, so 101 mg/dL needs no food change
-C. Add still more olive oil and drop carbohydrate to 40 g per day
-D. Do not replace carbohydrate with fat; restore intake to at least 175 g
-E. Fat substitution is recommended once the 1-hour glucose is under 180
+A 54-year-old man who works as a bartender is in the primary care clinic. He has no cardiovascular disease. His 10-year risk is 13%. He had a gastrointestinal bleed 2 months ago and is still on a bleeding-risk medicine. Temperature is 36.7°C, pulse is 78/min, respirations are 16/min, and blood pressure is 130/80 mm Hg. Hemoglobin is 11.2 g/dL. He is 40 to 59 years old.
+Which of the following is the most appropriate statement?
+A. Start low-dose aspirin today as a required medicine
+B. Do not consider bleeding, because the risk is above 10%
+C. Use the age-60 prohibition even though he is 54
+D. Bleeding risk makes him less likely to benefit from starting aspirin
+E. Start aspirin 325 mg because of the recent bleed
 
 ## S2N-035
-A 24-year-old woman who works as a seed merchant is seen in the grain-exchange prenatal office at 25 weeks of gestation proud that her morning numbers look calm. Breakfast is eggs and a few berries. She skips rice at the stall and estimates 80 g of carbohydrate a day. A meal plan was prescribed, but she trimmed it herself. Insulin continues. She has had no sweating. The fundal height matches the dates. Temperature is 36.5°C, pulse is 74/min, respirations are 14/min, and blood pressure is 106/64 mm Hg. Fasting plasma glucose is 86 mg/dL. Hemoglobin is 12.9 g/dL.
-Which of the following is the most appropriate interpretation?
-A. A fasting glucose of 86 mg/dL cancels the carbohydrate minimum
-B. 80 g per day is acceptable because it is half of 175 g
-C. The fasting goal in pregnancy is under 80 mg/dL, so 86 is high
-D. Carbohydrate floors are used only when a 1-hour value exceeds 180 mg/dL
-E. The 175 g minimum still applies while this fasting result is at goal
+A 26-year-old woman who works as a dancer is in the pulmonary clinic. Symptoms occur less than twice a month and she has no recent exacerbation. She is unlikely to take a daily inhaler. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 112/70 mm Hg. FEV1 is 90% of predicted. Oxygen saturation is 99% on air.
+Which of the following is the most appropriate controller plan?
+A. Use a short-acting beta agonist alone
+B. Start daily inhaled corticosteroid as the only realistic plan
+C. Start a long-acting beta agonist with no inhaled corticosteroid
+D. Use oral theophylline each day
+E. Take an inhaled corticosteroid whenever a short-acting beta agonist is taken
 
 ## S2N-036
-A 32-year-old woman who works as a quilt maker is seen in the guild-hall obstetric clinic at 31 weeks of gestation asking to slash starch after a high afternoon reading. Her current meals total about 190 g of carbohydrate. She wants a new target of 110 g so the afternoon peak will fall. Sewing clients come to the hall, and she eats between fittings. Insulin and a meal plan are already underway. She has not felt shaky. Temperature is 36.8°C, pulse is 86/min, respirations are 16/min, and blood pressure is 122/78 mm Hg. Plasma glucose 1 hour after lunch is 158 mg/dL. Fasting plasma glucose was 93 mg/dL.
-Which of the following is the most appropriate nutrition plan?
-A. Adjust treatment without taking carbohydrate under 175 g per day
-B. Drop intake to 110 g per day and leave the insulin unchanged
-C. Replace the removed starch with cream cheese and nuts
-D. Ignore 158 mg/dL because the 1-hour diagnostic cutoff is 180 mg/dL
-E. The 1-hour goal is under 200 mg/dL, so 158 needs no response
+A 66-year-old man who works as a welder is in the intensive care unit. He is being resuscitated for septic shock. A passive leg raise can be performed. Temperature is 37.6°C, pulse is 108/min, respirations are 22/min, and blood pressure is 90/54 mm Hg. Lactate is 3.8 mmol/L. He has already received the initial crystalloid bolus.
+Which of the following is the most appropriate way to guide more fluid?
+A. Use a dynamic measure such as the response to a passive leg raise
+B. Use the physical examination alone
+C. Give a fixed extra 30 mL/kg every hour regardless of response
+D. Stop all fluids because the first bolus was given
+E. Guide fluid only with procalcitonin
 
 ## S2N-037
-A 29-year-old woman who works as a sign painter is seen in the scaffold prenatal clinic at 23 weeks of gestation a week after a 100-g test. She already walks the scaffold stairs all day and has lost no discussion of her meals. Nobody has given her a food plan, and lunch is whatever the truck sells. She is not using a glucose-lowering drug. Body mass index is 32 kg/m2. Fetal heart rate on the Doppler is 148/min. Temperature is 36.6°C, pulse is 90/min, respirations are 16/min, and blood pressure is 118/74 mm Hg. The 100-g test showed 98 mg/dL fasting, 168 mg/dL at 1 hour, 159 mg/dL at 2 hours, and 126 mg/dL at 3 hours.
+A 29-year-old woman who works as a sign painter is seen in the scaffold prenatal clinic at 23 weeks of gestation a week after a 100-g test. She already walks the scaffold stairs all day and has never had her meals discussed. Nobody has given her a food plan, and lunch is whatever the truck sells. She is not using a glucose-lowering drug. Body mass index is 32 kg/m2. Fetal heart rate on the Doppler is 148/min. Temperature is 36.6°C, pulse is 90/min, respirations are 16/min, and blood pressure is 118/74 mm Hg. The 100-g test showed 98 mg/dL fasting, 168 mg/dL at 1 hour, 159 mg/dL at 2 hours, and 126 mg/dL at 3 hours.
 Which of the following is the most appropriate addition?
 A. Metformin, because stair climbing replaces a food plan
 B. Medical nutrition therapy, which walking does not replace
@@ -337,7 +337,7 @@ Which of the following is the most appropriate plan?
 A. Drop the meal plan and focus only on the scale
 B. Cut carbohydrate to 120 g per day to force weight down
 C. Keep medical nutrition therapy and include weight management
-D. Ignore weight because the 1-hour glucose is under 140 mg/dL before the patient leaves
+D. Ignore weight because the 1-hour glucose is under 140 mg/dL
 E. Replace carbohydrate calories with fried food from the stop
 
 ## S2N-039
@@ -350,7 +350,7 @@ D. Start insulin; lifestyle has not met the fasting goal
 E. Atorvastatin as the first-choice drug for the glucose
 
 ## S2N-040
-A 29-year-old woman who works as a floral courier is seen in the birth-center follow-up desk 16 days after an uncomplicated vaginal birth. A glucose test in the late second trimester changed her meal plan. She is breastfeeding, walking the delivery route again, and feels well. Lochia is light. She asks to 'get the sugar test over with' before she returns to full shifts. Temperature is 36.8°C, pulse is 84/min, respirations are 16/min, and blood pressure is 112/70 mm Hg. Hemoglobin is 11.2 g/dL. A random capillary glucose before lunch is 102 mg/dL.
+A 29-year-old woman who works as a floral courier is seen in the birth-center follow-up desk 16 days after an uncomplicated vaginal birth. A diagnosis of gestational diabetes in the late second trimester changed her meal plan. She is breastfeeding, walking the delivery route again, and feels well. Lochia is light. She asks to 'get the sugar test over with' before she returns to full shifts. Temperature is 36.8°C, pulse is 84/min, respirations are 16/min, and blood pressure is 112/70 mm Hg. Hemoglobin is 11.2 g/dL. A random capillary glucose before lunch is 102 mg/dL.
 Which of the following is the most appropriate timing for the postpartum glucose test?
 A. Do the 75-g test today because 16 days is inside the window
 B. Use today's A1C instead, and skip the tolerance test forever
@@ -368,7 +368,7 @@ D. Postpone all glucose testing until the next pregnancy
 E. Use a 100-g, 3-hour test as the required postpartum study
 
 ## S2N-042
-A 36-year-old woman who works as a pottery kiln tech is seen in the hospital postpartum clinic 7 weeks after a birth complicated by hemorrhage. The delivery note records an estimated blood loss of 1400 mL, and she received a red-cell transfusion that night. She feels stronger now and is walking the kiln floor for short shifts. A late-pregnancy glucose test had changed her meals. She brings an outside A1C and hopes it means no further testing. Temperature is 36.7°C, pulse is 88/min, respirations are 16/min, and blood pressure is 108/66 mm Hg. Hemoglobin is 8.9 g/dL. The outside hemoglobin A1C is 5.8%.
+Gestational diabetes was diagnosed in the prior pregnancy. A 36-year-old woman who works as a pottery kiln tech is seen in the hospital postpartum clinic 7 weeks after a birth complicated by hemorrhage. The delivery note records an estimated blood loss of 1400 mL, and she received a red-cell transfusion that night. She feels stronger now and is walking the kiln floor for short shifts. A late-pregnancy glucose test had changed her meals. She brings an outside A1C and hopes it means no further testing. Temperature is 36.7°C, pulse is 88/min, respirations are 16/min, and blood pressure is 108/66 mm Hg. Hemoglobin is 8.9 g/dL. The outside hemoglobin A1C is 5.8%.
 Which of the following is the most appropriate explanation?
 A. An A1C of 5.8% clears her, so no tolerance test is needed
 B. The A1C cannot clear her; a 75-g test is the postpartum study
@@ -379,7 +379,7 @@ E. Postpartum glucose testing is waived after any transfusion
 ## S2N-043
 A 27-year-old woman who works as a score librarian is seen in the library postpartum lab 8 weeks after birth for a 75-g tolerance test. She fasted 10 hours after a late shift shelving bound volumes. She has no polyuria, no unusual thirst, and no unplanned weight loss, and she is not acutely ill. Insulin used in late pregnancy was stopped at discharge. The infant is gaining. Temperature is 36.6°C, pulse is 74/min, respirations are 14/min, and blood pressure is 114/72 mm Hg. Fasting plasma glucose is 93 mg/dL, and the 2-hour plasma glucose is 214 mg/dL. Hemoglobin is 12.4 g/dL.
 Which of the following is the most appropriate interpretation?
-A. A 2-hour result of 214 mg/dL is in the 140 to 199 mg/dL span at this encounter
+A. A 2-hour result of 214 mg/dL is in the 140 to 199 mg/dL span
 B. The fasting result of 93 mg/dL cancels the 2-hour result
 C. The 2-hour value meets the 200 mg/dL line and needs confirmation
 D. This single 2-hour result is enough, even without symptoms
@@ -434,7 +434,7 @@ E. Delay every dose until 28 weeks of gestation
 A 37-year-old woman who works as a locksmith is seen in the hardware-row obstetric clinic at 22 weeks of gestation, not yet on a blood-pressure drug. Insulin has been part of her mornings and evenings for eight years before this pregnancy. Office readings were high for four years before conception, and she stopped an old prescription on her own. She has no headache, no spots in her vision, and no right-upper pain. Fetal movement is present. Temperature is 36.6°C, pulse is 86/min, respirations are 16/min, and blood pressure is 146/94 mm Hg. A urine dipstick shows no protein. Creatinine is 0.6 mg/dL. Fasting plasma glucose is 92 mg/dL.
 Which of the following is the most appropriate blood-pressure plan?
 A. Treat only if the reading reaches the nonpregnant goal of 130/80
-B. Withhold treatment in pregnancy unless the reading is under 90/60 before the patient leaves
+B. Withhold treatment in pregnancy unless the reading is under 90/60
 C. The suggested goal of 110-135/85 means this reading needs no drug
 D. Start or titrate treatment at the pregnancy threshold of 140/90 mm Hg
 E. Deintensify therapy because 146/94 is below 140/90
@@ -453,7 +453,7 @@ A 32-year-old woman who works as a sommelier is seen in the cellar obstetric cli
 Which of the following is the most appropriate blood-pressure action?
 A. Deintensify treatment because the reading is under 90/60 mm Hg
 B. Increase labetalol toward a 130/80 mm Hg goal
-C. Make no change because 86/54 matches the 110-135/85 range during today's visit
+C. Make no change because 86/54 matches the 110-135/85 range
 D. Hold changes unless the reading falls under 80/50 mm Hg
 E. Add lisinopril to reach the nonpregnant goal faster
 
@@ -559,7 +559,7 @@ E. Metronidazole as therapy for this organism
 ## S2N-063
 A 24-year-old woman who works as a high school coach is seen in the school-adjacent prenatal clinic at 24 weeks of gestation, six days after treatment. She took azithromycin 1 g orally once six days ago after an endocervical NAAT detected Chlamydia trachomatis. Irritation has faded. Practice ended an hour ago, and she feels well. She asks whether today's urine sample can serve as the test of cure. Temperature is 36.6°C, pulse is 80/min, respirations are 15/min, and blood pressure is 112/68 mm Hg. Hemoglobin is 11.7 g/dL. No repeat NAAT has been collected since the azithromycin dose. A urine dipstick shows no leukocyte esterase.
 Which of the following is the most appropriate retesting plan?
-A. A NAAT tomorrow is the test of cure, with no later test at this encounter
+A. A NAAT tomorrow is the test of cure, with no later test
 B. Culture at 6 months replaces a nucleic acid test
 C. NAAT about 4 weeks after treatment, and again at 3 months
 D. Cytology next year replaces both follow-up tests
@@ -568,7 +568,7 @@ E. No repeat test is used after treatment in pregnancy
 ## S2N-064
 A 52-year-old man who works as a power-line worker is seen in the metabolism clinic after a workplace physical found an unexpected lab value. He climbs towers four days a week, drinks water on the truck, and has not noticed extra trips to urinate or a change in thirst. Weight on the clinic scale matches his license from last year. He takes no glucose-lowering drug. A fingerstick was not done. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 128/78 mm Hg. Hemoglobin A1C is 6.8%. Hemoglobin is 14.6 g/dL. No plasma glucose was drawn.
 Which of the following is the most appropriate interpretation?
-A. A single A1C of 6.8% finishes the question without symptoms during today's visit
+A. A single A1C of 6.8% finishes the question without symptoms
 B. An A1C of 6.8% sits in the 5.7% to 6.4% range
 C. A sensor download should replace this A1C before any repeat
 D. One A1C at or above 6.5% still needs a second abnormal result
@@ -580,7 +580,7 @@ Which of the following is the most appropriate interpretation?
 A. The fasting result must reach 200 mg/dL before two tests count
 B. Only a repeated A1C can confirm an abnormal fasting glucose
 C. 6.6% is under 6.5%, so the pair is not abnormal
-D. A fasting glucose of 134 mg/dL is in the 100 to 125 mg/dL range at the present visit
+D. A fasting glucose of 134 mg/dL is in the 100 to 125 mg/dL range
 E. The A1C and the fasting glucose are two different abnormal tests
 
 ## S2N-066
@@ -589,7 +589,7 @@ Which of the following is the most appropriate interpretation?
 A. Random glucose at or above 200 mg/dL plus these symptoms is enough
 B. A second test is mandatory because he ate two hours ago
 C. 256 mg/dL counts only if it was a fasting sample
-D. Classic symptoms matter only when the glucose is under 200 mg/dL in the office today
+D. Classic symptoms matter only when the glucose is under 200 mg/dL
 E. Negative urine ketones cancel a symptomatic glucose of 256 mg/dL
 
 ## S2N-067
@@ -598,7 +598,7 @@ Which of the following is the most appropriate interpretation?
 A. 228 mg/dL with this history finishes the diagnosis today
 B. A random value at or above 200 mg/dL without symptoms is not enough
 C. Any glucose over 140 mg/dL after a meal is diagnostic
-D. The sample should be read as a 2-hour tolerance-test result before the patient leaves
+D. The sample should be read as a 2-hour tolerance-test result
 E. Negative symptoms plus 228 mg/dL prove the result is normal
 
 ## S2N-068
@@ -697,7 +697,7 @@ Which of the following is the most appropriate metformin plan?
 A. Stop metformin today because the eGFR is under 45
 B. Stop metformin today because the eGFR is under 60
 C. Metformin may continue, with higher risk in the 30 to 45 range
-D. The risk is the same at an eGFR of 36 as it is above 60 before the patient leaves
+D. The risk is the same at an eGFR of 36 as it is above 60
 E. Increase the metformin dose because the A1C is 7.6%
 
 ## S2N-079
@@ -742,14 +742,14 @@ Which of the following is the most appropriate addition?
 A. Nothing, because the A1C is already 6.5%
 B. A DPP-4 inhibitor as the preferred kidney drug
 C. An SGLT2 inhibitor or a GLP-1 receptor agonist with benefit
-D. Insulin, because an eGFR of 46 requires insulin first before the patient leaves
+D. Insulin, because an eGFR of 46 requires insulin first
 E. Stop metformin, because the eGFR is under 60
 
 ## S2N-084
 A 68-year-old woman who works as a greenhouse manager is seen in the kidney-follow-up office who has taken an SGLT2 inhibitor for a year. Metformin was stopped previously. She still grows seedlings and has had no vomiting or deep breathing. The A1C has drifted up since the kidney number fell. She asks why the pill seems to be doing less for the glucose even though she has not missed doses. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 134/76 mm Hg. eGFR is 40 mL/min/1.73 m2. Hemoglobin A1C is 8.4%. A fasting plasma glucose is 168 mg/dL.
 Which of the following is the most appropriate interpretation?
 A. The SGLT2 glucose effect rises once the eGFR falls under 45
-B. An eGFR of 40 means the drug must be stopped for glucose reasons alone before the patient leaves
+B. An eGFR of 40 means the drug must be stopped for glucose reasons alone
 C. SGLT2 inhibitors lose glucose effect only under an eGFR of 20
 D. Glucose lowering from the SGLT2 inhibitor is reduced below an eGFR of 45
 E. An A1C of 8.4% proves that the eGFR reading is wrong
@@ -770,7 +770,7 @@ A. Do not combine the DPP-4 inhibitor with a GLP-1 receptor agonist
 B. Add the GLP-1 receptor agonist and continue sitagliptin
 C. Add the GLP-1 receptor agonist only if the A1C exceeds 10%
 D. Stop metformin before any incretin drug is discussed
-E. Start insulin tonight because the fasting glucose is 154 mg/dL at the present visit
+E. Start insulin tonight because the fasting glucose is 154 mg/dL
 
 ## S2N-087
 A 54-year-old man who works as a sound engineer is seen in the studio primary care office whose A1C has risen on metformin alone. Weight is the same as at the last two visits, and a urine dip shows no ketones. He is not on a DPP-4 inhibitor. Late-night mixes have not come with vomiting or deep breathing. He asks whether to start insulin this week or try another non-insulin option. Temperature is 36.7°C, pulse is 72/min, respirations are 14/min, and blood pressure is 124/78 mm Hg. Hemoglobin A1C is 8.3%. A random plasma glucose after lunch is 176 mg/dL. eGFR is 88 mL/min/1.73 m2.
@@ -827,7 +827,7 @@ D. A fasting glucose of 148 mg/dL means the A1C goal is waived
 E. No A1C goal applies once metformin has been started
 
 ## S2N-093
-A 48-year-old man who works as a piano tuner is seen in the home-visit primary care slot between two house calls, with a printed A1C. He has had no shaking or sweating on his current regimen. The lowest meter value this month was 102 mg/dL. He is not pregnant and is not preparing for a pregnancy. Tuning forks are in the bag on the chair. Temperature is 36.6°C, pulse is 68/min, respirations are 14/min, and blood pressure is 122/74 mm Hg. Hemoglobin A1C is 6.6%. A fasting plasma glucose is 112 mg/dL. eGFR is 91 mL/min/1.73 m2.
+A 48-year-old man who works as a piano tuner is seen in the home-visit primary care slot between two house calls, with a printed A1C. He has had no shaking or sweating on his current regimen. The lowest meter value this month was 102 mg/dL. Tuning forks are in the bag on the chair. Temperature is 36.6°C, pulse is 68/min, respirations are 14/min, and blood pressure is 122/74 mm Hg. Hemoglobin A1C is 6.6%. A fasting plasma glucose is 112 mg/dL. eGFR is 91 mL/min/1.73 m2.
 Which of the following is the most appropriate interpretation?
 A. 6.6% is above the usual nonpregnant goal
 B. The usual goal is under 6%, so 6.6% misses it
@@ -883,7 +883,7 @@ E. Cheese and crackers, because fat is the preferred rescue
 ## S2N-099
 A 45-year-old man who works as a mail sorter is seen in the processing-plant clinic 15 minutes after he chewed glucose tablets. The first capillary glucose was 58 mg/dL, and he was awake. He swallowed the tablets without trouble and sat in the clinic chair. He can still speak clearly. The belt outside is noisy, and he wants to return to the line. Temperature is 36.5°C, pulse is 96/min, respirations are 16/min, and blood pressure is 122/74 mm Hg. The repeat capillary glucose, timed 15 minutes after the tablets, is 61 mg/dL.
 Which of the following is the most appropriate next step?
-A. Send him back to the line because 15 minutes have passed during today's visit
+A. Send him back to the line because 15 minutes have passed
 B. Wait another 2 hours before any further carbohydrate
 C. Give a cheese sandwich now instead of more glucose
 D. Repeat the glucose treatment because 61 mg/dL is still under 70

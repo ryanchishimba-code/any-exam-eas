@@ -2,7 +2,7 @@
 A 35-year-old woman who works as a second-grade teacher is seen in the community clinic for urethral-type burning and a positive cervical test. A cervical nucleic acid test detects Neisseria gonorrhoeae, and chlamydia nucleic acid testing is negative. Three years ago she had anaphylaxis, with wheezing and hypotension, after a cephalosporin. The throat was not tested. She teaches a class of 28 children. Temperature is 36.8°C, pulse is 88/min, respirations are 16/min, and blood pressure is 124/76 mm Hg. She weighs 90 kg. The oropharynx looks normal. A urine pregnancy test is negative.
 Which of the following is the most appropriate regimen?
 A. Gentamicin 240 mg intramuscularly once plus azithromycin 2 g orally once
-B. Ceftriaxone 500 mg intramuscularly once despite the prior anaphylaxis at this encounter
+B. Ceftriaxone 500 mg intramuscularly once despite the prior anaphylaxis
 C. Cefixime 800 mg orally once as the listed allergy regimen
 D. Ceftriaxone 1 g intramuscularly once because allergy raises the dose
 E. Azithromycin 2 g orally once and no aminoglycoside dose
@@ -10,7 +10,7 @@ E. Azithromycin 2 g orally once and no aminoglycoside dose
 ## S2N-302
 A 27-year-old woman who works as a lyric soprano is seen in the otolaryngology clinic for a sore throat that has lasted 6 days. A pharyngeal nucleic acid test detects Neisseria gonorrhoeae. Two years ago, ceftriaxone caused anaphylaxis with throat tightness and a blood pressure of 70/40 mm Hg. A chlamydia nucleic acid test from the throat is negative. She has a recital in 4 days. Temperature is 37.1°C, pulse is 92/min, respirations are 16/min, and blood pressure is 118/72 mm Hg. She weighs 88 kg. The tonsils are injected without an abscess.
 Which of the following is the most appropriate next step?
-A. Gentamicin 240 mg intramuscularly once plus azithromycin 2 g orally once during today's visit
+A. Gentamicin 240 mg intramuscularly once plus azithromycin 2 g orally once
 B. Consult a specialist, because no reliable pharyngeal alternative is listed
 C. Cefixime 800 mg orally once, accepting about 92% pharyngeal efficacy
 D. Azithromycin 2 g orally once and no other drug at all
@@ -55,7 +55,7 @@ E. Cefixime 800 mg orally once as the preferred regimen in HIV
 ## S2N-307
 A 29-year-old woman who works as a choir director is seen in the infectious disease clinic in the treatment room after an injection. A pharyngeal nucleic acid test detected Neisseria gonorrhoeae, and a chlamydia nucleic acid test was negative. She just received ceftriaxone 500 mg intramuscularly. She has no allergy. She directs 3 rehearsals a week and has a concert in 11 days. Temperature is 36.6°C, pulse is 74/min, respirations are 14/min, and blood pressure is 114/70 mm Hg. She weighs 70 kg. The pharynx is mildly red. She has had no sex since the swab.
 Which of the following is the most appropriate follow-up plan?
-A. No test of cure and no retest, because a recommended regimen was used during today's visit
+A. No test of cure and no retest, because a recommended regimen was used
 B. Test of cure with culture or NAAT at 7 to 14 days, and retest at 3 months
 C. Test of cure at about 4 weeks only, then stop further testing
 D. Repeat the nucleic acid test tomorrow and then stop
@@ -80,7 +80,7 @@ D. Doxycycline 100 mg orally twice daily for 7 days as preferred therapy
 E. Ceftriaxone 500 mg intramuscularly once for this cervical result
 
 ## S2N-310
-A 37-year-old man who works as a rideshare driver is seen in the men's clinic for rectal discomfort after a swab last week. A rectal nucleic acid test detects Chlamydia trachomatis and does not detect Neisseria gonorrhoeae. He is not pregnant, has no allergy, and drove 11 hours yesterday. He asks whether a single macrolide tablet is the best choice for the rectum. Temperature is 36.8°C, pulse is 70/min, respirations are 14/min, and blood pressure is 126/80 mm Hg. He weighs 88 kg. The rectal examination shows no abscess.
+A 37-year-old man who works as a rideshare driver is seen in the men's clinic for rectal discomfort after a swab last week. A rectal nucleic acid test detects Chlamydia trachomatis and does not detect Neisseria gonorrhoeae., has no allergy, and drove 11 hours yesterday. He asks whether a single macrolide tablet is the best choice for the rectum. Temperature is 36.8°C, pulse is 70/min, respirations are 14/min, and blood pressure is 126/80 mm Hg. He weighs 88 kg. The rectal examination shows no abscess.
 Which of the following is the most appropriate regimen?
 A. Azithromycin 1 g orally once, because rectal cure is higher with it
 B. Azithromycin 2 g orally once as preferred rectal therapy
@@ -116,49 +116,49 @@ D. A serum titer in 2 weeks instead of a repeat nucleic acid test
 E. One repeat nucleic acid test tomorrow, then no further test
 
 ## S2N-314
-A 43-year-old man who works as a cabinetmaker is seen in the health department clinic for a scheduled titer 6 months after treatment. Both specimens were tested by the same RPR method. The RPR was 1:32 six months ago and is 1:8 today. A treponemal antibody test was positive at the start. He built 3 cabinet doors this week and has no new ulcer. Temperature is 36.6°C, pulse is 68/min, respirations are 14/min, and blood pressure is 128/80 mm Hg. He weighs 86 kg. The skin examination shows no rash.
-Which of the following is the most appropriate interpretation?
-A. The fall is too small, because an eightfold change is required
-B. The two results cannot be compared unless one of them is a VDRL
-C. A one-dilution change would have meant the same thing
-D. This is a meaningful fourfold, two-dilution change on the same test
-E. Titer changes are ignored, and only a new treponemal test matters at the present visit
+A 46-year-old man who works as a roofer is in the emergency department. He is having an asthma exacerbation and is getting worse despite increased reliever use. He weighs 92 kg. Temperature is 37.2°C, pulse is 110/min, respirations are 28/min, and blood pressure is 138/86 mm Hg. Oxygen saturation is 91% on air. Peak flow is 45% of his usual.
+Which of the following is the most appropriate oral prednisolone dose?
+A. 92 mg daily, because the dose is 1 mg/kg with no maximum
+B. 5 mg daily for 1 day
+C. No corticosteroid unless the oxygen saturation is above 98%
+D. 1 mg/kg daily, not above 50 mg
+E. Theophylline instead of a corticosteroid
 
 ## S2N-315
-A 50-year-old woman who works as a translator is seen in the infectious disease clinic for a titer repeated on the same assay. The earlier RPR was 1:32, and today's RPR is 1:16. Both were run by the RPR method. The original treponemal antibody test was positive. She translated 6 meetings this week and feels well. There is no new rash. Temperature is 36.5°C, pulse is 70/min, respirations are 14/min, and blood pressure is 122/76 mm Hg. She weighs 64 kg. The oral examination shows no patch.
-Which of the following is the most appropriate interpretation?
-A. This twofold change is already the meaningful titer change
-B. The results must be repeated on a VDRL before any comparison during today's visit
-C. Only a titer that does not change can be called meaningful
-D. Any fall in titer is meaningless, and only a rise counts
-E. This is not the meaningful change, because a fourfold change is required
+A 54-year-old woman who works as a librarian is in the emergency department. She is having a severe asthma exacerbation. Oxygen saturation is 88% on air. Temperature is 37.0°C, pulse is 112/min, respirations are 30/min, and blood pressure is 142/88 mm Hg. She is speaking in short phrases. Peak flow is 40% of predicted.
+Which of the following is the most appropriate oxygen target?
+A. Saturation 99% to 100% with a nonrebreather as the goal
+B. No oxygen unless a pulse oximeter is unavailable
+C. Saturation under 90% to avoid any supplemental oxygen
+D. Withhold oxygen until a corticosteroid has been given
+E. Saturation 93% to 95%, not 100% oxygen as the goal
 
 ## S2N-316
-A 25-year-old woman who works as a bookstore buyer is seen in the labor and delivery triage 8 hours after an intramuscular penicillin dose. She is at 18 weeks of gestation. A painless genital ulcer has been present for 2 weeks. The RPR is 1:64 and a treponemal antibody test is positive. She received benzathine penicillin G this morning. She now has chills and muscle aches, without hives or wheezing. She buys stock for 3 store branches. Temperature is 38.6°C, pulse is 110/min, respirations are 18/min, and blood pressure is 118/72 mm Hg. The fetal heart rate is 156/min. There is no rash of hives. She weighs 62 kg.
-Which of the following is the most appropriate interpretation?
-A. This reaction within 24 hours is not an allergy and must not delay treatment
-B. Record a penicillin allergy and do not give penicillin again in pregnancy at this encounter
-C. Switch the rest of pregnancy treatment to a course of oral doxycycline
-D. Give Bicillin C-R today as treatment for this reaction
-E. Delay any further penicillin treatment until after delivery
+A 37-year-old man who works as a teacher is in the pulmonary clinic. His maintenance inhaler is fluticasone with salmeterol. He asks to use budesonide-formoterol as an extra reliever. Temperature is 36.6°C, pulse is 76/min, respirations are 14/min, and blood pressure is 122/76 mm Hg. Oxygen saturation is 98% on air. FEV1 is 82% of predicted.
+Which of the following is the most appropriate reliever plan?
+A. Do not add formoterol as the reliever while he uses a different long-acting beta agonist
+B. Add budesonide-formoterol reliever on top of salmeterol
+C. Stop the inhaled corticosteroid and use formoterol alone given these results
+D. Use salmeterol as the only as-needed reliever
+E. Replace both inhalers with theophylline
 
 ## S2N-317
-A 33-year-old woman who works as a paralegal is seen in the maternal-fetal clinic for a painless ulcer and a new positive blood test. She is at 16 weeks of gestation. The RPR is 1:64 and a treponemal antibody test is positive. The ulcer has been present for 2 weeks. Five years ago, penicillin caused anaphylaxis with wheezing and a recorded blood pressure of 78/40 mm Hg. She prepared 12 depositions this week. Temperature is 36.6°C, pulse is 90/min, respirations are 16/min, and blood pressure is 116/70 mm Hg. The fetal heart rate is 150/min. She weighs 71 kg. There is no treatment dose in the chart yet.
-Which of the following is the most appropriate regimen?
-A. Substitute oral doxycycline and do not use penicillin
-B. Desensitize to penicillin and then treat with benzathine penicillin G
-C. Give Bicillin C-R now and skip desensitization entirely
-D. Delay all penicillin treatment until after delivery
-E. Give azithromycin 2 g orally once as the pregnancy substitute at the present visit
+A 33-year-old woman who works as a chef is in the pulmonary clinic. She has asthma symptoms every day and woke with symptoms 4 nights this week. She is not yet on maintenance-and-reliever therapy. Temperature is 36.7°C, pulse is 80/min, respirations are 16/min, and blood pressure is 118/74 mm Hg. FEV1 is 68% of predicted. Oxygen saturation is 97% on air.
+Which of the following is a reason to consider maintenance-and-reliever therapy rather than as-needed treatment only?
+A. Symptoms less than twice a month
+B. Symptoms every day
+C. A normal FEV1 and no night waking
+D. A preference for albuterol alone
+E. Absence of any exacerbation risk
 
 ## S2N-318
-A 48-year-old man who works as a machinist is seen in the infectious disease clinic with a pharmacy bag in his hand. The RPR is reactive at 1:16 and a treponemal antibody test is positive. A painless ulcer appeared 10 days ago. He has no penicillin allergy. The pharmacy dispensed Bicillin C-R for today's injection. He ran a lathe for 8 hours. Temperature is 36.7°C, pulse is 76/min, respirations are 14/min, and blood pressure is 132/82 mm Hg. He weighs 91 kg. There is no rash on the palms or soles.
-Which of the following is the most appropriate regimen?
-A. Inject the dispensed Bicillin C-R at this visit today
-B. Substitute doxycycline because the two penicillin labels are confusing
-C. Give benzathine penicillin G, which is Bicillin L-A, not Bicillin C-R
-D. Desensitize before giving the dispensed Bicillin C-R
-E. Give azithromycin 2 g orally once instead of either penicillin
+A 8-year-old boy who works as a student is in the emergency department. He is having an asthma exacerbation. Oxygen saturation is 90% on air. Temperature is 37.1°C, pulse is 124/min, respirations are 32/min, and blood pressure is 100/64 mm Hg. He has intercostal retractions. He weighs 26 kg.
+Which of the following is the most appropriate oxygen saturation target?
+A. 88% to 90%
+B. 99% to 100% as the required goal
+C. 94% to 98%
+D. No oxygen, because he is a child
+E. The adult target of 93% to 95% is the only range used at this age
 
 ## S2N-319
 A 36-year-old woman who works as a lab courier is seen in the primary care clinic to review a blood test ordered at a health fair. She has never noticed genital blisters. The HerpeSelect EIA index is 2.4. No confirmatory method has been run. She delivered 18 specimen bags yesterday and takes no antivirals. She has one partner. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. The genital examination shows no vesicle. Body mass index is 24 kg/m2.
@@ -182,7 +182,7 @@ E. Do not order HSV IgM testing for this recurrence
 A 19-year-old woman who works as a sommelier is seen in the urgent care clinic for painful genital vesicles that began 2 days ago. She has never had this rash before. There are grouped vesicles on the vulva and it hurts to pass urine. She has no drug allergy. She worked a tasting of 12 wines last night. A friend offered a tube of cream as the only treatment. Temperature is 37.0°C, pulse is 88/min, respirations are 16/min, and blood pressure is 116/72 mm Hg. She weighs 58 kg. A urine pregnancy test is negative. There is no pharyngeal exudate.
 Which of the following is the most appropriate regimen?
 A. A 7-to-10-day oral regimen, because topical acyclovir has minimal benefit
-B. Topical acyclovir as the only treatment for this first episode at this encounter
+B. Topical acyclovir as the only treatment for this first episode
 C. Topical acyclovir plus an IgM blood test today
 D. Valacyclovir 500 mg orally once daily for only 3 days
 E. Famciclovir 250 mg orally once daily for only 2 days
@@ -230,7 +230,7 @@ A. Address the rifampin-warfarin interaction before using 4 months of daily rifa
 B. Start 4 months of daily rifampin, because warfarin is unaffected
 C. Use 2 months of rifampin plus pyrazinamide so warfarin can be ignored
 D. Put rifampin into a once-weekly isoniazid regimen in place of rifapentine
-E. Prefer 9 months of daily isoniazid, because rifampin has no drug interactions in the office today
+E. Prefer 9 months of daily isoniazid, because rifampin has no drug interactions
 
 ## S2N-327
 A 6-year-old girl who works as a first-grade student is seen in the pediatric clinic with her mother after a contact blood test. An interferon-gamma release assay is positive. The chest radiograph shows no infiltrate. Her mother reports no cough, no fever, and a steady appetite, with weight gain of 1 kg in 4 months. An HIV test is negative. She attends school 5 days a week. Temperature is 36.7°C, pulse is 96/min, respirations are 20/min, and blood pressure is 96/60 mm Hg. She weighs 21 kg. There are no swollen joints.
@@ -260,9 +260,9 @@ D. Daily rifampin for 4 months as the chosen course
 E. Daily isoniazid for 9 months as the preferred choice
 
 ## S2N-330
-A 39-year-old man who works as a disc jockey is seen in the hiv clinic after a positive blood test and a clear chest film. An interferon-gamma release assay is positive. The chest radiograph shows no infiltrate. He has no cough, no fever, and no night sweats. HIV-1 infection is documented, and his HIV clinician confirmed that rifapentine does not interact with his current treatment. He played a 4-hour set last night. No drug names are being changed today. Temperature is 36.7°C, pulse is 78/min, respirations are 15/min, and blood pressure is 120/76 mm Hg. He weighs 74 kg. He has not lost weight this year.
+A 39-year-old man who works as a disc jockey is seen in the hiv clinic after a positive blood test and a clear chest film. An interferon-gamma release assay is positive. The chest radiograph shows no infiltrate. He has no cough, no fever, and no night sweats. HIV-1 infection is documented, and his HIV clinician confirmed that rifapentine does not interact with his current treatment. He played a 4-hour set last night. Temperature is 36.7°C, pulse is 78/min, respirations are 15/min, and blood pressure is 120/76 mm Hg. He weighs 74 kg. He has not lost weight this year.
 Which of the following is the most appropriate regimen?
-A. Daily rifampin for 4 months, which has established effectiveness in HIV at this encounter
+A. Daily rifampin for 4 months, which has established effectiveness in HIV
 B. Rifampin plus pyrazinamide for 2 months as the chosen course
 C. Once-weekly rifampin plus isoniazid for 3 months
 D. Daily isoniazid for 9 months as the only regimen HIV allows
@@ -298,284 +298,284 @@ E. Once-weekly rifampin plus isoniazid for 3 months
 ## S2N-334
 A 47-year-old woman who works as a baker is seen in the employee health clinic after a coworker suggested a short two-drug course. An interferon-gamma release assay is positive. The chest radiograph shows no infiltrate. She has no cough, and she baked 40 loaves this morning without fever. An HIV-1 antigen/antibody test is negative. She takes no medicines. The suggested course is rifampin plus pyrazinamide. Temperature is 36.6°C, pulse is 76/min, respirations are 15/min, and blood pressure is 122/74 mm Hg. She weighs 68 kg. Night sweats are absent.
 Which of the following is the most appropriate regimen?
-A. Use rifampin plus pyrazinamide for 2 months as a preferred short course at this encounter
+A. Use rifampin plus pyrazinamide for 2 months as a preferred short course
 B. Use that pair for 2 months only because the chest radiograph is normal
 C. Extend rifampin plus pyrazinamide to 4 months and keep both drugs
 D. Do not use that pair; use once-weekly isoniazid plus rifapentine for 3 months
 E. Replace isoniazid with pyrazinamide in the weekly rifapentine regimen
 
 ## S2N-335
-A 62-year-old man who works as a museum docent is seen in the primary care clinic for a preventive visit he booked after the winter tours. School groups keep him on his feet, and he has never completed a stool test or a colonoscopy. He reports no rectal bleeding and takes no blood-thinning medicine. He asks whether screening applies at his age. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. Body mass index is 26 kg/m2. Hemoglobin measured last month was 14.6 g/dL.
+A 68-year-old man who works as a retired welder is in the primary care clinic. He smoked a pack daily from age 20 to 50 and has not smoked since. He has never been screened for an aortic aneurysm. He has no abdominal pain. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 132/78 mm Hg. The abdomen is soft and not tender. Hemoglobin is 14.1 g/dL.
 Which of the following is the most appropriate screening plan?
-A. Wait until age 76, when screening becomes an individual decision during today's visit
-B. Do not screen, because the included ages are only 45 to 49 years
-C. Use a yearly serum test as the recommended screening strategy
-D. Use a yearly urine test as the recommended screening strategy
-E. Start screening now, because adults aged 50 to 75 years should be screened
+A. Annual CT angiography starting this year
+B. No imaging, because he quit smoking 18 years ago
+C. Defer imaging until he turns 80
+D. Screen only if a sibling has had an aneurysm
+E. One-time abdominal ultrasonography now
 
 ## S2N-336
-A 70-year-old woman who works as a city bus driver is seen in the employee health clinic during a required recertification examination. Eleven years ago a colonoscopy was negative, and she has had no stool test since. She still drives a full morning shift, reports no rectal bleeding, and wants to know whether another examination is due. Temperature is 36.7°C, pulse is 76/min, respirations are 16/min, and blood pressure is 122/74 mm Hg. Body mass index is 29 kg/m2. Hemoglobin is 13.4 g/dL.
+A 70-year-old man who works as a librarian is in the primary care clinic. He has never smoked. His brother had an aortic aneurysm repair at 72. He wants to know whether routine imaging is required. Temperature is 36.5°C, pulse is 70/min, respirations are 14/min, and blood pressure is 128/76 mm Hg. The abdomen is soft. Body mass index is 26 kg/m2.
 Which of the following is the most appropriate plan?
-A. Screen now, because age 70 is included and 10 years have passed
-B. Defer any screening until she turns 76 years old next cycle
-C. Repeat colonoscopy on a 5-year schedule after a negative examination
-D. Treat the negative examination as permanent, with no further testing
-E. Replace the examination with a yearly serum screening test
+A. Selectively offer ultrasonography rather than screening every man who never smoked
+B. One-time ultrasonography is required for every man aged 65 to 75 given these results
+C. Do not discuss imaging, because he never smoked
+D. Start annual CT angiography
+E. Screen only women in his family
 
 ## S2N-337
-A 46-year-old man who works as a pastry chef is seen in the neighborhood clinic after a coworker mentioned starting screening. Weekend bakery shifts leave him little time, and he has never had a stool test or a colonoscopy. He has no rectal bleeding. He asks if screening can wait until he is 50. Temperature is 36.8°C, pulse is 80/min, respirations are 14/min, and blood pressure is 116/72 mm Hg. Body mass index is 31 kg/m2. A recent hemoglobin was 15.1 g/dL.
+A 68-year-old woman who works as a florist is in the primary care clinic. She has never smoked and no relative has had an aortic aneurysm. She feels well and asks about aneurysm screening. Temperature is 36.6°C, pulse is 74/min, respirations are 16/min, and blood pressure is 126/74 mm Hg. The abdomen is soft. Hemoglobin is 13.2 g/dL.
 Which of the following is the most appropriate recommendation?
-A. Wait until age 50, because no screening is advised at age 46
-B. Start screening now, because ages 45 to 49 years are included
-C. Start screening only if he reaches the selective range at 76
-D. Offer a serum test now and a urine test as the preferred pair
-E. Offer capsule endoscopy every 5 years as the fitting strategy
+A. One-time ultrasonography, using the rule for men who have smoked
+B. Do not screen with ultrasonography
+C. Annual ultrasonography starting this year
+D. CT angiography because she is 68
+E. Screen only if her systolic pressure is above 140 mm Hg
 
 ## S2N-338
-A 45-year-old woman who works as a court reporter is seen in the family medicine office on the week of her 45th birthday. Turning 45 prompted the visit. She has never had a colonoscopy or a stool test, and she has no rectal bleeding. A clerk told her that screening either starts at 50 or is already grade A on her birthday. Temperature is 36.5°C, pulse is 70/min, respirations are 14/min, and blood pressure is 110/68 mm Hg. Body mass index is 23 kg/m2. Hemoglobin is 13.1 g/dL.
-Which of the following is the correct statement about her age?
-A. Screening starts at 50, so this birthday does not qualify
-B. Age 45 is already in the grade A band used for ages 50 to 75
-C. Age 45 is included, and the recommendation at 45 to 49 is grade B
-D. Age 45 is past the screening window and screening should stop
-E. Age 45 is in the selective band that uses an individual decision at the present visit
+A 67-year-old woman who works as a bus driver is in the primary care clinic. She smoked for 15 years and quit at 50. She has no abdominal symptoms and asks whether an aneurysm ultrasound is required. Temperature is 36.7°C, pulse is 78/min, respirations are 16/min, and blood pressure is 134/80 mm Hg. The abdomen is soft. Body mass index is 29 kg/m2.
+Which of the following is the most appropriate statement?
+A. One-time ultrasonography is required because she ever smoked
+B. Screening is recommended against, as it is for a never-smoking woman with no family history
+C. Evidence is insufficient to say that screening helps or harms her
+D. Annual CT angiography is the standard screen
+E. Wait until age 80 and then obtain ultrasonography
 
 ## S2N-339
-A 49-year-old man who works as a landscape architect is seen in the multispecialty clinic while reviewing a prevention checklist. Payroll records list his birthday as next month, when he will turn 50. He has never been screened and has no rectal bleeding. He asks whether the recommendation at 49 is already the stronger grade used from 50 onward. Temperature is 36.6°C, pulse is 68/min, respirations are 15/min, and blood pressure is 124/76 mm Hg. Body mass index is 25 kg/m2. Hemoglobin is 14.9 g/dL.
-Which of the following best describes screening at his current age?
-A. No screening is offered at his current age until the 50th birthday
-B. Grade A applies now and stays the label through age 49 years
-C. Screening should stop now because he is nearly 50 years old
-D. Screening is recommended now, and the grade is still B rather than A
-E. An individual decision is required now because he is still under 50 in the office today
+A 62-year-old man who works as a carpenter is in the primary care clinic. He smoked for 20 years and quit at 48. He has no abdominal pain and asks to have aneurysm screening today. Temperature is 36.6°C, pulse is 76/min, respirations are 14/min, and blood pressure is 124/78 mm Hg. The abdomen is soft and not tender. Hemoglobin is 15.0 g/dL.
+Which of the following is the most appropriate plan?
+A. One-time ultrasonography today because he has ever smoked
+B. Annual CT angiography until age 75
+C. Screening is never indicated after a person quits
+D. Do not screen yet; the age window starts at 65
+E. Use the never-smoker selective rule even though he smoked
 
 ## S2N-340
-A 50-year-old woman who works as a hotel concierge is seen in the primary care clinic on the morning of her 50th birthday. The hotel schedule let her keep this appointment. She has never had a stool test or a colonoscopy and has no rectal bleeding. She wants the grade that applies on the day she turns 50, not the grade that applied last year. Temperature is 36.7°C, pulse is 74/min, respirations are 14/min, and blood pressure is 112/70 mm Hg. Body mass index is 24 kg/m2. Hemoglobin is 13.6 g/dL.
-Which of the following is the correct grade for screening today?
-A. Grade B, because the B band continues through age 50
-B. Grade C, because an individual decision starts at age 50 before the patient leaves
-C. No grade, because screening is discontinued at age 50
-D. Grade A only after a serum test is completed this year
-E. Grade A, because ages 50 to 75 years are the grade A band
+A 78-year-old man who works as a violin maker is in the primary care clinic. He smoked until age 60. He has never had aneurysm imaging and has no abdominal pain. Temperature is 36.5°C, pulse is 68/min, respirations are 16/min, and blood pressure is 138/72 mm Hg. The abdomen is soft. Creatinine is 1.1 mg/dL.
+Which of the following is the most appropriate plan?
+A. One-time ultrasonography is still required at 78
+B. Start annual ultrasonography
+C. CT angiography is preferred because he is older than 75
+D. Screen only if he resumes smoking
+E. The one-time screening window of ages 65 to 75 has passed
 
 ## S2N-341
-A 75-year-old man who works as a violin teacher is seen in the internal medicine office for a health-maintenance visit at age 75. Retirement from the orchestra is recent, and he still gives lessons. A colonoscopy 11 years ago was negative. He has no rectal bleeding and asks whether 75 is already too old for routine screening. Temperature is 36.5°C, pulse is 64/min, respirations are 16/min, and blood pressure is 128/74 mm Hg. Body mass index is 27 kg/m2. Hemoglobin is 14.0 g/dL.
-Which of the following is the correct statement about screening at 75?
-A. He is still in the grade A band, which includes adults aged 50 to 75
-B. Screening stops at 75 because the selective range has started
-C. Only grade B applies, the same label used at ages 45 to 49
-D. An individual decision is required for every adult once age 75 is reached
-E. A negative examination 11 years ago removes any further screening
+A 66-year-old woman who works as an editor is in the primary care clinic. She has never smoked. Her father died of a ruptured aortic aneurysm at 71. She has no abdominal pain. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 122/76 mm Hg. The abdomen is soft. Hemoglobin is 13.4 g/dL.
+Which of the following is the most appropriate statement?
+A. Evidence is insufficient; family history does not create a grade B ultrasound rule
+B. Do not discuss imaging, using the rule for women with no family history
+C. One-time ultrasonography is required, as it is for men who have smoked
+D. Annual CT angiography is indicated because of her father
+E. Wait until age 80 for ultrasonography
 
 ## S2N-342
-A 76-year-old woman who works as a postal carrier is seen in the community clinic the week after she turned 76. Her walking route ended last spring, and she now feels well. She has never been screened and has no rectal bleeding. She asks whether screening continues automatically or stops on this birthday. Temperature is 36.6°C, pulse is 78/min, respirations are 14/min, and blood pressure is 130/76 mm Hg. Body mass index is 28 kg/m2. Hemoglobin is 12.9 g/dL.
-Which of the following is the most appropriate approach?
-A. Continue screening automatically under the grade A rule
-B. Make an individual decision; do not continue or stop automatically
-C. Stop screening, because discontinuation begins at age 76
-D. Substitute a serum test, which becomes the preferred test at 76 in the office today
-E. Start colonoscopy every 5 years as the age-specific interval
+A 58-year-old man who works as an accountant is in the primary care clinic. He has hypertension and no history of a heart attack, stroke, or other cardiovascular disease. A risk calculator estimates a 12% chance of a cardiovascular event in 10 years. He agrees to a daily medicine after the reason is explained. Temperature is 36.6°C, pulse is 74/min, respirations are 14/min, and blood pressure is 136/82 mm Hg. LDL cholesterol is 142 mg/dL. He does not smoke.
+Which of the following is the most appropriate plan?
+A. Do not use a statin unless the 10-year risk is under 7.5%
+B. Start a moderate-intensity statin for primary prevention
+C. Start aspirin 325 mg daily instead of a statin
+D. The primary-prevention statin recommendation excludes hypertension
+E. Wait until age 76 to discuss a statin
 
 ## S2N-343
-A 85-year-old man who works as a dental hygienist is seen in the geriatrics clinic for a scheduled prevention visit on his 85th birthday. Birthday cupcakes from the staff kitchen are still on the counter. He walks without help, had a negative colonoscopy 12 years ago, and says he wants screening if it is still allowed. A trainee says screening must stop on the 85th birthday. Temperature is 36.4°C, pulse is 66/min, respirations are 16/min, and blood pressure is 126/70 mm Hg. Body mass index is 22 kg/m2. Hemoglobin is 13.2 g/dL.
-Which of the following is the correct recommendation at age 85?
-A. Grade A screening continues automatically through age 85
-B. Screening is discontinued for every adult on the 85th birthday
-C. Age 85 is still an individual decision, not an automatic stop
-D. Grade B rules for ages 45 to 49 years are reapplied at 85
-E. A serum test is the required screen once age 85 is reached
+A 62-year-old woman who works as a baker is in the primary care clinic. She smokes and has no history of cardiovascular disease. Her estimated 10-year cardiovascular risk is 8%. She wants to know whether a statin is automatic. Temperature is 36.7°C, pulse is 76/min, respirations are 16/min, and blood pressure is 128/78 mm Hg. LDL cholesterol is 118 mg/dL. Hemoglobin A1C is 5.4%.
+Which of the following is the most appropriate plan?
+A. Prescribe a statin as a grade B recommendation at this risk
+B. Do not mention a statin, because any risk under 10% has no benefit
+C. Selectively offer a statin; the benefit is smaller than at a risk of 10% or more
+D. Start a statin only after age 75
+E. Smoking removes her from the recommendation
 
 ## S2N-344
-A 86-year-old woman who works as a quilt instructor is seen in the senior clinic because her daughter asked about another stool kit. Garden club meets on Tuesdays, and she feels well. A FIT last year was negative. She will turn 87 in four months and wants the kits to keep arriving each spring. Temperature is 36.5°C, pulse is 72/min, respirations are 16/min, and blood pressure is 134/72 mm Hg. Body mass index is 24 kg/m2. Hemoglobin is 12.8 g/dL.
-Which of the following is the most appropriate screening plan?
-A. Continue annual FIT under the grade A recommendation
-B. Use an individual decision, as for every adult aged 76 to 85
-C. Switch her to colonoscopy every 5 years from this visit
-D. Discontinue screening, because it stops after age 85
-E. Replace FIT with a yearly urine screening test
+A 36-year-old man who works as a chef is in the primary care clinic. He has type 2 diabetes and no cardiovascular disease. A calculator estimates a 15% 10-year cardiovascular risk. He asks whether this primary-prevention recommendation starts a statin today. Temperature is 36.8°C, pulse is 80/min, respirations are 16/min, and blood pressure is 130/84 mm Hg. Hemoglobin A1C is 7.4%. LDL cholesterol is 136 mg/dL.
+Which of the following is the most appropriate statement?
+A. Start a statin today because the risk is above 10%
+B. Start a statin today because he has diabetes, regardless of age given these results
+C. Selectively offer a statin because 15% is between 7.5% and 10%
+D. This recommendation applies at ages 40 to 75, so it does not start treatment at 36
+E. Aspirin 81 mg replaces the statin discussion
 
 ## S2N-345
-A 91-year-old man who works as a chapel usher is seen in the geriatrics clinic with his daughter after a stool-test report. Yesterday a FIT ordered by another office came back positive. He has no rectal bleeding and feels the same as last month. His daughter asks that everything stop because he is past 85, and she does not want a colonoscopy. Temperature is 36.6°C, pulse is 70/min, respirations are 16/min, and blood pressure is 138/74 mm Hg. Body mass index is 21 kg/m2. Hemoglobin is 11.8 g/dL.
-Which of the following is the most appropriate next step for this positive result?
-A. File the result and stop, because routine screening ends after age 85 during today's visit
-B. Repeat the FIT in 1 year and do not refer the patient for colonoscopy
-C. Order a serum test to decide whether this positive FIT still matters
-D. Arrange capsule endoscopy and use that study instead of colonoscopy
-E. Colonoscopy is still required, or the benefit of this positive test is lost
+A 52-year-old woman who works as an architect is in the primary care clinic. She has no diabetes, hypertension, dyslipidemia, or smoking, and no cardiovascular disease. A calculator still estimates a 14% 10-year risk. She asks whether a statin is indicated by this recommendation. Temperature is 36.6°C, pulse is 70/min, respirations are 14/min, and blood pressure is 118/72 mm Hg. LDL cholesterol is 98 mg/dL. Hemoglobin A1C is 5.3%.
+Which of the following is the most appropriate statement?
+A. Start a statin because the 10-year risk is above 10%
+B. Selectively offer a statin because 14% is under 10%
+C. Start aspirin instead, because she has no risk factor
+D. Repeat the discussion at age 60, when risk factors are no longer required
+E. A risk factor is required; risk alone does not meet this recommendation
 
 ## S2N-346
-A 44-year-old woman who works as a high school coach is seen in the sports medicine clinic asking to start the same screening her older brother had. Coaching ends at 5 p.m., and she came from the track. She is 44, has no rectal bleeding, and has never had a stool test or a colonoscopy. She turns 45 in 10 months. Temperature is 36.7°C, pulse is 64/min, respirations are 14/min, and blood pressure is 108/66 mm Hg. Body mass index is 22 kg/m2. Hemoglobin is 13.8 g/dL.
-Which of the following is the most appropriate plan for this year?
-A. Age alone does not place her in a screening group until age 45
-B. Start grade A screening now because she is close to 45
-C. Start grade C selective screening because she asked today before the patient leaves
-D. Order a urine screening test now and repeat it yearly
-E. Schedule colonoscopy every 5 years starting this season
+A 64-year-old man who works as an electrician is in the cardiology clinic. He had a myocardial infarction 2 years ago and takes aspirin. He has hypertension. He asks whether the primary-prevention statin recommendation is the reason to decide today. Temperature is 36.6°C, pulse is 72/min, respirations are 16/min, and blood pressure is 128/76 mm Hg. LDL cholesterol is 110 mg/dL. The ECG shows an old inferior infarct.
+Which of the following is the most appropriate statement about this recommendation?
+A. It addresses primary prevention in people without cardiovascular disease
+B. It is the grade B rule for starting a statin after a myocardial infarction
+C. It says not to use a statin once a person has had an infarction
+D. It applies only when the 10-year risk is under 7.5%
+E. It replaces aspirin after an infarction
 
 ## S2N-347
-A 80-year-old woman who works as a reference librarian is seen in the geriatrics clinic to talk about whether to continue screening. Distance walking is limited to one block with a cane. A colonoscopy 4 years ago was negative. She has read the reminder letter and prefers not to be tested this year. Her son wants the reminder treated as an automatic order. Temperature is 36.5°C, pulse is 74/min, respirations are 16/min, and blood pressure is 128/70 mm Hg. Body mass index is 23 kg/m2. Hemoglobin is 12.4 g/dL. She takes 6 daily medicines.
-Which of the following is the most appropriate approach?
-A. Continue screening automatically because reminders are grade A at 80
-B. Decide individually from her health, prior screening, and preference
-C. Stop forever, because screening is discontinued for everyone over 75
-D. Order a serum test, which is the preferred test when she declines others
-E. Repeat colonoscopy now because a negative study is due after 3 years
+A 78-year-old woman who works as a gardener is in the primary care clinic. She has hypertension, does not smoke, and has no cardiovascular disease. Her estimated 10-year risk is 18%. She asks whether this primary-prevention recommendation starts a statin. Temperature is 36.5°C, pulse is 68/min, respirations are 14/min, and blood pressure is 140/78 mm Hg. LDL cholesterol is 130 mg/dL. Creatinine is 1.0 mg/dL.
+Which of the following is the most appropriate statement?
+A. Start a statin because the risk is above 10%
+B. This recommendation stops at age 75
+C. Selectively offer a statin because she is older than 75
+D. Do not use a statin unless she also has diabetes
+E. The recommendation begins only after age 80
 
 ## S2N-348
-A 58-year-old man who works as a ceramicist is seen in the primary care clinic comparing stool-test schedules on a clinic card. Choosing a test he can mail from the studio matters to him. He is 58, has never been screened, and has no rectal bleeding. He asks which stool-test schedule is a recommended strategy. Temperature is 36.8°C, pulse is 70/min, respirations are 14/min, and blood pressure is 120/76 mm Hg. Body mass index is 27 kg/m2. Hemoglobin is 15.0 g/dL.
-Which of the following stool-test schedules is a recommended strategy?
-A. Repeat FIT every 10 years, using the negative-colonoscopy interval
-B. Repeat FIT every 5 years, using the flexible-sigmoidoscopy interval
-C. Repeat FIT every year, which is a recommended screening strategy
-D. Order a serum test every year and call that the screening strategy
-E. Collect FIT cards from 3 bowel movements and add a guaiac diet
+A 52-year-old man who works as a plumber is in the primary care clinic. He has no cardiovascular disease and no history of bleeding. His estimated 10-year cardiovascular risk is 12%. He is willing to take a daily aspirin if it is reasonable. Temperature is 36.7°C, pulse is 76/min, respirations are 14/min, and blood pressure is 128/80 mm Hg. Hemoglobin is 14.8 g/dL. He does not take an anticoagulant.
+Which of the following is the most appropriate plan?
+A. Start low-dose aspirin as a required grade B medicine
+B. Do not discuss aspirin, because that prohibition starts at age 40
+C. Make an individual decision about low-dose aspirin
+D. Start aspirin 325 mg daily
+E. Defer any aspirin decision until age 60
 
 ## S2N-349
-A 63-year-old woman who works as a tax preparer is seen in the endoscopy recovery area after being told the examination showed no abnormality. This morning's colonoscopy was negative. She is 63, feels well, and has a stack of client folders waiting at the office. She asks when a negative examination should be repeated. Temperature is 36.6°C, pulse is 78/min, respirations are 14/min, and blood pressure is 118/72 mm Hg. Body mass index is 26 kg/m2. Hemoglobin checked yesterday was 13.5 g/dL.
-Which of the following intervals is appropriate after this negative examination?
-A. Repeat colonoscopy in 1 year, using the same cadence as annual FIT at this encounter
-B. Repeat colonoscopy in 3 years as ordinary screening follow-up
-C. Repeat colonoscopy in 5 years, as with flexible sigmoidoscopy
-D. Repeat colonoscopy in 10 years, the interval after a negative study
-E. Stop colonoscopy forever after this single negative examination
+A 66-year-old woman who works as a teacher is in the primary care clinic. She has no cardiovascular disease. Her estimated 10-year risk is 16%. She has never taken aspirin and asks to start it to prevent a first heart attack. Temperature is 36.6°C, pulse is 72/min, respirations are 16/min, and blood pressure is 134/78 mm Hg. Hemoglobin is 13.1 g/dL. She has no bleeding history.
+Which of the following is the most appropriate recommendation?
+A. Start low-dose aspirin because her risk is above 10%
+B. Make the age 40-to-59 individual decision
+C. Start aspirin 325 mg daily
+D. Do not start low-dose aspirin for primary prevention
+E. Start aspirin only if she is younger than 40
 
 ## S2N-350
-A 57-year-old man who works as a locksmith is seen in the imaging-center clinic asking about a scan instead of colonoscopy. Shift work makes a full day for colonoscopy hard to schedule. He is 57, has never been screened, and has no rectal bleeding. He asks whether CT colonography is a recommended strategy and how often it is done. Temperature is 36.7°C, pulse is 76/min, respirations are 15/min, and blood pressure is 122/78 mm Hg. Body mass index is 30 kg/m2. Hemoglobin is 14.7 g/dL.
-Which of the following is a recommended CT colonography plan?
-A. CT colonography every 10 years after a scan that looks normal
-B. CT colonography every year, copied from the annual FIT schedule
-C. CT colonography is not among the recommended screening strategies
-D. Capsule endoscopy every 5 years, offered in place of the scan
-E. CT colonography every 5 years, a recommended screening strategy
+A 48-year-old man who works as a painter is in the primary care clinic. He has no cardiovascular disease. His estimated 10-year risk is 6%. He has no bleeding history and asks for aspirin. Temperature is 36.7°C, pulse is 74/min, respirations are 14/min, and blood pressure is 122/76 mm Hg. Hemoglobin is 15.2 g/dL.
+Which of the following is the most appropriate statement?
+A. Start low-dose aspirin because he is 40 to 59
+B. Do not start aspirin, using the rule for adults 60 or older
+C. Start aspirin 325 mg because the risk is under 10%
+D. Risk is not part of the age 40-to-59 decision
+E. The individual-decision band requires a 10-year risk of at least 10%
 
 ## S2N-351
-A 55-year-old woman who works as a choir director is seen in the surgery clinic before choosing among screening examinations. Rehearsals fill her evenings, and she wants an examination that is not a full colonoscopy. She is 55, has never been screened, and has no rectal bleeding. She asks how often flexible sigmoidoscopy is recommended. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 114/70 mm Hg. Body mass index is 25 kg/m2. Hemoglobin is 13.0 g/dL.
-Which of the following schedules is a recommended strategy?
-A. Flexible sigmoidoscopy every 5 years, a recommended screening strategy
-B. Flexible sigmoidoscopy every 10 years when the examination is negative
-C. Flexible sigmoidoscopy every year, together with dietary restrictions
-D. Flexible sigmoidoscopy is not one of the recommended screening strategies
-E. A urine test every 5 years, used instead of flexible sigmoidoscopy
+A 38-year-old woman who works as a nurse is in the primary care clinic. She has no cardiovascular disease. Her estimated 10-year risk is 11%. She asks whether to start low-dose aspirin under this recommendation. Temperature is 36.6°C, pulse is 70/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. Hemoglobin is 13.6 g/dL.
+Which of the following is the most appropriate statement?
+A. This recommendation begins at age 40
+B. Make an individual decision because the risk is above 10%
+C. Do not start aspirin, using the rule for age 60 or older
+D. Start aspirin 325 mg daily
+E. Start low-dose aspirin because she is a clinician
 
 ## S2N-352
-A 60-year-old man who works as a land surveyor is seen in the primary care clinic after reading a waiting-room poster. A poster says colonoscopy is repeated every 5 years when negative and flexible sigmoidoscopy every 10 years. He is 60, has no rectal bleeding, and has never been screened. He asks which line on the poster has the intervals backward. Temperature is 36.8°C, pulse is 68/min, respirations are 14/min, and blood pressure is 126/78 mm Hg. Body mass index is 28 kg/m2. Hemoglobin is 15.2 g/dL.
-Which of the following corrects the poster?
-A. Both examinations are repeated every year when negative
-B. Colonoscopy is every 10 years when negative, and sigmoidoscopy is every 5
-C. Both examinations are repeated every 5 years when negative
-D. Colonoscopy is every 5 years when negative, and sigmoidoscopy is every 10
-E. Both examinations are repeated every 10 years when negative
+A 64-year-old man who works as a mechanic is in the emergency department. He is confused and has a fever after 2 days of cough. He is in shock. Temperature is 38.9°C, pulse is 122/min, respirations are 28/min, and blood pressure is 78/48 mm Hg. Lactate is 4.8 mmol/L. Oxygen saturation is 91% on air. A chest radiograph shows a right lower-lobe infiltrate.
+Which of the following is the most appropriate timing of antibiotics?
+A. Wait for a positive blood culture before any antibiotic
+B. Give antibiotics immediately, ideally within 1 hour
+C. Defer antibiotics for 6 hours while observing
+D. Use procalcitonin alone to decide whether to treat
+E. Give antibiotics only if the lactate is under 2 mmol/L
 
 ## S2N-353
-A 61-year-old woman who works as a florist is seen in the primary care clinic holding a guaiac card kit she was given at the desk. Cards for a high-sensitivity guaiac test are still in the envelope. She is 61, has no rectal bleeding, and asks what the kit requires before she returns it. She wonders if one sample and her usual meals are enough. Temperature is 36.6°C, pulse is 74/min, respirations are 15/min, and blood pressure is 116/72 mm Hg. Body mass index is 26 kg/m2. Hemoglobin is 13.3 g/dL.
-Which of the following instructions matches this guaiac test?
-A. One sample is enough, and no dietary change is required
-B. Three bowel movements are sampled, but the diet can stay the same during today's visit
-C. Samples from 3 bowel movements are required, and the diet is restricted
-D. The diet is restricted, but a single bowel movement is enough
-E. A urine sample replaces the stool cards if the diet is restricted
+A 57-year-old woman who works as a cashier is in the emergency department. She has fever and dysuria but a normal blood pressure and a normal mental status. Sepsis is possible and shock is absent. The evaluation of other causes is underway. Temperature is 38.4°C, pulse is 104/min, respirations are 20/min, and blood pressure is 118/72 mm Hg. Lactate is 2.4 mmol/L. Creatinine is 1.0 mg/dL. The urinalysis shows many leukocytes.
+Which of the following is the most appropriate antibiotic timing if infection remains likely?
+A. Give antibiotics only after 12 hours of observation
+B. Use the 1-hour shock rule even though she is not in shock
+C. Give antibiotics within 3 hours of recognition
+D. Defer all antibiotics because the blood pressure is normal and stop the workup
+E. Wait for a 24-hour culture result
 
 ## S2N-354
-A 59-year-old man who works as a machinist is seen in the primary care clinic before he starts an annual FIT. Advice taped to the kit tells him to avoid red meat and to smear cards from 3 bowel movements. He is 59, has no rectal bleeding, and the order is for FIT, not a guaiac test. He asks what he actually has to do. Temperature is 36.9°C, pulse is 72/min, respirations are 14/min, and blood pressure is 124/76 mm Hg. Body mass index is 32 kg/m2. Hemoglobin is 14.4 g/dL.
-Which of the following is the most appropriate statement to him?
-A. FIT uses the same 3-sample and diet rules as high-sensitivity guaiac testing at this encounter
-B. FIT needs the dietary restrictions, but it does not need 3 stool samples
-C. FIT needs samples from 3 bowel movements, but it does not need a diet change
-D. FIT needs neither 3 samples nor a special diet; those rules are for guaiac tests
-E. Only sDNA-FIT avoids those rules, while FIT is still expected to follow them
+A 44-year-old man who works as a cyclist is in the emergency department. He has chest-wall pain after a fall, a normal chest radiograph, and no fever. Infection is unlikely and he is not in shock. Temperature is 36.7°C, pulse is 78/min, respirations are 16/min, and blood pressure is 128/76 mm Hg. Lactate is 1.1 mmol/L. Oxygen saturation is 98% on air. The ribs are tender.
+Which of the following is the most appropriate antimicrobial plan?
+A. Give broad antibiotics within 1 hour
+B. Give antibiotics within 3 hours even though infection is unlikely
+C. Start two gram-negative drugs
+D. Defer antibiotics and keep monitoring
+E. Use procalcitonin alone to justify antibiotics
 
 ## S2N-355
-A 66-year-old woman who works as a records archivist is seen in the primary care clinic after a mailed sDNA-FIT kit arrived at her apartment. The kit insert she was given for a different test talks about diet limits and 3 cards. This order is an sDNA-FIT. She is 66, has no rectal bleeding, and asks whether those diet limits apply to this kit. Temperature is 36.5°C, pulse is 70/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. Body mass index is 24 kg/m2. Hemoglobin is 13.7 g/dL.
-Which of the following is the correct instruction?
-A. sDNA-FIT requires dietary restrictions and samples from 3 bowel movements
-B. Stop screening at 66, so the kit should be discarded without a sample
-C. sDNA-FIT is done every 10 years, so diet rules apply only in year 10
-D. A serum test uses the same diet rules and can replace this kit
-E. sDNA-FIT does not require those dietary restrictions or 3 guaiac samples
+A 70-year-old woman who works as a retired nurse is in the emergency department. She is in septic shock from pyelonephritis. Her weight is 60 kg. Temperature is 38.6°C, pulse is 118/min, respirations are 26/min, and blood pressure is 82/50 mm Hg. Lactate is 5.1 mmol/L. Creatinine is 1.6 mg/dL.
+Which of the following is the most appropriate initial fluid plan?
+A. No fluid until a 24-hour intake record is complete given these results
+B. 5 mL/kg of crystalloid over 24 hours
+C. Albumin as the required initial fluid
+D. Fluid only if the lactate is under 2 mmol/L
+E. At least 30 mL/kg of intravenous crystalloid in the first 3 hours
 
 ## S2N-356
-A 64-year-old man who works as a sommelier is seen in the primary care clinic to discuss a FIT that returned positive. The phone message said the FIT was positive. He feels well, has no rectal bleeding, and hopes to repeat a stool test next year rather than take time away from the shop for colonoscopy. He is 64. Temperature is 36.7°C, pulse is 76/min, respirations are 14/min, and blood pressure is 120/74 mm Hg. Body mass index is 27 kg/m2. Hemoglobin is 14.1 g/dL.
-Which of the following is the most appropriate statement?
-A. Refer for colonoscopy, or the benefit of the positive test is lost
-B. Scheduling another FIT for next year is enough if he still feels well
-C. Three more guaiac cards and a restricted diet can clear the positive result
-D. A serum test can take the place of colonoscopy after a positive FIT
-E. Screening is already complete because the stool kit was returned
+A 73-year-old man who works as a farmer is in the intensive care unit. He is in septic shock and a norepinephrine infusion has just started. Temperature is 37.8°C, pulse is 110/min, respirations are 22/min, and blood pressure is 84/48 mm Hg. Mean arterial pressure is 58 mm Hg. Lactate is 3.6 mmol/L.
+Which of the following is the most appropriate initial mean-arterial-pressure target?
+A. 65 mm Hg
+B. 85 mm Hg as the required initial target
+C. 50 mm Hg
+D. No target until the lactate is normal
+E. 100 mm Hg for every patient in shock
 
 ## S2N-357
-A 52-year-old woman who works as a cartographer is seen in the primary care clinic reviewing a handout that equates two intervals. A handout says FIT is repeated every 10 years, the same interval printed for a negative colonoscopy. She is 52, has never been screened, and has no rectal bleeding. She asks which interval belongs to FIT. Temperature is 36.6°C, pulse is 80/min, respirations are 14/min, and blood pressure is 112/68 mm Hg. Body mass index is 23 kg/m2. Hemoglobin is 13.9 g/dL.
-Which of the following is the correct comparison?
-A. Both FIT and a negative colonoscopy are repeated every 5 years
-B. FIT is annual, and colonoscopy is every 10 years when negative
-C. Both FIT and a negative colonoscopy are repeated every 10 years
-D. FIT is every 10 years, and colonoscopy is annual when negative
-E. FIT is every 5 years, and colonoscopy is every 5 years when negative
+A 59-year-old woman who works as a clerk is in the emergency department. Sepsis is likely. A procalcitonin result is not back. She is hypotensive. Temperature is 38.8°C, pulse is 120/min, respirations are 24/min, and blood pressure is 86/52 mm Hg. Lactate is 4.2 mmol/L. The leukocyte count is 16,000/mm3.
+Which of the following is the most appropriate use of procalcitonin?
+A. Start antibiotics only if procalcitonin is elevated
+B. Do not wait for procalcitonin to decide to start antibiotics
+C. Procalcitonin replaces the history and examination
+D. A normal procalcitonin forbids antibiotics in shock
+E. Repeat procalcitonin for 12 hours before the first dose
 
 ## S2N-358
-A 60-year-old man who works as a blacksmith is seen in the surgery clinic after flexible sigmoidoscopy was reported as abnormal. The report from last Tuesday says the flexible sigmoidoscopy was abnormal. He is 60, has no rectal bleeding today, and was told the screening examination is finished. He asks whether anything else is required. Temperature is 36.8°C, pulse is 66/min, respirations are 14/min, and blood pressure is 128/76 mm Hg. Body mass index is 29 kg/m2. Hemoglobin is 14.3 g/dL.
-Which of the following is the most appropriate next step?
-A. Repeat flexible sigmoidoscopy in 5 years and add no other examination
-B. Switch to annual FIT and do not refer the patient for colonoscopy
-C. Refer for colonoscopy, or the benefit of the abnormal study is not obtained
-D. Order capsule endoscopy and treat that study as the completion test
-E. Order a urine test and use it to decide whether the abnormality matters at the present visit
+A 61-year-old man who works as a dialysis patient is in the emergency department. He has septic shock. He has a recent hospitalization and an indwelling intravenous device, and MRSA risk is judged high. Temperature is 38.7°C, pulse is 116/min, respirations are 24/min, and blood pressure is 80/46 mm Hg. Lactate is 4.0 mmol/L.
+Which of the following is the most appropriate MRSA plan?
+A. Avoid MRSA coverage because the risk is high
+B. Use MRSA coverage only if the risk is low
+C. Include an antibiotic active against MRSA
+D. Wait 24 hours for a nasal swab before any antibiotic
+E. Use procalcitonin to decide on MRSA coverage
 
 ## S2N-359
-A 67-year-old woman who works as a copy editor is seen in the imaging follow-up clinic after CT colonography was read as abnormal. The scanner report calls the CT colonography abnormal. She is 67, feels well, and hoped the pictures would be the last step. She asks to repeat the scan in 5 years rather than have a colonoscopy. Temperature is 36.5°C, pulse is 78/min, respirations are 16/min, and blood pressure is 122/74 mm Hg. Body mass index is 26 kg/m2. Hemoglobin is 12.7 g/dL.
-Which of the following is the most appropriate next step?
-A. The abnormal scan completes screening, so colonoscopy is unnecessary
-B. Repeat CT colonography in 5 years and do not refer for colonoscopy
-C. Follow the abnormal scan with annual FIT and skip colonoscopy
-D. Colonoscopy is required, or the benefit of the abnormal scan is lost
-E. Use a serum test to cancel the abnormal CT colonography result
+A 40-year-old woman who works as a teacher is in the emergency department. She has sepsis from community pyelonephritis. MRSA risk is judged low. She is not in shock. Temperature is 38.5°C, pulse is 102/min, respirations are 18/min, and blood pressure is 110/68 mm Hg. Lactate is 2.2 mmol/L. Creatinine is 0.9 mg/dL.
+Which of the following is the most appropriate MRSA plan?
+A. Add MRSA coverage because the risk is low
+B. Add MRSA coverage to every community infection
+C. Use two gram-negative drugs because MRSA risk is low
+D. Do not add MRSA coverage
+E. Hold all antibiotics until a nasal swab returns
 
 ## S2N-360
-A 53-year-old man who works as a beekeeper is seen in the primary care clinic asking for a blood test instead of stool or colonoscopy. An advertisement in the beekeeping newsletter offers a serum screening test that claims to replace other testing. He is 53, has never been screened, and has no rectal bleeding. He asks for that blood test today. Temperature is 36.7°C, pulse is 70/min, respirations are 14/min, and blood pressure is 116/74 mm Hg. Body mass index is 27 kg/m2. Hemoglobin is 14.8 g/dL.
-Which of the following is the most appropriate response?
-A. Order the serum test yearly, because it is treated as equal to annual FIT
-B. Order the serum test every 10 years, using the negative-colonoscopy interval
-C. Order the serum test yearly only when it is paired with a urine test
-D. Prefer the serum test on the claim that he is outside the screening ages
-E. Decline a serum test and discuss one of the recommended strategies
+A 55-year-old man who works as a driver is in the emergency department. Sepsis is suspected. No lactate has been drawn. Temperature is 38.6°C, pulse is 108/min, respirations are 22/min, and blood pressure is 100/62 mm Hg. The leukocyte count is 14,000/mm3. Oxygen saturation is 94% on air.
+Which of the following is the most appropriate next laboratory step?
+A. Do not measure lactate in suspected sepsis
+B. Use lactate only after antibiotics have failed
+C. Replace the history with a lactate result
+D. Measure lactate only if the blood pressure is above 140 mm Hg
+E. Measure blood lactate
 
 ## S2N-361
-A 54-year-old woman who works as a tailor is seen in the primary care clinic with a urine kit a representative left at her shop. A sales representative told customers the urine kit is screening and that the clinic should sign the order form. She is 54, has no rectal bleeding, and has never been screened. She asks the physician to endorse the kit. Temperature is 36.6°C, pulse is 74/min, respirations are 14/min, and blood pressure is 114/70 mm Hg. Body mass index is 25 kg/m2. Hemoglobin is 13.2 g/dL.
-Which of the following is the most appropriate professional response?
-A. Decline the urine kit as screening and offer a recommended strategy instead
-B. Sign the form, because any sample is better than no screening
-C. Endorse the kit if she also follows a guaiac diet for 3 days
-D. Use the urine kit as the follow-up for any future positive FIT
-E. Accept the kit because urine testing is preferred from ages 50 to 75 at the present visit
+A 69-year-old woman who works as a retired teacher is in the emergency department. She has septic shock and needs intensive care. A bed is being requested. Temperature is 38.4°C, pulse is 114/min, respirations are 24/min, and blood pressure is 88/50 mm Hg. Lactate is 3.9 mmol/L. Norepinephrine has been started.
+Which of the following is the most appropriate admission timing?
+A. Admit to intensive care within 6 hours
+B. Keep her in the emergency department for 24 hours
+C. Send her to a general floor because shock is present
+D. Delay intensive care until the lactate is normal
+E. Discharge once the first antibiotic dose is given
 
 ## S2N-362
-A 56-year-old man who works as a park ranger is seen in the primary care clinic requesting the capsule study a friend had for stomach pain. A friend swallowed a capsule camera after months of stomach pain. This ranger has no pain, no rectal bleeding, and has never been screened. He is 56 and asks for the same capsule study as his screening test. Temperature is 36.8°C, pulse is 68/min, respirations are 14/min, and blood pressure is 118/72 mm Hg. Body mass index is 26 kg/m2. Hemoglobin is 15.3 g/dL.
-Which of the following is the most appropriate response?
-A. Capsule endoscopy every 10 years matches negative colonoscopy
-B. Capsule endoscopy is not a recommended screening test
-C. Capsule endoscopy is the proper follow-up after a positive FIT
-D. Capsule endoscopy every 5 years matches CT colonography
-E. Annual capsule endoscopy is a recommended stool-free strategy
+A 63-year-old man who works as a janitor is in the emergency department. Infection is suspected. A quick sequential organ failure score is low. He looks ill. Temperature is 38.2°C, pulse is 100/min, respirations are 20/min, and blood pressure is 108/64 mm Hg. Lactate has not yet returned. The leukocyte count is 13,500/mm3.
+Which of the following is the most appropriate use of that score?
+A. A low score alone excludes sepsis
+B. Do not use it as the only screening tool
+C. The score replaces lactate and the examination
+D. Antibiotics are forbidden when the score is low
+E. The score is preferred over early-warning scores as the sole tool
 
 ## S2N-363
-A 54-year-old woman who works as a ferry captain is seen in the primary care clinic choosing between two annual stool tests. Comparison of an annual FIT and an annual high-sensitivity guaiac test is the reason for the visit. She is 54, has no rectal bleeding, and has never been screened. She asks which annual stool strategy modeling favored for life-years gained. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 116/70 mm Hg. Body mass index is 28 kg/m2. Hemoglobin is 13.6 g/dL.
-Which of the following is the correct statement about that modeling?
-A. Annual guaiac testing gained more life-years than annual FIT did
-B. The two annual stool tests gained the same number of life-years
-C. Modeling favored annual FIT over annual high-sensitivity guaiac testing
-D. A yearly serum test gained more life-years than annual FIT did
-E. Colonoscopy every 5 years was the only strategy named in that comparison
+A 29-year-old woman who works as a singer is in the pulmonary clinic. She has asthma with symptoms 3 days a week and uses albuterol alone. She has never used an inhaled corticosteroid. Temperature is 36.7°C, pulse is 82/min, respirations are 16/min, and blood pressure is 118/74 mm Hg. Oxygen saturation is 97% on air. FEV1 is 78% of predicted.
+Which of the following is the most appropriate treatment principle?
+A. Continue albuterol alone because symptoms are under 4 days a week
+B. Add theophylline and stop any plan for an inhaled corticosteroid
+C. Do not treat with a short-acting beta agonist alone
+D. Start a long-acting beta agonist with no inhaled corticosteroid
+E. Reserve an inhaled corticosteroid for a life-threatening attack only
 
 ## S2N-364
-A 42-year-old man who works as a flight dispatcher is seen in the primary care clinic for an employment physical before a new tower rotation. Night shifts have not changed how he feels. He takes no daily medicine. The average of repeated standardized readings is 112/72 mm Hg, and he asks what category that average falls in. Temperature is 36.6°C, pulse is 68/min, respirations are 14/min, and blood pressure is 112/72 mm Hg. Body mass index is 24 kg/m2. He is not pregnant. A basic metabolic panel last week was unremarkable.
+A 42-year-old man who works as a flight dispatcher is seen in the primary care clinic for an employment physical before a new tower rotation. Night shifts have not changed how he feels. He takes no daily medicine. The average of repeated standardized readings is 112/72 mm Hg, and he asks what category that average falls in. Temperature is 36.6°C, pulse is 68/min, respirations are 14/min, and blood pressure is 112/72 mm Hg. Body mass index is 24 kg/m2. A basic metabolic panel last week was unremarkable.
 Which category applies to this average reading?
-A. Elevated: every systolic pressure under 130 belongs in that band during today's visit
+A. Elevated: every systolic pressure under 130 belongs in that band
 B. Stage 1: a diastolic pressure under 80 is still called stage 1
 C. Stage 2: a systolic pressure under 140 is already called stage 2
 D. Normal: systolic pressure under 120 and diastolic pressure under 80
 E. Stage 2: a diastolic pressure under 90 is already called stage 2
 
 ## S2N-365
-A 58-year-old man who works as a glassblower is seen in the primary care clinic asking what treatment target applies to him. Furnace work is hot, but he is here for the numbers, not for heat illness. He already takes a thiazide-type diuretic. The average home reading is 138/86 mm Hg. He is not pregnant and wants the goal stated plainly. Temperature is 36.8°C, pulse is 76/min, respirations are 16/min, and blood pressure is 138/86 mm Hg. Body mass index is 29 kg/m2. The 10-year PREVENT risk has not been recalculated today.
+A 58-year-old man who works as a glassblower is seen in the primary care clinic asking what treatment target applies to him. Furnace work is hot, but he is here for the numbers, not for heat illness. He already takes a thiazide-type diuretic. The average home reading is 138/86 mm Hg. and wants the goal stated plainly. Temperature is 36.8°C, pulse is 76/min, respirations are 16/min, and blood pressure is 138/86 mm Hg. Body mass index is 29 kg/m2. The 10-year PREVENT risk has not been recalculated today.
 Which treatment goal applies to this adult?
 A. Under 120/80 mm Hg, using the cutoffs that define a normal reading
 B. Under 140/90 mm Hg, the target used in pregnancy for that pattern
@@ -590,7 +590,7 @@ A. Elevated: systolic 120 to 129 with diastolic pressure under 80
 B. Normal, because both numbers sit under 130 and under 80
 C. Stage 1, because the systolic value has moved past 120
 D. Stage 2, because the systolic value is nearer 140 than 120
-E. Normal, because no blood-pressure medicine has been started at the present visit
+E. Normal, because no blood-pressure medicine has been started
 
 ## S2N-367
 A 51-year-old man who works as a speech therapist is seen in the community clinic with a stack of home readings from 14 days. School sessions keep his schedule regular. He takes no blood-pressure medicine. The 14-day average is 134/82 mm Hg, and the office reading today is the same. Temperature is 36.7°C, pulse is 72/min, respirations are 15/min, and blood pressure is 134/82 mm Hg. Body mass index is 28 kg/m2. Estimated GFR is 76 mL/min. He does not have diabetes.
@@ -606,12 +606,12 @@ A 49-year-old woman who works as a roofer is seen in the occupational clinic aft
 Which of the following is the most appropriate initial plan?
 A. Lifestyle measures alone for 3 to 6 months, then reconsider a medicine
 B. No medicine, because the 10-year PREVENT risk is under 7.5 percent
-C. Start medication together with lifestyle measures at this visit
+C. Start medication together with lifestyle measures
 D. No medicine, unless the office reading is at least 160/100 mm Hg
 E. Use the pregnancy target and do not treat a reading under 150/100
 
 ## S2N-369
-A 62-year-old man who works as a jeweler is seen in the cardiology clinic to choose initial medicines for a confirmed average. Bench work requires fine focus, and he wants the regimen simple. There is no coronary disease and no heart failure. The home average is 152/94 mm Hg. Estimated GFR is 78 mL/min. He is not pregnant. Temperature is 36.7°C, pulse is 70/min, respirations are 14/min, and blood pressure is 152/94 mm Hg. Body mass index is 28 kg/m2. He takes no blood-pressure medicine yet.
+A 62-year-old man who works as a jeweler is seen in the cardiology clinic to choose initial medicines for a confirmed average. Bench work requires fine focus, and he wants the regimen simple. There is no coronary disease and no heart failure. The home average is 152/94 mm Hg. Estimated GFR is 78 mL/min. Temperature is 36.7°C, pulse is 70/min, respirations are 14/min, and blood pressure is 152/94 mm Hg. Body mass index is 28 kg/m2. He takes no blood-pressure medicine yet.
 Which initial regimen is preferred?
 A. The same two first-line drugs prescribed as two separate pills
 B. One pill combining an ACE inhibitor with an ARB
@@ -651,7 +651,7 @@ A 57-year-old man who works as a piano tuner is seen in the endocrine clinic wit
 Which of the following is the most appropriate plan?
 A. Use lifestyle measures alone for 3 to 6 months at this systolic level
 B. Withhold medicine until the average reaches 160/100 mm Hg
-C. Begin medication and lifestyle measures together during this visit
+C. Begin medication and lifestyle measures together
 D. Pair an ACE inhibitor with an ARB in one prescription today
 E. Start a beta-blocker as the only default drug, and no other class
 
@@ -665,9 +665,9 @@ D. Start a first-line drug now; do not prefer a loop diuretic at this GFR
 E. Combine an ACE inhibitor with aliskiren as the starting pair
 
 ## S2N-375
-A 60-year-old man who works as a stonemason is seen in the union hall clinic bringing a printed 10-year PREVENT estimate of 8.8 percent. Chisel dust is still on his sleeves. He has no diabetes, no chronic kidney disease, no prior stroke, and no clinical cardiovascular disease. He takes no blood-pressure medicine. Quarry-town home readings average 131/82 mm Hg. He asks whether that risk printout, by itself, changes the plan. Temperature is 36.7°C, pulse is 72/min, respirations are 14/min, and blood pressure is 131/82 mm Hg. He is not pregnant. A shoulder radiograph last winter showed no fracture. Height is 178 cm.
+A 60-year-old man who works as a stonemason is seen in the union hall clinic bringing a printed 10-year PREVENT estimate of 8.8 percent. Chisel dust is still on his sleeves. He has no diabetes, no chronic kidney disease, no prior stroke, and no clinical cardiovascular disease. He takes no blood-pressure medicine. Quarry-town home readings average 131/82 mm Hg. He asks whether that risk printout, by itself, changes the plan. Temperature is 36.7°C, pulse is 72/min, respirations are 14/min, and blood pressure is 131/82 mm Hg. A shoulder radiograph last winter showed no fracture. Height is 178 cm.
 Which of the following is the most appropriate plan?
-A. Use lifestyle measures alone because diabetes, kidney disease, and stroke are absent at this encounter
+A. Use lifestyle measures alone because diabetes, kidney disease, and stroke are absent
 B. Start no medicine, because the systolic average is still under 140 mm Hg
 C. Start an ACE inhibitor and an ARB together because the printed risk is high
 D. Treat toward under 140/90 and treat 131/82 mm Hg as a completed goal
@@ -677,7 +677,7 @@ E. Start medication and lifestyle measures because the 10-year risk is at least 
 A 48-year-old woman who works as a hearing specialist is seen in the sound-booth clinic after calibrating booths, with home readings already in hand. Sound-booth calibrations are finished. Morning checks over 3 weeks average 136/84 mm Hg, and that home series is not in doubt. The 10-year PREVENT risk is 4.4 percent. She has no diabetes, no chronic kidney disease, no prior stroke, and no clinical cardiovascular disease. She is not pregnant and takes no blood-pressure medicine. Foam earplugs sit in a coat pocket. Temperature is 36.6°C, pulse is 74/min, respirations are 14/min, and blood pressure is 136/84 mm Hg. An audiogram last year was normal at 2 kilohertz. She drinks one coffee before booth work.
 Which of the following is the most appropriate next step?
 A. Use lifestyle measures for 3 to 6 months, adding a drug if the average stays high
-B. Start two drugs today because every average of at least 130/80 is treated now at this encounter
+B. Start two drugs today because every average of at least 130/80 is treated now
 C. Start a beta-blocker today and use it as the default first-line drug
 D. Take no further action unless the average later reaches 160/100 mm Hg
 E. Start an ACE inhibitor together with an ARB as the pair for this visit
@@ -697,13 +697,13 @@ Which of the following is the most appropriate next step?
 A. Delay treatment for several weeks of home checks before any medicine
 B. Start lifestyle measures only, and reassess the reading in 6 months
 C. Treat promptly rather than delay to chase an office-only elevation
-D. Label the reading normal because she feels well in the office today
+D. Label the reading normal because she feels well
 E. Apply the pregnancy goal and withhold medicine below 180 mm Hg
 
 ## S2N-379
-A 52-year-old man who works as a meteorologist is seen in the forecast office clinic between radar briefings, with only today's office cuff. Radar shifts end at dusk. He owns no home cuff and has never worn an ambulatory monitor. Diabetes, chronic kidney disease, prior stroke, and clinical cardiovascular disease are not on the chart. The office reading is 138/86 mm Hg. He takes no blood-pressure medicine. A barometer sits on the counter beside the cuff. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 138/86 mm Hg. He is not pregnant. He bicycled 4 miles to the briefing. Potassium last month was 4.1 mmol/L.
+A 52-year-old man who works as a meteorologist is seen in the forecast office clinic between radar briefings, with only today's office cuff. Radar shifts end at dusk. He owns no home cuff and has never worn an ambulatory monitor. Diabetes, chronic kidney disease, prior stroke, and clinical cardiovascular disease are not on the chart. The office reading is 138/86 mm Hg. He takes no blood-pressure medicine. A barometer sits on the counter beside the cuff. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 138/86 mm Hg. He bicycled 4 miles to the briefing. Potassium last month was 4.1 mmol/L.
 Which of the following is the most appropriate next step?
-A. Treat promptly with two drugs, as for an office reading of at least 160/100 during today's visit
+A. Treat promptly with two drugs, as for an office reading of at least 160/100
 B. Call the reading normal because the systolic value is under 140 mm Hg
 C. Start a beta-blocker today and use it as default monotherapy
 D. Obtain out-of-office readings before treating this office value as confirmed
@@ -755,7 +755,7 @@ D. Use low-dose aspirin now, after 12 weeks; the cited ratio is on the side of l
 E. Skip aspirin, because the interval 0.75 to 0.95 includes 1.0 and shows no difference
 
 ## S2N-385
-A 46-year-old man who works as a brewery chemist is seen in the primary care clinic with a confirmed average of 129/80 mm Hg. Fermentation logs are precise, and so is the cuff average: 129/80 mm Hg on repeated home readings. He takes no blood-pressure medicine. He was told the systolic value alone makes the category elevated. Temperature is 36.6°C, pulse is 70/min, respirations are 14/min, and blood pressure is 129/80 mm Hg. Body mass index is 26 kg/m2. Estimated GFR is 89 mL/min. He is not pregnant.
+A 46-year-old man who works as a brewery chemist is seen in the primary care clinic with a confirmed average of 129/80 mm Hg. Fermentation logs are precise, and so is the cuff average: 129/80 mm Hg on repeated home readings. He takes no blood-pressure medicine. He was told the systolic value alone makes the category elevated. Temperature is 36.6°C, pulse is 70/min, respirations are 14/min, and blood pressure is 129/80 mm Hg. Body mass index is 26 kg/m2. Estimated GFR is 89 mL/min.
 Which of the following is the correct category?
 A. Elevated, because the systolic value is 120 to 129 and that label ignores the diastolic value
 B. Normal, because the systolic value is under 130 and the diastolic value is not yet 90
@@ -769,7 +769,7 @@ Which of the following is the most appropriate medication plan?
 A. Add medication now, because the average is still at least 130/80
 B. Continue lifestyle measures alone for a full year before any drug
 C. Add no drug unless the average climbs to 140/90 mm Hg
-D. Start an ACE inhibitor and an ARB together at this visit
+D. Start an ACE inhibitor and an ARB together
 E. Call 132/84 a success because it is under a pregnancy goal of 140/90
 
 ## S2N-387
@@ -829,7 +829,7 @@ E. An odds ratio of 0.2
 ## S2N-393
 A 52-year-old woman who works as a clinic manager is seen in the quality-improvement office for a blood-pressure check that was already planned. She feels well. A methods note on her desk describes a cohort of 10,000 people in which 180 became ill. In that worked example the risk ratio was 5.0 and the odds ratio was 5.2. She asks why those two results sit so close together. Temperature is 36.5°C, pulse is 78/min, respirations are 14/min, and blood pressure is 128/76 mm Hg. The cuff average she came in for is already recorded. She takes no daily medicine.
 Which of the following explains the closeness of 5.0 and 5.2?
-A. Every odds ratio is required to equal the risk ratio in every study at this encounter
+A. Every odds ratio is required to equal the risk ratio in every study
 B. The outcome must have affected most of the 10,000 people
 C. The odds ratio approximates the risk ratio when the outcome is uncommon
 D. A case-control study produced the 5.0 directly as a risk ratio
@@ -869,7 +869,7 @@ A. About 26 of 100 people who do not have the disease have a positive test
 B. About 26 of 100 people who have the disease have a negative test on one use
 C. About 6 of 100 people who have the disease have a negative result
 D. About 74 of 100 people who do not have the disease have a negative test
-E. The positive predictive value is 0.74, the same figure as the sensitivity at the present visit
+E. The positive predictive value is 0.74, the same figure as the sensitivity
 
 ## S2N-398
 A 44-year-old man who works as a nurse educator is seen in the simulation lab for a pre-employment visit before he teaches a lab. He feels well. The slide for the afternoon lab states that the OC-Sensor FIT, at 20 micrograms of hemoglobin per gram of stool, had a pooled specificity of 0.94. The slide does not give prevalence. He asks what 0.94 says about people who do not have the disease. Temperature is 36.6°C, pulse is 66/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. Body mass index is 26 kg/m2. The lab roster lists 18 learners.
