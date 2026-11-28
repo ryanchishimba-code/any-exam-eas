@@ -207,7 +207,7 @@ export function buildNaplexLandingModel(input: {
     { href: qotdPath("naplex"), label: "Question of the Day" },
     { href: ROUTES.pricing, label: "Pricing" },
     ...(formats.length > 0 ? [{ href: "#naplex-formats", label: "NAPLEX item types" }] : []),
-    { href: "/naplex/study-guide", label: "NAPLEX study guide" },
+    { href: "/naplex-study-guide", label: "NAPLEX study guide" },
     { href: "/practice/naplex", label: "NAPLEX practice" },
     { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
   ];

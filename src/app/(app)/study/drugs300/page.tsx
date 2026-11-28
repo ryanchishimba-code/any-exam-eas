@@ -11,6 +11,7 @@ export const metadata = {
   title: `${DRUGS_DECK_MARKETING_TITLE} — AnyExamEasy`,
   description:
     "One shared Top 500 drug list for NCLEX, USMLE, and NAPLEX — flashcards with spaced repetition.",
+  alternates: { canonical: "/study/drugs300" },
 };
 
 export const maxDuration = 60;

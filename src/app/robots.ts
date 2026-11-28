@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { quickBiteRouteBases } from "@/lib/quick-bites/boards";
-import { gatedStudyGuidePaths } from "@/lib/seo/gated-study-guide-paths";
 import { getSiteUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
@@ -21,7 +20,6 @@ export default function robots(): MetadataRoute.Robots {
         "/analytics/",
         "/admin/",
         "/study-tools/",
-        ...gatedStudyGuidePaths(),
         ...quickBiteRouteBases(),
         "/daily/confirm",
         "/daily/unsubscribe",

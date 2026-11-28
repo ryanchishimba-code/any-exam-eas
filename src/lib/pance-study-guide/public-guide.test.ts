@@ -90,20 +90,14 @@ describe("public PANCE study guide", () => {
     expect(page.html).not.toContain("7 task areas");
   });
 
-  it("keeps paid depth out of the public teaser", () => {
+  it("publishes the full manuscript, including the depth that used to sit behind the trial", () => {
     const dir = path.join(process.cwd(), "content/pance-study-guide");
     const manuscript = readdirSync(dir)
       .filter((name) => /^\d{2}-.+\.md$/.test(name))
       .map((name) => readFileSync(path.join(dir, name), "utf8"))
       .join("\n");
     expect(manuscript).toContain("KDIGO 2024 defines acute kidney injury");
-    expect(page.html).not.toContain("KDIGO 2024 defines acute kidney injury");
-    const publicWords = page.html
-      .replace(/<[^>]+>/g, " ")
-      .split(/\s+/)
-      .filter(Boolean).length;
-    const fullWords = manuscript.split(/\s+/).filter(Boolean).length;
-    expect(fullWords).toBeGreaterThan(publicWords + 8000);
+    expect(page.html).toContain("KDIGO 2024 defines acute kidney injury");
   });
 
   it("is a static marketing route listed in the sitemap", () => {

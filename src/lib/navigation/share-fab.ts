@@ -31,6 +31,12 @@ const SHARE_FAB_HIDDEN_PREFIXES = [
   "/resources",
   "/dev",
   "/faq",
+  "/nclex-study-guide",
+  "/naplex-study-guide",
+  "/pance-study-guide",
+  "/aanp-fnp-study-guide",
+  "/usmle-study-guide",
+  "/npte-pt-study-guide",
 ] as const;
 
 export function isShareFabHiddenRoute(pathname: string | null | undefined): boolean {

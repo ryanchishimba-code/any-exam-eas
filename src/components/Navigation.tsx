@@ -38,6 +38,8 @@ type NavLink = { href: string; label: string };
 
 const guestLinks: NavLink[] = [
   { href: "/free-practice-questions", label: "Free practice questions" },
+  { href: ROUTES.toolkit, label: "Toolkit" },
+  { href: ROUTES.compare, label: "Compare" },
   { href: ROUTES.pricing, label: "Pricing" },
   { href: ROUTES.faq, label: "FAQ" },
   { href: ROUTES.howQuestionsAreReviewed, label: "How we review" },

@@ -11,7 +11,7 @@ const content = [
     `Both the NCLEX-RN and the NCLEX-PN are computerized adaptive tests. You will answer at least 85 items and at most 150, and you have five hours including the tutorial and every break. You pass or fail against a fixed standard. You are not shown a percent correct. Build the study plan around that shape: Client Needs content, three unfolding case studies on every exam, and stand-alone clinical judgment items as the test gets longer.`
   ),
   p(
-    `The rules below come from the ${a(BULLETIN, "2026 NCLEX Candidate Bulletin", true)} and the ${a(RN_PLAN, "2026 NCLEX-RN Test Plan", true)}, effective April 1, 2026 through March 31, 2029. PN candidates should open the PN plan from ${a(TEST_PLANS, "the test-plan page", true)} for category names. If you mainly need a lower-cost way to study, read ${a("/blog/why", "affordable NCLEX prep")} and come back here for the format.`
+    `The rules below come from the ${a(BULLETIN, "2026 NCLEX Candidate Bulletin", true)} and the ${a(RN_PLAN, "2026 NCLEX-RN Test Plan", true)}, effective April 1, 2026 through March 31, 2029. PN candidates should open the PN plan from ${a(TEST_PLANS, "the test-plan page", true)} for category names. If you mainly need a lower-cost way to study, read ${a("/blog/affordable-nclex-prep", "affordable NCLEX prep")} and come back here for the format.`
   ),
 
   h2("What the computer is doing"),

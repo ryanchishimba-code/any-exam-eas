@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { retiredStudyRedirects } from "./src/lib/navigation/retired-study-redirects";
+import { legacyStudyGuideRedirects } from "./src/lib/study-guides/legacy-redirects";
 
 /** Standalone is for Docker/AWS only — Vercel uses its own serverless output (faster builds). */
 const useStandaloneOutput = !process.env.VERCEL;
@@ -217,6 +218,51 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=86400" },
         ],
       },
+      ...[
+        "/",
+        "/nclex",
+        "/naplex",
+        "/usmle",
+        "/pance",
+        "/aanp-fnp",
+        "/npte-pt",
+        "/pricing",
+        "/compare",
+        "/toolkit",
+        "/blog",
+        "/blog/:path*",
+        "/resources/:path*",
+        "/daily",
+        "/daily/:path*",
+        "/crossword",
+        "/crossword/:path*",
+        "/anatomy",
+        "/study/drugs300",
+        "/free-guides",
+        "/about",
+        "/faq",
+        "/nclex-study-guide",
+        "/naplex-study-guide",
+        "/pance-study-guide",
+        "/aanp-fnp-study-guide",
+        "/usmle-study-guide",
+        "/usmle-study-guide/:path*",
+        "/npte-pt-study-guide",
+      ].map((source) => ({
+        source,
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=300, stale-while-revalidate=86400",
+          },
+        ],
+      })),
+      ...["/dashboard/:path*", "/question-bank", "/question-bank/:path*", "/settings", "/checkout", "/api/:path*"].map(
+        (source) => ({
+          source,
+          headers: [{ key: "Cache-Control", value: "private, no-store" }],
+        })
+      ),
       {
         source: "/:path*",
         headers: [
@@ -238,6 +284,17 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       ...retiredStudyRedirects(),
+      ...legacyStudyGuideRedirects(),
+      {
+        source: "/blog/why",
+        destination: "/blog/affordable-nclex-prep",
+        statusCode: 301,
+      },
+      {
+        source: "/blog/okay",
+        destination: "/blog/naplex-study-plan",
+        statusCode: 301,
+      },
       {
         source: "/npte",
         destination: "/npte-pt",

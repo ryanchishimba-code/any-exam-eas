@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
-import "@/components/nclex-study-guide/study-guide-reader.css";
-import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import {
-  PANCE_STUDY_GUIDE_DESCRIPTION,
-  PANCE_STUDY_GUIDE_PATH,
-  PANCE_STUDY_GUIDE_TITLE,
-  loadPanceStudyGuidePage,
-} from "@/lib/pance-study-guide/public-guide";
+import { PublicStudyGuideView } from "@/components/marketing/study-guide/PublicStudyGuideView";
+import { loadPanceStudyGuidePage, PANCE_STUDY_GUIDE_DESCRIPTION, PANCE_STUDY_GUIDE_PATH, PANCE_STUDY_GUIDE_TITLE } from "@/lib/pance-study-guide/public-guide";
+import { publicStudyGuide } from "@/lib/study-guides/public-catalog";
 
 export const dynamic = "force-static";
 
@@ -14,6 +9,7 @@ export const metadata: Metadata = {
   title: { absolute: PANCE_STUDY_GUIDE_TITLE },
   description: PANCE_STUDY_GUIDE_DESCRIPTION,
   alternates: { canonical: PANCE_STUDY_GUIDE_PATH },
+  robots: { index: true, follow: true },
   openGraph: {
     title: PANCE_STUDY_GUIDE_TITLE,
     description: PANCE_STUDY_GUIDE_DESCRIPTION,
@@ -27,13 +23,22 @@ export const metadata: Metadata = {
   },
 };
 
-/** Public PANCE study guide. Rendered from the chapter files, with no database read. */
+/** Public PANCE study guide. The full manuscript, with no login and no database read. */
 export default function PanceStudyGuidePage() {
-  const page = loadPanceStudyGuidePage();
+  const loaded = loadPanceStudyGuidePage();
   return (
-    <article className="mx-auto max-w-3xl px-5 pb-20 pt-[var(--page-top)] text-[var(--color-ink)] sm:px-6">
-      <JsonLdScript data={page.jsonLd} />
-      <div className="sg-paper sg-prose" dangerouslySetInnerHTML={{ __html: page.html }} />
-    </article>
+    <PublicStudyGuideView
+      guide={publicStudyGuide("pance")}
+      page={{ ...loaded, toc: toc(loaded.html) }}
+    />
   );
+}
+
+function toc(html: string): { id: string; text: string }[] {
+  const items: { id: string; text: string }[] = [];
+  for (const match of html.matchAll(/<h2\b[^>]*\bid="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/g)) {
+    const text = (match[2] ?? "").replace(/<[^>]+>/g, "").trim();
+    if (match[1] && text) items.push({ id: match[1], text });
+  }
+  return items.slice(0, 24);
 }

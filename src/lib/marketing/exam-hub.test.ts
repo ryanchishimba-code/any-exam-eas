@@ -14,27 +14,20 @@ describe("exam hub marketing helpers", () => {
     expect(marketingExamKeyFromPath("/pricing")).toBeNull();
   });
 
-  it("sends study-guide boards to the trial offer, not an open manuscript", () => {
+  it("links each board to its public study guide, resources article, toolkit, and compare", () => {
     expect(examHubSecondaryLink("nclex").href).toBe("/free-guides#study-guides");
-    expect(examHubSecondaryLink("nclex").label).toBe("NCLEX reference book");
-    expect(examHubSecondaryLink("naplex").label).toMatch(/NAPLEX reference book/i);
     expect(examHubSecondaryLink("usmle").href).toBe("#usmle-steps");
     const book = examHubProductLinks("nclex")[0];
-    expect(book?.href).toBe("/nclex/study-guide");
+    expect(book?.href).toBe("/nclex-study-guide");
     expect(book?.title).toMatch(/study guide/i);
-    expect(book?.body).toMatch(/included with the 5-day free trial/i);
-    expect(book?.body).toBe("Included with the 5-day free trial.");
+    expect(book?.body).toMatch(/no login/i);
     expect(book?.body).not.toMatch(/%/);
-    expect(book?.body).not.toMatch(/without an account/i);
-    expect(book?.body).not.toMatch(/free guide/i);
-  });
-
-  it("builds a three-card start-here band", () => {
-    const links = examHubProductLinks("npte-pt");
-    expect(links).toHaveLength(2);
-    expect(links[0]?.title).toMatch(/question bank/i);
-    expect(examHubProductLinks("nclex")).toHaveLength(3);
-    expect(examHubProductLinks("pance")[0]?.href).toBe("/pance/study-guide");
-    expect(examHubProductLinks("naplex").some((link) => link.href === "/toolkit")).toBe(true);
+    expect(examHubProductLinks("pance")[0]?.href).toBe("/pance-study-guide");
+    expect(examHubProductLinks("npte-pt").some((link) => link.href === "/npte-pt-study-guide")).toBe(true);
+    for (const exam of ["nclex", "naplex", "pance", "aanp-fnp", "usmle", "npte-pt"] as const) {
+      const hrefs = examHubProductLinks(exam).map((link) => link.href);
+      expect(hrefs, exam).toContain("/toolkit");
+      expect(hrefs, exam).toContain("/compare");
+    }
   });
 });

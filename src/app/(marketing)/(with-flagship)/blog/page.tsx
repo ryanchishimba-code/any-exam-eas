@@ -2,7 +2,8 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { BlogIndexBody, BlogIndexFiltered } from "@/components/blog/BlogIndexBody";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { listPublishedBlogPosts, type PublicBlogPostCard } from "@/lib/blog/public";
+import { BLOG_UPGRADES } from "@/lib/blog/upgrades/posts";
+import { listPublishedBlogPosts, publicBlogSlug, type PublicBlogPostCard } from "@/lib/blog/public";
 import { blogIndexJsonLd } from "@/lib/blog/schema";
 import { MAX_BLOG_POSTS } from "@/lib/blog/limits";
 
@@ -36,6 +37,26 @@ export const metadata: Metadata = {
   },
 };
 
+function withUpgradePosts(posts: PublicBlogPostCard[]): PublicBlogPostCard[] {
+  const seen = new Set(posts.map((post) => post.slug));
+  const extras: PublicBlogPostCard[] = BLOG_UPGRADES.filter(
+    (post) => !seen.has(publicBlogSlug(post.slug))
+  ).map((post) => ({
+    id: `upgrade-${post.slug}`,
+    title: post.title,
+    slug: publicBlogSlug(post.slug),
+    excerpt: post.excerpt,
+    coverImage: null,
+    category: post.category,
+    tags: post.tags,
+    readTime: post.readTime,
+    publishedAt: null,
+    updatedAt: null,
+    authorName: "AnyExamEasy",
+  }));
+  return [...posts, ...extras];
+}
+
 export default async function BlogIndexPage() {
   let posts: PublicBlogPostCard[] = [];
   try {
@@ -43,6 +64,7 @@ export default async function BlogIndexPage() {
   } catch {
     posts = [];
   }
+  posts = withUpgradePosts(posts);
 
   return (
     <>

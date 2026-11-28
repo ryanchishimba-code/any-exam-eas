@@ -31,11 +31,11 @@ function chapterFiles(): string[] {
 }
 
 /**
- * Paid depth is wrapped in these markers. The public teaser keeps the
- * manuscript outside them. The gated reader ingests the full file.
+ * The public guide includes the full manuscript. Markers stay in source files
+ * for the reader ingest, and the HTML converter drops the comments themselves.
  */
 export function stripPremiumBlocks(markdown: string): string {
-  return markdown.replace(/<!--\s*premium\s*-->[\s\S]*?<!--\s*\/premium\s*-->/g, "\n");
+  return markdown;
 }
 
 function rewriteVisuals(markdown: string): string {
@@ -74,7 +74,7 @@ function parseFaqs(markdown: string): PanceFaq[] {
     i += 1;
     while (i < lines.length && !(lines[i] ?? "").trim().startsWith("#")) {
       const line = (lines[i] ?? "").trim();
-      if (line && line !== "---") answer.push(line);
+      if (line && line !== "---" && !line.startsWith("<!--")) answer.push(line);
       i += 1;
     }
     i -= 1;
@@ -121,7 +121,7 @@ function buildJsonLd(h1: string, faqs: PanceFaq[]): Record<string, unknown> {
 export function loadPanceStudyGuidePage(): PanceStudyGuidePage {
   const files = chapterFiles();
   const parts = files.map((name) =>
-    stripPremiumBlocks(readFileSync(path.join(CONTENT_DIR, name), "utf8"))
+    readFileSync(path.join(CONTENT_DIR, name), "utf8")
   );
   const faqFile = parts.find((_, index) => files[index] === "20-faq.md") ?? "";
   const faqs = parseFaqs(faqFile);
