@@ -2,9 +2,11 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { BlogIndexBody, BlogIndexFiltered } from "@/components/blog/BlogIndexBody";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { publicBreadcrumbJsonLd } from "@/lib/seo/public-schema";
 import { BLOG_UPGRADES } from "@/lib/blog/upgrades/posts";
 import { listPublishedBlogPosts, publicBlogSlug, type PublicBlogPostCard } from "@/lib/blog/public";
 import { blogIndexJsonLd } from "@/lib/blog/schema";
+import { BLOG_INDEX_DESCRIPTION, BLOG_INDEX_TITLE } from "@/lib/blog/index-meta";
 import { MAX_BLOG_POSTS } from "@/lib/blog/limits";
 
 /**
@@ -14,26 +16,22 @@ import { MAX_BLOG_POSTS } from "@/lib/blog/limits";
  */
 export const revalidate = 60;
 
-const BLOG_TITLE = "Board Exam Prep Blog — Study Tips & Guides";
-const BLOG_DESCRIPTION =
-  "Study plans for NCLEX, NAPLEX, USMLE, PANCE, FNP, and NPTE. Official exam rules, practice habits, and what one subscription includes. Updated 2026.";
-
 export const metadata: Metadata = {
-  title: { absolute: BLOG_TITLE },
-  description: BLOG_DESCRIPTION,
+  title: { absolute: BLOG_INDEX_TITLE },
+  description: BLOG_INDEX_DESCRIPTION,
   alternates: {
     canonical: "/blog",
     types: { "application/rss+xml": "/blog/feed.xml" },
   },
   openGraph: {
-    title: BLOG_TITLE,
-    description: BLOG_DESCRIPTION,
+    title: BLOG_INDEX_TITLE,
+    description: BLOG_INDEX_DESCRIPTION,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: BLOG_TITLE,
-    description: BLOG_DESCRIPTION,
+    title: BLOG_INDEX_TITLE,
+    description: BLOG_INDEX_DESCRIPTION,
   },
 };
 
@@ -69,6 +67,7 @@ export default async function BlogIndexPage() {
   return (
     <>
       <JsonLdScript data={blogIndexJsonLd(posts)} />
+      <JsonLdScript data={publicBreadcrumbJsonLd([{ name: "Blog", path: "/blog" }])} />
       <Suspense fallback={<BlogIndexBody posts={posts} category={null} />}>
         <BlogIndexFiltered posts={posts} />
       </Suspense>

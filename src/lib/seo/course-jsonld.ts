@@ -16,6 +16,8 @@
  * are omitted rather than invented.
  */
 
+import { ORGANIZATION_ID, organizationRef } from "@/lib/seo/brand-entity";
+
 export const SCHEMA_BRAND_NAME = "AnyExamEasy";
 
 /** Google Course info `offers.category` values. */
@@ -103,11 +105,7 @@ export function buildCourseJsonLd(input: {
     name: input.name,
     description: input.description.trim(),
     url: input.url,
-    provider: {
-      "@type": "Organization",
-      name: SCHEMA_BRAND_NAME,
-      url: input.providerUrl,
-    },
+    provider: organizationRef(),
     offers,
     hasCourseInstance: [
       {
@@ -216,12 +214,18 @@ export function validateCourseNode(course: Record<string, unknown>): string[] {
     issues.push("Course.provider Organization is required");
   } else {
     const org = provider as Record<string, unknown>;
-    if (org["@type"] !== "Organization") issues.push("Course.provider @type must be Organization");
-    if (org.name !== SCHEMA_BRAND_NAME) {
-      issues.push(`Course.provider.name must be ${SCHEMA_BRAND_NAME}`);
-    }
-    if (typeof org.url !== "string" || !absoluteHttpUrl(org.url)) {
-      issues.push("Course.provider.url must be an absolute http(s) URL");
+    if (org["@id"] === ORGANIZATION_ID) {
+      // The full EducationalOrganization lives on the homepage.
+    } else {
+      if (org["@type"] !== "Organization" && org["@type"] !== "EducationalOrganization") {
+        issues.push("Course.provider @type must be Organization");
+      }
+      if (org.name !== SCHEMA_BRAND_NAME) {
+        issues.push(`Course.provider.name must be ${SCHEMA_BRAND_NAME}`);
+      }
+      if (typeof org.url !== "string" || !absoluteHttpUrl(org.url)) {
+        issues.push("Course.provider.url must be an absolute http(s) URL");
+      }
     }
   }
 

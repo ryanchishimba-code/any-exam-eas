@@ -1,4 +1,6 @@
+import { BLOG_INDEX_DESCRIPTION, BLOG_INDEX_TITLE } from "@/lib/blog/index-meta";
 import { absoluteUrl } from "@/lib/seo";
+import { organizationRef } from "@/lib/seo/brand-entity";
 import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
 
 export type BlogFaqPair = { question: string; answer: string };
@@ -76,13 +78,9 @@ export function blogArticleJsonLd(input: {
     datePublished: input.publishedAt ?? undefined,
     dateModified: input.updatedAt ?? input.publishedAt ?? undefined,
     author: brand
-      ? { "@type": "Organization", name: SCHEMA_BRAND_NAME, url: absoluteUrl("/") }
+      ? organizationRef()
       : { "@type": "Person", name: authorName },
-    publisher: {
-      "@type": "Organization",
-      name: SCHEMA_BRAND_NAME,
-      url: absoluteUrl("/"),
-    },
+    publisher: organizationRef(),
     image: input.imageUrl ? [input.imageUrl] : undefined,
   };
 }
@@ -106,7 +104,8 @@ export function blogIndexJsonLd(
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Board exam prep blog",
+    name: BLOG_INDEX_TITLE,
+    description: BLOG_INDEX_DESCRIPTION,
     url: absoluteUrl("/blog"),
     isPartOf: { "@type": "WebSite", name: SCHEMA_BRAND_NAME, url: absoluteUrl("/") },
     mainEntity: {

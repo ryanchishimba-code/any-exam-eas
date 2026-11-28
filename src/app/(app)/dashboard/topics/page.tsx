@@ -15,7 +15,7 @@ import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
 export const metadata = {
-  title: "High-Yield Topics & Review Modules — AnyExamEasy",
+  title: { absolute: "High-Yield Topics & Review Modules — AnyExamEasy" },
   description:
     "Exam-specific textbook-style review modules and condensed study topics with must-know facts and practice links.",
 };

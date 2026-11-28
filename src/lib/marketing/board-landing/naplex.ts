@@ -78,7 +78,7 @@ export function naplexMetaTitle(): string {
 
 export function naplexMetaDescription(): string {
   return enforceMetaDescription(
-    "NAPLEX practice questions for the calculations and the drugs. Pharmacy calculations, drug vignettes, flashcards, and explanations that show the work.",
+    "NAPLEX practice questions for the calculations and the drugs: pharmacy calculations, patient cases, flashcards and worked explanations. Try free questions.",
     "/naplex"
   );
 }

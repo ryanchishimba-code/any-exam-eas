@@ -2,7 +2,7 @@ import { AuthFocusLayout } from "@/components/auth/AuthFocusLayout";
 import { ForgotPasswordForm } from "@/components/ForgotPasswordForm";
 
 export const metadata = {
-  title: "Forgot Password — AnyExamEasy",
+  title: { absolute: "Forgot Password — AnyExamEasy" },
 };
 
 export default function ForgotPasswordPage() {

@@ -25,7 +25,7 @@ function firstParam(value: string | string[] | undefined): string | null {
 }
 
 export const metadata = {
-  title: "Question Bank — AnyExamEasy",
+  title: { absolute: "Question Bank — AnyExamEasy" },
   description: "Adaptive question bank with topic filters and detailed rationales.",
 };
 

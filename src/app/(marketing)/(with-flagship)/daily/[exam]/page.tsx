@@ -10,6 +10,7 @@ import {
   toPublicQotd,
 } from "@/lib/demo/qotd";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import { qotdExamTitle, qotdMetaDescription } from "@/lib/demo/qotd-titles";
 import { getSiteUrl } from "@/lib/seo";
 import { qotdPath } from "@/lib/demo/qotd";
 
@@ -36,17 +37,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = getQotdForExam(exam, today);
   if (!item) return {};
   const name = EXAM_CATALOG[exam].shortName;
-  const canonical = qotdAbsoluteUrl(exam, today);
-  const description =
-    item.stem.length > 155 ? `${item.stem.slice(0, 152)}…` : item.stem;
+  const canonical = `${getSiteUrl()}${qotdPath(exam)}`;
+  const description = qotdMetaDescription(name, item.stem);
   const ogImage = `${getSiteUrl()}${qotdPath(exam, today)}/opengraph-image`;
 
+  const title = qotdExamTitle(name);
   return {
-    title: `${name} Question of the Day`,
+    title: { absolute: title },
     description,
     alternates: { canonical },
     openGraph: {
-      title: `${name} Question of the Day | AnyExamEasy`,
+      title,
       description,
       url: canonical,
       type: "website",
@@ -54,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${name} Question of the Day | AnyExamEasy`,
+      title,
       description,
       images: [ogImage],
     },

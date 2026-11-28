@@ -14,7 +14,7 @@ import { ROUTES } from "@/lib/routes";
 import type { UserAccess } from "@/lib/access-control";
 
 export const metadata = {
-  title: "Upgrade — AnyExamEasy",
+  title: { absolute: "Upgrade — AnyExamEasy" },
   description: "Subscribe to keep your board prep progress.",
 };
 

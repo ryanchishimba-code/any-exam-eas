@@ -1,7 +1,7 @@
 import { StaffManagementPanel } from "@/components/crm/StaffManagementPanel";
 
 export const metadata = {
-  title: "Admin Employees — AnyExamEasy",
+  title: { absolute: "Admin Employees — AnyExamEasy" },
 };
 
 export default function AdminEmployeesPage() {
