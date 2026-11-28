@@ -16,19 +16,67 @@ function stripTags(html: string): string {
     .trim();
 }
 
-/** FAQ pairs from the authored `<section class="aee-faq">` block. */
-export function extractBlogFaqs(html: string): BlogFaqPair[] {
-  const section = html.match(
-    /<section\b[^>]*class="[^"]*\baee-faq\b[^"]*"[^>]*>([\s\S]*?)<\/section>/i
-  );
-  if (!section?.[1]) return [];
-  const pairs = [...section[1].matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>\s*<p\b[^>]*>([\s\S]*?)<\/p>/gi)];
+const FAQ_HEADING = /frequently asked questions|faq/i;
+
+function pairsFromH3(fragment: string): BlogFaqPair[] {
+  const pairs = [
+    ...fragment.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>\s*<p\b[^>]*>([\s\S]*?)<\/p>/gi),
+  ];
   return pairs
     .map((match) => ({
       question: stripTags(match[1] ?? ""),
       answer: stripTags(match[2] ?? ""),
     }))
     .filter((pair) => pair.question.length > 0 && pair.answer.length > 0);
+}
+
+/**
+ * The rich-text editor sometimes flattens pasted headings into one paragraph
+ * that still starts each question with `###`.
+ */
+function pairsFromFlattenedMarkdown(fragment: string): BlogFaqPair[] {
+  const pairs: BlogFaqPair[] = [];
+  for (const paragraph of fragment.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)) {
+    const text = stripTags(paragraph[1] ?? "");
+    if (!text.includes("###")) continue;
+    for (const chunk of text.split(/###\s*/)) {
+      const body = chunk.trim();
+      const mark = body.indexOf("?");
+      if (!body || mark === -1) continue;
+      const question = body.slice(0, mark + 1).trim();
+      const answer = body.slice(mark + 1).trim();
+      if (question.length > 1 && answer.length > 0) {
+        pairs.push({ question, answer });
+      }
+    }
+  }
+  return pairs;
+}
+
+function fragmentAfterFaqHeading(html: string): string | null {
+  const headings = html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/gi);
+  for (const heading of headings) {
+    if (!FAQ_HEADING.test(stripTags(heading[1] ?? ""))) continue;
+    const start = (heading.index ?? 0) + heading[0].length;
+    const rest = html.slice(start);
+    const next = rest.search(/<h2\b/i);
+    return next === -1 ? rest : rest.slice(0, next);
+  }
+  return null;
+}
+
+/** FAQ pairs from `<section class="aee-faq">`, or from a plain FAQ heading. */
+export function extractBlogFaqs(html: string): BlogFaqPair[] {
+  const section = html.match(
+    /<section\b[^>]*class="[^"]*\baee-faq\b[^"]*"[^>]*>([\s\S]*?)<\/section>/i
+  );
+  if (section?.[1]) return pairsFromH3(section[1]);
+
+  const fragment = fragmentAfterFaqHeading(html);
+  if (!fragment) return [];
+  const structured = pairsFromH3(fragment);
+  if (structured.length > 0) return structured;
+  return pairsFromFlattenedMarkdown(fragment);
 }
 
 export function blogBreadcrumbJsonLd(input: {

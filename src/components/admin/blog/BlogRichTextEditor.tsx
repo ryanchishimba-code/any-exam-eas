@@ -1,5 +1,6 @@
 "use client";
 
+import { Node } from "@tiptap/core";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
@@ -28,6 +29,20 @@ type Props = {
   onChange: (html: string) => void;
   className?: string;
 };
+
+/** Keep the authored FAQ wrapper. StarterKit otherwise drops `<section>`. */
+const FaqSection = Node.create({
+  name: "faqSection",
+  group: "block",
+  content: "block+",
+  defining: true,
+  parseHTML() {
+    return [{ tag: "section.aee-faq" }];
+  },
+  renderHTML({ HTMLAttributes }) {
+    return ["section", { ...HTMLAttributes, class: "aee-faq" }, 0];
+  },
+});
 
 function ToolbarButton({
   onClick,
@@ -59,6 +74,7 @@ function ToolbarButton({
 export function BlogRichTextEditor({ value, onChange, className }: Props) {
   const editor = useEditor({
     extensions: [
+      FaqSection,
       StarterKit.configure({
         heading: { levels: [2, 3] },
       }),
