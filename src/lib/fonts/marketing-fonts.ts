@@ -15,6 +15,7 @@ export const inter = localFont({
   adjustFontFallback: "Arial",
   preload: false,
   fallback: ["Arial", "Helvetica", "sans-serif"],
+  declarations: [{ prop: "font-family", value: "Inter" }],
   variable: "--font-body",
 });
 
@@ -29,6 +30,7 @@ export const plusJakarta = localFont({
   adjustFontFallback: "Arial",
   preload: true,
   fallback: ["Arial", "Helvetica", "sans-serif"],
+  declarations: [{ prop: "font-family", value: "Plus Jakarta Sans" }],
   variable: "--font-display",
 });
 
