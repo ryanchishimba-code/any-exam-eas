@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
 import { BoardLandingHero } from "@/components/marketing/board-landing/BoardLandingHero";
@@ -73,10 +74,13 @@ export async function HubBoardLanding({
             is 9%. The score scale is 200 to 800, and the passing score is 350. This page is independent
             of NCCPA and does not predict a result.
           </p>
-          <p>
-            <a href="/pance-study-guide">Read the PANCE study guide</a>
-            {" · "}
-            <a href="/daily/pance">PANCE question of the day</a>
+          <p className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+            <Link href="/pance-study-guide" className="font-semibold text-[#0f766e] underline-offset-2 hover:underline">
+              Read the PANCE study guide
+            </Link>
+            <Link href="/daily/pance" className="font-semibold text-[#0f766e] underline-offset-2 hover:underline">
+              PANCE question of the day
+            </Link>
           </p>
         </section>
       ) : null}
