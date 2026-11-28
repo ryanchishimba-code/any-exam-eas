@@ -62,7 +62,7 @@ D. Run the postmenopausal FRAX pathway and scan if it is increased
 E. Replace DXA with a forearm film because he is male
 
 ## S2N-208
-A 71-year-old woman who works as a linen-press operator is seen in the rheumatology clinic to review a DXA done last week. The lumbar-spine T-score is -3.0 and the hip T-score is -1.4. She is 71 and was scanned because she is a woman 65 or older. She has had no fracture. She asks whether the spine number meets the definition on the page. Temperature is 36.5°C, pulse is 72/min, respirations are 14/min, and blood pressure is 136/78 mm Hg. The report lists lumbar spine -3.0 and hip -1.4.
+A 71-year-old woman who works as a linen-press operator is seen in the rheumatology clinic to review a DXA done last week. The lumbar-spine T-score is -3.0 and the hip T-score is -1.4. She is 71 and was scanned because she is a woman 65 or older. She has had no fracture. She asks whether the spine number meets the WHO definition. Temperature is 36.5°C, pulse is 72/min, respirations are 14/min, and blood pressure is 136/78 mm Hg. The report lists lumbar spine -3.0 and hip -1.4.
 Which of the following is the most appropriate interpretation?
 A. Only the hip T-score counts, so -1.4 means the definition is not met
 B. A spine T-score must be -3.5 or lower before the definition is met
@@ -98,7 +98,7 @@ D. Average all three sites and treat the mean as the WHO value
 E. The definition is a T-score of -3.4 or lower at any bone
 
 ## S2N-212
-A 75-year-old woman who works as a nave-floor tiler is seen in the clinic with discordant hip and spine DXA results. The hip T-score is -2.8 and the lumbar-spine T-score is -1.6. She thinks both sites must be -2.5 or lower. She is 75 and had screening DXA of the hip and spine. No forearm value is on the page. Temperature is 36.5°C, pulse is 68/min, respirations are 14/min, and blood pressure is 140/74 mm Hg. Hip -2.8 and lumbar spine -1.6 are the reported T-scores.
+A 75-year-old woman who works as a nave-floor tiler is seen in the clinic with discordant hip and spine DXA results. The hip T-score is -2.8 and the lumbar-spine T-score is -1.6. She thinks both sites must be -2.5 or lower. She is 75 and had screening DXA of the hip and spine. No forearm value is reported. Temperature is 36.5°C, pulse is 68/min, respirations are 14/min, and blood pressure is 140/74 mm Hg. Hip -2.8 and lumbar spine -1.6 are the reported T-scores.
 Which of the following is the most appropriate interpretation?
 A. Both the hip and the lumbar spine must be -2.5 or lower
 B. The hip T-score of -2.8 meets -2.5 or lower even though the spine does not
@@ -580,7 +580,7 @@ Which of the following is the most appropriate recommendation?
 A. Start cytology now because she has been sexually active for 3 years
 B. Start cytology now because she has had 2 partners in the past year
 C. Start cotesting now and repeat it every year until age 21
-D. Start screening at this visit and let her choose any of 3 strategies
+D. Start screening now and let her choose any of the 3 strategies
 E. Do not screen the cervix at age 19, even with sexual activity
 
 ## S2N-266
@@ -865,7 +865,7 @@ E. Offer the HerpeSelect immunoblot as a general screening test today
 ## S2N-297
 A 24-year-old woman who works as a surveyor is seen in the urgent care clinic for pelvic discomfort that started yesterday. A cervical nucleic acid test detects Neisseria gonorrhoeae. A cervical nucleic acid test for Chlamydia trachomatis is negative. She has no drug allergy, and intramuscular ceftriaxone is in stock. She mapped a construction site for 6 hours today. Temperature is 37.0°C, pulse is 86/min, respirations are 16/min, and blood pressure is 118/74 mm Hg. She weighs 72 kg. Cervical motion tenderness is mild. A urine pregnancy test is negative.
 Which of the following is the most appropriate regimen?
-A. Ceftriaxone 1 g intramuscularly once and no other antibiotic given these results with the data above
+A. Ceftriaxone 1 g intramuscularly once and no doxycycline or metronidazole, because weight is under 150 kg
 B. Ceftriaxone 500 mg once, plus doxycycline 100 mg twice daily and metronidazole 500 mg twice daily, each for 14 days
 C. Cefixime 800 mg orally once as the preferred regimen
 D. Gentamicin 240 mg once plus azithromycin 2 g once

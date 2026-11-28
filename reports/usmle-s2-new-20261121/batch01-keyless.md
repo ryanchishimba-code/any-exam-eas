@@ -35,7 +35,7 @@ D. Evidence is insufficient for routine suicide-risk screening
 E. Screening is deferred until age 21
 
 ## S2N-005
-A 11-year-old girl who works as a student is in the pediatric clinic. She has no mood symptoms and no diagnosed mental health condition. Her parent asks whether the grade B adolescent depression screen applies today. Temperature is 36.7°C, pulse is 84/min, respirations are 18/min, and blood pressure is 104/64 mm Hg. She weighs 38 kg. She is in the 5th grade.
+An 11-year-old girl who works as a student is in the pediatric clinic. She has no mood symptoms and no diagnosed mental health condition. Her parent asks whether the grade B adolescent depression screen applies today. Temperature is 36.7°C, pulse is 84/min, respirations are 18/min, and blood pressure is 104/64 mm Hg. She weighs 38 kg. She is in the 5th grade.
 Which of the following is the most appropriate statement?
 A. Screen today under the grade B rule for ages 12 to 18
 B. Suicide-risk screening is the grade B service at age 11
@@ -86,7 +86,7 @@ A. Change to a nonrebreather to reach 100%
 B. Stop oxygen immediately because 94% is too high
 C. Aim for a saturation under 90%
 D. Withhold oxygen until a corticosteroid is swallowed
-E. Keep the saturation in the 93% to 95% range
+E. Keep saturation at 92% to 95%, not above 95%
 
 ## S2N-011
 A 36-year-old man who works as a courier is in the emergency department. He is having a severe asthma exacerbation. The pulse oximeter is broken. Temperature is 37.1°C, pulse is 118/min, respirations are 32/min, and blood pressure is 140/88 mm Hg. He is using accessory muscles. Peak flow is 35% of predicted.
@@ -111,7 +111,7 @@ A 72-year-old man who works as a retired farmer is in the intensive care unit. H
 Which of the following is the most appropriate gram-negative plan?
 A. Use one gram-negative antibiotic because the risk is high
 B. Avoid gram-negative coverage until cultures return
-C. Use two antibiotics active against gram-negative bacteria
+C. Include empiric coverage for the likely multidrug-resistant pathogen
 D. Use MRSA coverage instead of any gram-negative drug
 E. Wait for procalcitonin before choosing the number of drugs
 
@@ -136,8 +136,8 @@ E. Proceed to the 100-g test because 130 mg/dL meets the chosen threshold
 ## S2N-016
 A 34-year-old woman who works as a student is in the emergency department. She has community pyelonephritis and sepsis without shock. She has no recent hospitalization, and the risk of resistant gram-negative infection is low. Temperature is 38.3°C, pulse is 100/min, respirations are 18/min, and blood pressure is 112/70 mm Hg. Lactate is 2.1 mmol/L. Creatinine is 0.8 mg/dL.
 Which of the following is the most appropriate gram-negative plan?
-A. Use one gram-negative antibiotic rather than two
-B. Use two gram-negative antibiotics because the risk is low
+A. Do not add coverage for a specific multidrug-resistant pathogen
+B. Add coverage for a multidrug-resistant pathogen because risk is low
 C. Add MRSA coverage because the gram-negative risk is low
 D. Give no antibiotic for 12 hours
 E. Choose the regimen only after procalcitonin returns
@@ -308,10 +308,10 @@ E. Start aspirin 325 mg because of the recent bleed
 A 26-year-old woman who works as a dancer is in the pulmonary clinic. Symptoms occur less than twice a month and she has no recent exacerbation. She is unlikely to take a daily inhaler. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 112/70 mm Hg. FEV1 is 90% of predicted. Oxygen saturation is 99% on air.
 Which of the following is the most appropriate controller plan?
 A. Use a short-acting beta agonist alone
-B. Start daily inhaled corticosteroid as the only realistic plan
+B. Take an inhaled corticosteroid with each short-acting beta agonist dose
 C. Start a long-acting beta agonist with no inhaled corticosteroid
 D. Use oral theophylline each day
-E. Take an inhaled corticosteroid whenever a short-acting beta agonist is taken
+E. Use as-needed low-dose ICS-formoterol, the preferred Track 1 plan
 
 ## S2N-036
 A 66-year-old man who works as a welder is in the intensive care unit. He is being resuscitated for septic shock. A passive leg raise can be performed. Temperature is 37.6°C, pulse is 108/min, respirations are 22/min, and blood pressure is 90/54 mm Hg. Lactate is 3.8 mmol/L. He has already received the initial crystalloid bolus.

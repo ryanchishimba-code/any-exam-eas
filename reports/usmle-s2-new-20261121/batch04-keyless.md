@@ -131,7 +131,7 @@ A. Saturation 99% to 100% with a nonrebreather as the goal
 B. No oxygen unless a pulse oximeter is unavailable
 C. Saturation under 90% to avoid any supplemental oxygen
 D. Withhold oxygen until a corticosteroid has been given
-E. Saturation 93% to 95%, not 100% oxygen as the goal
+E. Target saturation 92% to 95%, with an upper limit of 95%
 
 ## S2N-316
 A 37-year-old man who works as a teacher is in the pulmonary clinic. His maintenance inhaler is fluticasone with salmeterol. He asks to use budesonide-formoterol as an extra reliever. Temperature is 36.6°C, pulse is 76/min, respirations are 14/min, and blood pressure is 122/76 mm Hg. Oxygen saturation is 98% on air. FEV1 is 82% of predicted.
@@ -152,13 +152,13 @@ D. A preference for albuterol alone
 E. Absence of any exacerbation risk
 
 ## S2N-318
-A 8-year-old boy who works as a student is in the emergency department. He is having an asthma exacerbation. Oxygen saturation is 90% on air. Temperature is 37.1°C, pulse is 124/min, respirations are 32/min, and blood pressure is 100/64 mm Hg. He has intercostal retractions. He weighs 26 kg.
+An 8-year-old boy who works as a student is in the emergency department. He is having an asthma exacerbation. Oxygen saturation is 90% on air. Temperature is 37.1°C, pulse is 124/min, respirations are 32/min, and blood pressure is 100/64 mm Hg. He has intercostal retractions. He weighs 26 kg.
 Which of the following is the most appropriate oxygen saturation target?
-A. 88% to 90%
-B. 99% to 100% as the required goal
-C. 94% to 98%
-D. No oxygen, because he is a child
-E. The adult target of 93% to 95% is the only range used at this age
+A. Keep saturation at 88% to 90% and give no oxygen
+B. Give oxygen until saturation reaches 99% to 100%
+C. Start oxygen and target 92% to 95%, upper limit 95%
+D. Give no oxygen, because this target does not apply at age 8
+E. Target 94% to 98%, the old range for ages 6 to 11
 
 ## S2N-319
 A 36-year-old woman who works as a lab courier is seen in the primary care clinic to review a blood test ordered at a health fair. She has never noticed genital blisters. The HerpeSelect EIA index is 2.4. No confirmatory method has been run. She delivered 18 specimen bags yesterday and takes no antivirals. She has one partner. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. The genital examination shows no vesicle. Body mass index is 24 kg/m2.
@@ -680,7 +680,7 @@ A. Use lifestyle measures for 3 to 6 months, adding a drug if the average stays 
 B. Start two drugs today because every average of at least 130/80 is treated now
 C. Start a beta-blocker today and use it as the default first-line drug
 D. Take no further action unless the average later reaches 160/100 mm Hg
-E. Start an ACE inhibitor together with an ARB as the pair for this visit
+E. Start an ACE inhibitor together with an ARB as the pair
 
 ## S2N-377
 A 39-year-old man who works as a millwright is seen in the primary care clinic with an average reading of exactly 120/74 mm Hg. Machine maintenance is steady work, and he takes no blood-pressure medicine. Repeated readings average 120/74 mm Hg. A coworker told him that 120 still counts as normal because the cutoff is often remembered as 120 or less. Temperature is 36.6°C, pulse is 66/min, respirations are 14/min, and blood pressure is 120/74 mm Hg. Body mass index is 25 kg/m2. Estimated GFR is 96 mL/min.
@@ -746,12 +746,12 @@ D. A goal under 160/100 mm Hg, the level for prompt office treatment
 E. A goal under 150/100 mm Hg, set by splitting today's reading
 
 ## S2N-384
-A 31-year-old woman who works as a paramedic instructor is seen in the obstetric clinic at 16 weeks of gestation. Before pregnancy her repeated readings were 144/92 mm Hg. She has never had an aspirin rash, breathing trouble, or other aspirin reaction. A cited meta-analysis reported a pooled relative risk of 0.85, with a 95 percent confidence interval of 0.75 to 0.95. She asks what that means for aspirin. Temperature is 36.6°C, pulse is 88/min, respirations are 16/min, and blood pressure is 142/88 mm Hg. The fetal heart rate is 146/min. She takes a prenatal vitamin and no blood-pressure medicine yet.
+A 31-year-old woman who works as a paramedic instructor is seen in the obstetric clinic at 16 weeks of gestation. Before pregnancy her repeated readings were 144/92 mm Hg. She has never had an aspirin rash, breathing trouble, or other aspirin reaction. A pooled analysis found a relative risk of 0.85, with a 95 percent confidence interval of 0.75 to 0.95. She asks what that means for aspirin. Temperature is 36.6°C, pulse is 88/min, respirations are 16/min, and blood pressure is 142/88 mm Hg. The fetal heart rate is 146/min. She takes a prenatal vitamin and no blood-pressure medicine yet.
 Which of the following is the most appropriate counseling?
 A. Start aspirin only before 12 weeks, then stop it for the rest of pregnancy
 B. Do not discuss aspirin, because a milligram dose is not named and counseling must wait
 C. Avoid aspirin, because a relative risk of 0.85 means a higher risk
-D. Use low-dose aspirin now, after 12 weeks; the cited ratio is on the side of lower risk
+D. Start low-dose aspirin 81 mg daily now, after 12 weeks of pregnancy
 E. Skip aspirin, because the interval 0.75 to 0.95 includes 1.0 and shows no difference
 
 ## S2N-385

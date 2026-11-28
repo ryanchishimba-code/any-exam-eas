@@ -269,7 +269,7 @@ D. Require a diagnosed mental health disorder before any screen is offered
 E. Screen for depression because the adult recommendation includes age 19
 
 ## S2N-131
-A 18-year-old man who works as a grocery clerk is seen in the community clinic for a sports physical requested by his summer league. He turned 18 last month. He has no diagnosed mental health disorder, sleeps 8 hours, and still plays pickup basketball 4 evenings a week. He has never been asked mood questions. He reports no trauma and no family history of a mood disorder. He is not taking any medicine. Temperature is 36.7°C, pulse is 68/min, respirations are 14/min, and blood pressure is 116/70 mm Hg. His weight is 70 kg. He says his mood has been ordinary for the past 3 months.
+An 18-year-old man who works as a grocery clerk is seen in the community clinic for a sports physical requested by his summer league. He turned 18 last month. He has no diagnosed mental health disorder, sleeps 8 hours, and still plays pickup basketball 4 evenings a week. He has never been asked mood questions. He reports no trauma and no family history of a mood disorder. He is not taking any medicine. Temperature is 36.7°C, pulse is 68/min, respirations are 14/min, and blood pressure is 116/70 mm Hg. His weight is 70 kg. He says his mood has been ordinary for the past 3 months.
 Which of the following is the most appropriate plan?
 A. Screen for major depression under the adolescent recommendation for ages 12 to 18
 B. Do not screen, because only the adult rule exists and it starts at 19
