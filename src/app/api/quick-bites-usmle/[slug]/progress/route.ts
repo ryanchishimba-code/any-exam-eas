@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { quickBiteProgressBodySchema } from "@/lib/quick-bites/progress-body";
 import { upsertQuickBiteProgress } from "@/lib/quick-bites/progress-server";
-import { requireUsmleVideoPlayer } from "@/lib/quick-bites/usmle-video-playback";
+import { requireUsmleVideoPlayer, usmleHeldEpisodeIsServable } from "@/lib/quick-bites/usmle-video-playback";
 import { getUsmleVideoQuickBiteBySlug } from "@/lib/quick-bites/usmle-video-catalog";
 
 export const runtime = "nodejs";
@@ -18,6 +18,9 @@ export async function POST(
 
   const gate = await requireUsmleVideoPlayer(request);
   if (!gate.ok) return gate.response;
+  if (!usmleHeldEpisodeIsServable(episode, gate)) {
+    return NextResponse.json({ error: "Episode not found" }, { status: 404 });
+  }
 
   const body = quickBiteProgressBodySchema.parse(await request.json());
   const progress = await upsertQuickBiteProgress(gate.userId, slug, body);

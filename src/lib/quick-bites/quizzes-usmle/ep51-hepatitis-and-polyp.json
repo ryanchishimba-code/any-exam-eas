@@ -1,0 +1,287 @@
+{
+  "episode": "ep51-hepatitis-and-polyp",
+  "title": "The Next Hepatitis Decision, and a Polyp's Interval",
+  "video": "quick-bites-usmle-ep51-hepatitis-and-polyp-web.mp4",
+  "questions": [
+    {
+      "id": "ep51-hepatitis-and-polyp-q01",
+      "type": "single_best_answer",
+      "stem": "Immune-active hepatitis B with a positive e antigen is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "ALT at least twice normal and DNA at least 20,000 IU/mL, and treatment is recommended"
+        },
+        {
+          "id": "B",
+          "text": "DNA under 2,000 and normal ALT"
+        },
+        {
+          "id": "C",
+          "text": "A reason to watch forever"
+        },
+        {
+          "id": "D",
+          "text": "A polyp rule"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "AASLD/IDSA 2025.",
+      "videoTimestamp": "0:07"
+    },
+    {
+      "id": "ep51-hepatitis-and-polyp-q02",
+      "type": "single_best_answer",
+      "stem": "Immune-active disease with a negative e antigen is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "ALT at least twice normal and DNA at least 2,000 IU/mL"
+        },
+        {
+          "id": "B",
+          "text": "DNA above 10 million and normal ALT"
+        },
+        {
+          "id": "C",
+          "text": "DNA under 2,000"
+        },
+        {
+          "id": "D",
+          "text": "A 10-year colonoscopy"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Treatment is recommended.",
+      "videoTimestamp": "0:18"
+    },
+    {
+      "id": "ep51-hepatitis-and-polyp-q03",
+      "type": "single_best_answer",
+      "stem": "The ALT upper limit used for these decisions is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "35 U/L for men and 25 U/L for women"
+        },
+        {
+          "id": "B",
+          "text": "80 for everyone"
+        },
+        {
+          "id": "C",
+          "text": "10 for everyone"
+        },
+        {
+          "id": "D",
+          "text": "The same as a polyp size"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Use those limits to name the phase.",
+      "videoTimestamp": "0:20"
+    },
+    {
+      "id": "ep51-hepatitis-and-polyp-q04",
+      "type": "single_best_answer",
+      "stem": "Preferred antivirals include:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Entecavir, tenofovir disoproxil, or tenofovir alafenamide"
+        },
+        {
+          "id": "B",
+          "text": "Interferon for everyone"
+        },
+        {
+          "id": "C",
+          "text": "No drug"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Avoid tenofovir disoproxil if bone or kidney disease is a problem. Avoid entecavir in pregnancy.",
+      "videoTimestamp": "0:30"
+    },
+    {
+      "id": "ep51-hepatitis-and-polyp-q05",
+      "type": "single_best_answer",
+      "stem": "Immune-tolerant disease under 40 without important scar is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A shared decision, not forced treatment"
+        },
+        {
+          "id": "B",
+          "text": "Always treated the same day"
+        },
+        {
+          "id": "C",
+          "text": "Never monitored"
+        },
+        {
+          "id": "D",
+          "text": "A colonoscopy interval"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "DNA above 10 million and a normal ALT.",
+      "videoTimestamp": "0:37"
+    },
+    {
+      "id": "ep51-hepatitis-and-polyp-q06",
+      "type": "single_best_answer",
+      "stem": "Inactive hepatitis B:",
+      "options": [
+        {
+          "id": "A",
+          "text": "DNA under 2,000 and a normal ALT, and treatment is not recommended"
+        },
+        {
+          "id": "B",
+          "text": "Always treated"
+        },
+        {
+          "id": "C",
+          "text": "The same as immune-active disease"
+        },
+        {
+          "id": "D",
+          "text": "A 6-month colonoscopy"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Definition from the 2025 guideline.",
+      "videoTimestamp": "0:44"
+    },
+    {
+      "id": "ep51-hepatitis-and-polyp-q07",
+      "type": "single_best_answer",
+      "stem": "One or two tubular adenomas under 10 mm:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Next colonoscopy in 7 to 10 years"
+        },
+        {
+          "id": "B",
+          "text": "Next colonoscopy in 3 years"
+        },
+        {
+          "id": "C",
+          "text": "No further colonoscopy"
+        },
+        {
+          "id": "D",
+          "text": "A colonoscopy in 6 months"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "USMSTF 2020, strong recommendation, if the exam reached the cecum and the prep was adequate.",
+      "videoTimestamp": "0:55"
+    },
+    {
+      "id": "ep51-hepatitis-and-polyp-q08",
+      "type": "single_best_answer",
+      "stem": "An adenoma of 10 mm or more, or villous tissue, or high-grade dysplasia:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Next colonoscopy in 3 years"
+        },
+        {
+          "id": "B",
+          "text": "7 to 10 years"
+        },
+        {
+          "id": "C",
+          "text": "10 years"
+        },
+        {
+          "id": "D",
+          "text": "Never"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Strong recommendations.",
+      "videoTimestamp": "0:58"
+    },
+    {
+      "id": "ep51-hepatitis-and-polyp-q09",
+      "type": "single_best_answer",
+      "stem": "Piecemeal resection of an adenoma of 20 mm or more:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Next look in 6 months"
+        },
+        {
+          "id": "B",
+          "text": "7 to 10 years"
+        },
+        {
+          "id": "C",
+          "text": "10 years"
+        },
+        {
+          "id": "D",
+          "text": "1 week"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Strong recommendation.",
+      "videoTimestamp": "1:09"
+    },
+    {
+      "id": "ep51-hepatitis-and-polyp-q10",
+      "type": "single_best_answer",
+      "stem": "These polyp intervals do not apply to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Inflammatory bowel disease, a hereditary syndrome, or personal colorectal cancer"
+        },
+        {
+          "id": "B",
+          "text": "A complete exam to the cecum"
+        },
+        {
+          "id": "C",
+          "text": "An adequate prep"
+        },
+        {
+          "id": "D",
+          "text": "One small tubular adenoma"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Use the shorter interval that history requires.",
+      "videoTimestamp": "1:14"
+    }
+  ]
+}

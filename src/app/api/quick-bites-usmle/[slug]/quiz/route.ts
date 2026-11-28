@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { requireUsmleVideoPlayer } from "@/lib/quick-bites/usmle-video-playback";
+import { requireUsmleVideoPlayer, usmleHeldEpisodeIsServable } from "@/lib/quick-bites/usmle-video-playback";
 import { getUsmleVideoQuickBiteBySlug } from "@/lib/quick-bites/usmle-video-catalog";
 import { getUsmleVideoQuickBiteQuiz } from "@/lib/quick-bites/usmle-video-quiz-data";
 import { gradeQuickBiteAnswer, publicQuickBiteQuiz } from "@/lib/quick-bites/quiz-data";
@@ -18,7 +18,7 @@ export async function GET(
   if (!gate.ok) return gate.response;
 
   const episode = getUsmleVideoQuickBiteBySlug(slug);
-  if (!episode || episode.held) {
+  if (!episode || !usmleHeldEpisodeIsServable(episode, gate)) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
   }
   const quiz = getUsmleVideoQuickBiteQuiz(slug);
@@ -38,7 +38,7 @@ export async function POST(
   if (!gate.ok) return gate.response;
 
   const episode = getUsmleVideoQuickBiteBySlug(slug);
-  if (!episode || episode.held) {
+  if (!episode || !usmleHeldEpisodeIsServable(episode, gate)) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
   }
   const quiz = getUsmleVideoQuickBiteQuiz(slug);

@@ -1,0 +1,287 @@
+{
+  "episode": "ep45-after-the-stroke",
+  "title": "After the Stroke, the Pill That Prevents the Next",
+  "video": "quick-bites-usmle-ep45-after-the-stroke-web.mp4",
+  "questions": [
+    {
+      "id": "ep45-after-the-stroke-q01",
+      "type": "single_best_answer",
+      "stem": "For most people after stroke, prevention uses:",
+      "options": [
+        {
+          "id": "A",
+          "text": "An antiplatelet or an anticoagulant, not both as a routine"
+        },
+        {
+          "id": "B",
+          "text": "Both forever"
+        },
+        {
+          "id": "C",
+          "text": "No antithrombotic drug"
+        },
+        {
+          "id": "D",
+          "text": "Only a nitrate"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Combination is not indicated except in rare cases. 2021 AHA/ASA.",
+      "videoTimestamp": "0:16"
+    },
+    {
+      "id": "ep45-after-the-stroke-q02",
+      "type": "single_best_answer",
+      "stem": "Long-term dual antiplatelet therapy is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Not recommended"
+        },
+        {
+          "id": "B",
+          "text": "Required for everyone"
+        },
+        {
+          "id": "C",
+          "text": "The only choice in atrial fibrillation"
+        },
+        {
+          "id": "D",
+          "text": "A blood-pressure drug"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Short-term dual therapy is limited to early minor stroke, high-risk TIA, or severe symptomatic intracranial stenosis.",
+      "videoTimestamp": "0:25"
+    },
+    {
+      "id": "ep45-after-the-stroke-q03",
+      "type": "single_best_answer",
+      "stem": "Atrial fibrillation after stroke usually gets:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Anticoagulation if nothing forbids it"
+        },
+        {
+          "id": "B",
+          "text": "Aspirin plus anticoagulation as a routine"
+        },
+        {
+          "id": "C",
+          "text": "No drug"
+        },
+        {
+          "id": "D",
+          "text": "Only a statin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Do not stack an antiplatelet on top as a habit.",
+      "videoTimestamp": "0:34"
+    },
+    {
+      "id": "ep45-after-the-stroke-q04",
+      "type": "single_best_answer",
+      "stem": "If no cause is found, the guideline usually recommends:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rhythm monitoring for hidden atrial fibrillation"
+        },
+        {
+          "id": "B",
+          "text": "Stopping all drugs"
+        },
+        {
+          "id": "C",
+          "text": "A higher blood pressure"
+        },
+        {
+          "id": "D",
+          "text": "No follow-up"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Atrial fibrillation is a common high-risk cause of another stroke.",
+      "videoTimestamp": "0:46"
+    },
+    {
+      "id": "ep45-after-the-stroke-q05",
+      "type": "single_best_answer",
+      "stem": "For a stable outpatient, the blood-pressure goal is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Under 130/80 mm Hg"
+        },
+        {
+          "id": "B",
+          "text": "Under 160/100"
+        },
+        {
+          "id": "C",
+          "text": "No treatment"
+        },
+        {
+          "id": "D",
+          "text": "Only in the first hour"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "These recommendations are for neurologically stable outpatient care.",
+      "videoTimestamp": "0:54"
+    },
+    {
+      "id": "ep45-after-the-stroke-q06",
+      "type": "single_best_answer",
+      "stem": "Severe intracranial artery narrowing may need:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A higher blood-pressure target"
+        },
+        {
+          "id": "B",
+          "text": "The same forced low target"
+        },
+        {
+          "id": "C",
+          "text": "No pressure treatment"
+        },
+        {
+          "id": "D",
+          "text": "Dual therapy for life"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Do not force the usual goal on that person.",
+      "videoTimestamp": "1:01"
+    },
+    {
+      "id": "ep45-after-the-stroke-q07",
+      "type": "single_best_answer",
+      "stem": "Atorvastatin 80 mg daily was used for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Atherosclerotic stroke when there was no other statin reason"
+        },
+        {
+          "id": "B",
+          "text": "Every cardioembolic stroke with clean arteries"
+        },
+        {
+          "id": "C",
+          "text": "Primary prevention at age 60"
+        },
+        {
+          "id": "D",
+          "text": "Atrial fibrillation alone"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "SPARCL, as cited in the 2021 guideline.",
+      "videoTimestamp": "1:11"
+    },
+    {
+      "id": "ep45-after-the-stroke-q08",
+      "type": "single_best_answer",
+      "stem": "An LDL under 70 mg/dL was better than:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A target of 90 to 110 mg/dL"
+        },
+        {
+          "id": "B",
+          "text": "A target under 40"
+        },
+        {
+          "id": "C",
+          "text": "No lipid care"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Those trials do not apply to cardioembolic stroke with no atherosclerosis.",
+      "videoTimestamp": "1:20"
+    },
+    {
+      "id": "ep45-after-the-stroke-q09",
+      "type": "single_best_answer",
+      "stem": "This episode does not teach:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The thrombolysis clock"
+        },
+        {
+          "id": "B",
+          "text": "Secondary prevention drugs"
+        },
+        {
+          "id": "C",
+          "text": "The stable blood-pressure goal"
+        },
+        {
+          "id": "D",
+          "text": "When dual therapy is short"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Acute clot-busting is a different talk.",
+      "videoTimestamp": "1:40"
+    },
+    {
+      "id": "ep45-after-the-stroke-q10",
+      "type": "single_best_answer",
+      "stem": "Dual therapy is short term for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Early minor stroke or high-risk transient symptoms"
+        },
+        {
+          "id": "B",
+          "text": "Every stable patient forever"
+        },
+        {
+          "id": "C",
+          "text": "A normal blood pressure"
+        },
+        {
+          "id": "D",
+          "text": "A pure heart clot with clean arteries"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Also severe symptomatic intracranial stenosis.",
+      "videoTimestamp": "0:25"
+    }
+  ]
+}

@@ -11,8 +11,18 @@ const LOCKED = {
 } as const;
 
 export type UsmleVideoPlayerGate =
-  | { ok: true; userId: string }
+  | { ok: true; userId: string; staff: boolean; released: boolean }
   | { ok: false; response: NextResponse };
+
+/** Held wave-4 episodes play only for staff while the library flag is off. */
+export function usmleHeldEpisodeIsServable(
+  episode: { held?: boolean } | undefined,
+  opts: { staff: boolean; released: boolean }
+): boolean {
+  if (!episode) return false;
+  if (!episode.held) return true;
+  return opts.staff && !opts.released;
+}
 
 /**
  * Anonymous callers get the auth response (401). Flag off: signed-in
@@ -26,9 +36,9 @@ export async function requireUsmleVideoPlayer(request: Request): Promise<UsmleVi
   if (!released && !staff) {
     return { ok: false, response: NextResponse.json(HIDDEN, { status: 404 }) };
   }
-  if (staff) return { ok: true, userId: auth.userId };
+  if (staff) return { ok: true, userId: auth.userId, staff, released };
   if (!canPlayQuickBites(auth.access)) {
     return { ok: false, response: NextResponse.json(LOCKED, { status: 403 }) };
   }
-  return { ok: true, userId: auth.userId };
+  return { ok: true, userId: auth.userId, staff, released };
 }

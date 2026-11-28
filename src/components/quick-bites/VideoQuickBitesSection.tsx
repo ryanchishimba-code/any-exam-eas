@@ -287,6 +287,7 @@ export function VideoQuickBitesSection({
   titleAs = "h2",
   stepSlot,
   limitToSlugs,
+  allowHeld = false,
 }: {
   canPlay: boolean;
   upgradeHref: string;
@@ -298,6 +299,8 @@ export function VideoQuickBitesSection({
   stepSlot?: ReactNode;
   /** When set, only these slugs stay in the library. An empty list is Coming soon. */
   limitToSlugs?: readonly string[];
+  /** Staff review of episodes that stay hidden from students. */
+  allowHeld?: boolean;
 }) {
   const config =
     series === "pharmacy"
@@ -312,6 +315,11 @@ export function VideoQuickBitesSection({
               ? MEDMATH_SERIES
               : NURSING_SERIES;
   const TitleTag = titleAs;
+  const playable = (episode: QuickBiteEpisode, can: boolean) => {
+    if (episode.held && !allowHeld) return false;
+    if (episode.held && allowHeld) return can;
+    return config.isPlayable(episode, can);
+  };
   const limited = limitToSlugs ? new Set(limitToSlugs) : null;
   const groups = limited
     ? config.groups
@@ -327,15 +335,15 @@ export function VideoQuickBitesSection({
   const [session, setSession] = useState(0);
   const scrollRequest = useRef(false);
   const active =
-    visibleEpisodes.find((episode) => episode.slug === activeSlug && config.isPlayable(episode, canPlay)) ??
+    visibleEpisodes.find((episode) => episode.slug === activeSlug && playable(episode, canPlay)) ??
     null;
   const nextEpisode = limited
-    ? nextVisible(visibleEpisodes, active?.slug, canPlay, config.isPlayable, "next")
+    ? nextVisible(visibleEpisodes, active?.slug, canPlay, playable, "next")
     : active
       ? config.nextEpisode(active.slug, canPlay)
       : null;
   const previousEpisode = limited
-    ? nextVisible(visibleEpisodes, active?.slug, canPlay, config.isPlayable, "previous")
+    ? nextVisible(visibleEpisodes, active?.slug, canPlay, playable, "previous")
     : active
       ? config.previousEpisode(active.slug, canPlay)
       : null;
@@ -465,7 +473,7 @@ export function VideoQuickBitesSection({
                         const episodeProgress = progress[episode.slug];
                         return (
                         <li key={episode.slug} className="w-36 shrink-0 lg:w-auto">
-                          {config.isPlayable(episode, canPlay) ? (
+                          {playable(episode, canPlay) ? (
                             <button
                               type="button"
                               aria-pressed={active?.slug === episode.slug}

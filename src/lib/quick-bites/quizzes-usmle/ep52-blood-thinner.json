@@ -1,0 +1,287 @@
+{
+  "episode": "ep52-blood-thinner",
+  "title": "A Blood Thinner You Adjust, and When You Stop",
+  "video": "quick-bites-usmle-ep52-blood-thinner-web.mp4",
+  "questions": [
+    {
+      "id": "ep52-blood-thinner-q01",
+      "type": "single_best_answer",
+      "stem": "The treatment phase of anticoagulation for a clot is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "3 months, then reassess"
+        },
+        {
+          "id": "B",
+          "text": "2 weeks with no reassessment"
+        },
+        {
+          "id": "C",
+          "text": "Lifelong for every provoked clot"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "CHEST 2021, strong recommendation.",
+      "videoTimestamp": "0:07"
+    },
+    {
+      "id": "ep52-blood-thinner-q02",
+      "type": "single_best_answer",
+      "stem": "For those 3 months, the preferred drugs over warfarin are:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Apixaban, dabigatran, edoxaban, or rivaroxaban"
+        },
+        {
+          "id": "B",
+          "text": "Aspirin"
+        },
+        {
+          "id": "C",
+          "text": "Heparin for the whole 3 months"
+        },
+        {
+          "id": "D",
+          "text": "No anticoagulant"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Strong recommendation.",
+      "videoTimestamp": "0:16"
+    },
+    {
+      "id": "ep52-blood-thinner-q03",
+      "type": "single_best_answer",
+      "stem": "A clot from a major transient risk:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Should not be extended after 3 months"
+        },
+        {
+          "id": "B",
+          "text": "Must be continued for life"
+        },
+        {
+          "id": "C",
+          "text": "Is treated with aspirin only"
+        },
+        {
+          "id": "D",
+          "text": "Needs a bridge forever"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Strong recommendation against extended therapy.",
+      "videoTimestamp": "0:25"
+    },
+    {
+      "id": "ep52-blood-thinner-q04",
+      "type": "single_best_answer",
+      "stem": "An unprovoked clot:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Should be offered extended therapy with a direct oral anticoagulant"
+        },
+        {
+          "id": "B",
+          "text": "Must be stopped at 3 months with no conversation"
+        },
+        {
+          "id": "C",
+          "text": "Is ignored"
+        },
+        {
+          "id": "D",
+          "text": "Is treated only with warfarin at a reduced dose from day 1"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Revisit at least yearly. Bleeding risk and preference still count.",
+      "videoTimestamp": "0:42"
+    },
+    {
+      "id": "ep52-blood-thinner-q05",
+      "type": "single_best_answer",
+      "stem": "A suggested reduced extended dose is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Apixaban 2.5 mg twice daily or rivaroxaban 10 mg daily"
+        },
+        {
+          "id": "B",
+          "text": "Apixaban 25 mg"
+        },
+        {
+          "id": "C",
+          "text": "Rivaroxaban 50 mg"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin 325 mg"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Weak recommendation over full dose.",
+      "videoTimestamp": "0:51"
+    },
+    {
+      "id": "ep52-blood-thinner-q06",
+      "type": "single_best_answer",
+      "stem": "Before an elective procedure, most direct oral anticoagulants are held:",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 to 2 days"
+        },
+        {
+          "id": "B",
+          "text": "1 hour"
+        },
+        {
+          "id": "C",
+          "text": "2 weeks"
+        },
+        {
+          "id": "D",
+          "text": "Not at all"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "CHEST 2022 perioperative guideline.",
+      "videoTimestamp": "1:02"
+    },
+    {
+      "id": "ep52-blood-thinner-q07",
+      "type": "single_best_answer",
+      "stem": "Dabigatran is held:",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 to 4 days"
+        },
+        {
+          "id": "B",
+          "text": "1 hour"
+        },
+        {
+          "id": "C",
+          "text": "The same minute as the incision"
+        },
+        {
+          "id": "D",
+          "text": "6 months"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Longer when kidney function is worse, but the suggestion is 1 to 4 days.",
+      "videoTimestamp": "1:02"
+    },
+    {
+      "id": "ep52-blood-thinner-q08",
+      "type": "single_best_answer",
+      "stem": "Heparin bridging when a direct oral anticoagulant is held is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Suggested against"
+        },
+        {
+          "id": "B",
+          "text": "Required"
+        },
+        {
+          "id": "C",
+          "text": "The only safe plan"
+        },
+        {
+          "id": "D",
+          "text": "Used for every procedure"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Conditional recommendation.",
+      "videoTimestamp": "1:05"
+    },
+    {
+      "id": "ep52-blood-thinner-q09",
+      "type": "single_best_answer",
+      "stem": "Resume the direct oral anticoagulant:",
+      "options": [
+        {
+          "id": "A",
+          "text": "More than 24 hours after the procedure"
+        },
+        {
+          "id": "B",
+          "text": "In the operating room"
+        },
+        {
+          "id": "C",
+          "text": "Never"
+        },
+        {
+          "id": "D",
+          "text": "Within 1 hour for a high-bleed surgery"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Most of that evidence is in atrial fibrillation, not clot treatment.",
+      "videoTimestamp": "1:05"
+    },
+    {
+      "id": "ep52-blood-thinner-q10",
+      "type": "single_best_answer",
+      "stem": "A minor transient risk factor:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is a suggestion against extended therapy, weaker than the major-risk stop"
+        },
+        {
+          "id": "B",
+          "text": "Requires lifelong treatment"
+        },
+        {
+          "id": "C",
+          "text": "Forbids the 3-month phase"
+        },
+        {
+          "id": "D",
+          "text": "Is the same as cancer"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Weak recommendation.",
+      "videoTimestamp": "0:33"
+    }
+  ]
+}

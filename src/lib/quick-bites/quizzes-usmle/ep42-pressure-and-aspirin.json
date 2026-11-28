@@ -1,0 +1,287 @@
+{
+  "episode": "ep42-pressure-and-aspirin",
+  "title": "Pressure You Treat for Years, and an Aspirin You Often Hold",
+  "video": "quick-bites-usmle-ep42-pressure-and-aspirin-web.mp4",
+  "questions": [
+    {
+      "id": "ep42-q01",
+      "type": "single_best_answer",
+      "stem": "The 2025 adult blood-pressure goal is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Under 140/90 for everyone"
+        },
+        {
+          "id": "B",
+          "text": "Under 130/80, with extra consideration for facility care, short life expectancy, or pregnancy"
+        },
+        {
+          "id": "C",
+          "text": "Under 120/80 as a drug mandate for all"
+        },
+        {
+          "id": "D",
+          "text": "No goal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Pregnancy treatment is a different talk.",
+      "videoTimestamp": "0:07"
+    },
+    {
+      "id": "ep42-q02",
+      "type": "single_best_answer",
+      "stem": "Stage 2 hypertension is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "120 to 129 and under 80"
+        },
+        {
+          "id": "B",
+          "text": "130 to 139 or 80 to 89"
+        },
+        {
+          "id": "C",
+          "text": "140 or higher, or 90 or higher"
+        },
+        {
+          "id": "D",
+          "text": "Under 120"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Stage 1 is 130 to 139 or 80 to 89.",
+      "videoTimestamp": "0:33"
+    },
+    {
+      "id": "ep42-q03",
+      "type": "single_best_answer",
+      "stem": "Average blood pressure of 140/90 or higher means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lifestyle only for a year"
+        },
+        {
+          "id": "B",
+          "text": "Start medicine plus lifestyle"
+        },
+        {
+          "id": "C",
+          "text": "Aspirin first"
+        },
+        {
+          "id": "D",
+          "text": "No treatment"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "That start applies to all adults in the take-home message.",
+      "videoTimestamp": "0:40"
+    },
+    {
+      "id": "ep42-q04",
+      "type": "single_best_answer",
+      "stem": "Medicine at 130/80 or higher is for selected adults with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "No risk at all"
+        },
+        {
+          "id": "B",
+          "text": "Clinical cardiovascular disease, prior stroke, diabetes, chronic kidney disease, or PREVENT risk of 7.5% or higher"
+        },
+        {
+          "id": "C",
+          "text": "Pregnancy only"
+        },
+        {
+          "id": "D",
+          "text": "A normal pressure"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "If PREVENT risk is under 7.5%, try lifestyle for 3 to 6 months, then treat if still at least 130/80.",
+      "videoTimestamp": "0:50"
+    },
+    {
+      "id": "ep42-q05",
+      "type": "single_best_answer",
+      "stem": "Stage 2 drug therapy prefers:",
+      "options": [
+        {
+          "id": "A",
+          "text": "One drug only"
+        },
+        {
+          "id": "B",
+          "text": "Two first-line drugs from different classes, preferably in one combination pill"
+        },
+        {
+          "id": "C",
+          "text": "A nitrate"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin instead of a pressure drug"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "One pill is preferred over two separate pills.",
+      "videoTimestamp": "1:15"
+    },
+    {
+      "id": "ep42-q06",
+      "type": "single_best_answer",
+      "stem": "For ages 40 to 59 with a 10% or greater 10-year CVD risk, starting low-dose aspirin is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Required"
+        },
+        {
+          "id": "B",
+          "text": "An individual decision, grade C, with a small net benefit"
+        },
+        {
+          "id": "C",
+          "text": "Forbidden"
+        },
+        {
+          "id": "D",
+          "text": "Grade A for everyone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Not a routine start for every person in that group.",
+      "videoTimestamp": "1:31"
+    },
+    {
+      "id": "ep42-q07",
+      "type": "single_best_answer",
+      "stem": "If aspirin is started in that younger group, a reasonable dose is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "325 mg twice a day"
+        },
+        {
+          "id": "B",
+          "text": "81 mg a day"
+        },
+        {
+          "id": "C",
+          "text": "None"
+        },
+        {
+          "id": "D",
+          "text": "A loading dose of 1000 mg"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Only if they are not at increased bleeding risk and they want it.",
+      "videoTimestamp": "1:40"
+    },
+    {
+      "id": "ep42-q08",
+      "type": "single_best_answer",
+      "stem": "At age 60 or older, initiating aspirin for primary prevention is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Grade C"
+        },
+        {
+          "id": "B",
+          "text": "Recommended against, grade D"
+        },
+        {
+          "id": "C",
+          "text": "Required if risk is 7.5%"
+        },
+        {
+          "id": "D",
+          "text": "The same as stage 2 blood pressure treatment"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The task force concludes there is no net benefit.",
+      "videoTimestamp": "1:49"
+    },
+    {
+      "id": "ep42-q09",
+      "type": "single_best_answer",
+      "stem": "That aspirin recommendation applies to adults who:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Already had a heart attack"
+        },
+        {
+          "id": "B",
+          "text": "Have no known cardiovascular disease and are not at increased bleeding risk"
+        },
+        {
+          "id": "C",
+          "text": "Are pregnant"
+        },
+        {
+          "id": "D",
+          "text": "Are in thyroid storm"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A prior heart attack or stroke is not this primary-prevention rule.",
+      "videoTimestamp": "1:56"
+    },
+    {
+      "id": "ep42-q10",
+      "type": "single_best_answer",
+      "stem": "This episode does not state:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The blood-pressure goal"
+        },
+        {
+          "id": "B",
+          "text": "A lipid-treatment threshold"
+        },
+        {
+          "id": "C",
+          "text": "The stage 2 two-drug start"
+        },
+        {
+          "id": "D",
+          "text": "The age-60 aspirin stop"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The 2026 cholesterol guideline was not opened, so no lipid number is spoken.",
+      "videoTimestamp": "2:29"
+    }
+  ]
+}

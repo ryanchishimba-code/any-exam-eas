@@ -1,0 +1,287 @@
+{
+  "episode": "ep46-nodule-and-oxygen",
+  "title": "A Nodule in the Lung, and Oxygen You Send Home",
+  "video": "quick-bites-usmle-ep46-nodule-and-oxygen-web.mp4",
+  "questions": [
+    {
+      "id": "ep46-nodule-and-oxygen-q01",
+      "type": "single_best_answer",
+      "stem": "A solid nodule under 6 mm at low risk:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Needs no routine follow-up"
+        },
+        {
+          "id": "B",
+          "text": "Needs a scan next week"
+        },
+        {
+          "id": "C",
+          "text": "Needs a biopsy tomorrow"
+        },
+        {
+          "id": "D",
+          "text": "Needs oxygen"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Fleischner 2017, strong recommendation.",
+      "videoTimestamp": "0:07"
+    },
+    {
+      "id": "ep46-nodule-and-oxygen-q02",
+      "type": "single_best_answer",
+      "stem": "A high-risk nodule under 6 mm with an ugly shape or upper-lobe spot:",
+      "options": [
+        {
+          "id": "A",
+          "text": "May be scanned at 12 months, not sooner"
+        },
+        {
+          "id": "B",
+          "text": "Must be scanned in 1 month"
+        },
+        {
+          "id": "C",
+          "text": "Needs no thought ever"
+        },
+        {
+          "id": "D",
+          "text": "Is treated as 2 cm"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Earlier follow-up can falsely reassure.",
+      "videoTimestamp": "0:17"
+    },
+    {
+      "id": "ep46-nodule-and-oxygen-q03",
+      "type": "single_best_answer",
+      "stem": "A 6 to 8 mm solid nodule at high risk is scanned:",
+      "options": [
+        {
+          "id": "A",
+          "text": "At 6 to 12 months and again at 18 to 24 months"
+        },
+        {
+          "id": "B",
+          "text": "Never"
+        },
+        {
+          "id": "C",
+          "text": "Only at 10 years"
+        },
+        {
+          "id": "D",
+          "text": "The next morning"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Two follow-ups should exclude growth in most people.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "ep46-nodule-and-oxygen-q04",
+      "type": "single_best_answer",
+      "stem": "Several solid nodules with one at least 6 mm:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Are followed at about 3 to 6 months"
+        },
+        {
+          "id": "B",
+          "text": "Need no scan"
+        },
+        {
+          "id": "C",
+          "text": "Are all benign"
+        },
+        {
+          "id": "D",
+          "text": "Need oxygen"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A later scan at 18 to 24 months is optional.",
+      "videoTimestamp": "0:59"
+    },
+    {
+      "id": "ep46-nodule-and-oxygen-q05",
+      "type": "single_best_answer",
+      "stem": "Severe resting hypoxemia for long-term oxygen includes:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Saturation of 88 percent or less"
+        },
+        {
+          "id": "B",
+          "text": "Saturation of 95 percent"
+        },
+        {
+          "id": "C",
+          "text": "A normal walk"
+        },
+        {
+          "id": "D",
+          "text": "Saturation of 93 percent alone"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Or PaO2 of 55 mm Hg or less. At least 15 hours a day.",
+      "videoTimestamp": "1:09"
+    },
+    {
+      "id": "ep46-nodule-and-oxygen-q06",
+      "type": "single_best_answer",
+      "stem": "Saturation of 89 percent plus edema or hematocrit of 55 percent or more:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Also counts as severe"
+        },
+        {
+          "id": "B",
+          "text": "Is moderate and untreated"
+        },
+        {
+          "id": "C",
+          "text": "Rules out oxygen"
+        },
+        {
+          "id": "D",
+          "text": "Is a nodule rule"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Or a tall P wave. ATS 2020.",
+      "videoTimestamp": "1:21"
+    },
+    {
+      "id": "ep46-nodule-and-oxygen-q07",
+      "type": "single_best_answer",
+      "stem": "Moderate resting hypoxemia in COPD, saturation 89 to 93 percent:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is a suggestion against long-term oxygen"
+        },
+        {
+          "id": "B",
+          "text": "Requires 24-hour oxygen"
+        },
+        {
+          "id": "C",
+          "text": "Is the same as 88 percent"
+        },
+        {
+          "id": "D",
+          "text": "Needs a lung scan"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Conditional recommendation.",
+      "videoTimestamp": "1:23"
+    },
+    {
+      "id": "ep46-nodule-and-oxygen-q08",
+      "type": "single_best_answer",
+      "stem": "Severe hypoxemia only while walking:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is a suggestion for ambulatory oxygen"
+        },
+        {
+          "id": "B",
+          "text": "Forbids any oxygen"
+        },
+        {
+          "id": "C",
+          "text": "Is ignored"
+        },
+        {
+          "id": "D",
+          "text": "Is a nodule size"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Saturation of 88 percent or less on exertion.",
+      "videoTimestamp": "1:35"
+    },
+    {
+      "id": "ep46-nodule-and-oxygen-q09",
+      "type": "single_best_answer",
+      "stem": "Low-risk 6 to 8 mm nodules:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Get a first scan at 6 to 12 months"
+        },
+        {
+          "id": "B",
+          "text": "Get no scan ever"
+        },
+        {
+          "id": "C",
+          "text": "Get a scan tomorrow"
+        },
+        {
+          "id": "D",
+          "text": "Get oxygen"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "One follow-up often suffices unless stability is uncertain.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "ep46-nodule-and-oxygen-q10",
+      "type": "single_best_answer",
+      "stem": "This episode does not teach:",
+      "options": [
+        {
+          "id": "A",
+          "text": "When to start lung-cancer screening"
+        },
+        {
+          "id": "B",
+          "text": "Nodule follow-up size"
+        },
+        {
+          "id": "C",
+          "text": "Home oxygen thresholds"
+        },
+        {
+          "id": "D",
+          "text": "The 15-hour duration"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Screening start and stop are another episode.",
+      "videoTimestamp": "1:40"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "episode": "ep40-birth-control-and-bleeding",
+  "title": "Birth Control by Risk, and Bleeding That Is New",
+  "video": "quick-bites-usmle-ep40-birth-control-and-bleeding-web.mp4",
+  "questions": [
+    {
+      "id": "ep40-q01",
+      "type": "single_best_answer",
+      "stem": "Migraine with aura and a combined pill, patch, or ring is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Category 2"
+        },
+        {
+          "id": "B",
+          "text": "Category 4, an unacceptable risk"
+        },
+        {
+          "id": "C",
+          "text": "Always fine"
+        },
+        {
+          "id": "D",
+          "text": "Category 1"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Migraine without aura, including menstrual migraine, is category 2.",
+      "videoTimestamp": "0:16"
+    },
+    {
+      "id": "ep40-q02",
+      "type": "single_best_answer",
+      "stem": "Age 35 or older and 15 or more cigarettes a day is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Category 2"
+        },
+        {
+          "id": "B",
+          "text": "Category 4"
+        },
+        {
+          "id": "C",
+          "text": "Category 1"
+        },
+        {
+          "id": "D",
+          "text": "Not classified"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Fewer than 15 cigarettes a day at that age is category 3.",
+      "videoTimestamp": "0:26"
+    },
+    {
+      "id": "ep40-q03",
+      "type": "single_best_answer",
+      "stem": "The first 21 days after birth, a combined method is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Category 1"
+        },
+        {
+          "id": "B",
+          "text": "Category 4, whether or not the person is breastfeeding"
+        },
+        {
+          "id": "C",
+          "text": "Category 2 only if breastfeeding"
+        },
+        {
+          "id": "D",
+          "text": "Required"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Clot risk is highest then.",
+      "videoTimestamp": "0:33"
+    },
+    {
+      "id": "ep40-q04",
+      "type": "single_best_answer",
+      "stem": "Days 21 through 42, not breastfeeding, with other clot risks, is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Category 1"
+        },
+        {
+          "id": "B",
+          "text": "Category 3, and those risks can push it to category 4"
+        },
+        {
+          "id": "C",
+          "text": "Always category 4"
+        },
+        {
+          "id": "D",
+          "text": "Unclassified"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Without those risks, that same window is category 2.",
+      "videoTimestamp": "0:42"
+    },
+    {
+      "id": "ep40-q05",
+      "type": "single_best_answer",
+      "stem": "After 42 days, not breastfeeding, with no other problem on the list, combined contraception is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Category 4"
+        },
+        {
+          "id": "B",
+          "text": "Category 1"
+        },
+        {
+          "id": "C",
+          "text": "Category 3"
+        },
+        {
+          "id": "D",
+          "text": "Forbidden"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not negotiate a category 4 condition because someone prefers a monthly bleed.",
+      "videoTimestamp": "0:57"
+    },
+    {
+      "id": "ep40-q06",
+      "type": "single_best_answer",
+      "stem": "Postmenopausal bleeding in the 2026 update is bleeding presumed from the uterus:",
+      "options": [
+        {
+          "id": "A",
+          "text": "One month after a period"
+        },
+        {
+          "id": "B",
+          "text": "12 or more months after the final menstrual period"
+        },
+        {
+          "id": "C",
+          "text": "Only after a cesarean"
+        },
+        {
+          "id": "D",
+          "text": "Only on hormones"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "About 90% of endometrial cancers present with this bleeding.",
+      "videoTimestamp": "1:11"
+    },
+    {
+      "id": "ep40-q07",
+      "type": "single_best_answer",
+      "stem": "Most people with that bleeding need:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ultrasound thickness alone"
+        },
+        {
+          "id": "B",
+          "text": "Transvaginal ultrasound and an endometrial tissue sample"
+        },
+        {
+          "id": "C",
+          "text": "No test"
+        },
+        {
+          "id": "D",
+          "text": "A Pap smear only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Thickness by itself is generally not enough.",
+      "videoTimestamp": "1:29"
+    },
+    {
+      "id": "ep40-q08",
+      "type": "single_best_answer",
+      "stem": "Ultrasound without a biopsy is allowed only when:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The lining is 8 mm"
+        },
+        {
+          "id": "B",
+          "text": "Every exception is true, including a fully seen lining not thicker than 4 mm and a single episode"
+        },
+        {
+          "id": "C",
+          "text": "Any bleeding"
+        },
+        {
+          "id": "D",
+          "text": "There is a strong cancer risk"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "She must be able to return immediately if it happens again.",
+      "videoTimestamp": "1:35"
+    },
+    {
+      "id": "ep40-q09",
+      "type": "single_best_answer",
+      "stem": "Which factor closes the 4 mm exception?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A body mass index above 30"
+        },
+        {
+          "id": "B",
+          "text": "A normal Pap smear"
+        },
+        {
+          "id": "C",
+          "text": "Age under 40"
+        },
+        {
+          "id": "D",
+          "text": "One normal period last year"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Tamoxifen, estrogen therapy, never having given birth, Lynch syndrome, diabetes, and Black race as an association with high-grade cancers also close it.",
+      "videoTimestamp": "1:52"
+    },
+    {
+      "id": "ep40-q10",
+      "type": "single_best_answer",
+      "stem": "One strong risk factor means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The 4 mm exception still applies"
+        },
+        {
+          "id": "B",
+          "text": "Sample the tissue. Do not stop at the picture"
+        },
+        {
+          "id": "C",
+          "text": "Go home"
+        },
+        {
+          "id": "D",
+          "text": "Start a combined pill"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Four millimeters is not a free pass.",
+      "videoTimestamp": "2:09"
+    }
+  ]
+}

@@ -16,6 +16,7 @@ import { USMLE_VIDEO_QUICK_BITES_PATH } from "@/lib/quick-bites/usmle-video-flag
 export const USMLE_VIDEO_QUICK_BITES_MEDIA_VERSION = "v1-20261121";
 export const USMLE_VIDEO_WAVE2_MEDIA_VERSION = "v2-20261121";
 export const USMLE_VIDEO_WAVE3_MEDIA_VERSION = "v3-20261121";
+export const USMLE_VIDEO_WAVE4_MEDIA_VERSION = "v4-20261121";
 
 type EpisodeSeed = {
   slug: string;
@@ -25,6 +26,8 @@ type EpisodeSeed = {
   mediaVersion?: string;
   /** Step 1 is mechanism and basic science. Step 2 CK is the next clinical move. */
   examStep: "step-1" | "step-2-ck" | "step-3";
+  /** Hidden from students. Staff can open it only while the release flag is off. */
+  held?: boolean;
 };
 
 const EPISODES: EpisodeSeed[] = [
@@ -258,6 +261,190 @@ const EPISODES: EpisodeSeed[] = [
     mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
     examStep: "step-3",
   },
+  {
+    slug: "quick-bites-usmle-ep31-fever-too-young",
+    number: 31,
+    title: "A Fever Too Young to Send Home",
+    duration: "3:56",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep32-next-psych-medicine",
+    number: 32,
+    title: "The Next Psych Medicine, and Who Cannot Wait",
+    duration: "3:24",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep33-four-pillars-weak-pump",
+    number: 33,
+    title: "Four Pillars for a Weak Pump",
+    duration: "3:35",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep34-bleed-after-baby",
+    number: 34,
+    title: "A Bleed After the Baby",
+    duration: "3:30",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep35-potassium-and-dialysis",
+    number: 35,
+    title: "Potassium You Treat Now, and When You Dialyze",
+    duration: "3:21",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep36-calories-change-plan",
+    number: 36,
+    title: "Calories That Change the Plan",
+    duration: "3:25",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep37-soft-tissue-and-hip",
+    number: 37,
+    title: "A Dying Soft Tissue, and a Hip That Broke",
+    duration: "3:18",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep38-first-hour-of-sepsis",
+    number: 38,
+    title: "The First Hour of Sepsis",
+    duration: "3:18",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep39-sugar-and-thyroid-storm",
+    number: 39,
+    title: "Sugar You Manage for Years, and a Thyroid That Storms",
+    duration: "3:22",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep40-birth-control-and-bleeding",
+    number: 40,
+    title: "Birth Control by Risk, and Bleeding That Is New",
+    duration: "3:17",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep41-abstract-and-advertisement",
+    number: 41,
+    title: "The Abstract, and the Advertisement",
+    duration: "3:05",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep42-pressure-and-aspirin",
+    number: 42,
+    title: "Pressure You Treat for Years, and an Aspirin You Often Hold",
+    duration: "3:09",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep43-first-orders-clock",
+    number: 43,
+    title: "First Orders, Then Advance the Clock",
+    duration: "3:12",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep44-vitamin-and-feed",
+    number: 44,
+    title: "The Vitamin You Give First, and a Feed You Start",
+    duration: "3:19",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep45-after-the-stroke",
+    number: 45,
+    title: "After the Stroke, the Pill That Prevents the Next",
+    duration: "3:41",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep46-nodule-and-oxygen",
+    number: 46,
+    title: "A Nodule in the Lung, and Oxygen You Send Home",
+    duration: "3:36",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep47-first-prenatal-visit",
+    number: 47,
+    title: "The First Prenatal Visit, and a Shot You Must Not Miss",
+    duration: "3:44",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep48-breast-lump",
+    number: 48,
+    title: "A Breast Lump You Work Up Now",
+    duration: "3:57",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep49-disclose-the-error",
+    number: 49,
+    title: "An Error You Disclose, and a System You Fix",
+    duration: "3:39",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep50-floor-to-icu",
+    number: 50,
+    title: "When the Floor Patient Needs the ICU",
+    duration: "3:10",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep51-hepatitis-and-polyp",
+    number: 51,
+    title: "The Next Hepatitis Decision, and a Polyp's Interval",
+    duration: "3:50",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep52-blood-thinner",
+    number: 52,
+    title: "A Blood Thinner You Adjust, and When You Stop",
+    duration: "3:57",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep53-mood-and-use",
+    number: 53,
+    title: "A Mood You Follow, and a Use Disorder You Treat",
+    duration: "3:35",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+  },
 ];
 
 export const USMLE_VIDEO_QUICK_BITE_EPISODES: QuickBiteEpisode[] = EPISODES.map((episode) => ({
@@ -328,8 +515,13 @@ export function usmleVideoStepLabel(step: UsmleQuickBiteStep): string {
   return USMLE_QUICK_BITE_STEP_CHOICES.find((choice) => choice.id === step)?.label ?? "Step 1";
 }
 
-export function usmleVideoEpisodesForStep(step: UsmleQuickBiteStep): QuickBiteEpisode[] {
-  return USMLE_VIDEO_QUICK_BITE_EPISODES.filter((episode) => episode.examStep === step);
+export function usmleVideoEpisodesForStep(
+  step: UsmleQuickBiteStep,
+  includeHeld = false
+): QuickBiteEpisode[] {
+  return USMLE_VIDEO_QUICK_BITE_EPISODES.filter(
+    (episode) => episode.examStep === step && (includeHeld || episode.held !== true)
+  );
 }
 
 export function usmleVideoStepFromQuery(step: string | undefined | null): UsmleQuickBiteStep | null {

@@ -1,0 +1,287 @@
+{
+  "episode": "ep53-mood-and-use",
+  "title": "A Mood You Follow, and a Use Disorder You Treat",
+  "video": "quick-bites-usmle-ep53-mood-and-use-web.mp4",
+  "questions": [
+    {
+      "id": "ep53-mood-and-use-q01",
+      "type": "single_best_answer",
+      "stem": "A maximized antidepressant is not called a failure before:",
+      "options": [
+        {
+          "id": "A",
+          "text": "4 to 6 weeks"
+        },
+        {
+          "id": "B",
+          "text": "3 days"
+        },
+        {
+          "id": "C",
+          "text": "1 dose"
+        },
+        {
+          "id": "D",
+          "text": "1 year with no assessment"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "VA/DoD 2022. This episode does not invent a visit day.",
+      "videoTimestamp": "0:07"
+    },
+    {
+      "id": "ep53-mood-and-use-q02",
+      "type": "single_best_answer",
+      "stem": "Buprenorphine is started only after:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Objective signs of opioid withdrawal"
+        },
+        {
+          "id": "B",
+          "text": "The person feels well"
+        },
+        {
+          "id": "C",
+          "text": "A counselor is in the room"
+        },
+        {
+          "id": "D",
+          "text": "A week of no symptoms"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "That lowers precipitated withdrawal. ASAM 2020.",
+      "videoTimestamp": "0:20"
+    },
+    {
+      "id": "ep53-mood-and-use-q03",
+      "type": "single_best_answer",
+      "stem": "The starting dose is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "2 to 4 mg"
+        },
+        {
+          "id": "B",
+          "text": "24 mg on the first minute"
+        },
+        {
+          "id": "C",
+          "text": "0.1 mg only"
+        },
+        {
+          "id": "D",
+          "text": "Methadone 100 mg"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Then increase by 2 to 8 mg.",
+      "videoTimestamp": "0:31"
+    },
+    {
+      "id": "ep53-mood-and-use-q04",
+      "type": "single_best_answer",
+      "stem": "A dose of 16 mg a day or more:",
+      "options": [
+        {
+          "id": "A",
+          "text": "May be more effective than lower doses"
+        },
+        {
+          "id": "B",
+          "text": "Is forbidden"
+        },
+        {
+          "id": "C",
+          "text": "Is the only legal dose"
+        },
+        {
+          "id": "D",
+          "text": "Has no evidence"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Titrate until withdrawal and craving ease.",
+      "videoTimestamp": "0:34"
+    },
+    {
+      "id": "ep53-mood-and-use-q05",
+      "type": "single_best_answer",
+      "stem": "Doses above 24 mg a day:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Have limited evidence and may increase diversion"
+        },
+        {
+          "id": "B",
+          "text": "Are required"
+        },
+        {
+          "id": "C",
+          "text": "Are safer than 16 mg in every person"
+        },
+        {
+          "id": "D",
+          "text": "Replace counseling"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Do not climb without a reason.",
+      "videoTimestamp": "0:42"
+    },
+    {
+      "id": "ep53-mood-and-use-q06",
+      "type": "single_best_answer",
+      "stem": "If the person declines counseling:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Do not delay buprenorphine"
+        },
+        {
+          "id": "B",
+          "text": "Withhold the medicine"
+        },
+        {
+          "id": "C",
+          "text": "Stop all care"
+        },
+        {
+          "id": "D",
+          "text": "Start only methadone"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Offer or refer, but absence of counseling is not a reason to wait.",
+      "videoTimestamp": "0:50"
+    },
+    {
+      "id": "ep53-mood-and-use-q07",
+      "type": "single_best_answer",
+      "stem": "Office start and home start:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Can both be safe"
+        },
+        {
+          "id": "B",
+          "text": "Are both forbidden"
+        },
+        {
+          "id": "C",
+          "text": "Only home is allowed"
+        },
+        {
+          "id": "D",
+          "text": "Only a hospital is allowed"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Judge whether this person can manage a home start.",
+      "videoTimestamp": "0:58"
+    },
+    {
+      "id": "ep53-mood-and-use-q08",
+      "type": "single_best_answer",
+      "stem": "Buprenorphine is recommended when:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The person can consent and has no specific contraindication"
+        },
+        {
+          "id": "B",
+          "text": "They are not opioid dependent"
+        },
+        {
+          "id": "C",
+          "text": "They refuse every medicine"
+        },
+        {
+          "id": "D",
+          "text": "They are in precipitated withdrawal already from a too-early dose"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "ASAM recommendation 1.",
+      "videoTimestamp": "0:17"
+    },
+    {
+      "id": "ep53-mood-and-use-q09",
+      "type": "single_best_answer",
+      "stem": "Swapping the antidepressant on day 3 is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Too early"
+        },
+        {
+          "id": "B",
+          "text": "Required"
+        },
+        {
+          "id": "C",
+          "text": "The 4-to-6-week rule"
+        },
+        {
+          "id": "D",
+          "text": "A buprenorphine start"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Wait until the maximized trial is long enough.",
+      "videoTimestamp": "0:07"
+    },
+    {
+      "id": "ep53-mood-and-use-q10",
+      "type": "single_best_answer",
+      "stem": "This episode does not teach:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Alcohol-withdrawal benzodiazepine scoring"
+        },
+        {
+          "id": "B",
+          "text": "The 4-to-6-week depression trial"
+        },
+        {
+          "id": "C",
+          "text": "When to start buprenorphine"
+        },
+        {
+          "id": "D",
+          "text": "That missing counseling does not delay the medicine"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Alcohol withdrawal is the earlier episode.",
+      "videoTimestamp": "1:08"
+    }
+  ]
+}

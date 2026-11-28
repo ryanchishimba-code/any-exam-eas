@@ -9,17 +9,18 @@ import {
 
 describe("USMLE video steps", () => {
   it("tags every episode, including Step 3", () => {
-    expect(USMLE_VIDEO_QUICK_BITE_EPISODES).toHaveLength(30);
+    expect(USMLE_VIDEO_QUICK_BITE_EPISODES).toHaveLength(53);
+    expect(USMLE_VIDEO_QUICK_BITE_EPISODES.filter((episode) => episode.held !== true)).toHaveLength(53);
     expect(USMLE_VIDEO_QUICK_BITE_EPISODES.every((episode) => episode.examStep)).toBe(true);
     expect(usmleVideoEpisodesForStep("step-1")).toHaveLength(18);
-    expect(usmleVideoEpisodesForStep("step-2-ck")).toHaveLength(8);
+    expect(usmleVideoEpisodesForStep("step-2-ck")).toHaveLength(18);
     expect(usmleVideoEpisodesForStep("step-3").map((episode) => episode.number)).toEqual([
-      23, 28, 29, 30,
+      23, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53,
     ]);
     expect(usmleVideoEpisodesForStep("step-1").map((episode) => episode.number)).toContain(21);
     expect(usmleVideoEpisodesForStep("step-1").map((episode) => episode.number)).toContain(22);
     expect(usmleVideoEpisodesForStep("step-2-ck").map((episode) => episode.number)).toEqual(
-      expect.arrayContaining([16, 18, 19, 20, 24, 25, 26, 27])
+      expect.arrayContaining([16, 18, 19, 20, 24, 25, 26, 27, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40])
     );
   });
 
