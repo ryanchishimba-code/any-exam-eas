@@ -65,6 +65,65 @@ function fragmentAfterFaqHeading(html: string): string | null {
   return null;
 }
 
+function flattenedFaqPairs(inner: string): BlogFaqPair[] {
+  const text = inner.replace(/^\s+/, "");
+  if (!text.startsWith("### ")) return [];
+  const pairs: BlogFaqPair[] = [];
+  for (const chunk of text.split("### ")) {
+    const body = chunk.trim();
+    const mark = body.indexOf("?");
+    if (!body || mark === -1) continue;
+    const question = body.slice(0, mark + 1).trim();
+    const answer = body.slice(mark + 1).trim();
+    if (question.length > 1 && answer.length > 0) pairs.push({ question, answer });
+  }
+  return pairs;
+}
+
+/**
+ * Turn a `### question? answer` paragraph under the FAQ heading into the same
+ * `<section class="aee-faq">` markup the other posts store. Paragraphs that
+ * do not start with `### ` are left alone.
+ */
+export function expandFlattenedBlogFaq(html: string): string {
+  let result = "";
+  let last = 0;
+  for (const heading of html.matchAll(/<h2\b[^>]*>[\s\S]*?<\/h2>/gi)) {
+    const index = heading.index ?? 0;
+    const h2 = heading[0];
+    result += html.slice(last, index);
+    const after = html.slice(index + h2.length);
+    if (!FAQ_HEADING.test(stripTags(h2))) {
+      result += h2;
+      last = index + h2.length;
+      continue;
+    }
+    let cursor = /^\s*/.exec(after)?.[0].length ?? 0;
+    const blocks: string[] = [];
+    while (cursor <= after.length) {
+      const paragraph = /^<p\b[^>]*>[\s\S]*?<\/p>/i.exec(after.slice(cursor));
+      if (!paragraph) break;
+      const inner = paragraph[0].replace(/^<p\b[^>]*>/i, "").replace(/<\/p>$/i, "");
+      if (!/^\s*### /.test(inner)) break;
+      const pairs = flattenedFaqPairs(inner);
+      if (pairs.length === 0) break;
+      blocks.push(
+        ...pairs.map((pair) => `<h3>${pair.question}</h3><p>${pair.answer}</p>`)
+      );
+      cursor += paragraph[0].length;
+      cursor += /^\s*/.exec(after.slice(cursor))?.[0].length ?? 0;
+    }
+    if (blocks.length === 0) {
+      result += h2;
+      last = index + h2.length;
+      continue;
+    }
+    result += `<section class="aee-faq">${h2}${blocks.join("")}</section>`;
+    last = index + h2.length + cursor;
+  }
+  return result + html.slice(last);
+}
+
 /** FAQ pairs from `<section class="aee-faq">`, or from a plain FAQ heading. */
 export function extractBlogFaqs(html: string): BlogFaqPair[] {
   const section = html.match(
