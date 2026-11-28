@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { gatedStudyGuidePaths, isGatedStudyGuidePath } from "@/lib/seo/gated-study-guide-paths";
+import { allSitemapUrls, buildSitemapGroups } from "@/lib/seo/sitemap-catalog";
 
 describe("login-gated study guides stay out of the sitemap", () => {
   it("matches reader routes and leaves the public PANCE page alone", () => {
@@ -19,16 +20,17 @@ describe("login-gated study guides stay out of the sitemap", () => {
   });
 
   it("is applied by the sitemap and disallowed for crawlers", () => {
-    const sitemap = readFileSync("src/app/sitemap.ts", "utf8");
+    const urls = allSitemapUrls(buildSitemapGroups({ posts: [], now: new Date("2026-11-28T00:30:00.000Z") })).map(
+      (url) => new URL(url.loc).pathname
+    );
     const robots = readFileSync("src/app/robots.ts", "utf8");
-    expect(sitemap).toContain("isGatedStudyGuidePath");
-    expect(sitemap).toContain('path: "/pance-study-guide"');
-    expect(sitemap).toContain('path: "/free-guides"');
-    expect(sitemap).not.toContain('path: "/login"');
-    expect(sitemap).not.toContain('path: "/signup"');
-    expect(sitemap).not.toContain("forgot-password");
-    expect(sitemap).not.toContain("/nclex/study-guide");
-    expect(robots).not.toContain("gatedStudyGuidePaths");
+    expect(urls).toContain("/pance-study-guide");
+    expect(urls).toContain("/nclex-study-guide");
+    expect(urls).toContain("/free-guides");
+    expect(urls.some((path) => path.includes("login") || path.includes("signup") || path.includes("forgot-password"))).toBe(
+      false
+    );
+    expect(urls.some((path) => path.startsWith("/nclex/study-guide"))).toBe(false);
     expect(robots).not.toContain("/nclex-study-guide");
     expect(robots).not.toContain("/pance-study-guide");
     expect(robots).toContain("https://www.anyexameasy.com/sitemap.xml");

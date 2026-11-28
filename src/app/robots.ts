@@ -1,32 +1,14 @@
 import type { MetadataRoute } from "next";
-import { quickBiteRouteBases } from "@/lib/quick-bites/boards";
-import { getSiteUrl } from "@/lib/seo";
+import { CANONICAL_ORIGIN, ROBOTS_ALLOW, robotsDisallowPaths } from "@/lib/seo/crawl-policy";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = getSiteUrl();
-
   return {
     rules: {
       userAgent: "*",
-      allow: ["/", "/nclex", "/naplex"],
-      disallow: [
-        "/api/",
-        "/employee/",
-        "/checkout",
-        "/internal/",
-        "/dashboard/",
-        "/prep/",
-        "/library/",
-        "/analytics/",
-        "/admin/",
-        "/study-tools/",
-        ...quickBiteRouteBases(),
-        "/daily/confirm",
-        "/daily/unsubscribe",
-        "/email/unsubscribe",
-      ],
+      allow: [...ROBOTS_ALLOW],
+      disallow: ["/study-tools/", ...robotsDisallowPaths()],
     },
     sitemap: "https://www.anyexameasy.com/sitemap.xml",
-    host: base,
+    host: CANONICAL_ORIGIN,
   };
 }

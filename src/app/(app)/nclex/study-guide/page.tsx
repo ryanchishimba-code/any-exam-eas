@@ -1,4 +1,7 @@
 import { StudyGuideIndexScreen } from "@/components/nclex-study-guide/StudyGuideChapterScreen";
+import { studyGuideGatedMetadata } from "@/lib/nclex-study-guide/gated-reader-metadata";
+
+export const metadata = studyGuideGatedMetadata("NCLEX-RN Study Guide");
 
 export const dynamic = "force-dynamic";
 

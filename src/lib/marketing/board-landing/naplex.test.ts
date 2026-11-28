@@ -1,5 +1,3 @@
-import { readFileSync } from "node:fs";
-import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { boardQuestionUnits } from "@/lib/counts";
 import { OPEN_PHARMACY_QUICK_BITE_SLUG } from "@/lib/quick-bites/pharmacy-catalog";
@@ -147,10 +145,12 @@ describe("pharmacy dosing hero", () => {
 });
 
 describe("NAPLEX crawl files", () => {
-  it("keeps /naplex in the sitemap and allows it in robots", () => {
-    const sitemap = readFileSync(path.resolve(process.cwd(), "src/app/sitemap.ts"), "utf8");
-    const robots = readFileSync(path.resolve(process.cwd(), "src/app/robots.ts"), "utf8");
-    expect(sitemap).toContain('path === "/naplex"');
-    expect(robots).toContain('"/naplex"');
+  it("keeps /naplex in the sitemap and allows it in robots", async () => {
+    const { buildSitemapGroups } = await import("@/lib/seo/sitemap-catalog");
+    const { robotsAllowsPath } = await import("@/lib/seo/crawl-policy");
+    expect(
+      buildSitemapGroups({ posts: [] }).pages.some((url) => url.loc.endsWith("/naplex"))
+    ).toBe(true);
+    expect(robotsAllowsPath("/naplex")).toBe(true);
   });
 });

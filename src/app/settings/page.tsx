@@ -14,6 +14,7 @@ import { isAccountDisabled } from "@/lib/account-security";
 export const metadata = {
   title: "Settings — AnyExamEasy",
   description: "Manage your exam preference and subscription.",
+  robots: { index: false, follow: false },
 };
 
 function SettingsSkeleton() {

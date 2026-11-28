@@ -10,11 +10,9 @@ import { loadMemoryCards } from "@/lib/library/memory-cards";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
-export const metadata = {
-  title: "Anatomy Catalog — AnyExamEasy",
-  description:
-    "Browse anatomy structures, guided tours, and quizzes — pearls and practice without a body viewer.",
-};
+import { anatomyCatalogMetadata } from "@/lib/seo/public-tool-metadata";
+
+export const metadata = anatomyCatalogMetadata();
 
 export const maxDuration = 60;
 

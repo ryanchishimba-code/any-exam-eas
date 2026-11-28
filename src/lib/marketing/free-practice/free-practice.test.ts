@@ -11,9 +11,9 @@ import {
   questionsForBoard,
 } from "@/lib/marketing/free-practice/catalog";
 import { metaDescriptionLength, metaTitleLength, SEO_DESC_MAX, SEO_DESC_MIN, SEO_TITLE_MAX } from "@/lib/seo/meta-budget";
+import { buildSitemapGroups } from "@/lib/seo/sitemap-catalog";
 
 const PAGE = readFileSync("src/app/(marketing)/free-practice-questions/page.tsx", "utf8");
-const SITEMAP = readFileSync("src/app/sitemap.ts", "utf8");
 const NAV = readFileSync("src/components/Navigation.tsx", "utf8");
 const FOOTER = readFileSync("src/components/Footer.tsx", "utf8");
 
@@ -66,7 +66,9 @@ describe("free practice questions page", () => {
   });
 
   it("is public in the sitemap, nav, and footer", () => {
-    expect(SITEMAP).toContain('path: "/free-practice-questions"');
+    expect(
+      buildSitemapGroups({ posts: [] }).pages.some((url) => url.loc.endsWith("/free-practice-questions"))
+    ).toBe(true);
     expect(NAV).toContain('href: "/free-practice-questions"');
     expect(NAV).toContain("Free practice questions");
     expect(FOOTER).toContain('href: "/free-practice-questions"');

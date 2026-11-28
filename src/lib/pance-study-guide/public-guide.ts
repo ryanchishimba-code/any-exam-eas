@@ -12,6 +12,9 @@ export const PANCE_STUDY_GUIDE_TITLE = "Free PANCE Study Guide (2026): NCCPA Blu
 export const PANCE_STUDY_GUIDE_DESCRIPTION =
   "Free PANCE study guide for the NCCPA blueprint: 300 questions in five blocks, a $550 application fee, passing score 350, and study plans. Independent of NCCPA.";
 
+/** Content date for the public guide and its sitemap lastmod. */
+export const PANCE_STUDY_GUIDE_UPDATED = "2026-10-24";
+
 const CONTENT_DIR = path.join(process.cwd(), "content/pance-study-guide");
 const VISUALS_DIR = path.join(process.cwd(), "public/pance-study-guide/visuals");
 
@@ -101,7 +104,7 @@ function buildJsonLd(h1: string, faqs: PanceFaq[]): Record<string, unknown> {
         "@type": "Article",
         headline: h1,
         description: PANCE_STUDY_GUIDE_DESCRIPTION,
-        dateModified: "2026-10-24",
+        dateModified: PANCE_STUDY_GUIDE_UPDATED,
         mainEntityOfPage: pageUrl,
         author: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
         publisher: { "@type": "Organization", name: SCHEMA_BRAND_NAME },

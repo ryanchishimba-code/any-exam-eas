@@ -5,7 +5,7 @@ const PUBLIC_PRACTICE_HUBS = [
   { path: "/practice/usmle", label: /usmle|step/i },
   { path: "/practice/nclex", label: /nclex/i },
   { path: "/practice/naplex", label: /naplex/i },
-  { path: "/mpje/practice-exam", label: /pance/i },
+  { path: "/mpje/practice-exam", label: /naplex/i },
 ] as const;
 
 test.describe("Question bank", () => {
