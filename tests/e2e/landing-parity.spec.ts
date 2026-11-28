@@ -575,8 +575,10 @@ test.describe("landing parity", () => {
       });
       document.addEventListener("scroll", note, { passive: true });
     });
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await page.locator("footer a[href='/naplex']").first().click();
+    const naplexLink = page.locator("footer a[href='/naplex']").first();
+    await naplexLink.scrollIntoViewIfNeeded();
+    await naplexLink.focus();
+    await page.keyboard.press("Enter");
     await page.locator("[data-hero='naplex'] h1").waitFor();
     const arrived = await page.evaluate(() => {
       const w = window as Window & { __headerMiss?: number };
