@@ -1,0 +1,484 @@
+{
+  "servedBefore": 7693,
+  "servedAfter": 4788,
+  "exactStep3After": 4787,
+  "blankStepAfter": 1,
+  "confirmedGroups": 21,
+  "confirmedExtraCopiesHidden": 2905,
+  "projectedIfAll2909Hidden": 4784,
+  "notHiddenBecauseChoiceSetDiffers": 4,
+  "snapshotId": "snap-aged-rice-apbsl1tk",
+  "backupTable": "qbi_usmle_step3_duphide_20261108",
+  "backupRows": 2905,
+  "dryRun": "Updated 2905 and showed served 4788, then ROLLBACK restored 7693.",
+  "representativesAreNotQualityCertified": true,
+  "noTopicReducedToZero": true,
+  "groups": [
+    {
+      "n": 284,
+      "hide": 283,
+      "keepId": "cmq33aol7032x1yiuwha8blym",
+      "keepTopic": "aki-ckd-electrolytes",
+      "keepAge": 71,
+      "key": "Acute kidney injury from ATN (likely NSAID + hypoperfusion)",
+      "ageSpan": "69-73",
+      "topicsBefore": {
+        "sepsis-bundles": 164,
+        "well-child-preventive": 15,
+        "ob-labor-ccs": 27,
+        "dementia-workup": 73,
+        "aki-ckd-electrolytes": 3,
+        "pre-post-op-care": 1,
+        "hiv-opportunistic": 1
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 276,
+      "hide": 275,
+      "keepId": "cmq33a301007m1yiuntexke7l",
+      "keepTopic": "acs-management",
+      "keepAge": 61,
+      "key": "Evaluate for IV thrombolysis and/or mechanical thrombectomy within time windows; admit to stroke unit",
+      "ageSpan": "61-65",
+      "topicsBefore": {
+        "acs-management": 240,
+        "well-child-preventive": 13,
+        "ob-labor-ccs": 23
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 269,
+      "hide": 268,
+      "keepId": "cmq33agv201tn1yiur4ki7ijc",
+      "keepTopic": "aki-ckd-electrolytes",
+      "keepAge": 71,
+      "key": "Hold nephrotoxins, restore intravascular volume if hypovolemic, avoid unnecessary diuretics, and monitor electrolytes",
+      "ageSpan": "69-73",
+      "topicsBefore": {
+        "aki-ckd-electrolytes": 204,
+        "well-child-preventive": 26,
+        "gi-bleed-management": 5,
+        "ob-labor-ccs": 33,
+        "copd-asthma-exacerbation": 1
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 226,
+      "hide": 225,
+      "keepId": "cmq33ahfc01w91yiuimyvshja",
+      "keepTopic": "stroke-management",
+      "keepAge": 63,
+      "key": "Acute ischemic stroke in the setting of atrial fibrillation",
+      "ageSpan": "61-65",
+      "topicsBefore": {
+        "stroke-management": 107,
+        "well-child-preventive": 40,
+        "ob-labor-ccs": 43,
+        "gi-bleed-management": 32,
+        "diabetes-dka-management": 3,
+        "pe-workup": 1
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 214,
+      "hide": 213,
+      "keepId": "cmq33ahlw01x91yiu5vyqdgsm",
+      "keepTopic": "diabetes-dka-management",
+      "keepAge": 25,
+      "key": "Diabetic ketoacidosis due to insulin nonadherence",
+      "ageSpan": "22-26",
+      "topicsBefore": {
+        "diabetes-dka-management": 167,
+        "well-child-preventive": 28,
+        "ob-labor-ccs": 14,
+        "aki-ckd-electrolytes": 5
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 183,
+      "hide": 182,
+      "keepId": "cmq33a3jh007t1yiu84ach35p",
+      "keepTopic": "hiv-opportunistic",
+      "keepAge": 9,
+      "key": "Strep pharyngitis with scarlet fever rash",
+      "ageSpan": "6-10",
+      "topicsBefore": {
+        "hiv-opportunistic": 92,
+        "well-child-preventive": 36,
+        "ob-labor-ccs": 19,
+        "dementia-workup": 28,
+        "pre-post-op-care": 8
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 182,
+      "hide": 181,
+      "keepId": "cmq33a6oy008g1yiuj0875hj5",
+      "keepTopic": "chf-management",
+      "keepAge": 66,
+      "key": "Administer IV loop diuretic, supplemental oxygen, and assess perfusion; consider afterload reduction and treat precipitants",
+      "ageSpan": "65-69",
+      "topicsBefore": {
+        "chf-management": 169,
+        "well-child-preventive": 11,
+        "ob-labor-ccs": 2
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 172,
+      "hide": 171,
+      "keepId": "cmq33agod01ro1yiu9s202g6m",
+      "keepTopic": "dementia-workup",
+      "keepAge": 70,
+      "key": "Acute kidney injury from ATN (likely NSAID + hypoperfusion)",
+      "ageSpan": "69-73",
+      "topicsBefore": {
+        "dementia-workup": 51,
+        "sepsis-bundles": 76,
+        "well-child-preventive": 26,
+        "ob-labor-ccs": 18,
+        "pre-post-op-care": 1
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 167,
+      "hide": 166,
+      "keepId": "cmq33agod01rn1yiur85vh2wi",
+      "keepTopic": "gi-bleed-management",
+      "keepAge": 45,
+      "key": "Aggressive IV fluids, pain control, monitor for organ failure; NPO initially with early enteral nutrition when tolerated",
+      "ageSpan": "43-47",
+      "topicsBefore": {
+        "well-child-preventive": 49,
+        "ob-labor-ccs": 26,
+        "gi-bleed-management": 90,
+        "copd-asthma-exacerbation": 2
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 158,
+      "hide": 157,
+      "keepId": "cmq33a0a1006n1yiuovo130bj",
+      "keepTopic": "pancreatitis-hepatitis",
+      "keepAge": 43,
+      "key": "Acute alcoholic pancreatitis",
+      "ageSpan": "43-47",
+      "topicsBefore": {
+        "pancreatitis-hepatitis": 117,
+        "well-child-preventive": 21,
+        "ob-labor-ccs": 20
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 147,
+      "hide": 146,
+      "keepId": "cmq33ahfc01wt1yiu21dqnhub",
+      "keepTopic": "seizures-headaches",
+      "keepAge": 18,
+      "key": "Empiric IV antibiotics and dexamethasone immediately; do not delay treatment for imaging if unstable",
+      "ageSpan": "18-21",
+      "topicsBefore": {
+        "seizures-headaches": 50,
+        "hiv-opportunistic": 41,
+        "well-child-preventive": 19,
+        "ob-labor-ccs": 33,
+        "gi-bleed-management": 4
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 139,
+      "hide": 138,
+      "keepId": "cmq33agoe01sn1yium7999s3b",
+      "keepTopic": "pre-post-op-care",
+      "keepAge": 7,
+      "key": "Treat with penicillin or amoxicillin for 10 days to prevent rheumatic fever and suppurative complications",
+      "ageSpan": "6-10",
+      "topicsBefore": {
+        "pre-post-op-care": 8,
+        "well-child-preventive": 27,
+        "hiv-opportunistic": 63,
+        "dementia-workup": 10,
+        "ob-labor-ccs": 30,
+        "copd-asthma-exacerbation": 1
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 125,
+      "hide": 124,
+      "keepId": "cmq33a6xt009p1yiugsvcil6k",
+      "keepTopic": "chf-management",
+      "keepAge": 69,
+      "key": "Acute decompensated systolic heart failure with pulmonary edema",
+      "ageSpan": "66-69",
+      "topicsBefore": {
+        "chf-management": 123,
+        "ob-labor-ccs": 2
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 104,
+      "hide": 103,
+      "keepId": "cmq33a6oy008i1yiuiw8yzhuh",
+      "keepTopic": "chf-management",
+      "keepAge": 67,
+      "key": "IV furosemide with strict I/O monitoring and daily weights",
+      "ageSpan": "66-69",
+      "topicsBefore": {
+        "chf-management": 99,
+        "ob-labor-ccs": 2,
+        "well-child-preventive": 3
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 100,
+      "hide": 99,
+      "keepId": "cmq33b8sn06ek1yiupx04rew6",
+      "keepTopic": "aki-ckd-electrolytes",
+      "keepAge": 71,
+      "key": "Volume repletion if hypovolemic; otherwise supportive care and treat underlying cause",
+      "ageSpan": "69-73",
+      "topicsBefore": {
+        "dementia-workup": 40,
+        "well-child-preventive": 22,
+        "aki-ckd-electrolytes": 26,
+        "ob-labor-ccs": 12
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 81,
+      "hide": 80,
+      "keepId": "cmq33a405007z1yiu3trbqnz4",
+      "keepTopic": "chf-management",
+      "keepAge": 67,
+      "key": "Acute decompensated systolic heart failure with pulmonary edema",
+      "ageSpan": "66-69",
+      "topicsBefore": {
+        "chf-management": 70,
+        "well-child-preventive": 6,
+        "ob-labor-ccs": 5
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 53,
+      "hide": 52,
+      "keepId": "cmq33bhzk07yx1yiu867xck36",
+      "keepTopic": "well-child-preventive",
+      "keepAge": 73,
+      "key": "Volume repletion if hypovolemic; otherwise supportive care and treat underlying cause",
+      "ageSpan": "69-73",
+      "topicsBefore": {
+        "well-child-preventive": 39,
+        "ob-labor-ccs": 14
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 30,
+      "hide": 29,
+      "keepId": "cmq33alaw02jn1yiu6q8xmk34",
+      "keepTopic": "seizures-headaches",
+      "keepAge": 17,
+      "key": "Empiric IV antibiotics and dexamethasone immediately; do not delay treatment for imaging if unstable",
+      "ageSpan": "17-17",
+      "topicsBefore": {
+        "well-child-preventive": 4,
+        "hiv-opportunistic": 10,
+        "seizures-headaches": 11,
+        "ob-labor-ccs": 5
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 10,
+      "hide": 9,
+      "keepId": "cmq33bhzk07z31yiu3087dvdb",
+      "keepTopic": "well-child-preventive",
+      "keepAge": 67,
+      "key": "IV furosemide with strict I/O monitoring and daily weights",
+      "ageSpan": "67-67",
+      "topicsBefore": {
+        "well-child-preventive": 7,
+        "ob-labor-ccs": 3
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 4,
+      "hide": 3,
+      "keepId": "cmrx1miq4005sl705qk0mbb7m",
+      "keepTopic": "pediatric-infections",
+      "keepAge": 11,
+      "key": "Strep pharyngitis with scarlet fever rash",
+      "ageSpan": "6-12",
+      "topicsBefore": {
+        "ob-labor-ccs": 1,
+        "pediatric-infections": 1,
+        "hiv-opportunistic": 1,
+        "pre-post-op-care": 1
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    },
+    {
+      "n": 2,
+      "hide": 1,
+      "keepId": "cmr31dkfl00b6js047iiy0rrw",
+      "keepTopic": "pre-post-op-care",
+      "keepAge": 45,
+      "key": "Treat latent TB per guidelines, then start biologic with infection monitoring",
+      "ageSpan": "45-55",
+      "topicsBefore": {
+        "pre-post-op-care": 1,
+        "suicide-risk": 1
+      },
+      "reason": "Identical vignette and identical choices after removing the age phrase and the encounter number. One keyed decision. Age stays inside a narrow band and does not change the decision."
+    }
+  ],
+  "heldBecauseNotTheSameDecision": [
+    {
+      "n": 2,
+      "keys": [
+        "Increase the dose of furosemide"
+      ],
+      "optionSets": 2,
+      "age": "65-67",
+      "reason": "Same opening after age and encounter removal, but the choice set or the keyed decision differs. Not an extra copy.",
+      "ids": [
+        "cmr8bhhka00741yloe5aoak9y",
+        "cmr8o9kq5014b1ygikp3atg7u"
+      ]
+    },
+    {
+      "n": 2,
+      "keys": [
+        "Administer thrombolytics",
+        "Start intravenous thrombolysis"
+      ],
+      "optionSets": 2,
+      "age": "65-68",
+      "reason": "Same opening after age and encounter removal, but the choice set or the keyed decision differs. Not an extra copy.",
+      "ids": [
+        "cmr8lz2e900hh1ygi3a60epue",
+        "cmr8dighp00x81yloexi0gel5"
+      ]
+    },
+    {
+      "n": 2,
+      "keys": [
+        "Administer epinephrine"
+      ],
+      "optionSets": 2,
+      "age": "35-38",
+      "reason": "Same opening after age and encounter removal, but the choice set or the keyed decision differs. Not an extra copy.",
+      "ids": [
+        "cmr8nmiz900ww1ygid05eznkd",
+        "cmru8bcy3006m1yd6gmmd03ud"
+      ]
+    },
+    {
+      "n": 2,
+      "keys": [
+        "Administer furosemide"
+      ],
+      "optionSets": 2,
+      "age": "62-65",
+      "reason": "Same opening after age and encounter removal, but the choice set or the keyed decision differs. Not an extra copy.",
+      "ids": [
+        "cmr4e6j3z01bd1ykyrffm36ks",
+        "cmr8c3mm200h51ylodp7lhtyn"
+      ]
+    }
+  ],
+  "topicDrops": [
+    {
+      "topic": "chf-management",
+      "before": 660,
+      "after": 203
+    },
+    {
+      "topic": "well-child-preventive",
+      "before": 533,
+      "after": 143
+    },
+    {
+      "topic": "ob-labor-ccs",
+      "before": 465,
+      "after": 133
+    },
+    {
+      "topic": "gi-bleed-management",
+      "before": 341,
+      "after": 211
+    },
+    {
+      "topic": "acs-management",
+      "before": 328,
+      "after": 89
+    },
+    {
+      "topic": "diabetes-dka-management",
+      "before": 267,
+      "after": 98
+    },
+    {
+      "topic": "sepsis-bundles",
+      "before": 260,
+      "after": 20
+    },
+    {
+      "topic": "aki-ckd-electrolytes",
+      "before": 256,
+      "after": 21
+    },
+    {
+      "topic": "hiv-opportunistic",
+      "before": 230,
+      "after": 23
+    },
+    {
+      "topic": "dementia-workup",
+      "before": 212,
+      "after": 11
+    },
+    {
+      "topic": "pancreatitis-hepatitis",
+      "before": 200,
+      "after": 84
+    },
+    {
+      "topic": "seizures-headaches",
+      "before": 113,
+      "after": 54
+    },
+    {
+      "topic": "stroke-management",
+      "before": 110,
+      "after": 4
+    },
+    {
+      "topic": "pe-workup",
+      "before": 106,
+      "after": 105
+    },
+    {
+      "topic": "pre-post-op-care",
+      "before": 105,
+      "after": 87
+    }
+  ]
+}

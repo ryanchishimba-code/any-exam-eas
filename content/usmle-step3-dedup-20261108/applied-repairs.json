@@ -1,0 +1,23 @@
+{
+  "applied": 5,
+  "blocked": 0,
+  "repairs": [
+    "cmq33agod01rn1yiur85vh2wi",
+    "cmr8g794001q51ylokr7o2c50",
+    "cmru7tn2o001g1yd6flymj1p0",
+    "cmq33a301007m1yiuntexke7l"
+  ],
+  "hidden": ["cmr8n3sfa00qq1ygi57xp7qbq"],
+  "servedBefore": 4788,
+  "servedAfter": 4787,
+  "snapshotId": "snap-soft-dust-appo6wq8",
+  "backupTable": "qbi_usmle_step3_repair_20261108",
+  "backupRows": 5,
+  "dryRun": "Served 4788 to 4787 inside the transaction, then ROLLBACK restored 4788.",
+  "notes": [
+    "Asthma explanations are written for each stem. The option envelope already on the row was kept.",
+    "The pancreatitis choice rationale that still called aggressive fluids the best step was rewritten with the key.",
+    "The stroke stem states that the time last known well is unavailable. No duration was added.",
+    "The PPV row was set inactive. Its text was not changed."
+  ]
+}
