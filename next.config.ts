@@ -1,4 +1,8 @@
 import type { NextConfig } from "next";
+import {
+  GOOGLE_TAG_CONNECT_HOSTS,
+  GOOGLE_TAG_SCRIPT_HOSTS,
+} from "./src/lib/analytics/google-tag-policy";
 import { retiredStudyRedirects } from "./src/lib/navigation/retired-study-redirects";
 
 /** Standalone is for Docker/AWS only — Vercel uses its own serverless output (faster builds). */
@@ -166,12 +170,12 @@ const nextConfig: NextConfig = {
           "form-action 'self'",
           "frame-ancestors 'none'",
           "object-src 'none'",
-          "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com",
+          `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com ${GOOGLE_TAG_SCRIPT_HOSTS.join(" ")}`,
           "style-src 'self' 'unsafe-inline'",
           "img-src 'self' data: blob: https:",
           "media-src 'self' blob: https://*.private.blob.vercel-storage.com",
           "font-src 'self' data:",
-          "connect-src 'self' https://api.stripe.com https://*.stripe.com https://cdn.jsdelivr.net",
+          `connect-src 'self' https://api.stripe.com https://*.stripe.com https://cdn.jsdelivr.net ${GOOGLE_TAG_CONNECT_HOSTS.join(" ")}`,
           "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://checkout.stripe.com",
           "worker-src 'self' blob:",
         ].join("; "),

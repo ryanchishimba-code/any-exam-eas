@@ -30,6 +30,13 @@ import { requireSessionGuard } from "@/lib/session-guard";
 import { requireOneTimeStripePriceId, requireStripePriceId } from "@/lib/stripe-prices";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { ROUTES } from "@/lib/routes";
+import {
+  ADS_PURCHASE_COOKIE,
+  STRIPE_CHECKOUT_SUCCESS_PATH,
+  adsCookieOptions,
+  buildConfirmedPurchase,
+  encodePurchaseCookie,
+} from "@/lib/analytics/google-ads";
 
 export const runtime = "nodejs";
 
@@ -264,7 +271,7 @@ export async function POST(req: Request) {
         upgradeOfferId,
         renewalConsent,
       });
-      return NextResponse.json({
+      const response = NextResponse.json({
         upgraded: true,
         status: converted.status,
         redirectTo: `${ROUTES.dashboard}?checkout=success`,
@@ -272,6 +279,20 @@ export async function POST(req: Request) {
         tier,
         interval,
       });
+      if (converted.charge) {
+        const purchase = buildConfirmedPurchase({
+          transactionId: converted.stripeSubscriptionId,
+          amountCents: converted.charge.amountCents,
+          currency: converted.charge.currency,
+          tier,
+          interval,
+        });
+        const purchaseCookie = purchase ? encodePurchaseCookie(purchase) : null;
+        if (purchaseCookie) {
+          response.cookies.set(ADS_PURCHASE_COOKIE, purchaseCookie, adsCookieOptions());
+        }
+      }
+      return response;
     } catch (e) {
       if (e instanceof Error && (e.name === "NoPaymentMethodError" || e.message === "NO_PAYMENT_METHOD")) {
         // Fall through to Checkout Session to collect a payment method.
@@ -296,7 +317,7 @@ export async function POST(req: Request) {
     promoCode,
     upgradeOfferId,
     renewalConsent,
-    successUrl: `${origin}${ROUTES.dashboard}?checkout=success`,
+    successUrl: `${origin}${STRIPE_CHECKOUT_SUCCESS_PATH}`,
     // Hosted Checkout cancel should return to plan review, not the marketing page.
     cancelUrl: `${origin}/checkout?cancelled=1&plan=${plan}&tier=${tier}&interval=${interval}${
       paymentMode === "manual" ? "&mode=manual" : ""

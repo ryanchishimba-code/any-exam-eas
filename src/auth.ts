@@ -17,6 +17,7 @@ import { headers } from "next/headers";
 import { hasSignupConsentCookie } from "@/lib/legal/signup-consent-cookie-server";
 import { recordUserLegalConsent } from "@/lib/legal/consent-record";
 import { readFirstTouchFromAuthCookies, stampFunnelEventCookie } from "@/lib/auth/funnel-event-cookie";
+import { stampAdsSignupCookie } from "@/lib/analytics/google-ads-server";
 import { OAuthAccountDisabledError } from "@/lib/account-security";
 import {
   scheduleCredentialsLoginSideEffects,
@@ -202,6 +203,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             const events = ["signup_success"];
             if (linked.startedTrial) events.push("trial_start");
             await stampFunnelEventCookie(events);
+            await stampAdsSignupCookie({
+              method: account!.provider,
+              userId: linked.id,
+              trial: linked.startedTrial,
+            });
           }
           (user as { role?: string }).role = linked.role;
 

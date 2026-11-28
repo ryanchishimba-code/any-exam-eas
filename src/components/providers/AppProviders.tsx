@@ -7,6 +7,7 @@ import { SessionProvider } from "@/components/SessionProvider";
 import { initialClientSession } from "@/lib/auth/client-session";
 import { LoginModalRoot } from "@/components/auth/LoginModalRoot";
 import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
+import { AdsConversionFlush } from "@/components/analytics/AdsConversionFlush";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { ShareFabLazy } from "@/components/share/ShareFabLazy";
 import { ClientRecovery } from "@/components/ClientRecovery";
@@ -32,6 +33,7 @@ export function AppProviders({
           <BoardIntentBeacon />
         </Suspense>
         <SessionProvider session={initialClientSession(session)}>
+          <AdsConversionFlush />
           <UserAccessProvider>
             <LoginModalRoot>
               <ClientRecovery />
