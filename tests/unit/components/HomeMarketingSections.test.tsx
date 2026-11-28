@@ -107,7 +107,7 @@ describe("homepage marketing sections", () => {
     );
     expect(screen.getByRole("heading", { name: "Quick Bites" })).toBeInTheDocument();
     expect(screen.getByText(formatHomeHeroSubline("43,300+"))).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "See questions" })).toHaveAttribute("href", "#quick-bites-heading");
+    expect(screen.queryByRole("link", { name: "See questions" })).toBeNull();
     expect(screen.getAllByRole("link", { name: /Start free trial/i }).length).toBeGreaterThan(0);
     expect(container.querySelector("#quick-bites-heading")).toBeTruthy();
     expect(container.querySelector(".aee-flagship-cta")).toBeTruthy();

@@ -247,10 +247,10 @@ function expectPageIdentity(entry: Landing, shot: Shot) {
   expect(shot.hero, entry.path).toBe(entry.hero);
   expect(shot.h1Count, entry.path).toBe(1);
   expect(shot.primaryText, entry.path).toBe(heroTrialLabel(entry.path));
-  expect(shot.secondaryText, entry.path).toBe("See questions");
+  expect(shot.secondaryText, entry.path).toBeNull();
   expect(shot.primaryHref, entry.path).toBe(href);
   expect(shot.navHref, entry.path).toBe(href);
-  expect(shot.secondaryHref, entry.path).toBe(entry.see);
+  expect(shot.secondaryHref, entry.path).toBeNull();
   if (entry.hero === "home") {
     expect(shot.imagePreloads, entry.path).toHaveLength(2);
     expect(

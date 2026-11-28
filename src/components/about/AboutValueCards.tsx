@@ -40,7 +40,7 @@ const CARDS: ValueCard[] = [
     icon: Stethoscope,
     title: "Six boards, one plan",
     kicker: "No stacking per-exam banks",
-    blurb: `${SEO_VALUE_PROPS.qaGated}. NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE-PT on one Pro subscription — premium prep without stacking banks.`,
+    blurb: "NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT on one plan.",
   },
 ];
 
