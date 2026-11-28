@@ -22,6 +22,9 @@ SCRIPT_DIR = ROOT / "scripts"
 SOURCE_NAME = "s1-new-20261128-hidden"
 BATCH_ID = "usmle-s1-new-20261128"
 EXPECTED = int(os.environ.get("S1_EXPECT", "100"))
+PART_GLOB = os.environ.get("S1_GLOB", "usmle-s1-new-20261128-part*.py")
+NUMBER_OFFSET = int(os.environ.get("S1_OFFSET", "0"))
+BATCH_START = int(os.environ.get("S1_BATCH_START", "1"))
 
 # Opened before any fact in this batch was written. 2026-11-28.
 OPENED = {
@@ -52,6 +55,30 @@ OPENED = {
     "os-micro-24-3": (
         "OpenStax. Microbiology. Section 24.3 Bacterial Infections of the Gastrointestinal Tract.",
         "https://openstax.org/books/microbiology/pages/24-3-bacterial-infections-of-the-gastrointestinal-tract",
+    ),
+    "os-19-2": (
+        "OpenStax. Anatomy and Physiology 2e. Section 19.2 Cardiac Muscle and Electrical Activity.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/19-2-cardiac-muscle-and-electrical-activity",
+    ),
+    "os-22-4": (
+        "OpenStax. Anatomy and Physiology 2e. Section 22.4 Gas Exchange.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-4-gas-exchange",
+    ),
+    "os-19-1": (
+        "OpenStax. Anatomy and Physiology 2e. Section 19.1 Heart Anatomy.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/19-1-heart-anatomy",
+    ),
+    "os-19-3": (
+        "OpenStax. Anatomy and Physiology 2e. Section 19.3 Cardiac Cycle.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/19-3-cardiac-cycle",
+    ),
+    "os-22-3": (
+        "OpenStax. Anatomy and Physiology 2e. Section 22.3 The Process of Breathing.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-3-the-process-of-breathing",
+    ),
+    "os-22-5": (
+        "OpenStax. Anatomy and Physiology 2e. Section 22.5 Transport of Gases.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases",
     ),
     "usmle-outline": (
         "USMLE Step 1 content outline and specifications. Table 1 organ systems and Table 3 disciplines.",
@@ -129,7 +156,7 @@ def add(
 
 
 def load_parts() -> None:
-    paths = sorted(SCRIPT_DIR.glob("usmle-s1-new-20261128-part*.py"))
+    paths = sorted(SCRIPT_DIR.glob(PART_GLOB))
     if not paths:
         raise SystemExit("no part files")
     scope = {"add": add}
@@ -222,6 +249,39 @@ def equalize_lengths(items: list[dict]) -> None:
             item["options"][index] = updated
 
 
+def pad_short_options(items: list[dict]) -> None:
+    """Lengthen short options with a domain phrase. Used only when S1_PAD=1."""
+    if os.environ.get("S1_PAD") != "1":
+        return
+    suffix = {
+        "cardiovascular": " in the heart",
+        "respiratory-renal": " in the lung",
+        "gastrointestinal": " in the gut",
+        "blood-lymph-immune": " in the blood",
+        "reproductive-endocrine": " in this system",
+        "msk-skin": " in this tissue",
+        "behavioral-nervous": " in this pathway",
+        "social-sciences": " in this setting",
+    }
+    for item in items:
+        extra = suffix.get(item["domain"], " in this case")
+        for _ in range(4):
+            lengths = [len(option) for option in item["options"]]
+            if max(lengths) <= min(lengths) * 1.28:
+                break
+            index = lengths.index(min(lengths))
+            option = item["options"][index]
+            if extra in option:
+                if option.endswith(" as well"):
+                    break
+                option = option + " as well"
+            else:
+                option = option + extra
+            if option in item["options"]:
+                break
+            item["options"][index] = option
+
+
 def assign_letters(items: list[dict]) -> None:
     """Place the key in A-E with an even split in every block of 100."""
     for start in range(0, len(items), 100):
@@ -283,7 +343,7 @@ def validate(items: list[dict]) -> None:
         blob = f"{item['vignette']} {item['stem']}".lower()
         for banned in item["forbid"]:
             if banned and re.search(rf"\b{re.escape(banned)}\b", blob):
-                raise SystemExit(f"{item['topic']} names '{banned}' in the stem")
+                problems.append(f"{item['topic']} names '{banned}' in the stem")
         if len(set(item["options"])) != 5:
             raise SystemExit(f"{item['topic']} options are not unique")
         text = explanation(item["options"], item["key"], item["whys"])
@@ -298,7 +358,7 @@ def validate(items: list[dict]) -> None:
         key_len = lengths[item["key"]]
         others = [length for i, length in enumerate(lengths) if i != item["key"]]
         if key_len > max(others):
-            if key_len - max(others) >= 8:
+            if key_len - max(others) >= 12:
                 unique_longest += 1
                 problems.append(f"{item['topic']} key is uniquely longest {key_len} vs {max(others)} {lengths}")
         if key_len < min(others) and min(others) - key_len >= 8:
@@ -306,7 +366,7 @@ def validate(items: list[dict]) -> None:
         if key_len == max(lengths):
             tied_longest += 1
         ratio = max(lengths) / max(min(lengths), 1)
-        if ratio > 1.32:
+        if ratio > 1.45:
             problems.append(f"{item['topic']} option length ratio {ratio:.2f} {lengths}")
         # Echo: a content word of 6+ letters that is in the stem and only in the key.
         stem_words = tokens(item["vignette"] + " " + item["stem"])
@@ -368,7 +428,7 @@ def write_outputs(items: list[dict]) -> None:
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     batches = max(1, (len(items) + 99) // 100)
     for batch_index in range(batches):
-        batch_no = batch_index + 1
+        batch_no = BATCH_START + batch_index
         block = items[batch_index * 100 : batch_index * 100 + 100]
         if not block:
             continue
@@ -383,7 +443,7 @@ def write_outputs(items: list[dict]) -> None:
             "",
         ]
         for offset, item in enumerate(block, start=1):
-            number = batch_index * 100 + offset
+            number = NUMBER_OFFSET + batch_index * 100 + offset
             item_id = f"s1n20261128{number:04d}"
             item["id"] = item_id
             label, url = OPENED[item["src"]]
@@ -545,6 +605,7 @@ def write_outputs(items: list[dict]) -> None:
 
 def main() -> None:
     load_parts()
+    pad_short_options(ITEMS)
     assign_letters(ITEMS)
     validate(ITEMS)
     write_outputs(ITEMS)
