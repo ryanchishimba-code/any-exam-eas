@@ -91,6 +91,14 @@ export function readingMinutes(html: string, extra = ""): number {
   return Math.max(1, Math.round(words / 200));
 }
 
+/** "182 min read" becomes "About 3 hours to read". Under an hour stays in minutes. */
+export function readingTimeLabel(minutes: number): string {
+  const hours = Math.round(minutes / 60);
+  if (hours >= 1) return hours === 1 ? "About 1 hour to read" : `About ${hours} hours to read`;
+  const count = Math.max(1, minutes);
+  return count === 1 ? "About 1 minute to read" : `About ${count} minutes to read`;
+}
+
 export function presentGuideHtml(html: string, query: string): string {
   return wrapGuideSections(
     promoteCallouts(withDescriptiveAlts(retitleGuideHeadings(demoteDocumentH1(html)), query))

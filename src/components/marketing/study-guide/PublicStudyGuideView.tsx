@@ -6,8 +6,9 @@ import {
   MARKETING_PHOTO_HEROES,
   marketingPhotoHeroSrc,
 } from "@/lib/marketing/marketing-photo-heroes";
+import { contentUpdatedOn } from "@/lib/study-guides/content-updated";
 import type { LoadedPublicGuide } from "@/lib/study-guides/load-public-guide";
-import { guideSectionToc, presentGuideHtml, readingMinutes } from "@/lib/study-guides/present-html";
+import { guideSectionToc, presentGuideHtml, readingMinutes, readingTimeLabel } from "@/lib/study-guides/present-html";
 import {
   PUBLIC_STUDY_GUIDE_LIST,
   PUBLIC_STUDY_GUIDE_TRIAL_LABEL,
@@ -15,7 +16,7 @@ import {
   type PublicStudyGuide,
   type PublicStudyGuideId,
 } from "@/lib/study-guides/public-catalog";
-import { GUIDE_DATE_MODIFIED, GUIDE_SEO, STEP_SEO, guideJsonLd, type GuideSeoCopy } from "@/lib/study-guides/seo-copy";
+import { GUIDE_SEO, STEP_SEO, guideJsonLd, type GuideSeoCopy } from "@/lib/study-guides/seo-copy";
 import "@/styles/public-study-guide.css";
 
 function seoFor(guide: PublicStudyGuide, stepId?: string): GuideSeoCopy {
@@ -46,12 +47,12 @@ export function PublicStudyGuideView({
   const body = presentGuideHtml(page.html, seo.query);
   const sections = guideSectionToc(body);
   const minutes = readingMinutes(body, `${seo.lede} ${seo.answers.map((item) => item.answer).join(" ")}`);
-  const updated = new Date(`${GUIDE_DATE_MODIFIED}T12:00:00Z`).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  });
+  const contentDirs = step
+    ? [step.contentDir]
+    : guide.contentDirs.length > 0
+      ? [...guide.contentDirs]
+      : ["src/lib/exam-prep/npte-pt/content-outline.ts"];
+  const updated = contentUpdatedOn(contentDirs);
   const related = PUBLIC_STUDY_GUIDE_LIST.filter((item) => item.id !== guide.id);
   const toc = (
     <ol>
@@ -76,6 +77,7 @@ export function PublicStudyGuideView({
           headline: seo.headline,
           description,
           answers: seo.answers,
+          dateModified: updated.iso,
         })}
       />
       <header className="psg-hero" style={{ "--psg-focal": focal } as CSSProperties}>
@@ -105,10 +107,8 @@ export function PublicStudyGuideView({
             <strong>{questionCount}</strong> board-style questions
           </li>
         ) : null}
-        <li>
-          <strong>{minutes} min</strong> read
-        </li>
-        <li>Updated {updated}</li>
+        <li>{readingTimeLabel(minutes)}</li>
+        <li>Updated {updated.label}</li>
       </ul>
 
       <div className="psg-wrap">
@@ -119,10 +119,7 @@ export function PublicStudyGuideView({
           <p>
             One free question for the {guide.boardLabel} is open today. The {seo.query} stays on this page either way.
           </p>
-          <Link className="aee-flagship-cta aee-flagship-cta--primary" href={guide.trialHref}>
-            {PUBLIC_STUDY_GUIDE_TRIAL_LABEL}
-          </Link>
-          <Link className="psg-text-link" href={guide.dailyHref}>
+          <Link className="aee-flagship-cta aee-flagship-cta--primary" href={guide.dailyHref}>
             Try a free question
           </Link>
         </section>

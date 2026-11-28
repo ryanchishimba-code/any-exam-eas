@@ -40,6 +40,7 @@ describe("public study guides", () => {
         headline: seo.headline,
         description: guide.description,
         answers: seo.answers,
+        dateModified: "2026-11-07",
       })["@graph"] as Array<Record<string, unknown>>;
       expect(graph.map((node) => node["@type"])).toEqual(["BreadcrumbList", "Article", "FAQPage"]);
       expect(graph[1]?.dateModified).toBeTruthy();

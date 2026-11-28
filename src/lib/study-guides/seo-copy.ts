@@ -7,8 +7,6 @@ import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
  * manuscripts. Nothing here promises a result.
  */
 
-export const GUIDE_DATE_MODIFIED = "2026-11-28";
-
 export type GuideAnswer = {
   id: string;
   question: string;
@@ -250,6 +248,7 @@ export function guideJsonLd(input: {
   headline: string;
   description: string;
   answers: GuideAnswer[];
+  dateModified: string;
 }): Record<string, unknown> {
   const pageUrl = absoluteUrl(input.path);
   const site = getSiteUrl();
@@ -267,7 +266,7 @@ export function guideJsonLd(input: {
         "@type": "Article",
         headline: input.headline,
         description: input.description,
-        dateModified: GUIDE_DATE_MODIFIED,
+        dateModified: input.dateModified,
         mainEntityOfPage: pageUrl,
         author: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
         publisher: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
