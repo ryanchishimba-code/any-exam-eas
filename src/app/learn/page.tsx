@@ -4,7 +4,7 @@ import { ProUpgradeGate } from "@/components/ProUpgradeGate";
 import { PageShell } from "@/components/PageShell";
 
 export const metadata = {
-  title: "Learning Quilt — AnyExamEasy",
+  title: { absolute: "Learning Quilt — AnyExamEasy" },
 };
 
 export default function LearnPage() {

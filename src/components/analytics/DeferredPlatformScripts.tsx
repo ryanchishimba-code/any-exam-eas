@@ -1,13 +1,13 @@
 "use client";
 
 import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 /**
- * Defers Vercel Analytics and Speed Insights on the marketing homepage so the
- * first HTML carries fewer third-party scripts. Other routes load immediately.
+ * Defers Vercel Web Analytics on the marketing homepage so the first HTML
+ * carries fewer third-party scripts. Speed Insights is mounted from the root
+ * layout so every route is measured. Other routes load Analytics immediately.
  */
 export function DeferredPlatformScripts() {
   const pathname = usePathname();
@@ -27,10 +27,5 @@ export function DeferredPlatformScripts() {
 
   if (!ready) return null;
 
-  return (
-    <>
-      <Analytics />
-      <SpeedInsights />
-    </>
-  );
+  return <Analytics />;
 }

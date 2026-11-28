@@ -8,7 +8,7 @@ import {
   HOW_TO_PASS_PATH,
   HOW_TO_PASS_POSTER_HEIGHT,
   HOW_TO_PASS_POSTER_WIDTH,
-  HOW_TO_PASS_TITLE,
+  HOW_TO_PASS_SEO_TITLE,
 } from "@/lib/marketing/home-video";
 
 function absoluteMediaUrl(src: string): string {
@@ -17,7 +17,7 @@ function absoluteMediaUrl(src: string): string {
 }
 
 export function buildHowToPassMetadata(): Metadata {
-  const title = enforceMetaTitle(HOW_TO_PASS_TITLE, HOW_TO_PASS_PATH);
+  const title = enforceMetaTitle(HOW_TO_PASS_SEO_TITLE, HOW_TO_PASS_PATH);
   const description = enforceMetaDescription(HOW_TO_PASS_DESCRIPTION, HOW_TO_PASS_PATH);
   const pageUrl = absoluteUrl(HOW_TO_PASS_PATH);
   const posterUrl = absoluteMediaUrl(HOW_TO_PASS_MEDIA.poster);

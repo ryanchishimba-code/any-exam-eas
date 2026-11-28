@@ -42,7 +42,13 @@ describe("public study guides", () => {
         answers: seo.answers,
         dateModified: "2026-11-07",
       })["@graph"] as Array<Record<string, unknown>>;
-      expect(graph.map((node) => node["@type"])).toEqual(["BreadcrumbList", "Article", "FAQPage"]);
+      expect(graph.map((node) => node["@type"])).toEqual([
+        "BreadcrumbList",
+        "Article",
+        "LearningResource",
+        "FAQPage",
+      ]);
+      expect(JSON.stringify(graph)).not.toMatch(/aggregateRating|reviewCount|ratingValue/);
       expect(graph[1]?.dateModified).toBeTruthy();
     }
     expect(STEP_SEO["step-1"]?.lede).toContain("USMLE Step 1 study guide");
@@ -94,6 +100,6 @@ describe("public study guides", () => {
     expect(page.html).not.toMatch(/you will pass the/i);
     expect(page.html).not.toMatch(/guarantee/i);
     const types = (page.jsonLd["@graph"] as Array<{ "@type": string }>).map((node) => node["@type"]);
-    expect(types).toEqual(["BreadcrumbList", "Article", "FAQPage"]);
+    expect(types).toEqual(["BreadcrumbList", "Article", "LearningResource", "FAQPage"]);
   });
 });

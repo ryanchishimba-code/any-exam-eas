@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
-import { getCachedSession } from "@/lib/auth/session";
+import { FooterAccountLinks } from "@/components/layout/FooterAccount";
 import { NOT_FOR_PATIENT_CARE_LINE } from "@/lib/marketing/legal-copy";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
 import { MARKETING_BOARD_LINKS, ROUTES } from "@/lib/routes";
-import { formatTrialLabel, MARKETING_DISCLAIMER } from "@/lib/site";
+import { BRAND_DESCRIPTION } from "@/lib/seo/brand-entity";
+import { MARKETING_DISCLAIMER } from "@/lib/site";
 
 const EXPLORE_LINKS = [
   { href: "/free-practice-questions", label: "Free practice questions" },
@@ -41,11 +42,6 @@ const LEGAL_LINKS = [
   { href: "/legal/disclaimer", label: "Disclaimer" },
 ] as const;
 
-const ACCOUNT_LINKS = [
-  { href: "/auth/login", label: "Log in" },
-  { href: ROUTES.auth.signup, label: "Sign up" },
-] as const;
-
 function FooterColumn({
   title,
   label,
@@ -77,16 +73,8 @@ function FooterColumn({
   );
 }
 
-/** One footer for the homepage and inner marketing pages. */
-export async function Footer() {
-  const session = await getCachedSession();
-  const signedIn = Boolean(session?.user);
-  const accountLinks = signedIn
-    ? [
-        { href: ROUTES.dashboard, label: "Dashboard" },
-        { href: ROUTES.settings, label: "Settings" },
-      ]
-    : ACCOUNT_LINKS;
+/** One footer for the homepage and inner marketing pages. No session read, so public pages can be cached. */
+export function Footer() {
   return (
     <footer
       className="apple-footer overflow-x-clip border-t border-black/[0.08] py-10 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))] dark:border-white/[0.08]"
@@ -96,11 +84,9 @@ export async function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[minmax(13.75rem,1.2fr)_repeat(4,minmax(0,1fr))]">
           <div className="min-w-0 sm:col-span-2 lg:col-span-1">
             <BrandLogo href={ROUTES.home} variant="nav" showName />
-            {signedIn ? null : (
-              <p className="mt-3 max-w-full text-sm leading-relaxed text-[var(--color-ink-muted)]">
-                {formatTrialLabel()} on AnyExamEasy. No payment method required.
-              </p>
-            )}
+            <p className="mt-3 max-w-full text-sm leading-relaxed text-[var(--color-ink-muted)]">
+              {BRAND_DESCRIPTION}
+            </p>
             <p className="mt-2 flex max-w-full flex-col items-start gap-0.5 text-sm leading-snug text-[var(--color-ink)]">
               <a
                 href={`mailto:${LEGAL_ENTITY.supportEmail}`}
@@ -112,7 +98,7 @@ export async function Footer() {
           </div>
           <FooterColumn title="Exams" label="Exam links" links={EXAM_LINKS} />
           <FooterColumn title="Explore" label="Explore links" links={EXPLORE_LINKS} />
-          <FooterColumn title="Account" label="Account links" links={accountLinks} />
+          <FooterAccountLinks />
           <FooterColumn title="Legal" label="Legal links" links={LEGAL_LINKS} />
         </div>
         <div className="mt-8 space-y-2 border-t border-black/[0.06] pt-6 text-xs leading-relaxed text-[var(--color-ink-muted)] dark:border-white/[0.08]">

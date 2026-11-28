@@ -1,7 +1,7 @@
 import { PortalHomeDashboard } from "@/components/internal/PortalHomeDashboard";
 
 export const metadata = {
-  title: "Employee Portal — AnyExamEasy",
+  title: { absolute: "Employee Portal — AnyExamEasy" },
 };
 
 export default function InternalHomePage() {

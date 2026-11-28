@@ -6,6 +6,7 @@ import {
 import { contentCanonicalRedirectRules } from "./src/lib/seo/canonical-redirects";
 import { retiredStudyRedirects } from "./src/lib/navigation/retired-study-redirects";
 import { legacyStudyGuideRedirects } from "./src/lib/study-guides/legacy-redirects";
+import { STUDY_GUIDE_SERVER_FILES } from "./src/lib/study-guides/server-file-trace";
 
 /** Standalone is for Docker/AWS only — Vercel uses its own serverless output (faster builds). */
 const useStandaloneOutput = !process.env.VERCEL;
@@ -130,6 +131,8 @@ const nextConfig: NextConfig = {
       "./content/fnp-feed/**/*",
       "./content/usmle-feed/**/*",
     ],
+    // Public study guides readdir markdown (and figure headers) on revalidation.
+    ...STUDY_GUIDE_SERVER_FILES,
   },
   serverExternalPackages: ["stripe", "pg"],
   // CI runs lint + typecheck; skipping both on Vercel avoids build OOM on this app.
@@ -264,8 +267,6 @@ const nextConfig: NextConfig = {
         "/blog",
         "/blog/:path*",
         "/resources/:path*",
-        "/daily",
-        "/daily/:path*",
         "/crossword",
         "/crossword/:path*",
         "/anatomy",
@@ -286,6 +287,33 @@ const nextConfig: NextConfig = {
           {
             key: "Cache-Control",
             value: "public, s-maxage=300, stale-while-revalidate=86400",
+          },
+        ],
+      })),
+      {
+        source: "/sitemap.xml",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      {
+        source: "/sitemap/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      ...["/daily", "/daily/:path*"].map((source) => ({
+        source,
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=60, stale-while-revalidate=86400",
           },
         ],
       })),

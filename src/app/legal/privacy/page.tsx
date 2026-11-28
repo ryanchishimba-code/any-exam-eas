@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
+import { publicBreadcrumbJsonLd } from "@/lib/seo/public-schema";
 
 export const metadata: Metadata = {
   title: { absolute: "Privacy Policy — AnyExamEasy" },
@@ -14,6 +16,9 @@ export default function PrivacyPage() {
 
   return (
     <div className="min-h-screen pt-24 pb-20">
+      <JsonLdScript
+        data={publicBreadcrumbJsonLd([{ name: "Privacy Policy", path: "/legal/privacy" }])}
+      />
       <article className="mx-auto max-w-2xl px-6">
         <h1 className="text-3xl font-semibold">Privacy Policy</h1>
         <p className="mt-2 text-xs text-[var(--color-ink-muted)]">

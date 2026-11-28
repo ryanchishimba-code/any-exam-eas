@@ -1,7 +1,7 @@
 import { TRIAL_DAYS } from "@/lib/billing-config";
-import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
 import { boardLandingMetaTitle } from "@/lib/marketing/board-landing/board-landing-copy";
 import { absoluteUrl, DEFAULT_OG_IMAGE_PATH, getSiteUrl } from "@/lib/seo";
+import { breadcrumbListNode } from "@/lib/seo/public-schema";
 import { SCHEMA_BRAND_NAME, buildCourseJsonLd } from "@/lib/seo/course-jsonld";
 import { formatMonthlyPrice } from "@/lib/site";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
@@ -31,15 +31,6 @@ export function boardLandingBaseGraph(input: {
   const trialHref = absoluteUrl(input.trialHref);
   return [
     {
-      "@type": "Organization",
-      "@id": `${site}/#organization`,
-      name: LEGAL_ENTITY.companyName,
-      legalName: LEGAL_ENTITY.companyName,
-      url: site,
-      logo: absoluteUrl("/icons/icon-192.png"),
-      contactPoint: organizationContactPoint(),
-    },
-    {
       "@type": "WebPage",
       "@id": pageUrl,
       url: pageUrl,
@@ -47,13 +38,10 @@ export function boardLandingBaseGraph(input: {
       dateModified: BOARD_LANDING_DATE_MODIFIED,
       isPartOf: { "@type": "WebSite", name: SCHEMA_BRAND_NAME, url: site },
     },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: site },
-        { "@type": "ListItem", position: 2, name: input.breadcrumbName, item: pageUrl },
-      ],
-    },
+    breadcrumbListNode([
+      { name: "Home", path: "/" },
+      { name: input.breadcrumbName, path: input.pagePath },
+    ]),
     buildCourseJsonLd({
       name: `${SCHEMA_BRAND_NAME} ${input.breadcrumbName} Board Prep`,
       description: input.productDescription,

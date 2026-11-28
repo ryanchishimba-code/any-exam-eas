@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { DailyTrialSticky } from "@/components/marketing/DailyTrialCta";
 import { QotdPractice } from "@/components/marketing/QotdPractice";
 import {
@@ -13,6 +14,7 @@ import {
   toPublicQotd,
 } from "@/lib/demo/qotd";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import { qotdDatedTitle, qotdMetaDescription } from "@/lib/demo/qotd-titles";
 import { getSiteUrl } from "@/lib/seo";
 
 type Props = { params: Promise<{ exam: string; date: string }> };
@@ -44,24 +46,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
   const name = EXAM_CATALOG[exam].shortName;
   const canonical = qotdAbsoluteUrl(exam, date);
-  const description =
-    item.stem.length > 155 ? `${item.stem.slice(0, 152)}…` : item.stem;
+  const description = qotdMetaDescription(name, item.stem);
   const ogImageUrl = `${getSiteUrl()}${qotdPath(exam, date)}/opengraph-image`;
 
+  const title = qotdDatedTitle(name, date);
   return {
-    title: `${name} Question of the Day — ${date}`,
+    title: { absolute: title },
     description,
     alternates: { canonical },
     openGraph: {
-      title: `${name} Question of the Day | AnyExamEasy`,
+      title,
       description,
       url: canonical,
       type: "website",
-      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: `${name} Question of the Day` }],
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${name} Question of the Day | AnyExamEasy`,
+      title,
       description,
       images: [ogImageUrl],
     },
@@ -80,11 +82,17 @@ export default async function DailyExamDatedPage({ params }: Props) {
     await connection();
     notFound();
   }
+  const name = EXAM_CATALOG[exam].shortName;
   const absoluteShareUrl = qotdAbsoluteUrl(exam, date);
 
   return (
     <div className="aee-qotd-page">
       <div className="aee-qotd-page__inner">
+        <p className="mb-4 text-sm">
+          <Link href={qotdPath(exam)} className="font-semibold text-[var(--color-accent)]">
+            {name} Question of the Day
+          </Link>
+        </p>
         <QotdPractice
           item={toPublicQotd(item)}
           dateIso={date}

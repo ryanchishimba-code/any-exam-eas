@@ -1,5 +1,4 @@
-import { LandingCta } from "@/components/landing/LandingCta";
-import { HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
+import { SessionAwareTrialCta } from "@/components/marketing/SessionAwareTrialCta";
 import { CONSENTED_TESTIMONIAL_SEEDS } from "@/lib/testimonials/consented-seed";
 import "@/styles/why-anyexameasy.css";
 
@@ -38,11 +37,9 @@ function quotesForBoard(board?: string) {
 export function WhyAnyExamEasy({
   board,
   trialHref,
-  signedIn = false,
 }: {
   board?: string;
   trialHref: string;
-  signedIn?: boolean;
 }) {
   const quotes = quotesForBoard(board);
   const facts = board === "naplex" ? FACTS.filter((fact) => fact.title !== "NGN case studies") : FACTS;
@@ -74,13 +71,11 @@ export function WhyAnyExamEasy({
             ))}
           </div>
         ) : null}
-        <LandingCta
-          href={signedIn ? "/dashboard" : trialHref}
-          ctaName={signedIn ? "continue_studying" : "why_trial"}
+        <SessionAwareTrialCta
+          trialHref={trialHref}
+          signedOutCtaName="why_trial"
           location={board ? `why_${board}` : "why_home"}
-        >
-          {signedIn ? "Continue studying" : HERO_TRIAL_CTA_LABEL}
-        </LandingCta>
+        />
       </div>
     </section>
   );

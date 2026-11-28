@@ -5,11 +5,14 @@ export const HOW_TO_PASS_PATH = ROUTES.howToPass;
 
 export const HOW_TO_PASS_VIDEO_ID = "video";
 
+/** Visible heading. The document title is HOW_TO_PASS_SEO_TITLE. */
 export const HOW_TO_PASS_TITLE = "How to pass any board exam — in 3 minutes";
 
-/** 150 characters. Stays inside the public meta description budget. */
+export const HOW_TO_PASS_SEO_TITLE = "Six-Board Study Walkthrough, 3 Minutes | AnyExamEasy";
+
+/** Stays inside the public meta description budget. No result promise. */
 export const HOW_TO_PASS_DESCRIPTION =
-  "A three-minute walkthrough of one study system for six boards, with a rationale on every option. Start a 5-day free trial. No payment method required.";
+  "A three-minute walkthrough of a study system for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT, with a rationale on every option. Start a 5-day free trial.";
 
 export const HOW_TO_PASS_POSTER_WIDTH = 1280;
 export const HOW_TO_PASS_POSTER_HEIGHT = 720;

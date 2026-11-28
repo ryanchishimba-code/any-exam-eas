@@ -1,5 +1,6 @@
 import { absoluteUrl, getSiteUrl } from "@/lib/seo";
-import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
+import { organizationRef } from "@/lib/seo/brand-entity";
+import { publicLearningResourceNode } from "@/lib/seo/public-schema";
 
 /**
  * Search phrases people type, written into the title, H1, first paragraph,
@@ -268,9 +269,15 @@ export function guideJsonLd(input: {
         description: input.description,
         dateModified: input.dateModified,
         mainEntityOfPage: pageUrl,
-        author: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
-        publisher: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
+        author: organizationRef(),
+        publisher: organizationRef(),
       },
+      publicLearningResourceNode({
+        name: input.headline,
+        description: input.description,
+        path: input.path,
+        learningResourceType: "Study guide",
+      }),
       {
         "@type": "FAQPage",
         mainEntity: input.answers.map((item) => ({

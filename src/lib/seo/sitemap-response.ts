@@ -9,7 +9,7 @@ import {
 
 export const SITEMAP_XML_HEADERS = {
   "Content-Type": "application/xml; charset=utf-8",
-  "Cache-Control": "public, max-age=3600, s-maxage=3600",
+  "Cache-Control": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
 } as const;
 
 async function publishedPosts() {
