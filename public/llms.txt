@@ -20,7 +20,15 @@ Canonical host: https://www.anyexameasy.com
 - [Daily crossword](https://www.anyexameasy.com/crossword): A crossword for each board, including recent dates.
 - [Toolkit](https://www.anyexameasy.com/toolkit): Official outlines and links into study articles.
 - [Free guides](https://www.anyexameasy.com/free-guides): Drug cards, anatomy, and the six board hubs.
+- [NCLEX study guide](https://www.anyexameasy.com/nclex-study-guide): Free NCLEX guide, no login.
+- [NAPLEX study guide](https://www.anyexameasy.com/naplex-study-guide): Free NAPLEX guide, no login.
 - [PANCE study guide](https://www.anyexameasy.com/pance-study-guide): Public PANCE blueprint guide.
+- [AANP FNP study guide](https://www.anyexameasy.com/aanp-fnp-study-guide): Free FNP guide, no login.
+- [USMLE study guide](https://www.anyexameasy.com/usmle-study-guide): Hub for Step 1, Step 2 CK, and Step 3 books.
+- [USMLE Step 1 study guide](https://www.anyexameasy.com/usmle-study-guide/step-1): Free Step 1 book.
+- [USMLE Step 2 CK study guide](https://www.anyexameasy.com/usmle-study-guide/step-2-ck): Free Step 2 CK book.
+- [USMLE Step 3 study guide](https://www.anyexameasy.com/usmle-study-guide/step-3): Free Step 3 book.
+- [NPTE study guide](https://www.anyexameasy.com/npte-pt-study-guide): Free NPTE-PT outline.
 - [Top 500 drugs](https://www.anyexameasy.com/study/drugs300): Shared drug flashcards. Individual drugs are states of this page, not separate URLs.
 - [Anatomy explorer](https://www.anyexameasy.com/anatomy): 3D anatomy. The catalog is at /anatomy/catalog.
 - [Pricing](https://www.anyexameasy.com/pricing): Trial and Pro.
@@ -32,7 +40,9 @@ Canonical host: https://www.anyexameasy.com
 
 ## What not to treat as public content
 
-- Full study-guide readers (/nclex/study-guide, /naplex/study-guide, /aanp-fnp/study-guide, /pance/study-guide, /usmle/study-guide) are not indexed.
+- Old reader paths such as /nclex/study-guide and /usmle/study-guide/step-1 redirect to the public study-guide URLs above.
+- /usmle/step-1, /usmle/step-2, /usmle/step-2-ck, and /usmle/step-3 were not pages. They redirect to /usmle.
+- /mpje and /mpje/practice-exam redirect to /naplex.
 - Dashboard, question bank, checkout, settings, admin, and /api are not public.
 - /mpje and /exams/mpje redirect to /naplex. /mpje/practice-exam redirects to /pance.
 - /usmle/step-1, /usmle/step-2, /usmle/step-2-ck, and /usmle/step-3 redirect to /usmle.
