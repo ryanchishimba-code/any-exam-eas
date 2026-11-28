@@ -10,8 +10,8 @@ export const BOARD_LANDING_FINAL_HEADING = "Start free trial.";
 const BOARD_META_TITLES: Record<string, string> = {
   "NCLEX-RN": "NCLEX-RN Practice Questions with Rationales | AnyExamEasy",
   NAPLEX: "NAPLEX Practice Questions & Calculations | AnyExamEasy",
-  USMLE: "USMLE Step 1, 2 CK & 3 Practice Questions | AnyExamEasy",
-  PANCE: "PANCE Practice Questions & Question Bank | AnyExamEasy",
+  USMLE: "USMLE Question Bank for Steps 1, 2 CK, 3 | AnyExamEasy",
+  PANCE: "PANCE Question Bank & 2026 Blueprint | AnyExamEasy",
   "AANP FNP": "AANP FNP Practice Questions & Exam Prep | AnyExamEasy",
   "NPTE-PT": "NPTE-PT Practice Questions with Explanations | AnyExamEasy",
 };

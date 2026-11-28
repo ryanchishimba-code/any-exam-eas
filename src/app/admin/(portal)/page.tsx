@@ -3,7 +3,7 @@ import { AdminOverviewDashboard } from "@/components/admin/AdminOverviewDashboar
 import { getAdminDashboardData } from "@/lib/admin/overview";
 
 export const metadata = {
-  title: "Admin Overview — AnyExamEasy",
+  title: { absolute: "Admin Overview — AnyExamEasy" },
 };
 
 export default async function AdminOverviewPage() {

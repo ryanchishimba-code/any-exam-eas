@@ -1,7 +1,7 @@
 import FeedbackInbox from "@/app/internal/feedback/FeedbackInbox";
 
 export const metadata = {
-  title: "Admin Feedback — AnyExamEasy",
+  title: { absolute: "Admin Feedback — AnyExamEasy" },
 };
 
 export default function AdminFeedbackPage() {

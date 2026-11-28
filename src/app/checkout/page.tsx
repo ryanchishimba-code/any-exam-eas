@@ -19,7 +19,7 @@ import { readTrialUpgradeOffer } from "@/lib/billing/trial-upgrade-offer-db";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
-  title: "Checkout — AnyExamEasy",
+  title: { absolute: "Checkout — AnyExamEasy" },
   robots: { index: false, follow: false },
 };
 

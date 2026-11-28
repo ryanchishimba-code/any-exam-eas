@@ -509,7 +509,7 @@ function nclexStats(units: BoardQuestionUnits | null): { value: string; label: s
 }
 
 export function boardVideoNode(bite: BoardQuickBite | null, pagePath: string): Record<string, unknown> | null {
-  if (!bite) return null;
+  if (!bite?.uploadDate) return null;
   const node: Record<string, unknown> = {
     "@type": "VideoObject",
     name: bite.title,

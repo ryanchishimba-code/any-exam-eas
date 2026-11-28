@@ -3,7 +3,7 @@ import { QuickBitesPage } from "@/components/quick-bites/QuickBitesPage";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Quick Bites: PANCE — AnyExamEasy",
+  title: { absolute: "Quick Bites: PANCE — AnyExamEasy" },
   robots: { index: false, follow: false },
 };
 

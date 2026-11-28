@@ -68,7 +68,7 @@ export const PUBLIC_STUDY_GUIDES: Record<PublicStudyGuideId, PublicStudyGuide> =
   pance: {
     id: "pance",
     path: "/pance-study-guide",
-    title: "Free PANCE Study Guide (2026): NCCPA Blueprint",
+    title: "PANCE Study Guide: 2026 NCCPA Blueprint | AnyExamEasy",
     description:
       "Free PANCE study guide for the NCCPA blueprint: 300 questions in five blocks, a $550 application fee, passing score 350, and study plans. Independent of NCCPA.",
     boardLabel: "physician assistant boards",

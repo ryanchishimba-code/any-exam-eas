@@ -96,7 +96,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     questionNoun: "PANCE questions",
     metaBoardLabel: HUB_META_LABEL.pance,
     metaDescription:
-      "PANCE practice questions and question bank: clinical vignettes, flashcards, a study guide and timed exams built on the NCCPA blueprint. Try free.",
+      "PANCE question bank for the NCCPA blueprint used in 2026: vignettes, flashcards, a study guide, and timed exams. Cardiovascular is 11%. Try free.",
     keywords: [
       "PANCE practice questions",
       "PANCE qbank",

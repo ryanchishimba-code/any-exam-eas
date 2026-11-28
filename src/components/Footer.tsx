@@ -4,7 +4,8 @@ import { getCachedSession } from "@/lib/auth/session";
 import { NOT_FOR_PATIENT_CARE_LINE } from "@/lib/marketing/legal-copy";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
 import { MARKETING_BOARD_LINKS, ROUTES } from "@/lib/routes";
-import { formatTrialLabel, MARKETING_DISCLAIMER } from "@/lib/site";
+import { BRAND_DESCRIPTION } from "@/lib/seo/brand-entity";
+import { MARKETING_DISCLAIMER } from "@/lib/site";
 
 const EXPLORE_LINKS = [
   { href: "/free-practice-questions", label: "Free practice questions" },
@@ -96,11 +97,9 @@ export async function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[minmax(13.75rem,1.2fr)_repeat(4,minmax(0,1fr))]">
           <div className="min-w-0 sm:col-span-2 lg:col-span-1">
             <BrandLogo href={ROUTES.home} variant="nav" showName />
-            {signedIn ? null : (
-              <p className="mt-3 max-w-full text-sm leading-relaxed text-[var(--color-ink-muted)]">
-                {formatTrialLabel()} on AnyExamEasy. No payment method required.
-              </p>
-            )}
+            <p className="mt-3 max-w-full text-sm leading-relaxed text-[var(--color-ink-muted)]">
+              {BRAND_DESCRIPTION}
+            </p>
             <p className="mt-2 flex max-w-full flex-col items-start gap-0.5 text-sm leading-snug text-[var(--color-ink)]">
               <a
                 href={`mailto:${LEGAL_ENTITY.supportEmail}`}

@@ -8,7 +8,7 @@ import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
-  title: "Readiness check — AnyExamEasy",
+  title: { absolute: "Readiness check — AnyExamEasy" },
   description: "A short fixed check across your board.",
 };
 

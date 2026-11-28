@@ -64,6 +64,22 @@ export async function HubBoardLanding({
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
       </div>
+      {model.layout === "pance" ? (
+        <section className="bl-band" aria-labelledby="pance-blueprint-heading">
+          <h2 id="pance-blueprint-heading">PANCE blueprint for 2026</h2>
+          <p>
+            The NCCPA blueprint effective January 2025 is the outline this question bank follows in 2026.
+            It has 300 questions in five blocks of 60. Cardiovascular disease is 11% and pulmonary disease
+            is 9%. The score scale is 200 to 800, and the passing score is 350. This page is independent
+            of NCCPA and does not predict a result.
+          </p>
+          <p>
+            <a href="/pance-study-guide">Read the PANCE study guide</a>
+            {" · "}
+            <a href="/daily/pance">PANCE question of the day</a>
+          </p>
+        </section>
+      ) : null}
 
       {stories.length > 0 ? (
         <div className="bl-band bl-band--alt">

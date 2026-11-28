@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { describe, expect, it } from "vitest";
 import { BLOG_INDEX_DESCRIPTION, BLOG_INDEX_TITLE } from "@/lib/blog/index-meta";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
-import { QOTD_HUB_TITLE, qotdDatedTitle, qotdExamTitle } from "@/lib/demo/qotd-titles";
+import { QOTD_HUB_TITLE, qotdDatedTitle, qotdExamTitle, qotdMetaDescription } from "@/lib/demo/qotd-titles";
+import { QOTD_BY_EXAM } from "@/lib/demo/qotd";
 import { DRUGS_PAGE_DESCRIPTION, DRUGS_PAGE_TITLE } from "@/lib/drugs300/public-index";
 import { boardHeroMarketingCopy } from "@/lib/marketing/board-landing/board-hero-marketing";
 import { boardLandingMetaTitle } from "@/lib/marketing/board-landing/board-landing-copy";
@@ -14,6 +15,7 @@ import { PRO_MONTHLY_PRICE_USD } from "@/lib/pricing-defaults";
 import { buildHomeMetadata } from "@/lib/seo";
 import { buildPricingMetadata } from "@/lib/seo/marketing-metadata";
 import { SEO_DESC_MAX, SEO_DESC_MIN, SEO_TITLE_MAX, validateMetaDescription, validateMetaTitle } from "@/lib/seo/meta-budget";
+import { BRAND_DESCRIPTION } from "@/lib/seo/brand-entity";
 import { PUBLIC_STUDY_GUIDES, USMLE_PUBLIC_STEPS } from "@/lib/study-guides/public-catalog";
 
 function readTitle(meta: Metadata): string {
@@ -44,7 +46,7 @@ const PAGES: { path: string; title: string; description: string }[] = [
   },
   {
     path: "/usmle",
-    title: "USMLE Step 1, 2 CK & 3 Practice Questions | AnyExamEasy",
+    title: "USMLE Question Bank for Steps 1, 2 CK, 3 | AnyExamEasy",
     description:
       "USMLE practice questions for Step 1, Step 2 CK and Step 3: step-style vignettes, explanations for every choice and timed practice exams in one qbank.",
   },
@@ -56,9 +58,9 @@ const PAGES: { path: string; title: string; description: string }[] = [
   },
   {
     path: "/pance",
-    title: "PANCE Practice Questions & Question Bank | AnyExamEasy",
+    title: "PANCE Question Bank & 2026 Blueprint | AnyExamEasy",
     description:
-      "PANCE practice questions and question bank: clinical vignettes, flashcards, a study guide and timed exams built on the NCCPA blueprint. Try free.",
+      "PANCE question bank for the NCCPA blueprint used in 2026: vignettes, flashcards, a study guide, and timed exams. Cardiovascular is 11%. Try free.",
   },
   {
     path: "/aanp-fnp",
@@ -160,6 +162,17 @@ describe("rewritten public titles and descriptions", () => {
       titles.push(qotdDatedTitle(name, "2026-11-28"));
     }
     expect(new Set(titles).size).toBe(titles.length);
+    for (const items of Object.values(QOTD_BY_EXAM)) {
+      for (const item of items) {
+        const description = qotdMetaDescription(item.examLabel, item.stem);
+        expect(description.length, description).toBeGreaterThanOrEqual(SEO_DESC_MIN);
+        expect(description.length, description).toBeLessThanOrEqual(SEO_DESC_MAX);
+        expect(description).toContain(item.examLabel);
+        expect(description).toContain("5-day free trial");
+      }
+    }
+    expect(BRAND_DESCRIPTION.length).toBeGreaterThanOrEqual(SEO_DESC_MIN);
+    expect(BRAND_DESCRIPTION.length).toBeLessThanOrEqual(SEO_DESC_MAX);
     for (const title of titles) {
       expect(title.length, title).toBeLessThanOrEqual(SEO_TITLE_MAX);
       expect(title.match(/AnyExamEasy/g)).toEqual(["AnyExamEasy"]);

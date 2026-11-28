@@ -9,7 +9,7 @@ import { readImageSize } from "@/lib/nclex-study-guide/image-dimensions";
 import { markdownToSimpleHtml } from "@/lib/nclex-study-guide/markdown";
 import { absoluteUrl, getSiteUrl } from "@/lib/seo";
 import { publicLearningResourceNode } from "@/lib/seo/public-schema";
-import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
+import { organizationRef } from "@/lib/seo/brand-entity";
 import {
   PUBLIC_STUDY_GUIDES,
   USMLE_PUBLIC_STEPS,
@@ -104,8 +104,8 @@ function buildJsonLd(guide: { path: string; description: string; boardLabel: str
       headline: h1,
       description: guide.description,
       mainEntityOfPage: pageUrl,
-      author: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
-      publisher: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
+      author: organizationRef(),
+      publisher: organizationRef(),
     },
     publicLearningResourceNode({
       name: h1,

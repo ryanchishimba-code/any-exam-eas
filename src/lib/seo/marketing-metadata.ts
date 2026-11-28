@@ -17,7 +17,7 @@ import {
   dedupeKeywords,
   getSiteUrl,
 } from "@/lib/seo";
-import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import {
   SITE_NAME,
   formatMonthlyPrice,
@@ -36,6 +36,7 @@ import {
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { ABOUT_FOUNDER } from "@/lib/marketing/about-copy";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
+import { BRAND_DESCRIPTION, ORGANIZATION_ID, organizationRef } from "@/lib/seo/brand-entity";
 import { SCHEMA_BRAND_NAME, buildCourseJsonLd } from "@/lib/seo/course-jsonld";
 import { landingOgImage } from "@/lib/seo/landing-og-image";
 import { publicExamSeo } from "@/lib/marketing/public-format-copy";
@@ -100,7 +101,7 @@ export function buildResourcesHubMetadata(): Metadata {
 }
 
 export function buildFreeGuidesMetadata(): Metadata {
-  const title = "Free Tools & Premium Books";
+  const title = "Free Study Tools for Six Board Exams | AnyExamEasy";
   const description = `Drug cards, anatomy, and six board hubs stay free. NCLEX, NAPLEX, FNP, and PANCE books include highlights on a ${formatTrialLabel()}, then Pro at ${formatMonthlyPrice("pro")}/mo.`;
   return {
     ...baseOpenGraph(title, description, "/free-guides", { absoluteTitle: true }),
@@ -116,7 +117,7 @@ export function buildFreeGuidesMetadata(): Metadata {
 }
 
 export function buildToolkitHubMetadata(): Metadata {
-  const title = "Board Exam Toolkit — Official Links & Study Tools";
+  const title = "Board Exam Toolkit: Outlines and Study Tools | AnyExamEasy";
   const description =
     "Toolkit directory for six boards: official blueprints, lab values & calculators, Top 500 drugs, Anatomy Explorer, Roadmap, and exam study guides.";
   const path = "/toolkit";
@@ -178,7 +179,7 @@ export function buildPricingMetadata(totalLabel?: string): Metadata {
 }
 
 export function buildCompareMetadata(): Metadata {
-  const title = "Compare — multi-exam board prep";
+  const title = "Compare Six Board Exams on One Plan | AnyExamEasy";
   const description =
     `See how AnyExamEasy Pro (${formatMonthlyPrice("pro")}/mo) covers six boards with Roadmap, Deep Dives, and Full Exams — versus typical single-exam prep. Start a ${SEO_LIVE_STATS.trialDays}-day free trial.`;
   return {
@@ -215,8 +216,7 @@ export function buildCompareJsonLd() {
 }
 
 const ABOUT_TITLE = "AnyExamEasy Exam Prep from the Founder";
-const ABOUT_DESCRIPTION =
-  "AnyExamEasy exam prep from founder Ryan Chishimba, PharmD. One plan for NCLEX, NAPLEX, USMLE, PANCE, FNP, and NPTE-PT. Start a 5-day free trial.";
+const ABOUT_DESCRIPTION = BRAND_DESCRIPTION;
 
 export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
   const title = ABOUT_TITLE;
@@ -345,12 +345,8 @@ export function buildArticleJsonLd(article: ResourceArticle) {
         datePublished: article.publishedAt,
         dateModified: article.updatedAt,
         image: ogImage,
-        author: { "@type": "Organization", name: LEGAL_ENTITY.companyName, url: site },
-        publisher: {
-          "@type": "Organization",
-          name: LEGAL_ENTITY.companyName,
-          logo: { "@type": "ImageObject", url: absoluteUrl("/icons/icon-192.png") },
-        },
+        author: organizationRef(),
+        publisher: organizationRef(),
         mainEntityOfPage: { "@type": "WebPage", "@id": url },
         inLanguage: "en-US",
         keywords: dedupeKeywords(article.keywords).join(", "),
@@ -427,7 +423,7 @@ export function buildPricingJsonLd(totalLabel?: string) {
 export function buildAboutJsonLd() {
   const url = absoluteUrl("/about");
   const site = getSiteUrl();
-  const organizationId = `${site}#organization`;
+  const organizationId = ORGANIZATION_ID;
   const founderId = `${url}#founder`;
   const nursing = CLINICAL_REVIEWERS.find((reviewer) => reviewer.id === "nursing");
   const people = [
@@ -464,17 +460,6 @@ export function buildAboutJsonLd() {
         about: { "@id": organizationId },
         mainEntity: { "@id": organizationId },
         mentions: people.map((person) => ({ "@id": person["@id"] })),
-      },
-      {
-        "@type": "Organization",
-        "@id": organizationId,
-        name: LEGAL_ENTITY.companyName,
-        url: site,
-        logo: absoluteUrl("/icons/icon-192.png"),
-        description: seoPlatformPitch(),
-        foundingLocation: { "@type": "Place", name: "Texas, USA" },
-        founder: { "@id": founderId },
-        contactPoint: organizationContactPoint(),
       },
       ...people,
     ],

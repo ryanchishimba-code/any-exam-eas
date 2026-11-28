@@ -97,6 +97,9 @@ describe("sitemap catalog", () => {
     );
     expect(resource?.lastmod).toBe(article!.updatedAt.slice(0, 10));
 
+    expect(built.blog.some((url) => url.loc.endsWith("/blog/affordable-nclex-prep"))).toBe(true);
+    expect(built.blog.some((url) => url.loc.endsWith("/blog/naplex-study-plan"))).toBe(true);
+    expect(built.blog.some((url) => url.loc.endsWith("/blog/strategies"))).toBe(false);
     const post = built.blog.find((url) => url.loc.endsWith("/blog/nclex-study-plan-rn-pn"));
     expect(post?.lastmod).toBe("2026-08-19");
 

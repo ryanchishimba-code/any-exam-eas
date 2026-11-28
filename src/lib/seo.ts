@@ -5,7 +5,8 @@ import {
   formatMonthlyPrice,
   formatPricingCheckoutTrialOffer,
 } from "@/lib/site";
-import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
+import { BRAND_DESCRIPTION, organizationJsonLdNode, organizationRef } from "@/lib/seo/brand-entity";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS, MONTHLY_PRICE_USD } from "@/lib/billing-config";
 import {
   enforceMetaDescription,
@@ -192,23 +193,14 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
   return {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Organization",
-        "@id": `${url}/#organization`,
-        name: LEGAL_ENTITY.companyName,
-        legalName: LEGAL_ENTITY.companyName,
-        url,
-        logo: absoluteUrl("/icons/icon-192.png"),
-        description: `${LEGAL_ENTITY.productName} — ${seoPlatformPitch(totalQuestionsLabel)}`,
-        sameAs: [url],
-        contactPoint: organizationContactPoint(),
-      },
+      organizationJsonLdNode(),
       {
         "@type": "WebSite",
         "@id": `${url}/#website`,
         url,
         name: SCHEMA_BRAND_NAME,
-        publisher: { "@id": `${url}/#organization` },
+        description: BRAND_DESCRIPTION,
+        publisher: organizationRef(),
         inLanguage: "en-US",
       },
       {

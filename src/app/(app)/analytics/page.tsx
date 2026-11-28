@@ -11,7 +11,7 @@ import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
 export const metadata = {
-  title: "Analytics — AnyExamEasy",
+  title: { absolute: "Analytics — AnyExamEasy" },
   description: "Track readiness, weak topics, and accuracy trends across your board exam.",
 };
 

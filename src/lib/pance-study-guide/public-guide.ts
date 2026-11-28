@@ -3,11 +3,11 @@ import path from "node:path";
 import { readImageSize } from "@/lib/nclex-study-guide/image-dimensions";
 import { markdownToSimpleHtml } from "@/lib/nclex-study-guide/markdown";
 import { absoluteUrl, getSiteUrl } from "@/lib/seo";
-import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
+import { organizationRef } from "@/lib/seo/brand-entity";
 
 export const PANCE_STUDY_GUIDE_PATH = "/pance-study-guide";
 
-export const PANCE_STUDY_GUIDE_TITLE = "Free PANCE Study Guide (2026): NCCPA Blueprint";
+export const PANCE_STUDY_GUIDE_TITLE = "PANCE Study Guide: 2026 NCCPA Blueprint | AnyExamEasy";
 
 export const PANCE_STUDY_GUIDE_DESCRIPTION =
   "Free PANCE study guide for the NCCPA blueprint: 300 questions in five blocks, a $550 application fee, passing score 350, and study plans. Independent of NCCPA.";
@@ -106,8 +106,8 @@ function buildJsonLd(h1: string, faqs: PanceFaq[]): Record<string, unknown> {
         description: PANCE_STUDY_GUIDE_DESCRIPTION,
         dateModified: PANCE_STUDY_GUIDE_UPDATED,
         mainEntityOfPage: pageUrl,
-        author: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
-        publisher: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
+        author: organizationRef(),
+        publisher: organizationRef(),
       },
       {
         "@type": "FAQPage",
