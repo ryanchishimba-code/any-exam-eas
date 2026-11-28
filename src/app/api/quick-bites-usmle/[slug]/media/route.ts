@@ -1,6 +1,6 @@
 import { get } from "@vercel/blob";
 import { NextResponse } from "next/server";
-import { requireUsmleVideoPlayer } from "@/lib/quick-bites/usmle-video-playback";
+import { requireUsmleVideoPlayer, usmleHeldEpisodeIsServable } from "@/lib/quick-bites/usmle-video-playback";
 import {
   getUsmleVideoQuickBiteBySlug,
   usmleVideoQuickBiteCaptionsPath,
@@ -20,7 +20,7 @@ export async function GET(
   if (!gate.ok) return gate.response;
 
   const episode = getUsmleVideoQuickBiteBySlug(slug);
-  if (!episode || episode.held) {
+  if (!usmleHeldEpisodeIsServable(episode, gate)) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
   }
 

@@ -16,6 +16,7 @@ import { USMLE_VIDEO_QUICK_BITES_PATH } from "@/lib/quick-bites/usmle-video-flag
 export const USMLE_VIDEO_QUICK_BITES_MEDIA_VERSION = "v1-20261121";
 export const USMLE_VIDEO_WAVE2_MEDIA_VERSION = "v2-20261121";
 export const USMLE_VIDEO_WAVE3_MEDIA_VERSION = "v3-20261121";
+export const USMLE_VIDEO_WAVE4_MEDIA_VERSION = "v4-20261121";
 
 type EpisodeSeed = {
   slug: string;
@@ -25,6 +26,8 @@ type EpisodeSeed = {
   mediaVersion?: string;
   /** Step 1 is mechanism and basic science. Step 2 CK is the next clinical move. */
   examStep: "step-1" | "step-2-ck" | "step-3";
+  /** Hidden from students. Staff can open it only while the release flag is off. */
+  held?: boolean;
 };
 
 const EPISODES: EpisodeSeed[] = [
@@ -258,6 +261,60 @@ const EPISODES: EpisodeSeed[] = [
     mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
     examStep: "step-3",
   },
+  {
+    slug: "quick-bites-usmle-ep31-fever-too-young",
+    number: 31,
+    title: "A Fever Too Young to Send Home",
+    duration: "3:56",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+    held: true,
+  },
+  {
+    slug: "quick-bites-usmle-ep32-next-psych-medicine",
+    number: 32,
+    title: "The Next Psych Medicine, and Who Cannot Wait",
+    duration: "3:24",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+    held: true,
+  },
+  {
+    slug: "quick-bites-usmle-ep33-four-pillars-weak-pump",
+    number: 33,
+    title: "Four Pillars for a Weak Pump",
+    duration: "3:35",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+    held: true,
+  },
+  {
+    slug: "quick-bites-usmle-ep34-bleed-after-baby",
+    number: 34,
+    title: "A Bleed After the Baby",
+    duration: "3:30",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+    held: true,
+  },
+  {
+    slug: "quick-bites-usmle-ep35-potassium-and-dialysis",
+    number: 35,
+    title: "Potassium You Treat Now, and When You Dialyze",
+    duration: "3:21",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+    held: true,
+  },
+  {
+    slug: "quick-bites-usmle-ep36-calories-change-plan",
+    number: 36,
+    title: "Calories That Change the Plan",
+    duration: "3:25",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+    held: true,
+  },
 ];
 
 export const USMLE_VIDEO_QUICK_BITE_EPISODES: QuickBiteEpisode[] = EPISODES.map((episode) => ({
@@ -328,8 +385,13 @@ export function usmleVideoStepLabel(step: UsmleQuickBiteStep): string {
   return USMLE_QUICK_BITE_STEP_CHOICES.find((choice) => choice.id === step)?.label ?? "Step 1";
 }
 
-export function usmleVideoEpisodesForStep(step: UsmleQuickBiteStep): QuickBiteEpisode[] {
-  return USMLE_VIDEO_QUICK_BITE_EPISODES.filter((episode) => episode.examStep === step);
+export function usmleVideoEpisodesForStep(
+  step: UsmleQuickBiteStep,
+  includeHeld = false
+): QuickBiteEpisode[] {
+  return USMLE_VIDEO_QUICK_BITE_EPISODES.filter(
+    (episode) => episode.examStep === step && (includeHeld || episode.held !== true)
+  );
 }
 
 export function usmleVideoStepFromQuery(step: string | undefined | null): UsmleQuickBiteStep | null {

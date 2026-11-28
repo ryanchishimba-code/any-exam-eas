@@ -44,6 +44,7 @@ describe("USMLE video step switch", () => {
     expect(screen.getByText("Do Not Wait Until Morning")).toBeInTheDocument();
     expect(screen.getByText("Screens You Order — and When You Stop")).toBeInTheDocument();
     expect(screen.queryByText("Coming soon")).not.toBeInTheDocument();
+    expect(screen.queryByText("A Fever Too Young to Send Home")).not.toBeInTheDocument();
     expect(screen.queryByText("Minutes in the Head")).not.toBeInTheDocument();
   });
 
@@ -61,5 +62,21 @@ describe("USMLE video step switch", () => {
       expect(screen.getByRole("tab", { name: "Step 2 CK" })).toHaveAttribute("aria-selected", "true");
     });
     expect(screen.getByText("Minutes in the Head")).toBeInTheDocument();
+  });
+
+  it("shows a held episode only for staff preview", async () => {
+    const user = userEvent.setup();
+    render(
+      <UsmleVideoQuickBites
+        initialQuery="2ck"
+        includeHeld
+        canPlay
+        upgradeHref="/checkout"
+        upgradeLabel="Upgrade to watch"
+      />
+    );
+    expect(screen.getByText("A Fever Too Young to Send Home")).toBeInTheDocument();
+    await user.click(screen.getByRole("tab", { name: "Step 1" }));
+    expect(screen.queryByText("A Fever Too Young to Send Home")).not.toBeInTheDocument();
   });
 });

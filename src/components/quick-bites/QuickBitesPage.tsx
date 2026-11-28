@@ -22,10 +22,12 @@ export async function QuickBitesPage({
   exam,
   previewNote,
   initialVideoStepQuery = null,
+  includeHeldVideos = false,
 }: {
   exam: QuickBiteExam;
   previewNote?: string;
   initialVideoStepQuery?: string | null;
+  includeHeldVideos?: boolean;
 }) {
   const board = QUICK_BITE_BOARDS[exam];
   const session = await getCachedSession();
@@ -51,6 +53,7 @@ export async function QuickBitesPage({
       {exam === "usmle" ? (
         <UsmleVideoQuickBites
           initialQuery={initialVideoStepQuery}
+          includeHeld={includeHeldVideos}
           canPlay={canPlayQuickBites(access)}
           upgradeHref={upgradeHref}
           upgradeLabel={access.role === "free" ? "Subscribe to watch" : "Upgrade to watch"}

@@ -52,11 +52,14 @@ export function UsmleVideoQuickBites({
   canPlay,
   upgradeHref,
   upgradeLabel,
+  includeHeld = false,
 }: {
   initialQuery: string | null;
   canPlay: boolean;
   upgradeHref: string;
   upgradeLabel: string;
+  /** Staff review while the release flag is off. Students never receive this. */
+  includeHeld?: boolean;
 }) {
   const router = useRouter();
   const fromQuery = usmleVideoStepFromQuery(initialQuery);
@@ -86,7 +89,8 @@ export function UsmleVideoQuickBites({
       upgradeHref={upgradeHref}
       upgradeLabel={upgradeLabel}
       stepSlot={<StepSwitch step={step} onChange={choose} />}
-      limitToSlugs={usmleVideoEpisodesForStep(step).map((episode) => episode.slug)}
+      allowHeld={includeHeld}
+      limitToSlugs={usmleVideoEpisodesForStep(step, includeHeld).map((episode) => episode.slug)}
     />
   );
 }

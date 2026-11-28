@@ -1,0 +1,287 @@
+{
+  "episode": "ep36-calories-change-plan",
+  "title": "Calories That Change the Plan",
+  "video": "quick-bites-usmle-ep36-calories-change-plan-web.mp4",
+  "questions": [
+    {
+      "id": "ep36-q01",
+      "type": "single_best_answer",
+      "stem": "The 2022 AGA obesity guideline strongly recommends adding a medicine when:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Every person wants only a diet sheet"
+        },
+        {
+          "id": "B",
+          "text": "BMI is 30 or higher, or 27 or higher with a weight-related condition, and lifestyle change has not been enough"
+        },
+        {
+          "id": "C",
+          "text": "BMI is under 20"
+        },
+        {
+          "id": "D",
+          "text": "The person is being refed"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "That is a strong recommendation to add pharmacotherapy to lifestyle treatment.",
+      "videoTimestamp": "0:15"
+    },
+    {
+      "id": "ep36-q02",
+      "type": "single_best_answer",
+      "stem": "Which pair does the guideline suggest, each with lifestyle treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Orlistat and a nitrate"
+        },
+        {
+          "id": "B",
+          "text": "Semaglutide 2.4 mg weekly and liraglutide 3 mg daily"
+        },
+        {
+          "id": "C",
+          "text": "Insulin and calcium"
+        },
+        {
+          "id": "D",
+          "text": "A benzodiazepine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Those two are among the suggestions. The guideline suggests against orlistat.",
+      "videoTimestamp": "0:37"
+    },
+    {
+      "id": "ep36-q03",
+      "type": "single_best_answer",
+      "stem": "The guideline's stance on orlistat is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Strongly required"
+        },
+        {
+          "id": "B",
+          "text": "Suggest against"
+        },
+        {
+          "id": "C",
+          "text": "First line in pregnancy"
+        },
+        {
+          "id": "D",
+          "text": "The only pill"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Orlistat is a suggestion against.",
+      "videoTimestamp": "0:51"
+    },
+    {
+      "id": "ep36-q04",
+      "type": "single_best_answer",
+      "stem": "Before feeding an adult at risk of refeeding, give:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Glucose alone"
+        },
+        {
+          "id": "B",
+          "text": "Thiamine 100 mg, also before dextrose-containing intravenous fluid"
+        },
+        {
+          "id": "C",
+          "text": "Orlistat"
+        },
+        {
+          "id": "D",
+          "text": "A 30 mL/kg bolus"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Thiamine comes before calories and before dextrose fluids.",
+      "videoTimestamp": "1:06"
+    },
+    {
+      "id": "ep36-q05",
+      "type": "single_best_answer",
+      "stem": "If starvation, alcohol use, or deficiency signs are present, continue thiamine:",
+      "options": [
+        {
+          "id": "A",
+          "text": "One dose only"
+        },
+        {
+          "id": "B",
+          "text": "100 mg a day for 5 to 7 days"
+        },
+        {
+          "id": "C",
+          "text": "For one hour"
+        },
+        {
+          "id": "D",
+          "text": "Only if the phosphate is high"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "That continuation is for severe starvation, chronic alcoholism, or deficiency signs.",
+      "videoTimestamp": "1:15"
+    },
+    {
+      "id": "ep36-q06",
+      "type": "single_best_answer",
+      "stem": "The first 24 hours of calories in an at-risk adult is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Full goal calories"
+        },
+        {
+          "id": "B",
+          "text": "100 to 150 g of dextrose, or 10 to 20 kcal/kg"
+        },
+        {
+          "id": "C",
+          "text": "Nothing for a week"
+        },
+        {
+          "id": "D",
+          "text": "A surgical referral"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Advance by about a third of the goal every 1 to 2 days.",
+      "videoTimestamp": "1:23"
+    },
+    {
+      "id": "ep36-q07",
+      "type": "single_best_answer",
+      "stem": "If phosphate, potassium, or magnesium are severely low:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Push calories up anyway"
+        },
+        {
+          "id": "B",
+          "text": "Correct them before you increase calories"
+        },
+        {
+          "id": "C",
+          "text": "Ignore them"
+        },
+        {
+          "id": "D",
+          "text": "Start orlistat"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Hold the increase until those severely low values are corrected.",
+      "videoTimestamp": "1:30"
+    },
+    {
+      "id": "ep36-q08",
+      "type": "single_best_answer",
+      "stem": "Refeeding electrolyte drops are counted within:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Five days of restarting calories"
+        },
+        {
+          "id": "B",
+          "text": "Five months"
+        },
+        {
+          "id": "C",
+          "text": "The first ten minutes only"
+        },
+        {
+          "id": "D",
+          "text": "A year"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A fall in phosphorus, potassium, or magnesium within five days is the window.",
+      "videoTimestamp": "1:46"
+    },
+    {
+      "id": "ep36-q09",
+      "type": "single_best_answer",
+      "stem": "A drop of more than 30 percent, or organ dysfunction, is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Mild"
+        },
+        {
+          "id": "B",
+          "text": "Severe"
+        },
+        {
+          "id": "C",
+          "text": "Normal feeding"
+        },
+        {
+          "id": "D",
+          "text": "A reason to double the calories"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "10 to 20 percent is mild, 20 to 30 percent is moderate, and more than 30 percent or organ dysfunction is severe.",
+      "videoTimestamp": "1:53"
+    },
+    {
+      "id": "ep36-q10",
+      "type": "single_best_answer",
+      "stem": "The clinic plan and the hospital plan differ because:",
+      "options": [
+        {
+          "id": "A",
+          "text": "They use the same order"
+        },
+        {
+          "id": "B",
+          "text": "Outpatient obesity treatment adds a medicine after lifestyle fails, and inpatient starvation needs thiamine before dextrose"
+        },
+        {
+          "id": "C",
+          "text": "Both start with dialysis"
+        },
+        {
+          "id": "D",
+          "text": "Neither uses a guideline"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Same word, calories. Different order. This talk does not state a surgery threshold.",
+      "videoTimestamp": "2:11"
+    }
+  ]
+}

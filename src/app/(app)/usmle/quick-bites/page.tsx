@@ -46,6 +46,7 @@ export default async function UsmleQuickBitesPage({
     <QuickBitesPage
       exam="usmle"
       initialVideoStepQuery={stepQuery}
+      includeHeldVideos={!released}
       previewNote={
         released ? undefined : "Staff preview. Students cannot see this. Nothing here is live."
       }
