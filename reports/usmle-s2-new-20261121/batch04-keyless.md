@@ -152,13 +152,13 @@ D. A preference for albuterol alone
 E. Absence of any exacerbation risk
 
 ## S2N-318
-An 8-year-old boy who works as a student is in the emergency department. He is having an asthma exacerbation. Oxygen saturation is 90% on air. Temperature is 37.1°C, pulse is 124/min, respirations are 32/min, and blood pressure is 100/64 mm Hg. He has intercostal retractions. He weighs 26 kg.
+An 8-year-old boy is in the emergency department. He is having an asthma exacerbation. Oxygen saturation is 90% on air. Temperature is 37.1°C, pulse is 124/min, respirations are 32/min, and blood pressure is 100/64 mm Hg. He has intercostal retractions. He weighs 26 kg.
 Which of the following is the most appropriate oxygen saturation target?
-A. Keep saturation at 88% to 90% and give no oxygen
-B. Give oxygen until saturation reaches 99% to 100%
-C. Start oxygen and target 92% to 95%, upper limit 95%
-D. Give no oxygen, because this target does not apply at age 8
-E. Target 94% to 98%, the old range for ages 6 to 11
+A. Give no oxygen and accept 88% to 90%
+B. Start oxygen and target 99% to 100%
+C. Start oxygen and target 92% to 95%
+D. Give no oxygen and recheck in 1 hour
+E. Start oxygen and target 94% to 98%
 
 ## S2N-319
 A 36-year-old woman who works as a lab courier is seen in the primary care clinic to review a blood test ordered at a health fair. She has never noticed genital blisters. The HerpeSelect EIA index is 2.4. No confirmatory method has been run. She delivered 18 specimen bags yesterday and takes no antivirals. She has one partner. Temperature is 36.6°C, pulse is 72/min, respirations are 14/min, and blood pressure is 118/74 mm Hg. The genital examination shows no vesicle. Body mass index is 24 kg/m2.
