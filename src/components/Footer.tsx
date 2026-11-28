@@ -11,6 +11,7 @@ const EXPLORE_LINKS = [
   { href: "/free-practice-questions", label: "Free practice questions" },
   { href: "/daily", label: "Question of the Day" },
   { href: "/crossword", label: "Daily crossword" },
+  { href: "/daily-vitals", label: "Daily Vitals" },
   { href: ROUTES.toolkit, label: "Toolkit" },
   { href: ROUTES.drugs300, label: "Top 500 drugs" },
   { href: ROUTES.anatomy, label: "Anatomy" },

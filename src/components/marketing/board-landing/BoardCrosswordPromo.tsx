@@ -17,7 +17,8 @@ export function BoardCrosswordPromo({ board }: { board: CrosswordBoard }) {
         Play today&apos;s crossword
       </Link>
       <p className="fp-promo__note">
-        {profile.lede} No account required. {CROSSWORD_PRACTICE_NOTE}
+        {profile.lede} No account required. {CROSSWORD_PRACTICE_NOTE}{" "}
+        <Link href="/daily-vitals">Play Daily Vitals</Link>, the free one-word case.
       </p>
     </section>
   );
