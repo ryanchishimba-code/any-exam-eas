@@ -3,7 +3,7 @@
  * component. The word and the why stay here until a guess finishes the case.
  *
  * To add a case, append an object to src/data/daily-vitals/puzzles.json:
- * id, board (nclex | naplex | pance | aanp-fnp), word (5–7 letters),
+ * id, board (nclex | naplex | pance | aanp-fnp), word (5–8 letters),
  * clue, prompt, and a two-sentence explanation.
  * The Chicago date picks puzzles[(days since 2024-01-01 + PUZZLE_SHIFT) % length].
  * Adding items changes that remainder, so check puzzleForDate for dates you

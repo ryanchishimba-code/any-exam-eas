@@ -51,10 +51,20 @@ describe("daily vitals bank", () => {
     const juice = puzzleForDate("2026-11-28", NOW);
     expect(juice?.word).toBe("JUICE");
     expect(juice?.id).toBe("dv-28");
-    expect(juice?.clue).toBe(
-      "A 28-year-old with type 1 diabetes is found pale and clammy. The lunch tray is untouched.",
-    );
-    expect(juice?.prompt).toBe("What do you give first?");
+    expect(juice?.clue).toContain("Glucose is 48 mg/dL. The person is awake and can swallow.");
+    expect(juice?.clue).toContain("pale and clammy");
+    expect(juice?.prompt).toBe("What drink do you give first?");
+    expect(juice?.clue.toUpperCase()).not.toContain("JUICE");
+    for (const puzzle of puzzles) {
+      expect(puzzle.word.length, puzzle.id).toBeGreaterThanOrEqual(5);
+      expect(puzzle.word.length, puzzle.id).toBeLessThanOrEqual(8);
+    }
+    expect(puzzles.find((puzzle) => puzzle.id === "dv-20")?.word).toBe("AIRBORNE");
+    expect(puzzles.find((puzzle) => puzzle.id === "dv-25")?.word).toBe("PADDLES");
+    expect(puzzles.find((puzzle) => puzzle.id === "dv-04")?.prompt).not.toContain("with glucose");
+    expect(puzzles.find((puzzle) => puzzle.id === "dv-22")?.clue.toLowerCase()).not.toContain("diff");
+    expect(puzzles.find((puzzle) => puzzle.id === "dv-06")?.explanation).toContain("94% to 98%");
+    expect(puzzles.find((puzzle) => puzzle.id === "dv-06")?.explanation).toContain("88% to 92%");
     expect(juice?.explanation).toBe(
       "Glucose fell to 48 mg/dL after insulin and a missed meal. Give 4 oz juice, then recheck in 15 minutes.",
     );

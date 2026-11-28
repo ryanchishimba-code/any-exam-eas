@@ -86,6 +86,20 @@ const CLINICAL = [
   "warfarin",
   "wheeze",
   "xanax",
+  "airborne",
+  "cider",
+  "crutch",
+  "isolate",
+  "lanoxin",
+  "monitor",
+  "nadolol",
+  "negative",
+  "paddles",
+  "punch",
+  "sotalol",
+  "standard",
+  "supine",
+  "volume",
 ] as const;
 
 let words: Set<string> | null = null;
@@ -94,10 +108,10 @@ function list(): Set<string> {
   if (words) return words;
   const next = new Set<string>();
   for (const word of english as string[]) {
-    if (/^[a-z]{5,7}$/.test(word)) next.add(word.toUpperCase());
+    if (/^[a-z]{5,8}$/.test(word)) next.add(word.toUpperCase());
   }
   for (const word of CLINICAL) {
-    if (/^[a-z]{5,7}$/.test(word)) next.add(word.toUpperCase());
+    if (/^[a-z]{5,8}$/.test(word)) next.add(word.toUpperCase());
   }
   for (const puzzle of puzzles.puzzles) {
     next.add(puzzle.word.toUpperCase());

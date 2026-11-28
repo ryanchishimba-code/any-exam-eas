@@ -31,7 +31,7 @@
       "board": "nclex",
       "word": "INSULIN",
       "clue": "Potassium is 6.1 mEq/L, the ECG is unchanged, and glucose is 180 mg/dL.",
-      "prompt": "What do you give with glucose to shift potassium?",
+      "prompt": "What do you give to shift potassium?",
       "explanation": "IV regular insulin given with glucose shifts potassium into cells when the ECG is unchanged. Recheck potassium and glucose so the person does not go low."
     },
     {
@@ -40,7 +40,7 @@
       "word": "ASPIRIN",
       "clue": "Crushing chest pain and sweating. There is no drug allergy and no bleeding.",
       "prompt": "What do you have the person chew?",
-      "explanation": "Have the person chew aspirin, 162 to 325 mg, when there is no allergy or active bleeding. Activate the chest-pain response and stay with the person."
+      "explanation": "Have the person chew aspirin, 162 to 325 mg, when there is no allergy or active bleeding, per order or protocol. Activate the chest-pain response and stay with the person."
     },
     {
       "id": "dv-06",
@@ -48,22 +48,22 @@
       "word": "OXYGEN",
       "clue": "The person is short of breath and the saturation is 86% on room air.",
       "prompt": "What do you start?",
-      "explanation": "Give oxygen for a low saturation. For most adults the target is about 92% to 96%, and about 88% to 92% if the person retains carbon dioxide."
+      "explanation": "Give oxygen for a low saturation, per order or protocol. For most adults the target is 94% to 98%, or 88% to 92% if the person retains carbon dioxide."
     },
     {
       "id": "dv-07",
       "board": "nclex",
       "word": "INHALER",
       "clue": "Known asthma, wheezing, and speech in short phrases. Saturation is 94%.",
-      "prompt": "What do you give first?",
-      "explanation": "Give the short-acting bronchodilator inhaler first and sit the person up. A steroid may be added. It is not the first puff."
+      "prompt": "Which device gives the quick-relief medicine first?",
+      "explanation": "Give the short-acting bronchodilator inhaler first and sit the person up, per order or protocol. A steroid may be added. It is not the first puff."
     },
     {
       "id": "dv-08",
       "board": "nclex",
       "word": "FOWLER",
       "clue": "Breathing has suddenly become hard. Oxygen is being started for a low saturation.",
-      "prompt": "What position do you use?",
+      "prompt": "What head-of-bed position?",
       "explanation": "A high Fowler position, sitting upright, eases the work of breathing. Stay with the person while oxygen is started."
     },
     {
@@ -86,8 +86,8 @@
       "id": "dv-11",
       "board": "nclex",
       "word": "DIGOXIN",
-      "clue": "The morning apical pulse is 48 beats per minute, just before the scheduled dose.",
-      "prompt": "What do you hold?",
+      "clue": "The morning apical pulse is 48 beats per minute, just before the scheduled generic cardiac glycoside for heart failure.",
+      "prompt": "What generic medicine do you hold?",
       "explanation": "Hold digoxin when the apical rate is under the hold parameter, often 60 in adults, and notify the prescriber. A low potassium raises the risk, so check it."
     },
     {
@@ -104,14 +104,14 @@
       "word": "HEPARIN",
       "clue": "Platelets were 220,000 and are now 90,000 after 7 days of the infusion.",
       "prompt": "What do you stop?",
-      "explanation": "A sharp platelet drop after several days of heparin can be heparin-induced thrombocytopenia. Stop all heparin, including flushes, and do not switch to low-molecular-weight heparin."
+      "explanation": "A sharp platelet drop after several days of heparin can be heparin-induced thrombocytopenia. Stop all heparin, including flushes, per order or protocol, and do not switch to low-molecular-weight heparin."
     },
     {
       "id": "dv-14",
       "board": "nclex",
       "word": "FLUIDS",
-      "clue": "Fever, blood pressure 82/48, and warm skin. Blood cultures are already drawn.",
-      "prompt": "What do you start?",
+      "clue": "Fever, blood pressure 82/48, and warm skin. Blood cultures are already drawn. Name the therapy, not one solution.",
+      "prompt": "What IV therapy treats the low blood pressure first?",
       "explanation": "Start IV crystalloid for sepsis with low blood pressure, then reassess perfusion. A common first order is about 30 mL/kg, then adjusted to the response."
     },
     {
@@ -127,7 +127,7 @@
       "board": "nclex",
       "word": "CULTURE",
       "clue": "An antibiotic is due and the person is stable. No blood sample has been drawn.",
-      "prompt": "What do you obtain first?",
+      "prompt": "What specimen do you collect before the antibiotic?",
       "explanation": "Draw blood cultures before the antibiotic when that will not meaningfully delay it. If the person is crashing, give the antibiotic and do not wait."
     },
     {
@@ -135,15 +135,15 @@
       "board": "nclex",
       "word": "GAUZE",
       "clue": "Bright red blood is coming steadily from a forearm cut.",
-      "prompt": "What do you press on the wound?",
+      "prompt": "What sterile item do you press on the wound?",
       "explanation": "Apply firm direct pressure with gauze and call for help. If it soaks through, add more gauze on top. Do not lift the first layer to peek."
     },
     {
       "id": "dv-18",
       "board": "nclex",
       "word": "SPLINT",
-      "clue": "An ankle is swollen after a twist and the person cannot bear weight. The foot pulse is present.",
-      "prompt": "What do you apply?",
+      "clue": "An ankle is swollen after a twist and the person cannot bear weight. The foot pulse is present. The ankle looks bent.",
+      "prompt": "What do you apply to the bent ankle?",
       "explanation": "Splint the limb in the position you find it. Check the pulse, color, and feeling before and after. Do not push a bone back into place."
     },
     {
@@ -157,9 +157,9 @@
     {
       "id": "dv-20",
       "board": "nclex",
-      "word": "ISOLATE",
+      "word": "AIRBORNE",
       "clue": "Cough for three weeks, night sweats, and an upper-lobe spot on the chest film.",
-      "prompt": "Which precaution do you start?",
+      "prompt": "Which transmission-based precaution do you start?",
       "explanation": "Start airborne precautions while tuberculosis is evaluated, including a negative-pressure room. Staff use a respirator. The person wears a surgical mask for transport."
     },
     {
@@ -174,7 +174,7 @@
       "id": "dv-22",
       "board": "nclex",
       "word": "CONTACT",
-      "clue": "Watery diarrhea after a recent hospital stay. A C diff test is pending.",
+      "clue": "Repeated watery diarrhea started after a recent hospital stay. Staff need a gown, and soap and water rather than gel.",
       "prompt": "Which precaution do you start?",
       "explanation": "Use contact precautions for suspected C diff. Wash hands with soap and water. Alcohol gel does not remove the spores."
     },
@@ -197,17 +197,17 @@
     {
       "id": "dv-25",
       "board": "nclex",
-      "word": "DEFIB",
-      "clue": "An adult has collapsed, has no pulse, and is not breathing. The crash cart is arriving.",
-      "prompt": "What do you attach as soon as it is there?",
-      "explanation": "Start chest compressions immediately. Attach the defibrillator as soon as it arrives so a shockable rhythm can be treated."
+      "word": "PADDLES",
+      "clue": "An adult has collapsed, has no pulse, and is not breathing. The crash cart is arriving. Attach the part that delivers the shock, not the screen.",
+      "prompt": "What device do you attach as soon as it arrives?",
+      "explanation": "Start chest compressions immediately. Attach the paddles as soon as the defibrillator arrives so a shockable rhythm can be treated."
     },
     {
       "id": "dv-26",
       "board": "nclex",
       "word": "COVER",
       "clue": "A surgical wound has opened and bowel is visible.",
-      "prompt": "What do you place over it?",
+      "prompt": "What do you do first to the exposed bowel?",
       "explanation": "Cover the bowel with sterile gauze moistened with saline and call the surgeon. Do not push the bowel back in, and keep the person from eating or drinking."
     },
     {
@@ -222,8 +222,8 @@
       "id": "dv-28",
       "board": "nclex",
       "word": "JUICE",
-      "clue": "A 28-year-old with type 1 diabetes is found pale and clammy. The lunch tray is untouched.",
-      "prompt": "What do you give first?",
+      "clue": "A 28-year-old with type 1 diabetes is found pale and clammy. The lunch tray is untouched. Glucose is 48 mg/dL. The person is awake and can swallow. Use the 4 oz fruit drink, not water, milk, soda, cider, or punch.",
+      "prompt": "What drink do you give first?",
       "explanation": "Glucose fell to 48 mg/dL after insulin and a missed meal. Give 4 oz juice, then recheck in 15 minutes."
     },
     {

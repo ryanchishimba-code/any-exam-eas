@@ -6,7 +6,7 @@ const BANNED = /\b(uworld|archer|kaplan|hurst|picmonic|rxprep)\b/i;
 export function validatePuzzle(puzzle: DailyVitalsPuzzle): string[] {
   const issues: string[] = [];
   if (!isDailyVitalsBoard(puzzle.board)) issues.push("board");
-  if (!/^[A-Z]{5,7}$/.test(puzzle.word)) issues.push("word");
+  if (!/^[A-Z]{5,8}$/.test(puzzle.word)) issues.push("word");
   if (puzzle.clue.trim().length < 20) issues.push("clue");
   if (puzzle.prompt.trim().length < 8) issues.push("prompt");
   const sentences = puzzle.explanation.split(/(?<=[.])\s+/).filter(Boolean);
