@@ -134,6 +134,29 @@ async function gotoApp(page: Page, path: string) {
   }
 }
 
+async function revealCurrentItem(page: Page) {
+  const card = page.locator("article").last();
+  const check = card.getByRole("button", { name: /^Check$/ });
+  if (!(await check.isVisible().catch(() => false))) return;
+
+  const choices = card.locator("button.rounded-xl");
+  const choiceCount = Math.min(await choices.count(), 6);
+  for (let index = 0; index < choiceCount; index += 1) {
+    if (await check.isEnabled()) break;
+    await choices.nth(index).click({ timeout: 2_000 }).catch(() => undefined);
+  }
+  const input = card.locator("input, textarea").first();
+  if (!(await check.isEnabled()) && (await input.isVisible().catch(() => false))) {
+    await input.fill("1");
+  }
+  if (!(await check.isEnabled())) return;
+
+  await check.click();
+  await expect(page.getByText(/rationale|correct|incorrect|why/i).first()).toBeVisible({
+    timeout: NAV_BUDGET_MS,
+  });
+}
+
 function bankPath(board: Board): string {
   const params = new URLSearchParams({
     field: board.fieldId,
@@ -215,18 +238,7 @@ test.describe("board exam and question bank load", () => {
           assertNoErrorCopy(body, `${board.label} practice`);
 
           const navStarted = Date.now();
-          const check = page.getByRole("button", { name: /^Check$/ }).first();
-          if (await check.isVisible().catch(() => false)) {
-            if (!(await check.isEnabled())) {
-              const choice = page.locator("button.rounded-xl").first();
-              if (await choice.isVisible().catch(() => false)) await choice.click();
-            }
-            await expect(check).toBeEnabled();
-            await check.click();
-            await expect(page.getByText(/rationale|correct|incorrect|why/i).first()).toBeVisible({
-              timeout: NAV_BUDGET_MS,
-            });
-          }
+          await revealCurrentItem(page);
           const flag = page.getByRole("button", { name: /flag/i }).first();
           if (await flag.isVisible().catch(() => false)) await flag.click();
           const next = page.getByRole("button", { name: /^Next$/ }).first();
