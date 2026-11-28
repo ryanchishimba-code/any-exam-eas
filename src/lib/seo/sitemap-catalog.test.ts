@@ -203,6 +203,13 @@ describe("sitemap catalog", () => {
     expect(robots().sitemap).toBe("https://www.anyexameasy.com/sitemap.xml");
     expect(robots().host).toBe("https://www.anyexameasy.com");
   });
+
+  it("serves the study-guide sitemap at the .xml URL the index advertises", async () => {
+    const { generateStaticParams } = await import("@/app/sitemap/[id]/route");
+    const params = generateStaticParams().map((item) => item.id);
+    expect(params).toContain("study-guides");
+    expect(params).toContain("study-guides.xml");
+  });
 });
 
 describe("llms.txt and IndexNow key", () => {

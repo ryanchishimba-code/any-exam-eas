@@ -6,7 +6,7 @@ export const revalidate = 3600;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return SITEMAP_IDS.map((id) => ({ id }));
+  return SITEMAP_IDS.flatMap((id) => [{ id }, { id: `${id}.xml` }]);
 }
 
 export async function GET(
