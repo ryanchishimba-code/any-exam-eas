@@ -154,8 +154,8 @@ test.describe("board exam and question bank load", () => {
     baseURL,
   }) => {
     test.setTimeout(18 * 60 * 1000);
+    test.skip(!PASSWORD, "SMOKE_STUDENT_PASSWORD is set only for the signed-in smoke job");
     if (!baseURL) throw new Error("PLAYWRIGHT_BASE_URL is required");
-    if (!PASSWORD) throw new Error("SMOKE_STUDENT_PASSWORD is required");
     const origin = new URL(baseURL).origin;
     const consoleErrors: string[] = [];
     page.on("console", (message) => {
