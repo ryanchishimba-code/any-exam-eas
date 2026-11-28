@@ -12,8 +12,11 @@ import { drawShareCard, shareCardSize, type ShareCardInput } from "@/lib/daily-v
 import {
   chooseShareAttempt,
   invokeShare,
+  LINK_COPIED_NOTE,
+  pngDataUrlToBlob,
   pngFileFromDataUrl,
   shareWasCancelled,
+  startLinkCopy,
 } from "@/lib/daily-vitals/share-action";
 import { DAILY_VITALS_SHARE_URL } from "@/lib/daily-vitals/schedule";
 import { dailyVitalsShareText } from "@/lib/daily-vitals/share-text";
@@ -46,7 +49,6 @@ export function DailyVitalsPlayer({
   const [explanation, setExplanation] = useState<string | undefined>();
   const [solved, setSolved] = useState(false);
   const [images, setImages] = useState<{ story: string; square: string } | null>(null);
-  const [copied, setCopied] = useState(false);
   const [toast, setToast] = useState("");
   const [shareReady, setShareReady] = useState(false);
   const prepared = useRef<{ square: string; story: string; file: File | null }>({
@@ -249,47 +251,67 @@ export function DailyVitalsPlayer({
     };
   }, [drawCard, phase, puzzle.date]);
 
-  async function copyShareText() {
-    try {
-      await navigator.clipboard.writeText(shareText);
-      setCopied(true);
-      setToast("Copied");
-    } catch {
-      setCopied(false);
-      setToast("Select the share text and copy it.");
+  function presentImage(dataUrl: string, filename: string) {
+    if (!dataUrl) return;
+    const blob = pngDataUrlToBlob(dataUrl);
+    let href = dataUrl;
+    if (blob && typeof URL.createObjectURL === "function") {
+      try {
+        href = URL.createObjectURL(blob);
+      } catch {
+        href = dataUrl;
+      }
     }
+    const link = document.createElement("a");
+    link.href = href;
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    if (ios) {
+      link.target = "_blank";
+      link.rel = "noopener";
+    } else {
+      link.download = filename;
+    }
+    link.click();
+    if (href !== dataUrl) window.setTimeout(() => URL.revokeObjectURL(href), 60_000);
   }
 
   async function onShare() {
     const ready = prepared.current;
     const attempt = chooseShareAttempt({
-      text: shareText,
-      url: DAILY_VITALS_SHARE_URL,
       file: ready.file,
+      link: DAILY_VITALS_SHARE_URL,
       hasShare: typeof navigator.share === "function",
       canShare:
         typeof navigator.canShare === "function"
           ? (data) => navigator.canShare(data)
           : undefined,
     });
-    // Call the sheet before any await. iOS Safari drops it once the tap has yielded.
+    // Share and the link copy both start before any await. iOS drops the sheet after a yield.
     let pending: Promise<void> | null = null;
     try {
       pending = invokeShare(attempt, navigator.share?.bind(navigator));
     } catch (error) {
       pending = Promise.reject(error);
     }
-    setCopied(false);
-    setToast("");
-    if (!pending) {
-      await copyShareText();
-    } else {
+    const copyPromise = startLinkCopy(DAILY_VITALS_SHARE_URL, navigator.clipboard?.writeText?.bind(navigator.clipboard));
+    if (attempt.mode === "save") presentImage(ready.square, `daily-vitals-${puzzle.date}.png`);
+    let copied = false;
+    if (copyPromise) {
+      try {
+        await copyPromise;
+        copied = true;
+      } catch {
+        copied = false;
+      }
+    }
+    if (pending) {
       try {
         await pending;
       } catch (error) {
-        if (!shareWasCancelled(error)) await copyShareText();
+        if (!shareWasCancelled(error)) presentImage(ready.square, `daily-vitals-${puzzle.date}.png`);
       }
     }
+    setToast(copied ? LINK_COPIED_NOTE : "");
     let square = ready.square;
     let story = ready.story;
     if (!square && !story) {
@@ -306,10 +328,7 @@ export function DailyVitalsPlayer({
   }
 
   function download(dataUrl: string, name: string) {
-    const link = document.createElement("a");
-    link.href = dataUrl;
-    link.download = name;
-    link.click();
+    presentImage(dataUrl, name);
   }
 
   const keyState = (letter: string): TileMark | undefined => {
@@ -509,9 +528,6 @@ export function DailyVitalsPlayer({
               {shareReady ? (
                 <div className="dv-share">
                   <div className="dv-share-actions">
-                    <button type="button" className="dv-btn-secondary" onClick={() => void copyShareText()}>
-                      {copied ? "Copied" : "Copy text"}
-                    </button>
                     {images?.story ? (
                       <button
                         type="button"
