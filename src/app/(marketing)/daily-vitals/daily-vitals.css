@@ -489,6 +489,17 @@
 .dv-key.present { background: var(--dv-gold); color: var(--dv-navy); }
 .dv-key.absent { background: #1a2740; color: #6d7d99; }
 
+.dv-toast {
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--dv-teal);
+  color: var(--dv-navy);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
 .dv-share {
   margin-top: 12px;
   display: grid;

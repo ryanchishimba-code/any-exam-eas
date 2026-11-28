@@ -9,6 +9,13 @@ import {
   type DaySave,
 } from "@/lib/daily-vitals/browser-store";
 import { drawShareCard, shareCardSize, type ShareCardInput } from "@/lib/daily-vitals/share-card";
+import {
+  chooseShareAttempt,
+  invokeShare,
+  pngFileFromDataUrl,
+  shareWasCancelled,
+} from "@/lib/daily-vitals/share-action";
+import { DAILY_VITALS_SHARE_URL } from "@/lib/daily-vitals/schedule";
 import { dailyVitalsShareText } from "@/lib/daily-vitals/share-text";
 import { nextStreak, STREAK_RULE, visibleStreak } from "@/lib/daily-vitals/streak";
 import type { PublicDailyVitals, TileMark } from "@/lib/daily-vitals/types";
@@ -40,6 +47,13 @@ export function DailyVitalsPlayer({
   const [solved, setSolved] = useState(false);
   const [images, setImages] = useState<{ story: string; square: string } | null>(null);
   const [copied, setCopied] = useState(false);
+  const [toast, setToast] = useState("");
+  const [shareReady, setShareReady] = useState(false);
+  const prepared = useRef<{ square: string; story: string; file: File | null }>({
+    square: "",
+    story: "",
+    file: null,
+  });
 
   useEffect(() => {
     const store = loadDailyVitalsStore();
@@ -196,32 +210,99 @@ export function DailyVitalsPlayer({
     streak,
   });
 
-  async function makeShare() {
-    const fontFamily = getComputedStyle(document.body).fontFamily || "Inter, Arial, sans-serif";
-    const base: Omit<ShareCardInput, "format"> = {
-      boardLabel: puzzle.boardLabel,
-      dayNumber: puzzle.dayNumber,
-      streak,
-      solved,
-      guessesUsed: solved ? guesses.length : DAILY_VITALS_TRIES,
-      marks,
-      clue: puzzle.clue,
-      legalLines: puzzle.legalLines,
-      fontFamily,
-    };
-    const urls = { story: "", square: "" };
-    for (const format of ["story", "square"] as const) {
+  const drawCard = useCallback((format: ShareCardInput["format"]): string => {
+    try {
+      const fontFamily = getComputedStyle(document.body).fontFamily || "Inter, Arial, sans-serif";
       const { width, height } = shareCardSize(format);
       const canvas = document.createElement("canvas");
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext("2d");
-      if (!ctx) continue;
-      drawShareCard(ctx, { ...base, format });
-      urls[format] = canvas.toDataURL("image/png");
+      if (!ctx) return "";
+      drawShareCard(ctx, {
+        format,
+        boardLabel: puzzle.boardLabel,
+        dayNumber: puzzle.dayNumber,
+        streak,
+        solved,
+        guessesUsed: solved ? guesses.length : DAILY_VITALS_TRIES,
+        marks,
+        clue: puzzle.clue,
+        legalLines: puzzle.legalLines,
+        fontFamily,
+      });
+      const url = canvas.toDataURL("image/png");
+      return url.startsWith("data:image/png") ? url : "";
+    } catch {
+      return "";
     }
-    setImages(urls);
+  }, [guesses.length, marks, puzzle, solved, streak]);
+
+  useEffect(() => {
+    if (phase !== "end") return;
+    const square = drawCard("square");
+    const story = drawCard("story");
+    prepared.current = {
+      square,
+      story,
+      file: square ? pngFileFromDataUrl(square, `daily-vitals-${puzzle.date}.png`) : null,
+    };
+  }, [drawCard, phase, puzzle.date]);
+
+  async function copyShareText() {
+    try {
+      await navigator.clipboard.writeText(shareText);
+      setCopied(true);
+      setToast("Copied");
+    } catch {
+      setCopied(false);
+      setToast("Select the share text and copy it.");
+    }
+  }
+
+  async function onShare() {
+    const ready = prepared.current;
+    const attempt = chooseShareAttempt({
+      text: shareText,
+      url: DAILY_VITALS_SHARE_URL,
+      file: ready.file,
+      hasShare: typeof navigator.share === "function",
+      canShare:
+        typeof navigator.canShare === "function"
+          ? (data) => navigator.canShare(data)
+          : undefined,
+    });
+    // Call the sheet before any await. iOS Safari drops it once the tap has yielded.
+    let pending: Promise<void> | null = null;
+    try {
+      pending = invokeShare(attempt, navigator.share?.bind(navigator));
+    } catch (error) {
+      pending = Promise.reject(error);
+    }
     setCopied(false);
+    setToast("");
+    if (!pending) {
+      await copyShareText();
+    } else {
+      try {
+        await pending;
+      } catch (error) {
+        if (!shareWasCancelled(error)) await copyShareText();
+      }
+    }
+    let square = ready.square;
+    let story = ready.story;
+    if (!square && !story) {
+      square = drawCard("square");
+      story = drawCard("story");
+      prepared.current = {
+        square,
+        story,
+        file: square ? pngFileFromDataUrl(square, `daily-vitals-${puzzle.date}.png`) : null,
+      };
+    }
+    if (square || story) setImages({ square, story });
+    setShareReady(true);
   }
 
   function download(dataUrl: string, name: string) {
@@ -229,16 +310,6 @@ export function DailyVitalsPlayer({
     link.href = dataUrl;
     link.download = name;
     link.click();
-  }
-
-  async function copyText() {
-    try {
-      await navigator.clipboard.writeText(shareText);
-      setCopied(true);
-    } catch {
-      setCopied(false);
-      setNote("Select the share text and copy it.");
-    }
   }
 
   const keyState = (letter: string): TileMark | undefined => {
@@ -427,36 +498,49 @@ export function DailyVitalsPlayer({
               <p className="dv-fine">
                 <Link href={puzzle.trialHref}>{puzzle.trialNote}</Link>
               </p>
-              <button type="button" className="dv-btn-secondary" onClick={() => void makeShare()}>
+              <button type="button" className="dv-btn-secondary" onClick={() => void onShare()}>
                 Share
               </button>
-              {images ? (
+              {toast ? (
+                <p className="dv-toast" role="status">
+                  {toast}
+                </p>
+              ) : null}
+              {shareReady ? (
                 <div className="dv-share">
-                  {/* Data URLs drawn on this device. next/image does not optimize them. */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={images.story} alt="Story share card, 1080 by 1920. Pattern only, no answer." />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={images.square} alt="Square share card, 1080 by 1080. Pattern only, no answer." />
-                  <p className="dv-share-text">{shareText}</p>
                   <div className="dv-share-actions">
-                    <button type="button" className="dv-btn-secondary" onClick={() => void copyText()}>
+                    <button type="button" className="dv-btn-secondary" onClick={() => void copyShareText()}>
                       {copied ? "Copied" : "Copy text"}
                     </button>
-                    <button
-                      type="button"
-                      className="dv-btn-secondary"
-                      onClick={() => download(images.story, `daily-vitals-${puzzle.date}-story.png`)}
-                    >
-                      Save story
-                    </button>
-                    <button
-                      type="button"
-                      className="dv-btn-secondary"
-                      onClick={() => download(images.square, `daily-vitals-${puzzle.date}-square.png`)}
-                    >
-                      Save square
-                    </button>
+                    {images?.story ? (
+                      <button
+                        type="button"
+                        className="dv-btn-secondary"
+                        onClick={() => download(images.story, `daily-vitals-${puzzle.date}-story.png`)}
+                      >
+                        Save story
+                      </button>
+                    ) : null}
+                    {images?.square ? (
+                      <button
+                        type="button"
+                        className="dv-btn-secondary"
+                        onClick={() => download(images.square, `daily-vitals-${puzzle.date}-square.png`)}
+                      >
+                        Save square
+                      </button>
+                    ) : null}
                   </div>
+                  <p className="dv-share-text">{shareText}</p>
+                  {/* Data URLs drawn on this device. next/image does not optimize them. */}
+                  {images?.square ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={images.square} alt="Square share card, 1080 by 1080. Pattern only, no answer." />
+                  ) : null}
+                  {images?.story ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={images.story} alt="Story share card, 1080 by 1920. Pattern only, no answer." />
+                  ) : null}
                 </div>
               ) : null}
               <p className="dv-device">{STREAK_RULE}</p>
