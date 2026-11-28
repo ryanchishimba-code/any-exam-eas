@@ -1,49 +1,37 @@
-import { DAILY_VITALS_SHARE_URL } from "@/lib/daily-vitals/schedule";
-
-/** The payload passed to navigator.share. Files are included only when the device accepts them. */
+/** Image share payload. The link lives in `text` so a target can make it tappable. No title and no url field: those are dropped, or they replace the caption, when a file is attached. */
 export type DailyVitalsShareData = {
+  files: File[];
   text?: string;
-  url?: string;
-  files?: File[];
 };
 
 export type DailyVitalsShareAttempt =
   | { mode: "share"; data: DailyVitalsShareData }
-  | { mode: "clipboard" };
+  | { mode: "save" };
 
-function withLink(text: string, url: string): string {
-  return text.includes(url) ? text : `${text}\n${url}`;
-}
+export const LINK_COPIED_NOTE = "Link copied, paste it with your image";
 
 /**
- * Pick a share payload without waiting. The caller must hand it to navigator.share
- * in the same tap, before any await, or iOS Safari drops the share sheet.
- * The text always includes the game URL. A file is attached only when canShare accepts that exact payload.
+ * Share the result image with the link in the text field.
+ * The caller must pass this to navigator.share in the same tap, before any await.
+ * When the device will not accept the file, save the image instead of sending text alone.
  */
 export function chooseShareAttempt(input: {
-  text: string;
-  url?: string;
   file?: File | null;
+  link: string;
   hasShare: boolean;
   canShare?: (data: DailyVitalsShareData) => boolean;
 }): DailyVitalsShareAttempt {
-  const url = input.url || DAILY_VITALS_SHARE_URL;
-  const text = withLink(input.text, url);
-  if (!input.hasShare) return { mode: "clipboard" };
-
   const file = input.file ?? null;
-  if (file && input.canShare?.({ files: [file], text })) {
-    return { mode: "share", data: { files: [file], text } };
+  if (!file || !input.hasShare) return { mode: "save" };
+
+  const withLink: DailyVitalsShareData = { files: [file], text: input.link };
+  if (!input.canShare || input.canShare(withLink)) {
+    return { mode: "share", data: withLink };
   }
 
-  const withUrl: DailyVitalsShareData = { text, url };
-  if (!input.canShare || input.canShare(withUrl)) {
-    return { mode: "share", data: withUrl };
-  }
-
-  const textOnly: DailyVitalsShareData = { text };
-  if (input.canShare(textOnly)) return { mode: "share", data: textOnly };
-  return { mode: "clipboard" };
+  const imageOnly: DailyVitalsShareData = { files: [file] };
+  if (input.canShare(imageOnly)) return { mode: "share", data: imageOnly };
+  return { mode: "save" };
 }
 
 /** Starts the share sheet now. Returns the promise without awaiting it. */
@@ -53,6 +41,19 @@ export function invokeShare(
 ): Promise<void> | null {
   if (attempt.mode !== "share" || typeof share !== "function") return null;
   return share(attempt.data);
+}
+
+/** Starts copying the bare link. Call it in the tap, without awaiting, before the share sheet returns. */
+export function startLinkCopy(
+  link: string,
+  writeText: ((value: string) => Promise<void>) | undefined,
+): Promise<void> | null {
+  if (typeof writeText !== "function") return null;
+  try {
+    return writeText(link);
+  } catch {
+    return null;
+  }
 }
 
 export function shareWasCancelled(error: unknown): boolean {

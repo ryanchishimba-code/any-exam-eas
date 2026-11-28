@@ -3,7 +3,11 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { DailyVitalsPlayer } from "@/components/daily-vitals/DailyVitalsPlayer";
 import { DAILY_VITALS_STORE_KEY } from "@/lib/daily-vitals/browser-store";
 import { DAILY_VITALS_SHARE_URL } from "@/lib/daily-vitals/schedule";
+import { LINK_COPIED_NOTE } from "@/lib/daily-vitals/share-action";
 import type { PublicDailyVitals } from "@/lib/daily-vitals/types";
+
+const PNG =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==";
 
 const puzzle: PublicDailyVitals = {
   id: "dv-share",
@@ -47,99 +51,110 @@ function renderFinished(status: "won" | "lost") {
   return screen.findByRole("button", { name: "Share" });
 }
 
+function mockCard() {
+  const gradient = { addColorStop() {} };
+  const context = new Proxy(
+    {},
+    {
+      get(_target, prop) {
+        if (prop === "createRadialGradient" || prop === "createLinearGradient") return () => gradient;
+        if (prop === "measureText") return () => ({ width: 12 });
+        return () => undefined;
+      },
+      set() {
+        return true;
+      },
+    },
+  );
+  vi.stubGlobal(
+    "Path2D",
+    class Path2D {
+      constructor(_path?: string) {}
+    },
+  );
+  const getContext = vi
+    .spyOn(HTMLCanvasElement.prototype, "getContext")
+    .mockReturnValue(context as unknown as CanvasRenderingContext2D);
+  const dataUrl = vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(PNG);
+  return () => {
+    dataUrl.mockRestore();
+    getContext.mockRestore();
+  };
+}
+
 afterEach(() => {
   localStorage.clear();
   vi.unstubAllGlobals();
   Reflect.deleteProperty(navigator, "share");
   Reflect.deleteProperty(navigator, "canShare");
+  Reflect.deleteProperty(navigator, "clipboard");
 });
 
 describe("Daily Vitals share button", () => {
-  it("opens the share sheet from the tap with the result text and link", async () => {
+  it("shares the image and the link together, and copies the link in the same tap", async () => {
+    const restore = mockCard();
     const share = vi.fn(() => Promise.resolve());
+    const writeText = vi.fn(() => Promise.resolve());
     Object.defineProperty(navigator, "share", { configurable: true, value: share });
     Object.defineProperty(navigator, "canShare", {
       configurable: true,
-      value: (data: { files?: File[] }) => !data.files,
+      value: (data: { files?: File[]; text?: string }) => Boolean(data.files?.length),
     });
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText } });
     await renderFinished("won");
     fireEvent.click(screen.getByRole("button", { name: "Share" }));
     expect(share).toHaveBeenCalledTimes(1);
-    const payload = share.mock.calls[0]?.[0] as { text?: string; url?: string; files?: File[] };
-    expect(payload.text).toContain("Saved in 1/6");
-    expect(payload.text).toContain(DAILY_VITALS_SHARE_URL);
-    expect(payload.url).toBe(DAILY_VITALS_SHARE_URL);
-    expect(payload.files).toBeUndefined();
-    expect(screen.queryByRole("status")).not.toHaveTextContent("Copied");
+    expect(writeText).toHaveBeenCalledTimes(1);
+    expect(writeText).toHaveBeenCalledWith(DAILY_VITALS_SHARE_URL);
+    const payload = share.mock.calls[0]?.[0] as { files?: File[]; text?: string; url?: string; title?: string };
+    expect(payload.files?.[0]?.type).toBe("image/png");
+    expect(payload.text).toBe(DAILY_VITALS_SHARE_URL);
+    expect(payload.url).toBeUndefined();
+    expect(payload.title).toBeUndefined();
+    expect(await screen.findByText(LINK_COPIED_NOTE)).toBeVisible();
+    expect(screen.queryByRole("button", { name: "Copy text" })).not.toBeInTheDocument();
+    expect(screen.queryByText("Copied")).not.toBeInTheDocument();
+    restore();
   });
 
-  it("attaches the result image when the device can share files", async () => {
+  it("saves the image and copies the link when the device cannot share files", async () => {
+    const restore = mockCard();
     const share = vi.fn(() => Promise.resolve());
-    Object.defineProperty(navigator, "share", { configurable: true, value: share });
-    Object.defineProperty(navigator, "canShare", { configurable: true, value: () => true });
-    const gradient = { addColorStop() {} };
-    const context = new Proxy(
-      {},
-      {
-        get(_target, prop) {
-          if (prop === "createRadialGradient" || prop === "createLinearGradient") return () => gradient;
-          if (prop === "measureText") return () => ({ width: 12 });
-          return () => undefined;
-        },
-        set() {
-          return true;
-        },
-      },
-    );
-    vi.stubGlobal("Path2D", class Path2D {
-      constructor(_path?: string) {}
+    const writeText = vi.fn(() => Promise.resolve());
+    const clicks: HTMLAnchorElement[] = [];
+    const click = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(function (this: HTMLAnchorElement) {
+      clicks.push(this);
     });
-    const getContext = vi
-      .spyOn(HTMLCanvasElement.prototype, "getContext")
-      .mockReturnValue(context as unknown as CanvasRenderingContext2D);
-    const dataUrl = vi
-      .spyOn(HTMLCanvasElement.prototype, "toDataURL")
-      .mockReturnValue(
-        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==",
-      );
+    Object.defineProperty(navigator, "share", { configurable: true, value: share });
+    Object.defineProperty(navigator, "canShare", { configurable: true, value: () => false });
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText } });
     await renderFinished("lost");
     fireEvent.click(screen.getByRole("button", { name: "Share" }));
-    expect(share).toHaveBeenCalledTimes(1);
-    const payload = share.mock.calls[0]?.[0] as { text?: string; files?: File[] };
-    expect(payload.files?.[0]?.type).toBe("image/png");
-    expect(payload.text).toContain("Missed in 6/6");
-    expect(payload.text).toContain(DAILY_VITALS_SHARE_URL);
-    expect(await screen.findByRole("button", { name: "Save square" })).toBeVisible();
-    dataUrl.mockRestore();
-    getContext.mockRestore();
+    expect(share).not.toHaveBeenCalled();
+    expect(writeText).toHaveBeenCalledWith(DAILY_VITALS_SHARE_URL);
+    expect(clicks.some((anchor) => anchor.download.includes("daily-vitals-"))).toBe(true);
+    expect(await screen.findByText(LINK_COPIED_NOTE)).toBeVisible();
+    click.mockRestore();
+    restore();
   });
 
-  it("copies the text and shows Copied when the device has no share sheet", async () => {
+  it("keeps the copied link when the share sheet is closed", async () => {
+    const restore = mockCard();
     const writeText = vi.fn(() => Promise.resolve());
-    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText } });
-    await renderFinished("won");
-    fireEvent.click(screen.getByRole("button", { name: "Share" }));
-    expect(writeText).toHaveBeenCalledTimes(1);
-    expect(writeText.mock.calls[0]?.[0]).toContain(DAILY_VITALS_SHARE_URL);
-    expect(await screen.findByText("Copied", { selector: ".dv-toast" })).toBeVisible();
-    expect(screen.getByText(new RegExp(DAILY_VITALS_SHARE_URL.replace(/[./]/g, "\\$&")))).toBeVisible();
-  });
-
-  it("does not copy when the person closes the share sheet", async () => {
-    const writeText = vi.fn(() => Promise.resolve());
-    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText } });
     Object.defineProperty(navigator, "share", {
       configurable: true,
       value: vi.fn(() => Promise.reject(Object.assign(new Error("cancel"), { name: "AbortError" }))),
     });
     Object.defineProperty(navigator, "canShare", {
       configurable: true,
-      value: (data: { files?: File[] }) => !data.files,
+      value: (data: { files?: File[]; text?: string }) => Boolean(data.files?.length && data.text),
     });
-    await renderFinished("lost");
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText } });
+    await renderFinished("won");
     fireEvent.click(screen.getByRole("button", { name: "Share" }));
-    await screen.findByText(/Can you beat me/);
-    expect(writeText).not.toHaveBeenCalled();
-    expect(screen.queryByText("Copied")).not.toBeInTheDocument();
+    expect(writeText).toHaveBeenCalledWith(DAILY_VITALS_SHARE_URL);
+    expect(await screen.findByText(LINK_COPIED_NOTE)).toBeVisible();
+    expect(await screen.findByRole("button", { name: "Save square" })).toBeVisible();
+    restore();
   });
 });
