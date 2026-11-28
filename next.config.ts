@@ -73,6 +73,31 @@ const nextConfig: NextConfig = {
   ...(devDeploymentId ? { deploymentId: devDeploymentId } : {}),
   poweredByHeader: false,
   // Quiz JSON is read from disk at request time so a reviewed file can be swapped in.
+  outputFileTracingExcludes: Object.fromEntries(
+    [
+      "/nclex-study-guide",
+      "/naplex-study-guide",
+      "/pance-study-guide",
+      "/aanp-fnp-study-guide",
+      "/npte-pt-study-guide",
+      "/usmle-study-guide",
+      "/usmle-study-guide/[step]",
+    ].map((route) => [
+      route,
+      [
+        ".git/**",
+        "node_modules/@prisma/**",
+        "node_modules/prisma/**",
+        "node_modules/@next/swc-linux-x64-gnu/**",
+        "node_modules/@next/swc-linux-x64-musl/**",
+        "node_modules/typescript/**",
+        "node_modules/three/**",
+        "node_modules/three-stdlib/**",
+        "node_modules/@img/**",
+        "node_modules/lucide-react/**",
+      ],
+    ])
+  ),
   outputFileTracingIncludes: {
     "/api/quick-bites/[slug]/quiz": ["./src/lib/quick-bites/quizzes/**/*"],
     "/api/quick-bites-pharmacy/[slug]/quiz": ["./src/lib/quick-bites/quizzes-pharmacy/**/*"],

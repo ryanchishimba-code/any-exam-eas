@@ -132,11 +132,49 @@ function renderMarkdown(markdown: string, visualsPrefix: string, visualsDir: str
   });
 }
 
+/** Literal paths so the file tracer keeps each function off the rest of the repo. */
+function guideContentDirs(id: PublicStudyGuideId): string[] {
+  switch (id) {
+    case "nclex":
+      return [path.join(process.cwd(), "content/nclex-study-guide")];
+    case "naplex":
+      return [path.join(process.cwd(), "content/naplex-study-guide")];
+    case "pance":
+      return [path.join(process.cwd(), "content/pance-study-guide")];
+    case "aanp-fnp":
+      return [path.join(process.cwd(), "content/aanp-fnp-study-guide")];
+    case "usmle":
+      return [
+        path.join(process.cwd(), "content/usmle-study-guide/step-1"),
+        path.join(process.cwd(), "content/usmle-study-guide/step-2-ck"),
+        path.join(process.cwd(), "content/usmle-study-guide/step-3"),
+      ];
+    case "npte-pt":
+      return [];
+  }
+}
+
+function guideVisualsDir(id: PublicStudyGuideId): string | null {
+  switch (id) {
+    case "nclex":
+      return path.join(process.cwd(), "public/nclex-study-guide/visuals");
+    case "naplex":
+      return path.join(process.cwd(), "public/naplex-study-guide/visuals");
+    case "pance":
+      return path.join(process.cwd(), "public/pance-study-guide/visuals");
+    case "aanp-fnp":
+      return path.join(process.cwd(), "public/aanp-fnp-study-guide/visuals");
+    case "usmle":
+      return path.join(process.cwd(), "public/usmle-study-guide/visuals");
+    case "npte-pt":
+      return null;
+  }
+}
+
 function loadDirectories(guide: PublicStudyGuide): { markdown: string; faqMarkdown: string } {
   const parts: string[] = [];
   const faqParts: string[] = [];
-  for (const relative of guide.contentDirs) {
-    const dir = path.join(process.cwd(), relative);
+  for (const dir of guideContentDirs(guide.id)) {
     const files = chapterFiles(dir, guide.filePrefixes);
     for (const name of files) {
       const markdown = readFileSync(path.join(dir, name), "utf8");
@@ -199,9 +237,7 @@ No. This page is public. A 5-day free trial, with no card required, opens the qu
 
 export function loadPublicStudyGuide(id: PublicStudyGuideId): LoadedPublicGuide {
   const guide = PUBLIC_STUDY_GUIDES[id];
-  const visualsDir = guide.contentDirs[0]
-    ? path.join(process.cwd(), "public", guide.visualsPublicPrefix.replace(/^\//, ""))
-    : null;
+  const visualsDir = guideVisualsDir(id);
   const source = guide.contentDirs.length
     ? loadDirectories(guide)
     : { markdown: npteMarkdown(), faqMarkdown: npteMarkdown() };
@@ -221,11 +257,19 @@ export function loadUsmleStepGuide(stepId: string): LoadedPublicGuide | null {
   const step = USMLE_PUBLIC_STEPS.find((item) => item.id === stepId);
   if (!step) return null;
   const parent = PUBLIC_STUDY_GUIDES.usmle;
-  const dir = path.join(process.cwd(), step.contentDir);
+  const dir =
+    stepId === "step-1"
+      ? path.join(process.cwd(), "content/usmle-study-guide/step-1")
+      : stepId === "step-2-ck"
+        ? path.join(process.cwd(), "content/usmle-study-guide/step-2-ck")
+        : stepId === "step-3"
+          ? path.join(process.cwd(), "content/usmle-study-guide/step-3")
+          : null;
+  if (!dir) return null;
   const files = chapterFiles(dir);
   const parts = files.map((name) => readFileSync(path.join(dir, name), "utf8"));
   const faqMarkdown = parts.find((_, index) => files[index]?.includes("faq")) ?? parts.join("\n\n");
-  const visualsDir = path.join(process.cwd(), "public", parent.visualsPublicPrefix.replace(/^\//, ""));
+  const visualsDir = path.join(process.cwd(), "public/usmle-study-guide/visuals");
   const html = singleH1(renderMarkdown(parts.join("\n\n"), parent.visualsPublicPrefix, visualsDir));
   const h1 = decodeVisible(/<h1[^>]*>(.*?)<\/h1>/.exec(html)?.[1] ?? step.title);
   const faqs = parseFaqs(faqMarkdown).slice(0, 12);

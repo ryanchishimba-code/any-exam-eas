@@ -1,8 +1,20 @@
-import { spawnSync } from "node:child_process";
-import { readdirSync, statSync } from "node:fs";
-import path from "node:path";
-
 const CHICAGO = "America/Chicago";
+
+/**
+ * Last commit that changed each manuscript, as a Chicago calendar day.
+ * Stored here so a shallow checkout cannot replace it with the deploy date.
+ */
+const CONTENT_UPDATED: Record<string, string> = {
+  "content/nclex-study-guide": "2026-11-07",
+  "content/naplex-study-guide": "2026-10-31",
+  "content/pance-study-guide": "2026-11-10",
+  "content/aanp-fnp-study-guide": "2026-10-31",
+  "content/usmle-study-guide": "2026-11-18",
+  "content/usmle-study-guide/step-1": "2026-11-18",
+  "content/usmle-study-guide/step-2-ck": "2026-11-18",
+  "content/usmle-study-guide/step-3": "2026-11-18",
+  "src/lib/exam-prep/npte-pt/content-outline.ts": "2026-10-25",
+};
 
 /** Calendar day in America/Chicago, as YYYY-MM-DD. */
 export function chicagoCalendarDate(instant: Date): string {
@@ -30,51 +42,12 @@ export function formatChicagoDate(iso: string): string {
   });
 }
 
-function newestFileMtime(relativeDirs: string[]): Date | null {
-  let newest = 0;
-  for (const relative of relativeDirs) {
-    const dir = path.join(process.cwd(), relative);
-    let names: string[] = [];
-    try {
-      const stat = statSync(dir);
-      if (stat.isFile()) {
-        newest = Math.max(newest, stat.mtimeMs);
-        continue;
-      }
-      names = readdirSync(dir);
-    } catch {
-      continue;
-    }
-    for (const name of names) {
-      if (!name.endsWith(".md") && !name.endsWith(".ts")) continue;
-      try {
-        newest = Math.max(newest, statSync(path.join(dir, name)).mtimeMs);
-      } catch {
-        /* skip a file that disappears mid-read */
-      }
-    }
-  }
-  return newest > 0 ? new Date(newest) : null;
-}
-
-function newestGitCommit(relativeDirs: string[]): Date | null {
-  const result = spawnSync("git", ["log", "-1", "--format=%cI", "--", ...relativeDirs], {
-    cwd: process.cwd(),
-    encoding: "utf8",
-    timeout: 4000,
-  });
-  const raw = result.status === 0 ? result.stdout.trim() : "";
-  if (!raw) return null;
-  const parsed = new Date(raw);
-  return Number.isNaN(parsed.getTime()) ? null : parsed;
-}
-
 /**
  * Last time the manuscript files changed, as a Chicago calendar day.
- * Git commit time wins over checkout mtime. A day after today is clamped.
+ * A day after today is clamped.
  */
 export function contentUpdatedOn(relativeDirs: string[], now = new Date()): { iso: string; label: string } {
-  const revised = newestGitCommit(relativeDirs) ?? newestFileMtime(relativeDirs) ?? now;
-  const iso = clampChicagoDate(chicagoCalendarDate(revised), now);
+  const known = relativeDirs.map((dir) => CONTENT_UPDATED[dir]).filter((iso): iso is string => Boolean(iso));
+  const iso = clampChicagoDate(known.sort().at(-1) ?? chicagoCalendarDate(now), now);
   return { iso, label: formatChicagoDate(iso) };
 }
