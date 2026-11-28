@@ -267,8 +267,6 @@ const nextConfig: NextConfig = {
         "/blog",
         "/blog/:path*",
         "/resources/:path*",
-        "/daily",
-        "/daily/:path*",
         "/crossword",
         "/crossword/:path*",
         "/anatomy",
@@ -289,6 +287,33 @@ const nextConfig: NextConfig = {
           {
             key: "Cache-Control",
             value: "public, s-maxage=300, stale-while-revalidate=86400",
+          },
+        ],
+      })),
+      {
+        source: "/sitemap.xml",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      {
+        source: "/sitemap/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      ...["/daily", "/daily/:path*"].map((source) => ({
+        source,
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=60, stale-while-revalidate=86400",
           },
         ],
       })),

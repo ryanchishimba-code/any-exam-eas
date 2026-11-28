@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
-import { getCachedSession } from "@/lib/auth/session";
+import { FooterAccountLinks } from "@/components/layout/FooterAccount";
 import { NOT_FOR_PATIENT_CARE_LINE } from "@/lib/marketing/legal-copy";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
 import { MARKETING_BOARD_LINKS, ROUTES } from "@/lib/routes";
@@ -42,11 +42,6 @@ const LEGAL_LINKS = [
   { href: "/legal/disclaimer", label: "Disclaimer" },
 ] as const;
 
-const ACCOUNT_LINKS = [
-  { href: "/auth/login", label: "Log in" },
-  { href: ROUTES.auth.signup, label: "Sign up" },
-] as const;
-
 function FooterColumn({
   title,
   label,
@@ -78,16 +73,8 @@ function FooterColumn({
   );
 }
 
-/** One footer for the homepage and inner marketing pages. */
-export async function Footer() {
-  const session = await getCachedSession();
-  const signedIn = Boolean(session?.user);
-  const accountLinks = signedIn
-    ? [
-        { href: ROUTES.dashboard, label: "Dashboard" },
-        { href: ROUTES.settings, label: "Settings" },
-      ]
-    : ACCOUNT_LINKS;
+/** One footer for the homepage and inner marketing pages. No session read, so public pages can be cached. */
+export function Footer() {
   return (
     <footer
       className="apple-footer overflow-x-clip border-t border-black/[0.08] py-10 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))] dark:border-white/[0.08]"
@@ -111,7 +98,7 @@ export async function Footer() {
           </div>
           <FooterColumn title="Exams" label="Exam links" links={EXAM_LINKS} />
           <FooterColumn title="Explore" label="Explore links" links={EXPLORE_LINKS} />
-          <FooterColumn title="Account" label="Account links" links={accountLinks} />
+          <FooterAccountLinks />
           <FooterColumn title="Legal" label="Legal links" links={LEGAL_LINKS} />
         </div>
         <div className="mt-8 space-y-2 border-t border-black/[0.06] pt-6 text-xs leading-relaxed text-[var(--color-ink-muted)] dark:border-white/[0.08]">

@@ -15,6 +15,24 @@ if (/inlineCss:\s*true/.test(nextConfig)) {
   process.exit(1);
 }
 
+const rootLayout = readFileSync(path.join(root, "src/app/layout.tsx"), "utf8");
+if (rootLayout.includes("await auth()") || rootLayout.includes("getCachedSession")) {
+  console.error("root layout must not read the session");
+  process.exit(1);
+}
+if (!rootLayout.includes("SpeedInsights")) {
+  console.error("root layout must mount Speed Insights");
+  process.exit(1);
+}
+const gtag = readFileSync(
+  path.join(root, "src/components/analytics/GoogleAnalytics.tsx"),
+  "utf8"
+);
+if (!gtag.includes("requestIdleCallback") || !gtag.includes("needsGoogleTagNow")) {
+  console.error("gtag.js must wait for interaction or idle, except conversion pages");
+  process.exit(1);
+}
+
 const home = readFileSync(
   path.join(root, "src/app/(marketing)/(with-flagship)/page.tsx"),
   "utf8"

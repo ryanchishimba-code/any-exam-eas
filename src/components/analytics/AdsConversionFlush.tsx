@@ -30,7 +30,7 @@ export function AdsConversionFlush() {
       window.clearInterval(timer);
       setReady(true);
     }, 200);
-    const stop = window.setTimeout(() => window.clearInterval(timer), 8000);
+    const stop = window.setTimeout(() => window.clearInterval(timer), 15_000);
     return () => {
       window.clearInterval(timer);
       window.clearTimeout(stop);
