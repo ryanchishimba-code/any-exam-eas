@@ -217,6 +217,11 @@ test.describe("board exam and question bank load", () => {
           const navStarted = Date.now();
           const check = page.getByRole("button", { name: /^Check$/ }).first();
           if (await check.isVisible().catch(() => false)) {
+            if (!(await check.isEnabled())) {
+              const choice = page.locator("button.rounded-xl").first();
+              if (await choice.isVisible().catch(() => false)) await choice.click();
+            }
+            await expect(check).toBeEnabled();
             await check.click();
             await expect(page.getByText(/rationale|correct|incorrect|why/i).first()).toBeVisible({
               timeout: NAV_BUDGET_MS,
