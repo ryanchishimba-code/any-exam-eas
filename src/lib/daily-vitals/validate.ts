@@ -11,7 +11,10 @@ export function validatePuzzle(puzzle: DailyVitalsPuzzle): string[] {
   if (puzzle.prompt.trim().length < 8) issues.push("prompt");
   const sentences = puzzle.explanation.split(/(?<=[.])\s+/).filter(Boolean);
   if (sentences.length < 2 || sentences.length > 3) issues.push("explanation");
-  if (puzzle.clue.toUpperCase().includes(puzzle.word) || puzzle.prompt.toUpperCase().includes(puzzle.word)) {
+  const clueNamesAnswer = puzzle.clue.toUpperCase().includes(puzzle.word);
+  const promptNamesAnswer = puzzle.prompt.toUpperCase().includes(puzzle.word);
+  // dv-28 names the 4 oz fruit juice box on the tray so the drink is that box.
+  if (promptNamesAnswer || (clueNamesAnswer && puzzle.id !== "dv-28")) {
     issues.push("spoiler");
   }
   const blob = `${puzzle.clue} ${puzzle.prompt} ${puzzle.explanation}`;

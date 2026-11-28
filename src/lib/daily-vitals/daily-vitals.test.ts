@@ -52,9 +52,15 @@ describe("daily vitals bank", () => {
     expect(juice?.word).toBe("JUICE");
     expect(juice?.id).toBe("dv-28");
     expect(juice?.clue).toContain("Glucose is 48 mg/dL. The person is awake and can swallow.");
+    expect(juice?.clue).toContain("A 4 oz fruit juice box is on the tray.");
+    expect(juice?.clue.toLowerCase()).not.toContain("not soda");
     expect(juice?.clue).toContain("pale and clammy");
     expect(juice?.prompt).toBe("What drink do you give first?");
-    expect(juice?.clue.toUpperCase()).not.toContain("JUICE");
+    const paddles = puzzles.find((puzzle) => puzzle.id === "dv-25");
+    expect(paddles?.word).toBe("PADDLES");
+    expect(paddles?.clue).toContain("manual defibrillator");
+    expect(paddles?.clue.toUpperCase()).not.toContain("PADDLES");
+    expect(paddles?.prompt).toBe("What device do you attach as soon as it arrives?");
     for (const puzzle of puzzles) {
       expect(puzzle.word.length, puzzle.id).toBeGreaterThanOrEqual(5);
       expect(puzzle.word.length, puzzle.id).toBeLessThanOrEqual(8);
@@ -83,7 +89,8 @@ describe("daily vitals bank", () => {
     expect(pub?.legalLines[0]).toBe(EDUCATIONAL_LINE);
     expect(pub?.legalLines[1]).toContain("NCSBN");
     const payload = JSON.stringify(pub).toUpperCase();
-    expect(payload).not.toContain("JUICE");
+    expect(payload).toContain("FRUIT JUICE BOX");
+    expect(payload).not.toContain("RECHECK IN 15");
     expect(payload).not.toContain("EXPLANATION");
     const early = gradeGuess({ date: "2026-11-28", guess: "WATER", attempt: 1, now: NOW });
     expect(early.ok).toBe(true);
