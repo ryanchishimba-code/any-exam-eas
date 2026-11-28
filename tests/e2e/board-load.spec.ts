@@ -328,7 +328,7 @@ test.describe("board exam and question bank load", () => {
 
     console.log(timings.join("\n"));
     const appConsoleErrors = consoleErrors.filter(
-      (line) => !/favicon|failed to load resource/i.test(line)
+      (line) => !/favicon|failed to load resource|_vercel\/(?:insights|speed-insights)/i.test(line)
     );
     expect(appConsoleErrors, appConsoleErrors.join(" | ")).toEqual([]);
     expect(serverErrors, serverErrors.join(", ")).toEqual([]);
