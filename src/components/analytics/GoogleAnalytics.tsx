@@ -1,28 +1,11 @@
 import Script from "next/script";
-
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+import { googleTagScriptSrc } from "@/lib/analytics/google-ads";
 
 /**
- * Loads GA4 gtag.js when NEXT_PUBLIC_GA_MEASUREMENT_ID is set.
- * Conversion events are sent via trackConversion() in lib/analytics.ts.
+ * Loads the Google tag library. Consent defaults and destination config
+ * (Ads AW-18297494724 and the GA4 measurement id, when set) are in
+ * GoogleTagBootstrap so they run before this file executes.
  */
 export function GoogleAnalytics() {
-  if (!GA_ID) return null;
-
-  return (
-    <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-        strategy="lazyOnload"
-      />
-      <Script id="ga4-init" strategy="lazyOnload">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_ID}');
-        `}
-      </Script>
-    </>
-  );
+  return <Script src={googleTagScriptSrc()} strategy="afterInteractive" />;
 }
