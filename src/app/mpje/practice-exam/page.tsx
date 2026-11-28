@@ -1,11 +1,11 @@
 import { redirect } from "next/navigation";
 
-/** Legacy MPJE URLs → PANCE (MPJE removed from product). */
+/** Legacy MPJE practice URL. Same canonical as /mpje. */
 export default function MpjeLegacyRedirect({
   searchParams,
 }: {
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   void searchParams;
-  redirect("/exams/pance");
+  redirect("/naplex");
 }
