@@ -32,8 +32,7 @@ export type BoardHeroMarketingCopy = {
 const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   nclex: {
     headline: "NCLEX-RN questions that match the current test plan.",
-    subline:
-      "Next Generation case studies, explanations for every choice, and practice progress for weak areas.",
+    subline: "Next Generation cases. A rationale for every choice.",
     testimonial: {
       name: "Nathan C.",
       quote: "The best questions I've found for NCLEX prep.",
@@ -42,7 +41,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   naplex: {
     headline: "NAPLEX questions for the calculations and the drugs.",
-    subline: "Pharmacy calculations, drug vignettes, flashcards, and explanations that show the work.",
+    subline: "Calculations, drug vignettes, and the work behind each answer.",
     testimonial: {
       name: "Frank C.",
       quote: "The drug cards were a game changer.",
@@ -51,12 +50,12 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   usmle: {
     headline: "USMLE vignettes for Step 1, Step 2 CK, and Step 3.",
-    subline: "Step-style practice questions with explanations for every choice and timed practice exams.",
+    subline: "Step 1, Step 2 CK, and Step 3. A rationale for every choice.",
     testimonial: null,
   },
   "aanp-fnp": {
     headline: "AANP FNP vignettes across the lifespan, explained.",
-    subline: "Family nurse practitioner practice questions, flashcards, a study guide, and timed practice exams.",
+    subline: "Lifespan vignettes, with a rationale for every choice.",
     testimonial: {
       name: "Mag B.",
       quote: "I couldn't believe the price for everything I got.",
@@ -65,7 +64,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   pance: {
     headline: "PANCE vignettes that show where the reasoning slips.",
-    subline: "Physician assistant practice questions, flashcards, a study guide, and timed practice exams.",
+    subline: "Organ-system vignettes, with a rationale for every choice.",
     testimonial: {
       name: panceHeroTestimonialSeed.name,
       quote: panceHeroTestimonialSeed.quote,
@@ -74,7 +73,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   "npte-pt": {
     headline: "NPTE-PT questions that explain the clinical why.",
-    subline: "Physical therapy scenarios, explanations for each choice, timed practice exams, and 3D anatomy.",
+    subline: "Clinical scenarios, with a rationale for every choice.",
     testimonial: null,
   },
 };

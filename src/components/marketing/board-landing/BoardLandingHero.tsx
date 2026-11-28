@@ -66,6 +66,7 @@ export function BoardLandingHero({
               ctaName={heroCtaName}
               ctaLocation={heroCtaLocation}
               seeQuestionsHref={BOARD_LANDING_HERO_QUIZ_HREF}
+              showSeeQuestions={false}
               className="mkt-photo-hero__actions"
               signedIn={signedIn}
               trialLabel={trialLabel}

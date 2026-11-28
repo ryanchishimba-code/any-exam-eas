@@ -94,11 +94,10 @@ export const HOME_PRACTICE_HEADLINE = "Built for your exam, from the first quest
 
 /** Home hero subline. Names the boards; the live count stays on the proof line. */
 export const HOME_HERO_BOARD_SUBLINE =
-  "NCLEX, NAPLEX, PANCE, AANP FNP, USMLE, and NPTE-PT practice questions.";
+  "NCLEX, NAPLEX, USMLE, PANCE, FNP, and NPTE questions.";
 
 /** Homepage hero only. Attribution is the role, not a name. */
-export const HOME_FOUNDER_QUOTE =
-  "Studying for boards is hard enough. We exist to make it clearer, simpler and within reach for every student.";
+export const HOME_FOUNDER_QUOTE = "Studying for boards is hard enough.";
 
 export const HOME_FOUNDER_ATTRIBUTION = "— Founder";
 
