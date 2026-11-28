@@ -120,14 +120,21 @@ function buildJsonLd(guide: { path: string; description: string; boardLabel: str
   return { "@context": "https://schema.org", "@graph": graph };
 }
 
+function imageFileFor(src: string, visualsDir: string | null): string | null {
+  const fileName = src.split("/").pop();
+  if (!fileName) return null;
+  const step = /\/usmle-study-guide\/(step-[^/]+)\/visuals\//.exec(src)?.[1];
+  if (step) return path.join(process.cwd(), "public/usmle-study-guide", step, "visuals", fileName);
+  if (!visualsDir) return null;
+  return path.join(visualsDir, fileName);
+}
+
 function renderMarkdown(markdown: string, visualsPrefix: string, visualsDir: string | null): string {
   const rewritten = markdown.replace(/\]\(visuals\//g, `](${visualsPrefix}`);
   return markdownToSimpleHtml(rewritten, {
     imageSize: (src) => {
-      if (!visualsDir) return undefined;
-      const fileName = src.split("/").pop();
-      if (!fileName) return undefined;
-      return readImageSize(path.join(visualsDir, fileName));
+      const file = imageFileFor(src, visualsDir);
+      return file ? readImageSize(file) : undefined;
     },
   });
 }
@@ -174,13 +181,23 @@ function guideVisualsDir(id: PublicStudyGuideId): string | null {
   }
 }
 
+function visualsPrefixFor(guide: PublicStudyGuide, dir: string): string {
+  if (guide.id !== "usmle") return guide.visualsPublicPrefix;
+  const step = path.basename(dir);
+  return `/usmle-study-guide/${step}/visuals/`;
+}
+
 function loadDirectories(guide: PublicStudyGuide): { markdown: string; faqMarkdown: string } {
   const parts: string[] = [];
   const faqParts: string[] = [];
   for (const dir of guideContentDirs(guide.id)) {
+    const prefix = visualsPrefixFor(guide, dir);
     const files = chapterFiles(dir, guide.filePrefixes);
     for (const name of files) {
-      const markdown = readFileSync(path.join(dir, name), "utf8");
+      const markdown = readFileSync(path.join(dir, name), "utf8").replace(
+        /\]\(visuals\//g,
+        `](${prefix}`
+      );
       parts.push(markdown);
       if (name.includes("faq")) faqParts.push(markdown);
     }
@@ -259,7 +276,6 @@ export function loadPublicStudyGuide(id: PublicStudyGuideId): LoadedPublicGuide 
 export function loadUsmleStepGuide(stepId: string): LoadedPublicGuide | null {
   const step = USMLE_PUBLIC_STEPS.find((item) => item.id === stepId);
   if (!step) return null;
-  const parent = PUBLIC_STUDY_GUIDES.usmle;
   const dir =
     stepId === "step-1"
       ? path.join(process.cwd(), "content/usmle-study-guide/step-1")
@@ -270,10 +286,11 @@ export function loadUsmleStepGuide(stepId: string): LoadedPublicGuide | null {
           : null;
   if (!dir) return null;
   const files = chapterFiles(dir);
+  const visualsPrefix = `/usmle-study-guide/${stepId}/visuals/`;
   const parts = files.map((name) => readFileSync(path.join(dir, name), "utf8"));
   const faqMarkdown = parts.find((_, index) => files[index]?.includes("faq")) ?? parts.join("\n\n");
-  const visualsDir = path.join(process.cwd(), "public/usmle-study-guide/visuals");
-  const html = singleH1(renderMarkdown(parts.join("\n\n"), parent.visualsPublicPrefix, visualsDir));
+  const visualsDir = path.join(process.cwd(), "public/usmle-study-guide", stepId, "visuals");
+  const html = singleH1(renderMarkdown(parts.join("\n\n"), visualsPrefix, visualsDir));
   const h1 = decodeVisible(/<h1[^>]*>(.*?)<\/h1>/.exec(html)?.[1] ?? step.title);
   const faqs = parseFaqs(faqMarkdown).slice(0, 12);
   return {

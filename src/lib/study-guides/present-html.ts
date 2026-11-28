@@ -72,18 +72,39 @@ export function guideSectionToc(html: string): { id: string; text: string }[] {
   return items.slice(0, 16);
 }
 
-function callout(kind: "tip" | "pitfall", inner: string): string {
-  const label = kind === "tip" ? "High-yield" : "Pitfall";
+function callout(kind: "tip" | "pitfall" | "remember", inner: string): string {
+  const label = kind === "tip" ? "High-yield" : kind === "pitfall" ? "Pitfall" : "Important to remember";
   return `<aside class="psg-callout psg-callout--${kind}"><p class="psg-callout__label">${label}</p>${inner}</aside>`;
+}
+
+/** A quote that is only dashed lines becomes a real list inside the box. */
+function rememberBody(inner: string): string {
+  const stripped = inner
+    .replace(/<p>\s*<strong>\s*Important to remember:?\s*<\/strong>\s*<\/p>/gi, "")
+    .replace(/(<p>\s*)<strong>\s*Important to remember:?\s*<\/strong>\s*/gi, "$1");
+  const paragraphs = [...stripped.matchAll(/<p>([\s\S]*?)<\/p>/gi)].map((match) => match[1] ?? "");
+  const filled = paragraphs.map((paragraph) => paragraph.trim()).filter(Boolean);
+  const items = filled.filter((paragraph) => /^[-–]\s+/.test(paragraph.replace(/<[^>]+>/g, "")));
+  if (items.length >= 1 && items.length === filled.length) {
+    const list = items.map((paragraph) => `<li>${paragraph.replace(/^[-–]\s+/, "")}</li>`).join("");
+    return `<ul>${list}</ul>`;
+  }
+  return stripped;
 }
 
 /** Turn the manuscript's labeled quotes into callout boxes. */
 export function promoteCallouts(html: string): string {
   return html.replace(/<blockquote>([\s\S]*?)<\/blockquote>/g, (full, inner: string) => {
+    if (/important to remember/i.test(inner)) return callout("remember", rememberBody(inner));
     if (/trap|pitfall|avoid/i.test(inner)) return callout("pitfall", inner);
     if (/must know|highlight|high-yield|pearl/i.test(inner)) return callout("tip", inner);
     return full;
   });
+}
+
+/** Keep wide comparison tables scrollable without collapsing the columns. */
+export function scrollableTables(html: string): string {
+  return html.replace(/<table\b[\s\S]*?<\/table>/gi, (table) => `<div class="sg-table-scroll">${table}</div>`);
 }
 
 export function readingMinutes(html: string, extra = ""): number {
@@ -100,7 +121,9 @@ export function readingTimeLabel(minutes: number): string {
 }
 
 export function presentGuideHtml(html: string, query: string): string {
-  return wrapGuideSections(
-    promoteCallouts(withDescriptiveAlts(retitleGuideHeadings(demoteDocumentH1(html)), query))
+  return scrollableTables(
+    wrapGuideSections(
+      promoteCallouts(withDescriptiveAlts(retitleGuideHeadings(demoteDocumentH1(html)), query))
+    )
   );
 }

@@ -261,8 +261,19 @@ html:has(.psg) {
   scroll-margin-top: 6.5rem;
 }
 
-.psg-body table {
+.psg-body .sg-table-scroll {
   width: 100%;
+  max-width: 100%;
+  margin: 0 0 1.25rem;
+  overflow-x: auto;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.psg-body table {
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
   font-size: 0.98rem;
 }
@@ -284,11 +295,9 @@ html:has(.psg) {
   border-radius: 0.5rem;
 }
 
-.psg-body table {
-  display: block;
-  overflow-x: auto;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  border-radius: 0.5rem;
+.psg-body .sg-figure img,
+.psg-body img {
+  background: #fff;
 }
 
 .psg-body thead th {
@@ -328,6 +337,26 @@ html:has(.psg) {
 
 .psg-callout--pitfall .psg-callout__label {
   color: #9a3412;
+}
+
+.psg-callout--remember {
+  background: rgba(46, 196, 182, 0.1);
+  border: 1px solid rgba(15, 118, 110, 0.28);
+  border-left: 3px solid #0f766e;
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+
+.psg-callout--remember .psg-callout__label {
+  color: #0f766e;
+}
+
+.psg-callout ul {
+  margin: 0 0 0.85rem;
+  padding-left: 1.2rem;
+}
+
+.psg-callout li + li {
+  margin-top: 0.35rem;
 }
 
 .psg-rail {
