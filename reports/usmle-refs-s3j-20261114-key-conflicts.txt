@@ -1,0 +1,7 @@
+id	step	key	why
+cmr97c3wb000f1ywy9o3wy6md	step-3	Graves' disease	Keyed as Graves disease, but the stem shows a low TSH and high free T4 without orbitopathy, a diffuse goiter, or TSH-receptor antibodies.
+cmr8by0xg00ej1yloz3yn3oc2	step-3	Graves' disease	Keyed as Graves disease, but the stem shows a low TSH and high free T4 without orbitopathy, a diffuse goiter, or TSH-receptor antibodies.
+cmr8isbg602d21ylonc37ur50	step-3	Graves' disease	Keyed as Graves disease, but the stem shows a low TSH and high free T4 without orbitopathy, a diffuse goiter, or TSH-receptor antibodies.
+cmr98mjyv00k11ywy287v434h	step-3	Graves' disease	Keyed as Graves disease, but the stem shows a low TSH and high free T4 without orbitopathy, a diffuse goiter, or TSH-receptor antibodies.
+cmr98vpv500og1ywy27dt9b7q	step-3	Graves' disease	Keyed as Graves disease, but the stem shows a low TSH and high free T4 without orbitopathy, a diffuse goiter, or TSH-receptor antibodies.
+cmr9aeq0a01511ywyndiw71nw	step-3	Graves' disease	Keyed as Graves disease, but the stem shows a low TSH and high free T4 without orbitopathy, a diffuse goiter, or TSH-receptor antibodies.

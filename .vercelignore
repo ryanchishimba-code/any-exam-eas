@@ -1,11 +1,8 @@
 .tools
 artifacts
 
-# Authoring manuscripts are ingested offline into Neon. Runtime serves chapters
-# from the DB and figures from public/*-study-guide — skip uploading sources.
-content/nclex-study-guide/
-content/naplex-study-guide/
-content/aanp-fnp-study-guide/
+# Public study-guide pages readdir content/*-study-guide when they regenerate.
+# Those folders have to be in the deploy. Gated readers still load chapters from Neon.
 
 # Local-only junk (never needed on Vercel).
 prisma/dev.db

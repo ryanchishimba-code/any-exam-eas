@@ -116,6 +116,7 @@ describe("seed integrity — selection targets exist", () => {
     const minimumByExam: Partial<Record<(typeof EXAM_SLUGS)[number], number>> = {
       "aanp-fnp": 10,
       "npte-pt": 10,
+      mpje: 8,
     };
     for (const slug of EXAM_SLUGS) {
       const topics = getHighYieldTopics(slug);

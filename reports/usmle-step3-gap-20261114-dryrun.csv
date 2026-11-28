@@ -1,0 +1,101 @@
+slug,domain,difficulty,band,subjectId,blueprintTopic,taskCategory,correctAnswer,citationUrl
+b01-itp-observe,blood-lymph-immune,2,easy,hematology,gap3-itp-observation,clinical-intervention,Observation without a platelet-raising medicine,https://pmc.ncbi.nlm.nih.gov/articles/PMC6963252/
+b02-anaphylaxis-im-epi,blood-lymph-immune,2,easy,emergency-medicine,gap3-anaphylaxis-im-epinephrine,pharmacotherapy,Intramuscular epinephrine in the mid-anterolateral thigh,https://pmc.ncbi.nlm.nih.gov/articles/PMC7607509/
+b03-pv-low-risk,blood-lymph-immune,2,easy,hematology,gap3-pv-low-risk-phlebotomy,pharmacotherapy,Phlebotomy together with low-dose aspirin for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC5802495/
+b04-saa-transfuse,blood-lymph-immune,2,easy,hematology,gap3-saa-red-cell-transfusion,clinical-intervention,Transfusion of packed red blood cells,https://pmc.ncbi.nlm.nih.gov/articles/PMC3418715/
+b05-itp-steroid,blood-lymph-immune,3,medium,hematology,gap3-itp-corticosteroid,pharmacotherapy,A corticosteroid such as prednisone,https://pmc.ncbi.nlm.nih.gov/articles/PMC6963252/
+b06-itp-admit,blood-lymph-immune,3,medium,hematology,gap3-itp-admission,clinical-intervention,Hospital admission for initial management,https://pmc.ncbi.nlm.nih.gov/articles/PMC6963252/
+b07-hit-argatroban,blood-lymph-immune,3,medium,hematology,gap3-hit-argatroban,pharmacotherapy,Stop heparin and start argatroban,https://pmc.ncbi.nlm.nih.gov/articles/PMC6258919/
+b08-inr-over-10,blood-lymph-immune,3,medium,hematology,gap3-warfarin-inr-over-10,pharmacotherapy,Hold warfarin and give oral vitamin K for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC3278055/
+b09-pv-high-risk,blood-lymph-immune,3,medium,hematology,gap3-pv-high-risk-hydroxyurea,pharmacotherapy,"Hydroxyurea, with continued phlebotomy",https://pmc.ncbi.nlm.nih.gov/articles/PMC5802495/
+b10-aps-vka,blood-lymph-immune,3,medium,hematology,gap3-aps-venous-vka,pharmacotherapy,Warfarin with a target INR of 2 to 3,https://pmc.ncbi.nlm.nih.gov/articles/PMC11034817/
+b11-saa-ist,blood-lymph-immune,3,medium,hematology,gap3-saa-horse-atg,pharmacotherapy,Horse antithymocyte globulin plus cyclosporine,https://pmc.ncbi.nlm.nih.gov/articles/PMC3418715/
+b12-saa-sibling-hct,blood-lymph-immune,5,hard,hematology,gap3-saa-sibling-transplant,clinical-intervention,Allogeneic transplant from the matched sibling,https://pmc.ncbi.nlm.nih.gov/articles/PMC3418715/
+b13-hit-delay-warfarin,blood-lymph-immune,5,hard,hematology,gap3-hit-delay-warfarin,pharmacotherapy,Continue argatroban and defer warfarin for now,https://pmc.ncbi.nlm.nih.gov/articles/PMC6258919/
+b14-inr-no-vitamink,blood-lymph-immune,4,hard,hematology,gap3-warfarin-inr-no-vitk,pharmacotherapy,Hold warfarin and do not give vitamin K,https://pmc.ncbi.nlm.nih.gov/articles/PMC3278055/
+b15-itp-tpo,blood-lymph-immune,5,hard,hematology,gap3-itp-tpo-ra,pharmacotherapy,A thrombopoietin receptor agonist,https://pmc.ncbi.nlm.nih.gov/articles/PMC6963252/
+b16-aps-arterial,blood-lymph-immune,5,hard,hematology,gap3-aps-arterial-vka,pharmacotherapy,"Warfarin, a vitamin K antagonist for this patient",https://pmc.ncbi.nlm.nih.gov/articles/PMC11034817/
+b17-epi-im-not-iv,blood-lymph-immune,4,hard,emergency-medicine,gap3-anaphylaxis-im-not-iv-push,pharmacotherapy,"Intramuscular epinephrine, about 0.3 to 0.5 mg",https://pmc.ncbi.nlm.nih.gov/articles/PMC7607509/
+b18-itp-ich,blood-lymph-immune,5,hard,hematology,gap3-itp-life-threatening-bleed,pharmacotherapy,Intravenous immunoglobulin plus a corticosteroid,https://pmc.ncbi.nlm.nih.gov/articles/PMC6963252/
+b19-fntr-stop,blood-lymph-immune,4,hard,hematology,gap3-fntr-stop-transfusion,clinical-intervention,Stop the transfusion and evaluate for hemolysis,https://pmc.ncbi.nlm.nih.gov/articles/PMC9843350/
+b20-hit-necrosis,blood-lymph-immune,5,hard,hematology,gap3-hit-warfarin-necrosis,pharmacotherapy,"Vitamin K, stop warfarin, and start argatroban",https://pmc.ncbi.nlm.nih.gov/articles/PMC6258919/
+b21-saa-fever-antibiotics,blood-lymph-immune,4,hard,hematology,gap3-saa-febrile-antibiotics,pharmacotherapy,Broad-spectrum parenteral antibiotics now,https://pmc.ncbi.nlm.nih.gov/articles/PMC3418715/
+b22-epi-on-beta-blocker,blood-lymph-immune,5,hard,emergency-medicine,gap3-anaphylaxis-beta-blocker,pharmacotherapy,Intramuscular epinephrine in the thigh,https://pmc.ncbi.nlm.nih.gov/articles/PMC7607509/
+b23-itp-not-rituximab-first,blood-lymph-immune,4,hard,hematology,gap3-itp-initial-not-rituximab,pharmacotherapy,A corticosteroid rather than rituximab,https://pmc.ncbi.nlm.nih.gov/articles/PMC6963252/
+b24-fntr-leukoreduced,blood-lymph-immune,4,hard,hematology,gap3-fntr-leukoreduction,clinical-intervention,A leukoreduced red-cell unit for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC9843350/
+m01-gout-acute,msk-skin,2,easy,rheumatology,gap3-gout-acute-antiinflammatory,pharmacotherapy,"Naproxen, colchicine, or prednisone",https://pmc.ncbi.nlm.nih.gov/articles/PMC10627564/
+m02-dxa-65,msk-skin,2,easy,rheumatology,gap3-osteoporosis-screen-65,health-maintenance,Dual-energy x-ray absorptiometry,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/osteoporosis-screening
+m03-fasciotomy,msk-skin,2,easy,orthopedics,gap3-compartment-fasciotomy,clinical-intervention,Emergent fasciotomy of the leg compartments,https://pmc.ncbi.nlm.nih.gov/articles/PMC3522209/
+m04-open-fracture-abx,msk-skin,2,easy,orthopedics,gap3-open-fracture-antibiotics,pharmacotherapy,Intravenous antibiotic prophylaxis now,https://pmc.ncbi.nlm.nih.gov/articles/PMC8944527/
+m05-scaphoid-imaging,msk-skin,3,medium,orthopedics,gap3-scaphoid-advanced-imaging,diagnosis,Thumb-spica immobilization and MRI or CT,https://pmc.ncbi.nlm.nih.gov/articles/PMC6399186/
+m06-gca-steroids,msk-skin,3,medium,rheumatology,gap3-gca-glucocorticoid,pharmacotherapy,High-dose glucocorticoid therapy,https://pmc.ncbi.nlm.nih.gov/articles/PMC12344528/
+m07-abscess-systemic,msk-skin,3,medium,emergency-medicine,gap3-abscess-drainage-antibiotics,clinical-intervention,Drainage plus systemic antibiotic therapy,https://pmc.ncbi.nlm.nih.gov/articles/PMC6295010/
+m08-abscess-simple,msk-skin,3,medium,emergency-medicine,gap3-simple-abscess-drainage,clinical-intervention,Incision and drainage without systemic antibiotics,https://pmc.ncbi.nlm.nih.gov/articles/PMC6295010/
+m09-dxa-risk,msk-skin,3,medium,rheumatology,gap3-osteoporosis-screen-risk,health-maintenance,Bone-density testing at this visit,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/osteoporosis-screening
+m10-sea-intact,msk-skin,3,medium,emergency-medicine,gap3-sea-nonoperative,clinical-intervention,Intravenous antibiotics and serial neurologic checks,https://pmc.ncbi.nlm.nih.gov/articles/PMC7734276/
+m11-nec-fasc,msk-skin,5,hard,emergency-medicine,gap3-necrotizing-debridement,clinical-intervention,Immediate surgical debridement plus broad antibiotics,https://pmc.ncbi.nlm.nih.gov/articles/PMC6295010/
+m12-stasis-not-abx,msk-skin,4,hard,emergency-medicine,gap3-bilateral-stasis-dermatitis,clinical-intervention,Leg elevation and compression for venous stasis,https://pmc.ncbi.nlm.nih.gov/articles/PMC9191579/
+m13-sea-deficit,msk-skin,5,hard,emergency-medicine,gap3-sea-surgery,clinical-intervention,Surgical decompression plus continued antibiotics,https://pmc.ncbi.nlm.nih.gov/articles/PMC7734276/
+m14-pegloticase,msk-skin,5,hard,rheumatology,gap3-gout-pegloticase,pharmacotherapy,Pegloticase for refractory tophaceous gout,https://pmc.ncbi.nlm.nih.gov/articles/PMC10627564/
+m15-gca-do-not-wait,msk-skin,5,hard,rheumatology,gap3-gca-do-not-delay-steroid,pharmacotherapy,Start high-dose glucocorticoids now for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC12344528/
+m16-gca-tocilizumab,msk-skin,5,hard,rheumatology,gap3-gca-tocilizumab,pharmacotherapy,Add tocilizumab as a steroid-sparing agent,https://pmc.ncbi.nlm.nih.gov/articles/PMC12344528/
+m17-compartment-pressure,msk-skin,4,hard,orthopedics,gap3-compartment-pressure,diagnosis,Measure the compartment pressures,https://pmc.ncbi.nlm.nih.gov/articles/PMC3522209/
+m18-immunocompromised-cellulitis,msk-skin,4,hard,emergency-medicine,gap3-immunocompromised-ssti,pharmacotherapy,Empiric broad-spectrum intravenous antibiotics,https://pmc.ncbi.nlm.nih.gov/articles/PMC6295010/
+m19-gca-large-vessel,msk-skin,5,hard,rheumatology,gap3-gca-large-vessel-imaging,diagnosis,Glucocorticoids plus large-vessel imaging,https://pmc.ncbi.nlm.nih.gov/articles/PMC12344528/
+m20-nonpurulent-cellulitis,msk-skin,4,hard,emergency-medicine,gap3-nonpurulent-cellulitis,pharmacotherapy,Oral cephalexin without incision,https://pmc.ncbi.nlm.nih.gov/articles/PMC6295010/
+m21-gca-vision-increase,msk-skin,5,hard,rheumatology,gap3-gca-increase-steroid,pharmacotherapy,Give high-dose glucocorticoids immediately,https://pmc.ncbi.nlm.nih.gov/articles/PMC12344528/
+m22-abscess-immunocompromised,msk-skin,4,hard,emergency-medicine,gap3-abscess-immunocompromised,clinical-intervention,Drainage plus antibiotic therapy,https://pmc.ncbi.nlm.nih.gov/articles/PMC6295010/
+m23-psa-axial-tnf,msk-skin,4,hard,rheumatology,gap3-psa-axial-tnf,pharmacotherapy,A tumor necrosis factor inhibitor,https://pmc.ncbi.nlm.nih.gov/articles/PMC8218333/
+m24-compartment-pulse-present,msk-skin,5,hard,orthopedics,gap3-compartment-pulse-present,clinical-intervention,Fasciotomy despite the palpable pulse,https://pmc.ncbi.nlm.nih.gov/articles/PMC3522209/
+n01-bell-steroid,behavioral-nervous,2,easy,neurology,gap3-bell-palsy-prednisone,pharmacotherapy,Oral prednisone started today,https://pmc.ncbi.nlm.nih.gov/articles/PMC9332917/
+n02-cluster-oxygen,behavioral-nervous,2,easy,neurology,gap3-cluster-oxygen,pharmacotherapy,High-flow oxygen by non-rebreather mask,https://pmc.ncbi.nlm.nih.gov/articles/PMC9163947/
+n03-aws-lorazepam,behavioral-nervous,2,easy,psychiatry,gap3-alcohol-withdrawal-seizure,pharmacotherapy,Intravenous lorazepam for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC9567585/
+n04-mdd-ssri,behavioral-nervous,3,medium,psychiatry,gap3-mdd-ssri,pharmacotherapy,"Sertraline, a second-generation antidepressant",https://pmc.ncbi.nlm.nih.gov/articles/PMC4994790/
+n05-delirium-nonpharm,behavioral-nervous,3,medium,neurology,gap3-delirium-nonpharmacologic,clinical-intervention,A nonpharmacologic sleep and reorientation plan,https://pmc.ncbi.nlm.nih.gov/articles/PMC5706782/
+n06-iih-acetazolamide,behavioral-nervous,3,medium,neurology,gap3-iih-acetazolamide,pharmacotherapy,"Acetazolamide, with a weight-loss plan",https://pmc.ncbi.nlm.nih.gov/articles/PMC5013119/
+n07-depression-screen,behavioral-nervous,3,medium,psychiatry,gap3-depression-screening,health-maintenance,Screen for depression at this visit for this patient,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-depression-suicide-risk-adults
+n08-sah-late-lp,behavioral-nervous,3,medium,neurology,gap3-sah-late-lumbar-puncture,diagnosis,Lumbar puncture for xanthochromia,https://pmc.ncbi.nlm.nih.gov/articles/PMC3138338/
+n09-sah-early-no-lp,behavioral-nervous,5,hard,neurology,gap3-sah-ct-within-six-hours,diagnosis,No lumbar puncture for subarachnoid blood,https://pmc.ncbi.nlm.nih.gov/articles/PMC3138338/
+n10-point-dapt,behavioral-nervous,5,hard,neurology,gap3-tia-dual-antiplatelet,pharmacotherapy,"Aspirin plus clopidogrel, started now",https://pmc.ncbi.nlm.nih.gov/articles/PMC6193486/
+n11-pd-pimavanserin,behavioral-nervous,5,hard,neurology,gap3-pd-psychosis-pimavanserin,pharmacotherapy,Pimavanserin,https://pmc.ncbi.nlm.nih.gov/articles/PMC6916382/
+n12-ici-myasthenia,behavioral-nervous,5,hard,neurology,gap3-ici-myasthenic-crisis,pharmacotherapy,High-dose steroids plus plasma exchange or IVIG,https://pmc.ncbi.nlm.nih.gov/articles/PMC7884987/
+n13-suicide-screen-insufficient,behavioral-nervous,5,hard,psychiatry,gap3-suicide-screen-i-statement,health-maintenance,Depression screening is recommended; suicide-risk screening has insufficient evidence,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-depression-suicide-risk-adults
+n14-mdd-psychotherapy,behavioral-nervous,4,hard,psychiatry,gap3-mdd-inadequate-response,clinical-intervention,Evidence-based psychotherapy for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC4994790/
+n15-cluster-flow,behavioral-nervous,4,hard,neurology,gap3-cluster-oxygen-flow,pharmacotherapy,100 percent oxygen at 6 to 12 L/min by non-rebreather mask,https://pmc.ncbi.nlm.nih.gov/articles/PMC9163947/
+n16-meningitis-dex,behavioral-nervous,4,hard,neurology,gap3-meningitis-dexamethasone,pharmacotherapy,Dexamethasone given with the first antibiotic dose,https://pmc.ncbi.nlm.nih.gov/articles/PMC7015757/
+n17-bell-complete,behavioral-nervous,4,hard,neurology,gap3-bell-complete-still-steroid,pharmacotherapy,"Corticosteroids, not immediate decompression",https://pmc.ncbi.nlm.nih.gov/articles/PMC9332917/
+u01-pdmp,multisystem,2,easy,toxicology,gap3-pdmp-before-opioid,health-maintenance,Check the prescription-drug monitoring program,https://pmc.ncbi.nlm.nih.gov/articles/PMC9639433/
+u02-hcv-screen,multisystem,2,easy,infectious-disease,gap3-hcv-screening,health-maintenance,A one-time hepatitis C antibody test,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hepatitis-c-screening
+u03-hypothermia-mild,multisystem,2,easy,emergency-medicine,gap3-hypothermia-external-rewarming,clinical-intervention,Active external rewarming with forced air,https://pmc.ncbi.nlm.nih.gov/articles/PMC5025630/
+u04-apap-nac,multisystem,3,medium,toxicology,gap3-acetaminophen-nac,pharmacotherapy,Acetylcysteine started now for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC9035297/
+u05-hypothermia-stable-cold,multisystem,3,medium,emergency-medicine,gap3-hypothermia-not-ecls-if-stable,clinical-intervention,Minimally invasive rewarming while she has a pulse,https://pmc.ncbi.nlm.nih.gov/articles/PMC5025630/
+u06-lithium-no-hd,multisystem,3,medium,toxicology,gap3-lithium-no-dialysis,pharmacotherapy,Hold lithium and give intravenous saline,https://pmc.ncbi.nlm.nih.gov/articles/PMC4422246/
+u07-naloxone-offer,multisystem,3,medium,toxicology,gap3-offer-naloxone,health-maintenance,Offer take-home naloxone for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC9639433/
+u08-co-hbo,multisystem,5,hard,emergency-medicine,gap3-co-hyperbaric,clinical-intervention,Hyperbaric oxygen for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC5363978/
+u09-refeeding,multisystem,5,hard,critical-care,gap3-refeeding-thiamine-phosphate,pharmacotherapy,"Thiamine, electrolyte repletion, and slow calories",https://pmc.ncbi.nlm.nih.gov/articles/PMC2440847/
+u10-ecls-arrest,multisystem,5,hard,emergency-medicine,gap3-hypothermic-arrest-ecls,clinical-intervention,Extracorporeal life support while resuscitation continues,https://pmc.ncbi.nlm.nih.gov/articles/PMC5025630/
+u11-lithium-hd-level,multisystem,5,hard,toxicology,gap3-lithium-dialysis-level,clinical-intervention,Hemodialysis for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC4422246/
+u12-lithium-seizure,multisystem,5,hard,toxicology,gap3-lithium-dialysis-seizure,clinical-intervention,Hemodialysis despite the level of 2.4 mEq/L,https://pmc.ncbi.nlm.nih.gov/articles/PMC4422246/
+u13-avoid-sux-elective-child,multisystem,5,hard,anesthesiology,gap3-avoid-succinylcholine-elective-child,pharmacotherapy,Avoid succinylcholine for this elective case,https://pmc.ncbi.nlm.nih.gov/articles/PMC4524368/
+u14-lithium-crrt,multisystem,4,hard,toxicology,gap3-lithium-crrt,clinical-intervention,Start continuous renal replacement now,https://pmc.ncbi.nlm.nih.gov/articles/PMC4422246/
+r01-cap-amox,respiratory-renal,2,easy,pulmonology,gap3-cap-outpatient-amoxicillin,pharmacotherapy,Amoxicillin 1 g three times daily,https://pmc.ncbi.nlm.nih.gov/articles/PMC6812437/
+r02-ldct-smoker,respiratory-renal,2,easy,pulmonology,gap3-lung-cancer-ldct,health-maintenance,Annual low-dose chest CT for this patient,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening
+r03-ldct-recent-quit,respiratory-renal,3,medium,pulmonology,gap3-lung-cancer-ldct-recent-quit,health-maintenance,Annual low-dose chest CT for this patient,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening
+r04-cap-inpatient,respiratory-renal,3,medium,pulmonology,gap3-cap-inpatient-regimen,pharmacotherapy,Ceftriaxone plus azithromycin,https://pmc.ncbi.nlm.nih.gov/articles/PMC6812437/
+r05-cap-iv-to-oral,respiratory-renal,3,medium,pulmonology,gap3-cap-iv-to-oral,pharmacotherapy,Switch to an oral beta-lactam of the same class,https://pmc.ncbi.nlm.nih.gov/articles/PMC6812437/
+r06-ldct-remote-quit,respiratory-renal,4,hard,pulmonology,gap3-lung-cancer-stop-after-15-years,health-maintenance,"No low-dose CT, because he quit 18 years ago",https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening
+r07-anti-gbm,respiratory-renal,5,hard,nephrology,gap3-anti-gbm-plex,pharmacotherapy,"Plasma exchange, cyclophosphamide, and corticosteroids",https://pmc.ncbi.nlm.nih.gov/articles/PMC5498345/
+r08-cap-comorbidity,respiratory-renal,4,hard,pulmonology,gap3-cap-outpatient-comorbidity,pharmacotherapy,A beta-lactam plus a macrolide,https://pmc.ncbi.nlm.nih.gov/articles/PMC6812437/
+r09-cap-five-days,respiratory-renal,4,hard,pulmonology,gap3-cap-duration-five-days,pharmacotherapy,Stop antibiotics at 5 days for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC6812437/
+c01-aaa-screen,cardiovascular,2,easy,cardiology,gap3-aaa-screen-ever-smoker,health-maintenance,One-time abdominal ultrasound for this patient,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/abdominal-aortic-aneurysm-screening
+c02-statin,cardiovascular,2,easy,cardiology,gap3-statin-primary-prevention,pharmacotherapy,Start a statin for this patient during this visit,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/statin-use-in-adults-preventive-medication
+c03-ms-warfarin,cardiovascular,3,medium,cardiology,gap3-af-mitral-stenosis-warfarin,pharmacotherapy,Warfarin,https://pmc.ncbi.nlm.nih.gov/articles/PMC11095842/
+c04-type-b-dissection,cardiovascular,3,medium,cardiology,gap3-type-b-dissection-medical,pharmacotherapy,Intravenous esmolol and blood-pressure control,https://pmc.ncbi.nlm.nih.gov/articles/PMC9876736/
+c05-af-doac,cardiovascular,3,medium,cardiology,gap3-af-nonvalvular-doac,pharmacotherapy,Apixaban for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC11095842/
+c06-type-a-dissection,cardiovascular,5,hard,cardiology,gap3-type-a-dissection-surgery,clinical-intervention,Emergency operative repair and intravenous esmolol,https://pmc.ncbi.nlm.nih.gov/articles/PMC9876736/
+c07-no-aspirin-60,cardiovascular,4,hard,cardiology,gap3-aspirin-primary-prevention-age-60,health-maintenance,Do not start aspirin for primary prevention,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-to-prevent-cardiovascular-disease-preventive-medication
+e01-gdm-screen-timing,reproductive-endocrine,2,easy,obgyn,gap3-gdm-screen-timing,health-maintenance,Defer routine screening until 24 weeks or later,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/gestational-diabetes-screening
+e02-thyroid-no-screen,reproductive-endocrine,2,easy,endocrinology,gap3-thyroid-screen-insufficient,health-maintenance,No routine TSH screening,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/thyroid-dysfunction-screening
+e03-pheo-alpha,reproductive-endocrine,3,medium,endocrinology,gap3-pheo-alpha-blockade,pharmacotherapy,Phenoxybenzamine for this patient during this visit,https://pmc.ncbi.nlm.nih.gov/articles/PMC9162254/
+e04-myxedema,reproductive-endocrine,3,medium,endocrinology,gap3-myxedema-hydrocortisone,pharmacotherapy,Intravenous hydrocortisone plus intravenous levothyroxine,https://pmc.ncbi.nlm.nih.gov/articles/PMC3175396/
+e05-dka-k-high-start-insulin,reproductive-endocrine,5,hard,endocrinology,gap3-dka-insulin-when-potassium-high,pharmacotherapy,Start intravenous insulin now for this patient,https://pmc.ncbi.nlm.nih.gov/articles/PMC2699725/

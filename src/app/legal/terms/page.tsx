@@ -3,12 +3,17 @@ import type { Metadata } from "next";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
 import { purchasableBillingIntervalPhrase } from "@/lib/stripe-prices";
+import { shareMeta } from "@/lib/seo/public-tool-metadata";
+
+const TERMS_TITLE = "Terms of Service — AnyExamEasy";
+const TERMS_DESCRIPTION =
+  "Read the AnyExamEasy Terms of Service — subscription rules, trials, refunds and acceptable use for our online board exam prep platform today.";
 
 export const metadata: Metadata = {
-  title: { absolute: "Terms of Service — AnyExamEasy" },
-  description:
-    "Read the AnyExamEasy Terms of Service — subscription rules, trials, refunds and acceptable use for our online board exam prep platform today.",
+  title: { absolute: TERMS_TITLE },
+  description: TERMS_DESCRIPTION,
   alternates: { canonical: "/legal/terms" },
+  ...shareMeta(TERMS_TITLE, TERMS_DESCRIPTION, "/legal/terms"),
 };
 
 export default function TermsPage() {

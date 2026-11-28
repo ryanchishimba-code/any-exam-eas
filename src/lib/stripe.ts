@@ -59,6 +59,8 @@ type CheckoutBaseParams = {
   stripeCouponId?: string | null;
   /** App promo code string — stored in metadata and redeemed after successful checkout */
   promoCode?: string | null;
+  /** Per-user trial upgrade offer. Redeemed after a successful charge. Never a promo code. */
+  upgradeOfferId?: string | null;
   /** auto = recurring subscription; manual = charge once, no renewal. */
   paymentMode?: PaymentMode;
   /**
@@ -100,6 +102,8 @@ function sessionMetadata(
   };
   const promo = params.promoCode?.trim();
   if (promo) metadata.promoCode = promo.toUpperCase();
+  const upgradeOfferId = params.upgradeOfferId?.trim();
+  if (upgradeOfferId) metadata.upgradeOfferId = upgradeOfferId;
   applyRenewalConsentMetadata(metadata, params.renewalConsent);
   return metadata;
 }
@@ -172,6 +176,8 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
   };
   const promo = params.promoCode?.trim();
   if (promo) subscriptionMetadata.promoCode = promo.toUpperCase();
+  const upgradeOfferId = params.upgradeOfferId?.trim();
+  if (upgradeOfferId) subscriptionMetadata.upgradeOfferId = upgradeOfferId;
   applyRenewalConsentMetadata(subscriptionMetadata, params.renewalConsent);
 
   const subscriptionData: Stripe.Checkout.SessionCreateParams.SubscriptionData = {
@@ -515,8 +521,13 @@ export async function convertTrialSubscriptionToPaid(params: {
   interval: BillingInterval;
   stripeCouponId?: string | null;
   promoCode?: string | null;
+  upgradeOfferId?: string | null;
   renewalConsent?: CheckoutBaseParams["renewalConsent"];
-}): Promise<{ status: string; stripeSubscriptionId: string }> {
+}): Promise<{
+  status: string;
+  stripeSubscriptionId: string;
+  charge: { amountCents: number; currency: string } | null;
+}> {
   if (!stripe) throw new Error("Stripe is not configured");
   if (!isUsableStripeSubscriptionId(params.stripeSubscriptionId)) {
     throw new Error("Invalid Stripe subscription");
@@ -568,6 +579,8 @@ export async function convertTrialSubscriptionToPaid(params: {
   };
   const promo = params.promoCode?.trim();
   if (promo) updateMetadata.promoCode = promo.toUpperCase();
+  const upgradeOfferId = params.upgradeOfferId?.trim();
+  if (upgradeOfferId) updateMetadata.upgradeOfferId = upgradeOfferId;
   applyRenewalConsentMetadata(updateMetadata, params.renewalConsent);
   const updateParams: Stripe.SubscriptionUpdateParams = {
     items: [{ id: item.id, price: newPriceId }],
@@ -600,7 +613,33 @@ export async function convertTrialSubscriptionToPaid(params: {
     );
   }
 
-  return { status: updated.status, stripeSubscriptionId: updated.id };
+  if (upgradeOfferId && updated.status === "active") {
+    void import("@/lib/billing/trial-upgrade-offer-db").then((m) =>
+      m.redeemTrialUpgradeOffer(upgradeOfferId, params.userId)
+    );
+  }
+
+  let charge: { amountCents: number; currency: string } | null = null;
+  try {
+    const invoiceRef = updated.latest_invoice;
+    const invoiceId = typeof invoiceRef === "string" ? invoiceRef : invoiceRef?.id;
+    if (invoiceId && updated.status === "active") {
+      const invoice = await stripe.invoices.retrieve(invoiceId);
+      if (invoice.status === "paid" && invoice.amount_paid > 0) {
+        charge = {
+          amountCents: invoice.amount_paid,
+          currency: invoice.currency ?? "usd",
+        };
+      }
+    }
+  } catch (error) {
+    console.error(
+      "[stripe] paid invoice not readable for conversion",
+      error instanceof Error ? error.message : error
+    );
+  }
+
+  return { status: updated.status, stripeSubscriptionId: updated.id, charge };
 }
 
 export async function applySubscriptionFromStripe(

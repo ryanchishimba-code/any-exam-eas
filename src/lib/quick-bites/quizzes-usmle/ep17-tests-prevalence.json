@@ -1,0 +1,289 @@
+{
+  "episode": "ep17-tests-prevalence",
+  "title": "When the Test Changes With the Room",
+  "video": "quick-bites-usmle-ep17-tests-prevalence-web.mp4",
+  "questions": [
+    {
+      "id": "ep17-q01",
+      "type": "single_best_answer",
+      "stem": "The disease gets rarer. What falls?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sensitivity"
+        },
+        {
+          "id": "B",
+          "text": "Specificity"
+        },
+        {
+          "id": "C",
+          "text": "The positive predictive value"
+        },
+        {
+          "id": "D",
+          "text": "All three, equally"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Sensitivity and specificity stay put. The room changes the predictive value.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-q02",
+      "type": "single_best_answer",
+      "stem": "As the disease gets common, a negative test:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Becomes more reassuring"
+        },
+        {
+          "id": "B",
+          "text": "Reassures less"
+        },
+        {
+          "id": "C",
+          "text": "Changes the sensitivity"
+        },
+        {
+          "id": "D",
+          "text": "Becomes a constant printed on the kit"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Negative predictive value falls as prevalence rises.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-q03",
+      "type": "single_best_answer",
+      "stem": "The chance you believed before the result is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Created by the lab"
+        },
+        {
+          "id": "B",
+          "text": "The pre-test probability, written down before you look"
+        },
+        {
+          "id": "C",
+          "text": "The same as sensitivity"
+        },
+        {
+          "id": "D",
+          "text": "Always zero"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The test revises that number. It does not create it.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-q04",
+      "type": "single_best_answer",
+      "stem": "The negative likelihood ratio:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Uses the misses, and does not contain prevalence"
+        },
+        {
+          "id": "B",
+          "text": "Is the same as the positive predictive value"
+        },
+        {
+          "id": "C",
+          "text": "Rises automatically when disease is rare"
+        },
+        {
+          "id": "D",
+          "text": "Is printed as sensitivity"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "It is one minus sensitivity, over specificity.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-q05",
+      "type": "single_best_answer",
+      "stem": "The preventive services task force recommends mammography:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Every other year from forty through seventy-four"
+        },
+        {
+          "id": "B",
+          "text": "Never before seventy-five"
+        },
+        {
+          "id": "C",
+          "text": "Only after a palpable mass, as screening"
+        },
+        {
+          "id": "D",
+          "text": "Yearly from age twenty-one, as its only statement"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A palpable mass is a workup now, not a screening interval.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-q06",
+      "type": "single_best_answer",
+      "stem": "Cervical screening should not start:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Before age twenty-one"
+        },
+        {
+          "id": "B",
+          "text": "In any vaccinated patient, ever"
+        },
+        {
+          "id": "C",
+          "text": "If there is bleeding after sex"
+        },
+        {
+          "id": "D",
+          "text": "After age thirty"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A vaccinated patient is still screened. Bleeding after sex is an exam now.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-q07",
+      "type": "single_best_answer",
+      "stem": "A very sensitive test that says yes in a rare disease:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is usually a true yes"
+        },
+        {
+          "id": "B",
+          "text": "May still be wrong most of the time"
+        },
+        {
+          "id": "C",
+          "text": "Has changed its sensitivity"
+        },
+        {
+          "id": "D",
+          "text": "Replaces pre-test chance with certainty"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "False yeses crowd out the true ones when disease is rare.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-q08",
+      "type": "single_best_answer",
+      "stem": "Predictive values are:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Constants printed on every kit, in every room"
+        },
+        {
+          "id": "B",
+          "text": "Dependent on the population you are standing in"
+        },
+        {
+          "id": "C",
+          "text": "The same as specificity"
+        },
+        {
+          "id": "D",
+          "text": "Unaffected by prevalence"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do the math in the room you are in.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-q09",
+      "type": "single_best_answer",
+      "stem": "A moderately sensitive test, used to exclude a dangerous disease:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is a strong rule-out"
+        },
+        {
+          "id": "B",
+          "text": "Is a poor rule-out, because the negative likelihood ratio stays sizable"
+        },
+        {
+          "id": "C",
+          "text": "Changes specificity"
+        },
+        {
+          "id": "D",
+          "text": "Is the mammography interval"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The negative likelihood ratio uses the misses.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Prevalence moves predictive value, not sensitivity."
+        },
+        {
+          "id": "B",
+          "text": "As disease gets common, a no reassures less."
+        },
+        {
+          "id": "C",
+          "text": "Write the chance after you look, never before."
+        },
+        {
+          "id": "D",
+          "text": "Do not start cervical screening before twenty-one."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Write the chance before you look.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

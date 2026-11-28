@@ -10,8 +10,13 @@ type MarketingHeroActionsProps = {
   /** Trial line under the primary CTA (e.g. live count + no card). */
   trialMicrocopy?: string;
   className?: string;
-  /** Signed-in visitors should not see the logged-out trial button. */
+  /**
+   * Server-rendered only. The client session must not rewrite this link:
+   * a signed-in header still keeps the public trial hero.
+   */
   signedIn?: boolean;
+  /** Overrides the signed-out label. An explicit signed-in render still says “Continue studying”. */
+  trialLabel?: string;
 };
 
 export function MarketingHeroActions({
@@ -23,6 +28,7 @@ export function MarketingHeroActions({
   trialMicrocopy,
   className = "bl-actions",
   signedIn = false,
+  trialLabel = HERO_TRIAL_CTA_LABEL,
 }: MarketingHeroActionsProps) {
   return (
     <div className={className}>
@@ -32,7 +38,7 @@ export function MarketingHeroActions({
           ctaName={signedIn ? "continue_studying" : ctaName}
           location={ctaLocation}
         >
-          {signedIn ? "Continue studying" : HERO_TRIAL_CTA_LABEL}
+          {signedIn ? "Continue studying" : trialLabel}
         </LandingCta>
         {!signedIn && trialMicrocopy ? <p className="bl-hero-micro">{trialMicrocopy}</p> : null}
       </div>

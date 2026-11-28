@@ -56,6 +56,26 @@ describe("drug enrichment", () => {
     expect(e.guidelines.some((g) => /ACOG/i.test(g.label))).toBe(true);
   });
 
+  it("uses current SELECT, ADA, vancomycin, and aspirin wording", () => {
+    const sema = enrichDrug(getDrugById("semaglutide")!);
+    const semaText = sema.pearls.join(" ");
+    expect(semaText).toMatch(/without diabetes/i);
+    expect(semaText).not.toMatch(/T2DM with established ASCVD/);
+
+    const met = enrichDrug(getDrugById("metformin")!);
+    expect(met.pearls.join(" ")).toMatch(/ADA 2026/);
+    expect(met.pearls.join(" ")).toMatch(/with or without metformin/i);
+
+    const vanc = getDrugById("vancomycin");
+    expect(vanc?.mnemonic).toMatch(/AUC 400–600/);
+    expect(enrichDrug(vanc!).pearls.join(" ")).toMatch(/trough-only 15–20/i);
+
+    const asa = getDrugById("aspirin-low-dose");
+    expect(asa?.indications).toMatch(/USPSTF 2022/);
+    expect(asa?.indications).toMatch(/do not start at age ≥60/);
+    expect(asa?.indications).toMatch(/Secondary ASCVD prevention/);
+  });
+
   it("adds benzodiazepine safety pearls for alprazolam", () => {
     const benzo = getDrugById("alprazolam");
     expect(benzo).toBeDefined();

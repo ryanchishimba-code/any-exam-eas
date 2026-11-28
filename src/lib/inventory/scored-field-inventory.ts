@@ -21,9 +21,8 @@ export type ScoredFieldInventory = {
 
 /**
  * User-agnostic board totals plus published NGN counts.
- * The NGN load reads every item and case chart for the board. That work is
- * CPU on a cold function, and these pages are hit too rarely to keep an
- * isolate warm. The result is small, so it can live in the data cache.
+ * NGN counts come from the slim id/status/label read, not the chart catalog.
+ * The result is small, so it can live in the data cache.
  * The key includes the published stamp, so a new publish misses within the
  * stamp window. `question-bank-counts` drops it immediately on purge.
  * A failed catalog read is not cached.
@@ -82,8 +81,11 @@ async function loadScoredFieldInventory(
 
   let catalog = null;
   try {
-    const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
-    catalog = (await loadPublishedClinicalBank(fieldId)).catalog;
+    // Counts only need publish status and the client-need label. The full
+    // chart catalog is over the 2MB data-cache limit, so this stays on the
+    // slim HTTP read.
+    const { loadSlimPublishedCatalog } = await import("@/lib/marketing/clinical-extra-http");
+    catalog = await loadSlimPublishedCatalog(fieldId);
   } catch (error) {
     if (!allowCatalogMiss) throw error;
     catalog = null;

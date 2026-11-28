@@ -74,6 +74,8 @@ export function publishedNgnItemCount(
   return Math.max(0, units.standaloneNgn) + Math.max(0, units.caseItems);
 }
 
+export { formatPublishedNgnSentence } from "@/lib/published-ngn-sentence";
+
 export function formatExactQuestionCount(count: number): string {
   return Math.max(0, Math.floor(count)).toLocaleString("en-US");
 }

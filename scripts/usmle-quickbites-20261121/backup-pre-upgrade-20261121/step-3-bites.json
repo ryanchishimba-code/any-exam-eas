@@ -1,0 +1,4502 @@
+[
+  {
+    "step": "step-3",
+    "system": "human-development",
+    "group": "Development",
+    "title": "A febrile infant 8 to 21 days old is admitted",
+    "read": "1 min",
+    "open": true,
+    "lead": "A well-appearing infant 8 to 21 days old with a fever of 38.0\u00b0C or higher gets urine, blood, and cerebrospinal fluid cultures and parenteral antibiotics in the hospital.",
+    "lines": [
+      "This is not an outpatient viral visit.",
+      "The AAP 2021 guideline is the source of that age band.",
+      "Do not subtract the rectal temperature because the baby looks calm."
+    ],
+    "miss": "Sending a 2-week-old with a fever of 38.2 home with a virus explanation.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "AAP Clinical Practice Guideline. Evaluation and Management of Well-Appearing Febrile Infants 8 to 60 Days Old.",
+      "year": "2021",
+      "url": "https://publications.aap.org/pediatrics/article/148/2/e2021052228/179783/Evaluation-and-Management-of-Well-Appearing-Febrile",
+      "says": "Infants 8 to 21 days old are hospitalized for a full culture evaluation and parenteral antibiotics."
+    },
+    "number": 1,
+    "id": "usmle-qb-s3-001"
+  },
+  {
+    "step": "step-3",
+    "system": "human-development",
+    "group": "Development",
+    "title": "A newborn of a mother with diabetes is fed and the glucose is checked",
+    "read": "1 min",
+    "open": false,
+    "lead": "A newborn whose mother had diabetes is fed early and the glucose is checked. The baby's insulin is still high after the cord is cut.",
+    "lines": [
+      "Jitteriness is a low glucose until proved otherwise.",
+      "Do not wait for a seizure to check.",
+      "The mother's control during pregnancy is the history you ask for."
+    ],
+    "miss": "Discharging a jittery infant of a diabetic mother at 6 hours without a glucose.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Gestational Diabetes.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK545196/",
+      "says": "Neonatal hypoglycemia is anticipated and checked. Early feeding is the first prevention."
+    },
+    "number": 2,
+    "id": "usmle-qb-s3-002"
+  },
+  {
+    "step": "step-3",
+    "system": "human-development",
+    "group": "Development",
+    "title": "A Turner girl's blood pressure is measured in the arm and the leg",
+    "read": "1 min",
+    "open": false,
+    "lead": "At every visit for Turner syndrome, compare the arm and the leg blood pressure and listen for the aortic valve. The karyotype result is not a completed plan.",
+    "lines": [
+      "A new gradient is imaging, not a year of observation.",
+      "Growth hormone and estrogen are timed with a specialist, not started casually.",
+      "Renal ultrasound is done if it was never done."
+    ],
+    "miss": "Refilling a note that says Turner and never taking a leg pressure.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Turner Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK554621/",
+      "says": "Ongoing care includes blood-pressure comparison and cardiac surveillance for coarctation and bicuspid aortic valve."
+    },
+    "number": 3,
+    "id": "usmle-qb-s3-003"
+  },
+  {
+    "step": "step-3",
+    "system": "human-development",
+    "group": "Development",
+    "title": "Salt-wasting adrenal crisis in an infant is steroid and saline first",
+    "read": "1 min",
+    "open": false,
+    "lead": "A vomiting, shocked infant in the first weeks of life gets a glucose, a sodium, a potassium, and a stress-dose steroid. The genital exam does not delay the steroid.",
+    "lines": [
+      "Hyponatremia and hyperkalemia are the lab pair.",
+      "17-hydroxyprogesterone is sent. The result is not required to treat.",
+      "Do not give only antibiotics."
+    ],
+    "miss": "Fluid-resuscitating a shocked neonate and waiting a day for the newborn screen.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Congenital Adrenal Hyperplasia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448098/",
+      "says": "Salt-wasting crisis is treated with stress-dose glucocorticoid and saline immediately. The diagnostic steroid precursor is sent, not awaited."
+    },
+    "number": 4,
+    "id": "usmle-qb-s3-004"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "The first sickle-cell pain order is incentive spirometry",
+    "read": "1 min",
+    "open": false,
+    "lead": "For a sickle-cell pain crisis, write incentive spirometry on admission. It prevents acute chest syndrome while you treat the pain.",
+    "lines": [
+      "Oxygen is for hypoxia, not for a saturation of 99%.",
+      "Fluids are enough to correct deficit, not a flood.",
+      "A new infiltrate changes the admission to acute chest syndrome."
+    ],
+    "miss": "Admitting for morphine without a spirometer or a plan to walk.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Sickle Cell Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482164/",
+      "says": "Incentive spirometry is ordered for vaso-occlusive pain admissions because it reduces acute chest syndrome."
+    },
+    "number": 5,
+    "id": "usmle-qb-s3-005"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "Exchange transfusion is the order for severe acute chest or stroke",
+    "read": "1 min",
+    "open": false,
+    "lead": "Severe acute chest syndrome or an acute stroke in sickle cell disease is an exchange-transfusion call, not another unit of simple transfusion as the whole plan.",
+    "lines": [
+      "Simple transfusion is for symptomatic anemia.",
+      "Call the blood bank early. The exchange takes time to arrange.",
+      "Hydroxyurea is the outpatient prevention, not the drug that treats today's stroke."
+    ],
+    "miss": "Ordering one unit of packed cells and a neurology clinic visit for an acute ischemic stroke in sickle cell disease.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Sickle Cell Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482164/",
+      "says": "Exchange transfusion is used for severe acute chest syndrome and acute stroke. Simple transfusion does not replace it."
+    },
+    "number": 6,
+    "id": "usmle-qb-s3-006"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "Plasma exchange is ordered before the ADAMTS13 returns",
+    "read": "1 min",
+    "open": false,
+    "lead": "When the smear and the story are thrombotic thrombocytopenic purpura, order plasma exchange now. The ADAMTS13 result confirms later.",
+    "lines": [
+      "Do not platelet-transfuse unless there is life-threatening bleeding.",
+      "Hold the platelet-making argument and start the exchange.",
+      "Daily labs follow the lactate dehydrogenase and the platelets."
+    ],
+    "miss": "Waiting for the send-out ADAMTS13 before calling the apheresis service.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Thrombotic Thrombocytopenic Purpura.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430721/",
+      "says": "Plasma exchange is started on clinical grounds. Platelet transfusion is reserved for life-threatening bleeding."
+    },
+    "number": 7,
+    "id": "usmle-qb-s3-007"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "Febrile neutropenia: antibiotic within the hour, vancomycin only if indicated",
+    "read": "1 min",
+    "open": false,
+    "lead": "Write the antipseudomonal antibiotic as a stat order. Add vancomycin only for instability, a line infection, severe mucositis, or known resistant gram-positive colonization.",
+    "lines": [
+      "Cultures are drawn if they do not delay the drug.",
+      "A stable patient does not need three extra antibiotics.",
+      "The source, including the perianal exam, is looked at."
+    ],
+    "miss": "Ordering vancomycin, metronidazole, and an antifungal with the first fever in a stable patient.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Febrile Neutropenia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK541102/",
+      "says": "Antipseudomonal therapy is immediate. Vancomycin is added for specific indications, not for every fever."
+    },
+    "number": 8,
+    "id": "usmle-qb-s3-008"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "A head bleed in hemophilia is factor first, scan second",
+    "read": "1 min",
+    "open": false,
+    "lead": "A hemophilia patient with head trauma gets factor replacement immediately. The CT does not come before the factor.",
+    "lines": [
+      "Aim for a full correction for a central-nervous-system bleed.",
+      "Do not give an intramuscular injection.",
+      "An inhibitor is suspected when the bleed does not stop with the usual dose."
+    ],
+    "miss": "Sending the patient to CT while the factor is still in the pharmacy.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Hemophilia A.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470265/",
+      "says": "Factor replacement for suspected intracranial bleeding is immediate and is not delayed for imaging."
+    },
+    "number": 9,
+    "id": "usmle-qb-s3-009"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "Stop heparin in all its forms when HIT is suspected",
+    "read": "1 min",
+    "open": false,
+    "lead": "When heparin-induced thrombocytopenia is suspected, discontinue every heparin product, including flushes and coated catheters, and order a non-heparin anticoagulant.",
+    "lines": [
+      "Write the allergy so the next shift does not restart a flush.",
+      "Do not order warfarin tonight.",
+      "Send the antibody, but do not wait for it to stop the drug."
+    ],
+    "miss": "Changing the heparin drip to a heparin flush and calling that a stop.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Heparin-Induced Thrombocytopenia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482330/",
+      "says": "All heparin exposures stop at suspicion. A non-heparin anticoagulant is ordered the same hour."
+    },
+    "number": 10,
+    "id": "usmle-qb-s3-010"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "Cryoprecipitate is the fibrinogen order in DIC",
+    "read": "1 min",
+    "open": false,
+    "lead": "In a bleeding patient with DIC and a low fibrinogen, order cryoprecipitate. Ordering only fresh frozen plasma does not reliably replace fibrinogen.",
+    "lines": [
+      "The cause, the sepsis or the abruption or the leukemia, is ordered at the same time.",
+      "Platelets are for the bleeding patient, not for a standing daily threshold.",
+      "Recheck the fibrinogen after the product."
+    ],
+    "miss": "Ordering a unit of red cells and no fibrinogen for a patient whose fibrinogen is 70.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Disseminated Intravascular Coagulation.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441834/",
+      "says": "Cryoprecipitate replaces fibrinogen in bleeding DIC. Product replacement does not replace treatment of the cause."
+    },
+    "number": 11,
+    "id": "usmle-qb-s3-011"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "Rasburicase is a stat order, and the uric acid tube is special",
+    "read": "1 min",
+    "open": false,
+    "lead": "If you give rasburicase, the uric-acid sample has to be handled so the drug does not keep working in the tube and fake a low result.",
+    "lines": [
+      "Fluids are already running.",
+      "The potassium is on a monitor and a repeat lab.",
+      "G6PD deficiency is the contraindication you ask about."
+    ],
+    "miss": "Celebrating a uric acid of 1 drawn in a warm tube after rasburicase.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Tumor Lysis Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK518985/",
+      "says": "Rasburicase continues to degrade uric acid in the specimen unless the sample is handled correctly. The potassium is followed separately."
+    },
+    "number": 12,
+    "id": "usmle-qb-s3-012"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "Phlebotomy for polycythemia vera has a hematocrit target",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order phlebotomy for polycythemia vera toward a hematocrit under 45%, and do not apply that target to a hypoxic patient with a high erythropoietin.",
+    "lines": [
+      "Aspirin is added when the diagnosis is secure.",
+      "Hydroxyurea is for the high-risk patient, written as a planned drug, not a one-time dose.",
+      "Tell the patient to report erythromelalgia and clots."
+    ],
+    "miss": "Phlebotomizing a patient with COPD and a high EPO down to a hematocrit of 40.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Polycythemia Vera.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557660/",
+      "says": "Phlebotomy targets a hematocrit below 45% in polycythemia vera and is not the treatment of secondary erythrocytosis."
+    },
+    "number": 13,
+    "id": "usmle-qb-s3-013"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "ATRA is a now order, and the fibrinogen is checked twice a shift",
+    "read": "1 min",
+    "open": false,
+    "lead": "For suspected acute promyelocytic leukemia, order all-trans retinoic acid and a fibrinogen now, and recheck the fibrinogen on the same shift.",
+    "lines": [
+      "The blood bank knows this patient can bleed.",
+      "Differentiation syndrome is fever and infiltrates after the drug. Do not call it pneumonia and stop the drug without a specialist.",
+      "The genetic test is sent. It is not the start time."
+    ],
+    "miss": "Scheduling the bone-marrow biopsy for Monday and the drug for after the result.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Acute Myeloid Leukemia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK507875/",
+      "says": "All-trans retinoic acid and coagulopathy monitoring start when the diagnosis is suspected, not when genetics return."
+    },
+    "number": 14,
+    "id": "usmle-qb-s3-014"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "Vaccinate before or as you start a complement inhibitor",
+    "read": "1 min",
+    "open": false,
+    "lead": "Before or as a complement inhibitor starts for PNH, order meningococcal vaccination. The drug blocks the defense against Neisseria.",
+    "lines": [
+      "The hemolysis drug is not delayed for a life-threatening clot, and the vaccine is not forgotten.",
+      "Iron is replaced if the urine has been losing it.",
+      "Anticoagulation alone is not the whole plan."
+    ],
+    "miss": "Starting eculizumab on Friday and leaving the vaccine for a clinic that does not exist.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Paroxysmal Nocturnal Hemoglobinuria.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK562292/",
+      "says": "Complement inhibition requires meningococcal vaccination because terminal-complement defense is blocked."
+    },
+    "number": 15,
+    "id": "usmle-qb-s3-015"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "A transfusion reaction order is stop, keep, and send",
+    "read": "1 min",
+    "open": false,
+    "lead": "The order set for a suspected hemolytic reaction is: stop the transfusion, keep the bag and tubing, send a new sample, and do not restart that unit.",
+    "lines": [
+      "Normal saline is the fluid. More blood is a new decision.",
+      "Check the name on the bag against the wristband yourself.",
+      "Urine output and pressure are the bedside monitors."
+    ],
+    "miss": "Slowing the rate to 10 mL an hour and leaving the same unit hanging.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Hemolytic Transfusion Reaction.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448158/",
+      "says": "The unit is stopped and returned with a new specimen. It is not restarted."
+    },
+    "number": 16,
+    "id": "usmle-qb-s3-016"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "Myeloma hypercalcemia is saline, and the bone is protected",
+    "read": "1 min",
+    "open": false,
+    "lead": "Severe hypercalcemia from myeloma is saline first. A bisphosphonate is ordered for the bone disease, not as the only drug in a dehydrated patient.",
+    "lines": [
+      "The light chains need a urine or serum free-light-chain test, not an albumin dipstick.",
+      "Infection is common. A fever is cultured.",
+      "Thalidomide-era steroids are a specialist regimen. Fluids are yours tonight."
+    ],
+    "miss": "Giving a bisphosphonate and no fluid to a creatinine of 3.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Multiple Myeloma.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK534764/",
+      "says": "Volume resuscitation treats the hypercalcemia of myeloma. Antiresorptive therapy is added for bone disease after the patient is moving urine."
+    },
+    "number": 17,
+    "id": "usmle-qb-s3-017"
+  },
+  {
+    "step": "step-3",
+    "system": "blood-lymph-immune",
+    "group": "Blood and immune",
+    "title": "Aplastic anemia transfusions are limited if transplant is possible",
+    "read": "1 min",
+    "open": false,
+    "lead": "In a young patient with aplastic anemia who may be transplanted, transfuse for symptoms and avoid blood from family donors, who can sensitize the recipient.",
+    "lines": [
+      "The marrow is the diagnostic test and is ordered, not inferred.",
+      "Infection precautions are written.",
+      "Growth factors are not a substitute for a diagnosis."
+    ],
+    "miss": "Transfusing a sibling's directed donation the night before a transplant evaluation.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Aplastic Anemia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK534212/",
+      "says": "Transfusions are minimized and family-donor blood is avoided when hematopoietic transplant is a possibility."
+    },
+    "number": 18,
+    "id": "usmle-qb-s3-018"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Blood pressure before a thrombolytic is under 185/110",
+    "read": "1 min",
+    "open": false,
+    "lead": "Before alteplase or tenecteplase, the blood pressure is brought under 185/110. If you are not giving a reperfusion drug and the pressure is under 220/120, do not lower it in the first two days.",
+    "lines": [
+      "Write the thrombolytic only after the pressure is in range and the exclusion list is checked.",
+      "A patient who is not reperfused is harmed by an aggressive pressure drop.",
+      "Recheck the pressure after the drug. The target while the infusion's risk window is open is lower still, under about 180/105."
+    ],
+    "miss": "Lowering a pressure of 190/100 in a patient who is not getting a thrombolytic, or giving the drug at 200/115.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2026 AHA/ASA Guideline for the Early Management of Acute Ischemic Stroke.",
+      "year": "2026",
+      "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+      "says": "Trial protocols required pressure under 185/110 before thrombolysis. Without reperfusion, lowering pressure under 220/120 in the first 48 to 72 hours does not help."
+    },
+    "number": 19,
+    "id": "usmle-qb-s3-019"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "The stroke order is a finger-stick and a CT before the drug",
+    "read": "1 min",
+    "open": false,
+    "lead": "The first stroke orders are a glucose, a noncontrast CT, and a clock. Hypoglycemia copies a stroke and is treated, not lysed.",
+    "lines": [
+      "The CT excludes hemorrhage. It does not have to show the infarct.",
+      "Do not delay the drug inside 4.5 hours for an MRI.",
+      "A swallow screen is ordered before the first meal."
+    ],
+    "miss": "Sending the patient to MRI and giving breakfast before a swallow screen.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2026 AHA/ASA Guideline for the Early Management of Acute Ischemic Stroke.",
+      "year": "2026",
+      "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+      "says": "Glucose and noncontrast CT precede thrombolysis. MRI is not required inside the standard window."
+    },
+    "number": 20,
+    "id": "usmle-qb-s3-020"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Status epilepticus orders: glucose, benzo, then one full second drug",
+    "read": "1 min",
+    "open": false,
+    "lead": "The status order is a glucose, a benzodiazepine now, and if it continues one full dose of levetiracetam, fosphenytoin, or valproate.",
+    "lines": [
+      "Do not stack quarter-doses of lorazepam.",
+      "Protect the airway while the drugs are drawn.",
+      "A benzodiazepine level or a neurology consult is not the first order."
+    ],
+    "miss": "Starting a phenytoin load and never giving the benzodiazepine.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Status Epilepticus.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430686/",
+      "says": "Glucose is checked, a benzodiazepine is given immediately, and one adequate second-line dose follows if seizures continue."
+    },
+    "number": 21,
+    "id": "usmle-qb-s3-021"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "A thunderclap order is CT now, and a plan if it is negative",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a noncontrast head CT before any migraine drug for a headache that peaked at onset. If it is negative in the first hours, order the next test rather than a discharge.",
+    "lines": [
+      "The next test is a lumbar puncture or a vascular study, chosen by timing.",
+      "Do not give a triptan to a headache you have not cleared.",
+      "Document the time the pain became maximal."
+    ],
+    "miss": "Discharging a negative CT at hour two with a sumatriptan prescription.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Thunderclap Headache.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560629/",
+      "says": "CT is immediate. A negative early CT does not complete the exclusion of subarachnoid hemorrhage."
+    },
+    "number": 22,
+    "id": "usmle-qb-s3-022"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Meningitis: steroid and drug before the scanner if you must scan",
+    "read": "1 min",
+    "open": false,
+    "lead": "If a CT is required before the lumbar puncture, the dexamethasone and the antibiotic are given first. The puncture happens after the scan.",
+    "lines": [
+      "Blood cultures are drawn if they do not delay the drug.",
+      "The steroid is with the first dose when pneumococcus is likely.",
+      "A normal CT does not mean you skip the puncture."
+    ],
+    "miss": "Holding the antibiotic until the patient returns from CT and the puncture is done.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "IDSA Practice Guidelines for the Management of Bacterial Meningitis.",
+      "year": "2004",
+      "url": "https://academic.oup.com/cid/article/39/9/1267/402080",
+      "says": "Antibiotics and dexamethasone are not delayed for imaging. The lumbar puncture follows the scan when a scan is required."
+    },
+    "number": 23,
+    "id": "usmle-qb-s3-023"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Watch the numbers that say the diaphragm is failing",
+    "read": "1 min",
+    "open": false,
+    "lead": "In Guillain-Barr\u00e9 syndrome, order vital capacity and negative inspiratory force on a schedule. Intubate when those numbers fall, not when the patient arrests.",
+    "lines": [
+      "A rising CO2 is late.",
+      "IVIG or exchange is ordered the day you make the diagnosis.",
+      "Steroids are not on the order set."
+    ],
+    "miss": "Checking a chest film instead of a vital capacity.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Guillain-Barre Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK532254/",
+      "says": "Serial respiratory mechanics detect diaphragm failure early. Immunoglobulin or exchange is ordered, and steroids are not."
+    },
+    "number": 24,
+    "id": "usmle-qb-s3-024"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "A multiple-sclerosis admission includes a search for infection",
+    "read": "1 min",
+    "open": false,
+    "lead": "Before you order a high-dose steroid for a supposed flare, order a search for infection. A urinary infection can revive old symptoms.",
+    "lines": [
+      "MRI is for a new deficit, not for every warm day.",
+      "The disease-modifying drug is reconciled so it is not missed at discharge.",
+      "Fever itself is treated."
+    ],
+    "miss": "Starting methylprednisolone for a positive urine culture and old leg weakness.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Multiple Sclerosis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499849/",
+      "says": "Pseudo-relapse from infection is excluded before a flare is treated with corticosteroids."
+    },
+    "number": 25,
+    "id": "usmle-qb-s3-025"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Parkinson medications are given on the patient's clock",
+    "read": "1 min",
+    "open": false,
+    "lead": "In the hospital, order carbidopa-levodopa at the patient's home times. A missed dose causes rigidity that looks like a new illness.",
+    "lines": [
+      "Do not order a dopamine blocker for nausea.",
+      "A swallowing evaluation is ordered if the doses are being missed because of dysphagia.",
+      "Fall precautions are written."
+    ],
+    "miss": "Holding all Parkinson drugs because the patient is NPO for a test that could have been timed.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Parkinson Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470193/",
+      "says": "Home timing of levodopa is continued in the hospital. Dopamine-blocking antiemetics are avoided."
+    },
+    "number": 26,
+    "id": "usmle-qb-s3-026"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Cord compression: dexamethasone and MRI today",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order dexamethasone and an MRI today for back pain with leg weakness, a sensory level, or new urinary retention. The oncology staging can wait.",
+    "lines": [
+      "Radiation oncology or spine surgery is called when the MRI confirms compression.",
+      "Plain films are not the test.",
+      "A bladder scan documents the retention."
+    ],
+    "miss": "Scheduling the MRI for next week and a clinic visit.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Spinal Cord Compression.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557604/",
+      "says": "Dexamethasone and same-day MRI are the orders. Decompression is arranged from the result."
+    },
+    "number": 27,
+    "id": "usmle-qb-s3-027"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "A TIA leaves with a drug and a monitored plan",
+    "read": "1 min",
+    "open": false,
+    "lead": "A TIA discharge order includes an antithrombotic, a statin if atherosclerotic disease is the cause, and a follow-up measured in days, not months.",
+    "lines": [
+      "If atrial fibrillation is found, the drug is an anticoagulant, not aspirin.",
+      "Carotid imaging is ordered before or immediately after discharge.",
+      "Driving and the next symptom are written in the instructions."
+    ],
+    "miss": "Discharging on aspirin with a neurology appointment in three months and no carotid study.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Transient Ischemic Attack.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459143/",
+      "says": "Antithrombotic therapy and urgent vascular and cardiac evaluation are the discharge plan."
+    },
+    "number": 28,
+    "id": "usmle-qb-s3-028"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Horner syndrome imaging is ordered the day you see it",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order vascular imaging the day you diagnose a painful Horner syndrome. A chest image that includes the apex is added for a smoker.",
+    "lines": [
+      "Do not schedule it as a routine outpatient study next month.",
+      "Neurologic signs beyond the eye move the patient to a stroke pathway.",
+      "Document which pupil is small."
+    ],
+    "miss": "Referring to ophthalmology in two weeks for a painful drooping lid.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Horner Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK500000/",
+      "says": "Acute painful Horner syndrome is imaged the same day for dissection. The lung apex is included when smoking is the history."
+    },
+    "number": 29,
+    "id": "usmle-qb-s3-029"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Migraine discharge is a limit on painkillers",
+    "read": "1 min",
+    "open": false,
+    "lead": "A migraine discharge names the acute drug, the limit per week, and the red flags that mean come back. Daily painkillers create the next headache.",
+    "lines": [
+      "Do not prescribe a triptan and an opioid together as the plan.",
+      "A first headache after age 50 is not labeled migraine without a thought.",
+      "Pregnancy status is checked before the drug."
+    ],
+    "miss": "Refilling a daily combination analgesic and a triptan with no limit.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Migraine Headache.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560787/",
+      "says": "Discharge instructions limit acute medication frequency to prevent medication-overuse headache and name the reasons to return."
+    },
+    "number": 30,
+    "id": "usmle-qb-s3-030"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Delirium orders remove the cause and the anticholinergic",
+    "read": "1 min",
+    "open": false,
+    "lead": "The delirium order set looks for infection, drugs, urine retention, and constipation, and it stops diphenhydramine. A benzodiazepine is not the treatment unless the cause is alcohol or benzodiazepine withdrawal.",
+    "lines": [
+      "Glasses and hearing aids are ordered back to the bedside.",
+      "A sitter is safer than a restraint.",
+      "The family is told this is often reversible."
+    ],
+    "miss": "Ordering lorazepam every six hours for an older patient who is confused after a hip fracture.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Differentiating Delirium Versus Dementia in Older Adults.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK570594/",
+      "says": "Delirium is treated by removing the cause and deliriogenic drugs. Benzodiazepines are reserved for withdrawal."
+    },
+    "number": 31,
+    "id": "usmle-qb-s3-031"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "A brain abscess order is antibiotics and a surgeon, not a lumbar puncture",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order antibiotics that cover the source and a surgical consult. Do not order a lumbar puncture as the diagnostic test.",
+    "lines": [
+      "CT or MRI is the image.",
+      "The ear, the sinus, and the heart are examined.",
+      "A small abscess in a stable patient can be antibiotics and a short-interval scan, written as a plan."
+    ],
+    "miss": "Ordering a lumbar puncture for a ring-enhancing lesion with a midline shift.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Brain Abscess.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441841/",
+      "says": "Imaging, source-directed antibiotics, and surgical consultation are the orders. Lumbar puncture is avoided."
+    },
+    "number": 32,
+    "id": "usmle-qb-s3-032"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Lithium admission: hold, hydrate, and a level timed correctly",
+    "read": "1 min",
+    "open": false,
+    "lead": "Hold lithium, start saline if the patient is dry, and time the level so you do not sample during the distribution phase and undercall the toxicity.",
+    "lines": [
+      "Stop the NSAID or the thiazide that raised it.",
+      "Dialysis is ordered for severe neurotoxicity, not for a mild tremor.",
+      "The home dose is not restarted at discharge without a new level and a reason."
+    ],
+    "miss": "Restarting the home dose the next morning because the patient looks better.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Lithium Toxicity.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499992/",
+      "says": "Lithium is held, volume is restored, interacting drugs are stopped, and dialysis is reserved for severe toxicity."
+    },
+    "number": 33,
+    "id": "usmle-qb-s3-033"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Serotonin syndrome: stop the new drug tonight",
+    "read": "1 min",
+    "open": false,
+    "lead": "The order is to discontinue every serotonergic drug on tonight's list, including the linezolid or the tramadol that was just added.",
+    "lines": [
+      "A benzodiazepine is ordered for agitation.",
+      "Cyproheptadine is ordered if supportive care is failing.",
+      "Cooling is ordered if the temperature is high. Restraints alone are not."
+    ],
+    "miss": "Continuing the SSRI and adding another dose of tramadol for the shivering.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Serotonin Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482377/",
+      "says": "All serotonergic agents are stopped immediately. Benzodiazepines and cooling are the supportive orders."
+    },
+    "number": 34,
+    "id": "usmle-qb-s3-034"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Neuroleptic malignant syndrome: stop the drug and check the CK",
+    "read": "1 min",
+    "open": false,
+    "lead": "Discontinue the antipsychotic and order a creatine kinase, a temperature, and cooling. Do not order another dose for agitation.",
+    "lines": [
+      "Fluids are ordered because the muscle is breaking down.",
+      "A benzodiazepine may be ordered for agitation.",
+      "The drug is not restarted this admission."
+    ],
+    "miss": "Ordering haloperidol for the rigidity.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Neuroleptic Malignant Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482282/",
+      "says": "The antagonist is stopped, creatine kinase and temperature are monitored, and cooling and fluids are ordered."
+    },
+    "number": 35,
+    "id": "usmle-qb-s3-035"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Bell palsy discharge is a steroid and an eye-care plan",
+    "read": "1 min",
+    "open": false,
+    "lead": "Discharge Bell palsy with a corticosteroid started today and instructions to lubricate the eye that does not close, including at night.",
+    "lines": [
+      "Forehead sparing cancels the discharge and starts a stroke evaluation.",
+      "Ear vesicles change the drug plan to include antiviral therapy for zoster.",
+      "Tell the patient when to return if the eye hurts."
+    ],
+    "miss": "Discharging without eye protection because the smile is the complaint.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Bell Palsy.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482290/",
+      "says": "Early corticosteroids and corneal protection are the discharge plan. Forehead sparing is not discharged as Bell palsy."
+    },
+    "number": 36,
+    "id": "usmle-qb-s3-036"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "A cerebellar bleed is a surgical call, not a floor admission",
+    "read": "1 min",
+    "open": false,
+    "lead": "Admit a cerebellar hemorrhage to a setting that can operate, and call neurosurgery when you order the CT, not the next morning.",
+    "lines": [
+      "Blood pressure orders follow hemorrhagic-stroke practice and avoid overcorrection.",
+      "Reverse anticoagulation if it is present.",
+      "A falling level of consciousness is an immediate call, not a note."
+    ],
+    "miss": "Admitting a cerebellar hemorrhage to a medical floor with neuro checks every 8 hours.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Hemorrhagic Stroke Overview.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK559173/",
+      "says": "Cerebellar hemorrhage is admitted where evacuation can happen. Neurosurgery is involved at diagnosis."
+    },
+    "number": 37,
+    "id": "usmle-qb-s3-037"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Epidural hematoma: reverse, type and screen, operating room",
+    "read": "1 min",
+    "open": false,
+    "lead": "The orders for a deteriorating epidural hematoma are reversal of anticoagulation, a type and screen, and the operating room.",
+    "lines": [
+      "Serial exams are for a stable patient a neurosurgeon has accepted for observation.",
+      "The lucid interval is documented so the next clinician knows the course.",
+      "Do not send the patient off the monitor for a nonurgent test."
+    ],
+    "miss": "Observing a dilating pupil on a medical ward.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Epidural Hematoma.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK518982/",
+      "says": "Deterioration triggers reversal, blood availability, and evacuation. Observation is only for a stable, accepted patient."
+    },
+    "number": 38,
+    "id": "usmle-qb-s3-038"
+  },
+  {
+    "step": "step-3",
+    "system": "behavioral-nervous",
+    "group": "Nervous system",
+    "title": "Subdural hematoma discharge is a reversed anticoagulant and a plan",
+    "read": "1 min",
+    "open": false,
+    "lead": "If a small subdural hematoma is discharged or observed, the anticoagulant is reversed and a written plan says when it may restart and who rechecks the scan.",
+    "lines": [
+      "A shift or a worsening exam cancels the discharge.",
+      "Fall precautions and a caregiver are named.",
+      "The indication for the anticoagulant, such as a mechanical valve, changes the restart and is not ignored."
+    ],
+    "miss": "Restarting the DOAC that night because the patient is in atrial fibrillation and the scan was small.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Subdural Hematoma.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK532970/",
+      "says": "Anticoagulation is reversed and restarted only under a plan. Mass effect or worsening cancels observation."
+    },
+    "number": 39,
+    "id": "usmle-qb-s3-039"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Compartment syndrome: remove the cast and call surgery in one order",
+    "read": "1 min",
+    "open": false,
+    "lead": "The order is to bivalve or remove the cast and to call the surgeon for fasciotomy. Analgesia is given and does not replace the call.",
+    "lines": [
+      "Document pain with passive stretch.",
+      "A present pulse is written down so nobody waits for it to vanish.",
+      "The limb is kept at the level of the heart, not dangling and not forgotten."
+    ],
+    "miss": "Increasing the morphine and leaving the tight cast on until morning rounds.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Acute Compartment Syndrome and Fasciotomy.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK556153/",
+      "says": "External compression is removed immediately and fasciotomy is arranged. Analgesia is adjunctive."
+    },
+    "number": 40,
+    "id": "usmle-qb-s3-040"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Hip fracture orders: pain, prophylaxis, and a surgical date",
+    "read": "1 min",
+    "open": false,
+    "lead": "Write pain control, venous-thromboembolism prophylaxis, and a surgical plan within about 48 hours for a medically ready hip fracture.",
+    "lines": [
+      "Delirium precautions are on the order set: no diphenhydramine, glasses on, catheter out.",
+      "A fragility fracture gets an osteoporosis treatment plan before discharge.",
+      "Consent and the medical issues that truly delay surgery are listed, not a vague clearance."
+    ],
+    "miss": "Waiting five days for every consultant to say the word cleared.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Hip Fracture Overview.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557514/",
+      "says": "Early surgery, analgesia, and clot prophylaxis are the admission orders. Osteoporosis treatment is arranged before discharge."
+    },
+    "number": 41,
+    "id": "usmle-qb-s3-041"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Open fracture: antibiotics and tetanus are stat",
+    "read": "1 min",
+    "open": false,
+    "lead": "An open fracture order is a stat antibiotic, a tetanus update, a sterile dressing, and the operating room for irrigation.",
+    "lines": [
+      "The antibiotic spectrum follows how dirty the wound is.",
+      "Do not close the wound in the emergency department.",
+      "A photo and a neurovascular exam are documented before the dressing hides them."
+    ],
+    "miss": "Splinting and arranging antibiotics with the morning surgical add-on list.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Open Fracture Management.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448083/",
+      "says": "Antibiotics and tetanus prophylaxis are immediate. Operative irrigation is the wound plan."
+    },
+    "number": 42,
+    "id": "usmle-qb-s3-042"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Septic knee: tap, then wash, then narrow the drug",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order the aspiration before the antibiotic if the patient is stable, then surgical washout, then narrow the antibiotic to the culture.",
+    "lines": [
+      "A prosthetic joint is a different order: do not start a short oral course.",
+      "Gonorrhea swabs are added when the history fits.",
+      "Weight-bearing status is written so the joint is protected."
+    ],
+    "miss": "Discharging a hot prosthetic knee on oral cephalexin.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Septic Arthritis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538176/",
+      "says": "Aspiration precedes antibiotics in stable patients. Washout and culture-directed antibiotics follow."
+    },
+    "number": 43,
+    "id": "usmle-qb-s3-043"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Gout flare orders name one anti-inflammatory and the kidney",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order one anti-inflammatory the kidneys allow: an NSAID, colchicine, or a steroid. Do not order allopurinol as the only drug.",
+    "lines": [
+      "If the patient already takes allopurinol, continue it.",
+      "Check the creatinine before the NSAID.",
+      "Tell the patient the flare drug is not the uric-acid drug."
+    ],
+    "miss": "Starting allopurinol alone and an opioid for a hot toe.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2020 American College of Rheumatology Guideline for the Management of Gout.",
+      "year": "2020",
+      "url": "https://acrjournals.onlinelibrary.wiley.com/doi/10.1002/art.41247",
+      "says": "The flare is treated with an anti-inflammatory. Allopurinol monotherapy is not flare treatment."
+    },
+    "number": 44,
+    "id": "usmle-qb-s3-044"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Back pain without a flag goes home without an MRI",
+    "read": "1 min",
+    "open": false,
+    "lead": "Discharge acute low back pain without a red flag with activity and no MRI. Write the flags that should bring the patient back.",
+    "lines": [
+      "Cauda equina symptoms cancel the discharge and start an MRI today.",
+      "Opioids are not the default prescription.",
+      "Work advice is to move, not to stay in bed."
+    ],
+    "miss": "Ordering an MRI for two days of pain and prescribing bed rest.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "ACP Clinical Practice Guideline. Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain.",
+      "year": "2017",
+      "url": "https://www.acpjournals.org/doi/10.7326/M16-2367",
+      "says": "Imaging is not ordered in the first weeks without red flags. Activity is advised."
+    },
+    "number": 45,
+    "id": "usmle-qb-s3-045"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Giant-cell arteritis: steroid tonight, biopsy this week",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order high-dose glucocorticoid tonight if vision is threatened, and schedule the temporal-artery biopsy within days so the histology is not lost.",
+    "lines": [
+      "Do not wait for the sedimentation rate.",
+      "Ask about the other eye and the jaw.",
+      "The biopsy is not cancelled because the steroid has started."
+    ],
+    "miss": "Scheduling the biopsy in three weeks and the steroid after the result.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Giant Cell Arteritis (Temporal Arteritis).",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459376/",
+      "says": "Glucocorticoids start immediately when vision is at risk. Biopsy is arranged promptly and is not delayed by treatment."
+    },
+    "number": 46,
+    "id": "usmle-qb-s3-046"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Necrotizing fasciitis orders are the operating room and broad antibiotics",
+    "read": "1 min",
+    "open": false,
+    "lead": "Write an operating-room booking and broad antibiotics at the same time. Do not write a 24-hour trial.",
+    "lines": [
+      "Mark the skin so spread is visible.",
+      "Surgery is called by name, not as a routine consult for the morning.",
+      "Fluids and a lactate are ordered because these patients are in shock."
+    ],
+    "miss": "Admitting to medicine for intravenous cefazolin and a surgery consult in the morning.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Necrotizing Fasciitis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430756/",
+      "says": "Immediate operative debridement and broad antibiotics are ordered together."
+    },
+    "number": 47,
+    "id": "usmle-qb-s3-047"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Ankylosing spondylitis discharge is an NSAID and an eye warning",
+    "read": "1 min",
+    "open": false,
+    "lead": "Discharge with an NSAID, a plan to stay active, and instructions to seek care the same day for a red painful eye.",
+    "lines": [
+      "A TNF inhibitor is a follow-up decision, not the emergency-department start.",
+      "Do not prescribe prolonged bed rest.",
+      "Chest pain in this disease can be aortitis and is not ignored."
+    ],
+    "miss": "Prescribing two weeks of bed rest and no warning about the eye.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Ankylosing Spondylitis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470173/",
+      "says": "NSAIDs and activity are the discharge treatment. Acute uveitis is a same-day return precaution."
+    },
+    "number": 48,
+    "id": "usmle-qb-s3-048"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Marfan discharge includes an aortic-imaging appointment",
+    "read": "1 min",
+    "open": false,
+    "lead": "A new Marfan diagnosis is discharged with a dated aortic-imaging appointment and a blood-pressure plan, not with reassurance about height.",
+    "lines": [
+      "Pregnancy counseling is written if it applies.",
+      "Contact-sport restriction is written if the aorta is dilated.",
+      "A beta blocker or an angiotensin-receptor blocker is the medication conversation."
+    ],
+    "miss": "Telling the patient the click is benign and scheduling nothing.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Marfan Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK537339/",
+      "says": "Aortic imaging and blood-pressure treatment are arranged. Activity and pregnancy counseling are part of the plan."
+    },
+    "number": 49,
+    "id": "usmle-qb-s3-049"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Pemphigus admission is fluids, wound care, and a steroid",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order fluids, wound care, and systemic steroids for widespread pemphigus. The mouth is inspected so the patient can actually drink.",
+    "lines": [
+      "Infection of denuded skin is watched.",
+      "A steroid-sparing drug is a follow-up, not a reason to delay the steroid.",
+      "Bullous pemphigoid is not given the same intensity by reflex."
+    ],
+    "miss": "Discharging widespread skin loss with a topical cream.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Pemphigus Vulgaris.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560860/",
+      "says": "Widespread disease needs systemic steroids, fluids, and wound care. Oral involvement affects hydration."
+    },
+    "number": 50,
+    "id": "usmle-qb-s3-050"
+  },
+  {
+    "step": "step-3",
+    "system": "msk-skin",
+    "group": "Musculoskeletal and skin",
+    "title": "Dermatomyositis discharge includes a cancer-screening plan",
+    "read": "1 min",
+    "open": false,
+    "lead": "An adult with new dermatomyositis leaves with immunosuppression started or arranged and a written cancer-screening plan.",
+    "lines": [
+      "Breathlessness gets imaging before discharge if it is new.",
+      "The steroid is not the whole plan if the weakness is severe.",
+      "A statin is stopped if it is a possible contributor, and the rash is still explained."
+    ],
+    "miss": "Prescribing prednisone with no follow-up and no cancer plan.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Dermatomyositis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK558917/",
+      "says": "Immunosuppression is started and malignancy screening is arranged for adult disease."
+    },
+    "number": 51,
+    "id": "usmle-qb-s3-051"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Chest-pain orders: ECG, aspirin, and oxygen only if hypoxic",
+    "read": "1 min",
+    "open": false,
+    "lead": "The first chest-pain orders are an ECG within 10 minutes, aspirin if it is safe, and oxygen only if the saturation is low.",
+    "lines": [
+      "A STEMI activates the lab before the troponin.",
+      "Two large IVs are ordered if reperfusion or instability is likely.",
+      "A normal first ECG with ongoing pain gets a repeat, not a discharge."
+    ],
+    "miss": "Waiting for a bed assignment to obtain the ECG.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes.",
+      "year": "2025",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009",
+      "says": "ECG within 10 minutes and aspirin are the opening orders. Routine oxygen is omitted when saturation is normal."
+    },
+    "number": 52,
+    "id": "usmle-qb-s3-052"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "A STEMI transfer is a clock you write down",
+    "read": "1 min",
+    "open": false,
+    "lead": "When a STEMI presents at a hospital that cannot do PCI, write the transfer time goal of 120 minutes or give a fibrinolytic if that goal will be missed.",
+    "lines": [
+      "Activate the receiving lab before the ambulance leaves.",
+      "Do not wait for the troponin to decide.",
+      "Document first medical contact, not just door time."
+    ],
+    "miss": "Holding the patient for a morning catheterization slot at a hospital two hours away.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes.",
+      "year": "2025",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009",
+      "says": "Transfer PCI is acceptable within 120 minutes. If that cannot be met, fibrinolysis is given."
+    },
+    "number": 53,
+    "id": "usmle-qb-s3-053"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Heart-failure discharge starts the missing pillar",
+    "read": "1 min",
+    "open": false,
+    "lead": "Before a HFrEF discharge, start any of the four pillars that are missing and safe, and book follow-up within 7 days.",
+    "lines": [
+      "The 2024 hospitalized-heart-failure pathway emphasizes starting them in the hospital.",
+      "A small creatinine rise is not a stop order on the discharge summary.",
+      "Daily weights and the salt plan are written in words the patient can use."
+    ],
+    "miss": "Discharging on a loop diuretic alone with a clinic visit in six weeks.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2024 ACC Expert Consensus Decision Pathway for Patients Hospitalized With Heart Failure.",
+      "year": "2024",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.06.002",
+      "says": "All four pillars are started before discharge when possible, and follow-up is within about 7 days."
+    },
+    "number": 54,
+    "id": "usmle-qb-s3-054"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Improved ejection fraction is continued on the discharge list",
+    "read": "1 min",
+    "open": false,
+    "lead": "The discharge list for improved ejection fraction keeps the HFrEF drugs. Write do not stop on the summary.",
+    "lines": [
+      "Name the beta blocker as succinate, carvedilol, or bisoprolol, not atenolol.",
+      "The reason each drug is on the list is one line, so the next clinician does not clean it up.",
+      "A low blood pressure that the patient tolerates is not an automatic stop."
+    ],
+    "miss": "Stopping the ARNI at discharge because the ejection fraction is now 50%.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure.",
+      "year": "2022",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2021.12.012",
+      "says": "Improved ejection fraction remains on HFrEF therapy. Discharge instructions say not to stop the drugs."
+    },
+    "number": 55,
+    "id": "usmle-qb-s3-055"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Atrial fibrillation discharge is a rate and a stroke drug",
+    "read": "1 min",
+    "open": false,
+    "lead": "Discharge atrial fibrillation with a rate plan and an anticoagulant if the yearly risk is about 2% or higher. Rhythm control is not required for the prescription.",
+    "lines": [
+      "Write the DOAC dose for the kidney function you measured.",
+      "Aspirin is not the stroke prescription.",
+      "A mechanical valve or severe mitral stenosis is warfarin, and the summary says so."
+    ],
+    "miss": "Sending the patient out on aspirin because the rhythm converted in the emergency department.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
+      "year": "2023",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
+      "says": "Stroke prevention is prescribed from risk, with the dose adjusted to kidney function. Sinus rhythm does not cancel it."
+    },
+    "number": 56,
+    "id": "usmle-qb-s3-056"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "New hypertension orders use two drugs when the pressure is 140/90 or higher",
+    "read": "1 min",
+    "open": false,
+    "lead": "For a confirmed pressure of 140/90 or higher, order two agents, preferably one pill, and a home-pressure follow-up.",
+    "lines": [
+      "Use PREVENT if you are deciding on stage 1 treatment.",
+      "Do not use the 2017 pooled cohort equation in the note as if it were current.",
+      "A pregnancy test comes before an ACE inhibitor in a person who could be pregnant."
+    ],
+    "miss": "Starting hydrochlorothiazide alone at 168/102 and saying come back in three months.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2025 AHA/ACC High Blood Pressure Guideline.",
+      "year": "2025",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
+      "says": "Stage 2 hypertension starts two-drug therapy. Home readings and a pregnancy check before renin-angiotensin drugs are part of the order."
+    },
+    "number": 57,
+    "id": "usmle-qb-s3-057"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Dissection orders: beta blocker, surgeon, no lytic",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a beta blocker, a surgical consult, and pain control for a suspected ascending dissection. Write no thrombolysis on the chart.",
+    "lines": [
+      "A pure vasodilator is not the first blood-pressure drug.",
+      "Type and screen and large-bore access are ordered.",
+      "The CT is expedited. It is not a routine add-on."
+    ],
+    "miss": "Activating the stroke or STEMI lytic pathway because the pain is severe.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Aortic Dissection.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441963/",
+      "says": "Heart-rate control, surgical consultation, and avoidance of thrombolysis are the orders for ascending dissection."
+    },
+    "number": 58,
+    "id": "usmle-qb-s3-058"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "A rupturing aneurysm is blood bank and a surgeon",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a type and screen, large-bore access, and immediate surgical or endovascular consultation for a suspected rupture. Do not order a clinic ultrasound.",
+    "lines": [
+      "Permissive hypotension is discussed. Do not bolus to a normal pressure before control.",
+      "A known aneurysm diameter in the chart is retrieved.",
+      "The family is updated because the patient may not be able to consent."
+    ],
+    "miss": "Ordering a CT for the next available slot and a liter of crystalloid in a pressure of 80.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Abdominal Aortic Aneurysm.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470237/",
+      "says": "Rupture orders are resuscitation without over-resuscitation, blood availability, and immediate repair."
+    },
+    "number": 59,
+    "id": "usmle-qb-s3-059"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Tamponade orders are fluids and drainage",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a fluid bolus as a bridge and pericardial drainage. Do not order furosemide.",
+    "lines": [
+      "The echo is stat if the patient is not already crashing.",
+      "Reversal of anticoagulation is ordered if the effusion is bloody and the drug is on board.",
+      "A pericardial window is the plan if the fluid will reaccumulate."
+    ],
+    "miss": "Ordering a diuretic for the elevated neck veins.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Cardiac Tamponade.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK431090/",
+      "says": "Fluids temporize and drainage treats. Diuretics are contraindicated."
+    },
+    "number": 60,
+    "id": "usmle-qb-s3-060"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Torsades orders: magnesium, potassium, and stop the QT drug",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order intravenous magnesium, a potassium, and discontinuation of the QT-prolonging drug. Defibrillate if the patient is unstable.",
+    "lines": [
+      "Do not order amiodarone for pause-dependent polymorphic tachycardia with a long QT.",
+      "The offending antibiotic or antiemetic is named on the allergy or avoid list.",
+      "A congenital long QT gets a specialist before discharge if the patient presented with syncope."
+    ],
+    "miss": "Ordering amiodarone and continuing the azithromycin.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Long QT Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441860/",
+      "says": "Magnesium and potassium repletion are ordered, QT-prolonging drugs are stopped, and unstable patients are defibrillated."
+    },
+    "number": 61,
+    "id": "usmle-qb-s3-061"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Endocarditis orders: three cultures, then the drug if unstable",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order three sets of blood cultures from separate sites. If the patient is unstable, the antibiotic follows the cultures immediately. If stable, wait for the draws.",
+    "lines": [
+      "An echo is ordered. A transthoracic study may miss a small vegetation.",
+      "Dentist clearance is not today's order.",
+      "Hold anticoagulation decisions for a stroke until imaging says whether the infarct is hemorrhagic."
+    ],
+    "miss": "Giving an oral antibiotic in the clinic and culturing the blood the next day.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Infective Endocarditis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557641/",
+      "says": "Multiple blood cultures precede antibiotics when the patient can wait a few minutes. Unstable patients are treated immediately afterward."
+    },
+    "number": 62,
+    "id": "usmle-qb-s3-062"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "A tet spell order is knees, oxygen, and a vasoconstrictor if it continues",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order calming, knee-chest position, oxygen, and a vasoconstrictor if the spell continues. Do not order a vasodilator.",
+    "lines": [
+      "The murmur softening is recorded.",
+      "Morphine or a similar calming drug is part of some pathways. The point is the resistance.",
+      "The surgical team that knows this heart is called."
+    ],
+    "miss": "Giving a drug that drops afterload during a spell.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Tetralogy of Fallot.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK513288/",
+      "says": "Knee-chest positioning, oxygen, and measures that raise systemic resistance are the orders. Vasodilators are avoided."
+    },
+    "number": 63,
+    "id": "usmle-qb-s3-063"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Coarctation follow-up is a leg pressure at every visit",
+    "read": "1 min",
+    "open": false,
+    "lead": "After coarctation repair, every visit includes a leg blood pressure and a question about headaches and exercise. Residual or recurrent narrowing is how these patients present as adults.",
+    "lines": [
+      "A bicuspid valve is listened for.",
+      "Hypertension can persist after a good repair and is still treated to the adult goal.",
+      "Pregnancy is planned with a cardiologist."
+    ],
+    "miss": "Treating an arm pressure of 150 and never checking the leg.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Coarctation of the Aorta.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430913/",
+      "says": "Lifelong blood-pressure checks include the legs. Residual coarctation and a bicuspid valve remain part of adult care."
+    },
+    "number": 64,
+    "id": "usmle-qb-s3-064"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "HFpEF admission is decongestion and the SGLT2 inhibitor",
+    "read": "1 min",
+    "open": false,
+    "lead": "Admit HFpEF for decongestion and continue or start an SGLT2 inhibitor. Do not build a HFrEF four-drug list the patient does not have an indication for.",
+    "lines": [
+      "Blood pressure is treated to the current goal.",
+      "Atrial fibrillation rate is controlled because it steals filling time.",
+      "Daily weights are the discharge tool."
+    ],
+    "miss": "Adding carvedilol, spironolactone, and an ARNI to every preserved-ejection-fraction admission.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure.",
+      "year": "2022",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2021.12.012",
+      "says": "Decongestion and an SGLT2 inhibitor are the HFpEF plan. The reduced-ejection-fraction regimen is not copied automatically."
+    },
+    "number": 65,
+    "id": "usmle-qb-s3-065"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Flutter discharge includes stroke prevention",
+    "read": "1 min",
+    "open": false,
+    "lead": "Discharge typical flutter with a rate or rhythm plan and the same stroke-prevention decision you would make for fibrillation.",
+    "lines": [
+      "Isthmus ablation is the referral, written with a time.",
+      "Anticoagulation is not stopped because today's ECG is sinus.",
+      "The sawtooth is named in the summary so the next clinician does not call it sinus tachycardia."
+    ],
+    "miss": "Stopping the DOAC after a flutter cardioversion.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Electrophysiology Study and Ablation of Atrial Flutter.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK594279/",
+      "says": "Stroke prevention follows risk and continues after cardioversion. Ablation is the rhythm referral for typical flutter."
+    },
+    "number": 66,
+    "id": "usmle-qb-s3-066"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Rheumatic prophylaxis is a scheduled penicillin, written for years",
+    "read": "1 min",
+    "open": false,
+    "lead": "Write the secondary-prevention penicillin as a scheduled drug with a duration, not as a one-time course.",
+    "lines": [
+      "The valve findings are in the summary.",
+      "A new sore throat is still treated and is not a reason to stop prophylaxis.",
+      "Dental care is encouraged. Prophylaxis for dental work is a separate, narrower indication."
+    ],
+    "miss": "Writing take until gone on a 10-day amoxicillin course and no further plan.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Rheumatic Heart Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538286/",
+      "says": "Secondary prophylaxis is scheduled and prolonged. It is not a single treatment course for pharyngitis."
+    },
+    "number": 67,
+    "id": "usmle-qb-s3-067"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "A mechanical valve's warfarin is not swapped for a DOAC at discharge",
+    "read": "1 min",
+    "open": false,
+    "lead": "The discharge anticoagulant for a mechanical valve or for moderate-to-severe mitral stenosis is warfarin. Do not substitute a DOAC on the medication reconciliation.",
+    "lines": [
+      "The INR target is the valve's target and is written as a number.",
+      "Aspirin may be added for some valves. It does not replace warfarin.",
+      "A DOAC on the home list of a mechanical valve is an error you correct."
+    ],
+    "miss": "Reconciling apixaban onto a mechanical mitral valve because the patient prefers it.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
+      "year": "2023",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
+      "says": "Warfarin remains the anticoagulant for mechanical valves and moderate-to-severe mitral stenosis."
+    },
+    "number": 68,
+    "id": "usmle-qb-s3-068"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Unstable angina is admitted for serial ECGs",
+    "read": "1 min",
+    "open": false,
+    "lead": "Rest pain without a troponin rise is admitted or observed for serial ECGs. It is not a clinic appointment tomorrow.",
+    "lines": [
+      "Aspirin is given if it is safe.",
+      "A repeat ECG is timed, not left to chance.",
+      "A truly stable, brief, exertional pain with a normal ECG is a different, faster outpatient path."
+    ],
+    "miss": "Discharging rest pain because the first troponin was negative.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Unstable Angina.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK442000/",
+      "says": "Rest angina is observed with serial ECGs even when the first troponin is negative."
+    },
+    "number": 69,
+    "id": "usmle-qb-s3-069"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Dilated cardiomyopathy discharge names the alcohol stop",
+    "read": "1 min",
+    "open": false,
+    "lead": "If alcohol caused the dilated cardiomyopathy, the discharge order says stop drinking, in plain words, and continues the heart-failure drugs if the ejection fraction is low.",
+    "lines": [
+      "The ejection fraction is on the summary so the drugs are not cleaned off.",
+      "A viral or chemotherapy cause is named if that is the history.",
+      "Follow-up imaging is dated."
+    ],
+    "miss": "A diuretic prescription and no mention of alcohol.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Dilated Cardiomyopathy.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441911/",
+      "says": "Alcohol cessation is an explicit discharge instruction when alcohol is the cause. Reduced ejection fraction stays on guideline-directed therapy."
+    },
+    "number": 70,
+    "id": "usmle-qb-s3-070"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Restrictive disease: order light chains before another diuretic increase",
+    "read": "1 min",
+    "open": false,
+    "lead": "A thick ventricle with low electrocardiographic voltage gets a light-chain order before you keep increasing the diuretic. Amyloid is the diagnosis you are missing.",
+    "lines": [
+      "Diuresis still treats congestion. It is not the only order.",
+      "Digoxin is used cautiously if amyloid is likely, because the drug binds the amyloid.",
+      "The heart-failure clinic is not a substitute for the protein studies."
+    ],
+    "miss": "A third increase in the loop diuretic and no protein studies.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Restrictive Cardiomyopathy.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK537234/",
+      "says": "Low voltage with a thick ventricle prompts a light-chain evaluation for amyloid. Diuresis does not replace that test."
+    },
+    "number": 71,
+    "id": "usmle-qb-s3-071"
+  },
+  {
+    "step": "step-3",
+    "system": "cardiovascular",
+    "group": "Cardiovascular",
+    "title": "Do not order endocarditis prophylaxis for an ordinary mitral valve prolapse",
+    "read": "1 min",
+    "open": false,
+    "lead": "An isolated mitral valve click does not get an endocarditis-prophylaxis order. Reserve prophylaxis for the short list of high-risk hearts.",
+    "lines": [
+      "The click is documented so the next clinician does not call it a new murmur.",
+      "Severe regurgitation is followed. The click alone is not an operation.",
+      "A dental problem is treated by the dentist. A standing amoxicillin prescription is not the plan."
+    ],
+    "miss": "Writing take 2 g of amoxicillin before every cleaning for a mid-systolic click.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Mitral Valve Prolapse.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470288/",
+      "says": "Isolated mitral valve prolapse is not an indication for routine endocarditis prophylaxis."
+    },
+    "number": 72,
+    "id": "usmle-qb-s3-072"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "COPD exacerbation orders: steroid, oxygen target, and selective antibiotics",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a short systemic steroid, titrated oxygen, and antibiotics only if sputum purulence comes with more dyspnea or volume. Order noninvasive ventilation if the pH is acid and the CO2 is high.",
+    "lines": [
+      "Continue or start the long-acting inhalers before discharge.",
+      "A chest film looks for pneumonia and pneumothorax.",
+      "Follow-up is days, not a month, after a hospitalization."
+    ],
+    "miss": "Ordering a 14-day antibiotic and high-flow oxygen for every wheeze.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "GOLD 2026 Report. Key changes.",
+      "year": "2026",
+      "url": "https://goldcopd.org/wp-content/uploads/2025/11/KEY-CHANGES-GOLD-2026-10Nov2025.pdf",
+      "says": "Steroids treat the exacerbation, antibiotics are selective, and noninvasive ventilation is for acute respiratory acidosis."
+    },
+    "number": 73,
+    "id": "usmle-qb-s3-073"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Asthma admission: oxygen only under 92, steroid if severe",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order oxygen only if saturation is under 92, with a target at or under 95. Order a systemic steroid for a severe attack and the patient's ICS-formoterol plan at discharge.",
+    "lines": [
+      "A nonrebreather is not the default.",
+      "Review the inhaler technique before discharge.",
+      "Anaphylaxis, if present, gets epinephrine first."
+    ],
+    "miss": "Putting every asthma patient on 15 liters and discharging without a steroid inhaler.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2026 GINA Strategy Report.",
+      "year": "2026",
+      "url": "https://ginasthma.org/2026-gina-strategy-report/",
+      "says": "Oxygen is restricted to saturation below 92% with an upper target of 95%. Severe attacks receive a systemic corticosteroid, and the preventer is in place at discharge."
+    },
+    "number": 74,
+    "id": "usmle-qb-s3-074"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Pneumonia orders name the bed and the bug coverage separately",
+    "read": "1 min",
+    "open": false,
+    "lead": "Write the site of care from hypoxia, pressure, and confusion, then the antibiotic that matches that site. Do not add metronidazole by default.",
+    "lines": [
+      "Severe disease is a beta-lactam plus a macrolide or a fluoroquinolone.",
+      "Blood cultures are ordered for severe disease.",
+      "A CURB-65 score is a note, not a substitute for looking at the patient."
+    ],
+    "miss": "Admitting a comfortable patient with a normal saturation for intravenous antibiotics, or sending a hypoxic patient home.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2019 IDSA/ATS Guideline for Community-Acquired Pneumonia.",
+      "year": "2019",
+      "url": "https://www.atsjournals.org/doi/10.1164/rccm.201908-1581ST",
+      "says": "Site of care is ordered from severity. Anaerobic coverage is not routine, and severe disease is combination therapy."
+    },
+    "number": 75,
+    "id": "usmle-qb-s3-075"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "A stable embolus goes home or to the floor on a DOAC, not a lytic",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a DOAC for a stable pulmonary embolus if the bleeding risk allows it. Order a lytic only if the pressure is down or the patient is in shock.",
+    "lines": [
+      "If the scan is delayed and suspicion is high, the anticoagulant is ordered now.",
+      "Right-heart strain is written in the note and does not by itself order the lytic.",
+      "Follow-up for provocation and cancer is named, not done as a full-body scan tonight."
+    ],
+    "miss": "Ordering systemic thrombolysis because the CT said saddle.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2019 ESC Guidelines for Acute Pulmonary Embolism.",
+      "year": "2019",
+      "url": "https://academic.oup.com/eurheartj/article/41/4/543/5556136",
+      "says": "Stable patients are anticoagulated. Systemic thrombolysis is reserved for high-risk, hypotensive embolism."
+    },
+    "number": 76,
+    "id": "usmle-qb-s3-076"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "SGLT2 inhibitor: hold tonight if the patient is not eating",
+    "read": "1 min",
+    "open": false,
+    "lead": "If the patient is fasting, going to surgery, or critically ill, hold the SGLT2 inhibitor tonight and write when to restart it. Do not discontinue it for a 4-point eGFR dip.",
+    "lines": [
+      "Check ketones if the patient is nauseated and the glucose is not very high.",
+      "The indication, heart failure or kidney disease, is on the summary so it is restarted.",
+      "A sick-day plan is in the discharge instructions."
+    ],
+    "miss": "Continuing the SGLT2 inhibitor through a nothing-by-mouth day and an operation.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "KDIGO 2024 Clinical Practice Guideline for CKD.",
+      "year": "2024",
+      "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+      "says": "The drug is held for prolonged fasting, surgery, and critical illness, and it is not stopped for the early hemodynamic eGFR dip."
+    },
+    "number": 77,
+    "id": "usmle-qb-s3-077"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Hyponatremia seizure: a bolus of 3% and a recheck",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a bolus of hypertonic saline for a seizure from hyponatremia and recheck the sodium immediately. Do not order a slow correction as the only order.",
+    "lines": [
+      "The daily limit is still respected after the seizure stops.",
+      "Fluid restriction is the order for the stable SIADH patient, not for the seizing one.",
+      "The cause, a drug or a cancer, is on the problem list."
+    ],
+    "miss": "Ordering fluid restriction and a sodium in the morning for a seizing patient.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Syndrome of Inappropriate Antidiuretic Hormone Secretion.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK507777/",
+      "says": "Severe symptoms are treated with a hypertonic bolus and an immediate recheck. Overcorrection is then avoided."
+    },
+    "number": 78,
+    "id": "usmle-qb-s3-078"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Diabetes insipidus orders: let them drink or replace the water",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order free access to water or a matched intravenous replacement, and desmopressin only if the trial showed a central cause.",
+    "lines": [
+      "A sodium is checked after each desmopressin dose.",
+      "Nephrogenic disease from lithium does not get escalating desmopressin.",
+      "The urine output is recorded hourly until it is stable."
+    ],
+    "miss": "Restricting a hypernatremic patient to 1 liter a day.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Arginine Vasopressin Disorder (Diabetes Insipidus).",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470458/",
+      "says": "Water replacement is ordered. Desmopressin is reserved for central disease and is followed with sodium checks."
+    },
+    "number": 79,
+    "id": "usmle-qb-s3-079"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Tension pneumothorax: needle, then tube, no film first",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order needle or finger decompression and a chest tube. Do not order a chest film as the first order in a crashing patient.",
+    "lines": [
+      "Oxygen and large-bore access are ordered with it.",
+      "The side is written in the order so the wrong side is not opened.",
+      "A stable simple pneumothorax can have the film."
+    ],
+    "miss": "Ordering a two-view chest radiograph stat on a patient with a pressure of 70 and a shifted trachea.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Tension Pneumothorax.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
+      "says": "Decompression and a chest tube are the orders. Imaging waits until the patient is stable."
+    },
+    "number": 80,
+    "id": "usmle-qb-s3-080"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "ARDS ventilator orders use height, not the scale",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order tidal volume from predicted body weight using height and sex, about 6 mL per kilogram, and a plateau-pressure limit of 30.",
+    "lines": [
+      "Write the height in the order so the next respiratory therapist does not use actual weight.",
+      "A high CO2 is tolerated.",
+      "Fluids are conservative once shock is resuscitated."
+    ],
+    "miss": "Ordering 700 mL breaths because the patient weighs 120 kilograms.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Acute Respiratory Distress Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK436002/",
+      "says": "Tidal volume is calculated from predicted body weight. Plateau pressure is limited, and permissive hypercapnia is accepted."
+    },
+    "number": 81,
+    "id": "usmle-qb-s3-081"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Pulmonary fibrosis discharge is oxygen if hypoxic and an antifibrotic referral",
+    "read": "1 min",
+    "open": false,
+    "lead": "Discharge idiopathic pulmonary fibrosis with oxygen if the saturation requires it, pulmonary rehabilitation, and a referral for an antifibrotic. Do not discharge on a prednisone taper as the disease treatment.",
+    "lines": [
+      "Vaccines are updated.",
+      "A new exposure or a connective-tissue symptom reopens the diagnosis.",
+      "Transplant referral is for the patient who is early enough to benefit."
+    ],
+    "miss": "A 40-milligram prednisone taper as the only discharge drug.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Idiopathic Pulmonary Fibrosis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448162/",
+      "says": "Oxygen, rehabilitation, and antifibrotic referral are the plan. Long-term prednisone is not disease-modifying therapy."
+    },
+    "number": 82,
+    "id": "usmle-qb-s3-082"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Bronchiectasis discharge teaches clearance",
+    "read": "1 min",
+    "open": false,
+    "lead": "Discharge bronchiectasis with a written airway-clearance plan and an antibiotic only for this flare. Name the follow-up that looks for the cause.",
+    "lines": [
+      "Sputum culture is sent before the antibiotic if the patient can produce it.",
+      "A vest or a breathing technique is specified, not the word clearance.",
+      "Smoking cessation is ordered if it applies."
+    ],
+    "miss": "A rotating antibiotic calendar and no clearance instruction.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Bronchiectasis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430810/",
+      "says": "Airway clearance is the discharge prescription. Antibiotics treat the current flare."
+    },
+    "number": 83,
+    "id": "usmle-qb-s3-083"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Hypersensitivity pneumonitis discharge names the antigen to remove",
+    "read": "1 min",
+    "open": false,
+    "lead": "The discharge instruction names the bird, the hot tub, or the barn to leave. A steroid prescription without that sentence is incomplete.",
+    "lines": [
+      "Work exposure is a written restriction if that is the antigen.",
+      "Oxygen is ordered if the saturation requires it.",
+      "Follow-up imaging is timed."
+    ],
+    "miss": "A steroid taper and a return to the same coop.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Hypersensitivity Pneumonitis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499918/",
+      "says": "Antigen removal is written into the discharge instructions. Steroids do not replace it."
+    },
+    "number": 84,
+    "id": "usmle-qb-s3-084"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Hyperkalemia with ECG changes: calcium first",
+    "read": "1 min",
+    "open": false,
+    "lead": "If the ECG shows peaked T waves or a wide QRS, order intravenous calcium first, then a shift, then a removal. A number without an ECG still gets a removal plan.",
+    "lines": [
+      "Insulin and glucose shift potassium and can drop the glucose. Order a recheck.",
+      "Stop the spironolactone or the ACE inhibitor that caused it if the level is dangerous.",
+      "Dialysis is the order when the kidney cannot remove it and the level is severe."
+    ],
+    "miss": "Ordering only kayexalate for a wide QRS.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Hyperkalemia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470284/",
+      "says": "Intravenous calcium stabilizes the membrane when the ECG is changing. Shift and removal follow. The cause is stopped."
+    },
+    "number": 85,
+    "id": "usmle-qb-s3-085"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Hypokalemia orders include magnesium and a route that is not a push",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order magnesium with the potassium, and order the intravenous potassium as an infusion with a rate. A push is not an order you write.",
+    "lines": [
+      "Oral is preferred when the ECG is quiet and the patient can swallow.",
+      "Recheck after the infusion.",
+      "The diuretic dose is changed on the same order."
+    ],
+    "miss": "Writing potassium chloride 40 mEq IV push.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Hypokalemia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482465/",
+      "says": "Potassium is infused, never pushed, and magnesium is replaced so the potassium is retained."
+    },
+    "number": 86,
+    "id": "usmle-qb-s3-086"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Symptomatic hypocalcemia is calcium gluconate and a magnesium",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order calcium gluconate for tetany, a seizure, or a long QT, and order a magnesium level with it.",
+    "lines": [
+      "Recheck the calcium after the dose.",
+      "A post-thyroidectomy patient has the calcium ordered on a schedule, not after the first twitch.",
+      "Correct a low albumin before you treat a paper-low total calcium in a comfortable patient."
+    ],
+    "miss": "A one-time oral calcium for a seizing post-operative patient.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Hypocalcemia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430912/",
+      "says": "Intravenous calcium is the order for severe symptoms. Magnesium is measured because deficiency prevents correction."
+    },
+    "number": 87,
+    "id": "usmle-qb-s3-087"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Respiratory acidosis: a ventilation order, not an oxygen order",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order noninvasive ventilation or intubation for an acidemic, hypercapnic patient who is tiring. Do not order only a higher oxygen flow.",
+    "lines": [
+      "A reversible sedative is stopped.",
+      "The chronic bicarbonate is respected so you do not overshoot.",
+      "A blood gas is timed after the ventilation starts."
+    ],
+    "miss": "Turning the nasal cannula from 2 liters to 8 liters as the treatment of a pH of 7.15.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Respiratory Acidosis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482430/",
+      "says": "Ventilatory support is ordered for acute hypercapnic respiratory failure. Oxygen alone does not remove carbon dioxide."
+    },
+    "number": 88,
+    "id": "usmle-qb-s3-088"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Metabolic alkalosis: saline if the urine chloride is low",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order saline and potassium when the urine chloride is low. Do not order saline for a high urine chloride from aldosterone.",
+    "lines": [
+      "Stop the diuretic if it is still running and the patient is volume-down.",
+      "A chloride is on the chemistry, not assumed.",
+      "Acetazolamide is a selected order when volume cannot be given."
+    ],
+    "miss": "A liter of saline for a hypertensive patient with a urine chloride of 40 and a renin that is suppressed.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Physiology, Metabolic Alkalosis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482291/",
+      "says": "Saline is ordered for chloride-responsive alkalosis. Mineralocorticoid excess is not treated with saline."
+    },
+    "number": 89,
+    "id": "usmle-qb-s3-089"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Hypernatremia orders replace water on a schedule",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order free-water replacement with a rate and a sodium check, not a single open bag. The drop is gradual.",
+    "lines": [
+      "Desmopressin is added only for proven central diabetes insipidus.",
+      "The patient who can drink is allowed to.",
+      "A sodium is on the morning labs and sooner if the replacement is intravenous."
+    ],
+    "miss": "An open order for D5W at 250 mL an hour with no recheck.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Hypernatremia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441960/",
+      "says": "Free water is replaced gradually with scheduled sodium checks to avoid cerebral edema."
+    },
+    "number": 90,
+    "id": "usmle-qb-s3-090"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Adult polycystic disease: image a sudden headache",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order urgent brain imaging for a sudden severe headache in autosomal dominant polycystic kidney disease. The blood pressure is treated at the same visit.",
+    "lines": [
+      "Do not biopsy the kidney to confirm a diagnosis the family history and the ultrasound already made.",
+      "Tolvaptan, if used, comes with a liver-test plan.",
+      "A hematuria after minor trauma is rest and follow-up, not a cancer panic, unless it persists."
+    ],
+    "miss": "Scheduling a routine clinic MRI of the brain for next month after a thunderclap headache.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Autosomal Dominant Polycystic Kidney Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK532934/",
+      "says": "Sudden headache is imaged urgently because of aneurysm risk. Hypertension is treated. Biopsy is not the diagnostic test."
+    },
+    "number": 91,
+    "id": "usmle-qb-s3-091"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Uric acid colic: alkalinize and do not trust the plain film",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order urine alkalinization and pain control for a uric acid stone. Do not discharge on the basis of a clear abdominal film.",
+    "lines": [
+      "A CT or ultrasound is the image if you need to see it.",
+      "Allopurinol is not the acute pain drug.",
+      "Strain the urine and the follow-up is written."
+    ],
+    "miss": "Telling the patient the stone is gone because the KUB is negative.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Uric Acid Nephrolithiasis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560726/",
+      "says": "Alkalinization and analgesia are the acute orders. Plain films do not exclude the stone."
+    },
+    "number": 92,
+    "id": "usmle-qb-s3-092"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Phosphate binders are timed with meals on the discharge list",
+    "read": "1 min",
+    "open": false,
+    "lead": "Write the phosphate binder with meals, in those words. A bedtime-only instruction does not bind phosphate.",
+    "lines": [
+      "The dietitian order is part of the discharge.",
+      "Calcium and phosphate are both on the follow-up labs.",
+      "An SGLT2 inhibitor for the CKD indication is a separate line and is not the binder."
+    ],
+    "miss": "Take one tablet at bedtime on the prescription.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560742/",
+      "says": "Binders are prescribed with meals. Follow-up labs include calcium and phosphate."
+    },
+    "number": 93,
+    "id": "usmle-qb-s3-093"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Renal-artery stenosis: recheck creatinine after the ACE inhibitor",
+    "read": "1 min",
+    "open": false,
+    "lead": "If you start an ACE inhibitor in suspected bilateral renal-artery stenosis or a solitary kidney, order a creatinine within days. A young woman with fibromuscular disease is referred for revascularization rather than stented by habit.",
+    "lines": [
+      "An older atherosclerotic stenosis is not automatically stented.",
+      "The blood pressure still needs treatment.",
+      "A bruit is documented and is not the whole diagnosis."
+    ],
+    "miss": "Starting lisinopril and scheduling the next creatinine in six months.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Renal Artery Stenosis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430718/",
+      "says": "Creatinine is rechecked soon after renin-angiotensin blockade when the whole renal mass may sit behind a stenosis."
+    },
+    "number": 94,
+    "id": "usmle-qb-s3-094"
+  },
+  {
+    "step": "step-3",
+    "system": "respiratory-renal",
+    "group": "Respiratory and renal",
+    "title": "Emphysematous pyelonephritis is admitted for drainage",
+    "read": "1 min",
+    "open": false,
+    "lead": "Admit, order intravenous antibiotics, and consult urology or interventional radiology for drainage. Do not prescribe oral antibiotics and discharge.",
+    "lines": [
+      "A glucose is controlled because the patient is usually diabetic.",
+      "Imaging is the CT that showed the gas, and it is not repeated for curiosity.",
+      "A simple pyelonephritis without gas can still go home if the patient can drink."
+    ],
+    "miss": "A three-day ciprofloxacin prescription for gas in the kidney.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Emphysematous Pyelonephritis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK599505/",
+      "says": "Intravenous antibiotics and source drainage are the admission orders."
+    },
+    "number": 95,
+    "id": "usmle-qb-s3-095"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Ulcer bleed orders: two lines, a type and screen, transfuse at 7",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order two large-bore IVs, a type and screen, and a transfusion threshold of 7 if there is no active cardiovascular disease. Endoscopy is after resuscitation, within 24 hours.",
+    "lines": [
+      "A proton-pump inhibitor infusion follows high-risk endoscopic stigmata.",
+      "Do not scope an unstable patient.",
+      "A higher threshold is written explicitly if the patient has active heart disease."
+    ],
+    "miss": "Transfusing to a hemoglobin of 10 before the endoscopy.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding.",
+      "year": "2021",
+      "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+      "says": "Restrictive transfusion at 7 g/dL is the order without cardiovascular disease. Endoscopy follows resuscitation."
+    },
+    "number": 96,
+    "id": "usmle-qb-s3-096"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Variceal bleed orders: octreotide, an antibiotic, and a scope",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order octreotide, an intravenous antibiotic, and urgent endoscopy. Do not order a beta blocker while the patient is in shock.",
+    "lines": [
+      "Intubate before the scope if the hematemesis is massive.",
+      "Band ligation is the endoscopic plan.",
+      "The beta blocker is a discharge drug after the bleeding has stopped."
+    ],
+    "miss": "Starting propranolol in the resuscitation bay.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Esophageal Varices.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448078/",
+      "says": "Vasoactive therapy, antibiotics, and urgent banding are the orders. Beta blockade waits until hemostasis and a tolerable pressure."
+    },
+    "number": 97,
+    "id": "usmle-qb-s3-097"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "New ascites: tap before you raise the diuretic",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a diagnostic tap before you increase the diuretic for new or worsened ascites. Send a cell count, albumin, and a bedside-inoculated culture.",
+    "lines": [
+      "A neutrophil count of 250 or more is antibiotics now.",
+      "Albumin is ordered if you remove more than 5 liters.",
+      "A SAAG of 1.1 or more is portal hypertension and changes the differential."
+    ],
+    "miss": "Doubling the spironolactone over the phone for a new tense abdomen.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Ascites.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470482/",
+      "says": "Diagnostic paracentesis precedes a diuretic increase. Spontaneous bacterial peritonitis is treated when neutrophils are at least 250."
+    },
+    "number": 98,
+    "id": "usmle-qb-s3-098"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Pancreatitis orders: fluids and a diet when the pain allows",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order lactated Ringer's or a similar crystalloid and a diet as soon as the pain allows. Do not order nothing by mouth for a week.",
+    "lines": [
+      "Lipase does not need to be trended daily.",
+      "Antibiotics are not ordered for uncomplicated pancreatitis.",
+      "A rising urea or hematocrit is a reason to give more fluid, written as a reassessment."
+    ],
+    "miss": "A week of bowel rest and prophylactic imipenem.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Acute Pancreatitis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482468/",
+      "says": "Early oral feeding replaces prolonged fasting. Antibiotics are not routine for uncomplicated disease."
+    },
+    "number": 99,
+    "id": "usmle-qb-s3-099"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Jaundice means the stone may have left the gallbladder",
+    "read": "1 min",
+    "open": false,
+    "lead": "Cholecystitis with jaundice is not a simple gallbladder. Order an evaluation of the duct before you treat it as an isolated cystic-duct stone.",
+    "lines": [
+      "Fever and low pressure with jaundice are a duct emergency, and antibiotics start while that evaluation is arranged.",
+      "Ultrasound of the gallbladder alone can miss the duct stone.",
+      "The gallbladder operation is still needed later. It is not the emergency drainage of a blocked duct."
+    ],
+    "miss": "Booking an elective cholecystectomy next month for a jaundiced, febrile patient.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Acute Cholecystitis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
+      "says": "Jaundice moves the problem beyond the cystic duct. The bile duct has to be evaluated, and infection is treated while that happens."
+    },
+    "number": 100,
+    "id": "usmle-qb-s3-100"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Cholecystitis: surgery consult and antibiotics, not antibiotics alone",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a surgical consult for early cholecystectomy and antibiotics. Do not discharge a febrile, Murphy-positive patient on oral antibiotics as the definitive plan.",
+    "lines": [
+      "Pain control and nothing by mouth until surgery is the immediate order.",
+      "Ultrasound is the image if it has not been done.",
+      "Jaundice and hypotension move the diagnosis toward the duct and a different procedure."
+    ],
+    "miss": "A 7-day antibiotic prescription and a clinic appointment for biliary colic that is actually cholecystitis.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Acute Cholecystitis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
+      "says": "Early cholecystectomy is the definitive order. Antibiotics are adjunctive."
+    },
+    "number": 101,
+    "id": "usmle-qb-s3-101"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Bowel obstruction: suction, fluids, and a surgery call if ischemic",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order nasogastric suction and fluids for a stable obstruction. Order an immediate surgical consult if there is fever, peritonitis, or a rising lactate.",
+    "lines": [
+      "Prior surgery makes adhesions likely and does not make ischemia impossible.",
+      "A closed loop is named on the CT so it is not observed.",
+      "Antiemetics are given. Opioids are not the only plan."
+    ],
+    "miss": "Observing a peritonitic obstruction overnight because the last one resolved.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Small Bowel Obstruction.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448079/",
+      "says": "Suction and fluids are the stable-patient orders. Peritonitis, fever, or rising lactate trigger immediate surgery."
+    },
+    "number": 102,
+    "id": "usmle-qb-s3-102"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Mesenteric ischemia: CTA and a surgeon, lactate is not the gate",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order CT angiography and a surgical consult when the pain is out of proportion. Do not wait for the lactate to rise.",
+    "lines": [
+      "Heparin is ordered if an embolus is the working diagnosis and bleeding is not the problem.",
+      "A normal abdominal exam is written down so nobody is reassured by it.",
+      "Fluids and a lactate are ordered, and the lactate is not the permission to call."
+    ],
+    "miss": "A lactate in the morning and a surgery consult if it is high.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Acute Mesenteric Ischemia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK431068/",
+      "says": "CT angiography and surgical consultation are immediate. A normal lactate does not delay them."
+    },
+    "number": 103,
+    "id": "usmle-qb-s3-103"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Do not start a gluten-free diet the week of the biopsy",
+    "read": "1 min",
+    "open": false,
+    "lead": "If you are confirming celiac disease with a biopsy, order the patient to keep eating gluten until the biopsy. A diet started early makes the test false.",
+    "lines": [
+      "Check total IgA on the lab order.",
+      "Iron is replaced if the patient is deficient, and the cause is still proved.",
+      "The diet is the treatment after the test, and the referral to a dietitian is written."
+    ],
+    "miss": "Congratulating a patient for two weeks of gluten avoidance before the endoscopy.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Celiac Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441900/",
+      "says": "Gluten is continued until serology and biopsy are complete. Total IgA is ordered with the antibody."
+    },
+    "number": 104,
+    "id": "usmle-qb-s3-104"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Severe colitis orders: admit, steroid, stop loperamide",
+    "read": "1 min",
+    "open": false,
+    "lead": "Admit severe ulcerative colitis, order a steroid, and discontinue loperamide and opioids. Order a stool study for C. difficile.",
+    "lines": [
+      "A daily abdominal film is the order if the belly is distended.",
+      "Surgery is called early for a toxic megacolon.",
+      "The home mesalamine is not the treatment of this severity."
+    ],
+    "miss": "Discharging on loperamide for ten bloody stools a day.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Ulcerative Colitis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459282/",
+      "says": "Severe disease is admitted for corticosteroids. Antimotility drugs are stopped, and infection is excluded."
+    },
+    "number": 105,
+    "id": "usmle-qb-s3-105"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Achalasia: nothing by mouth if aspirating, and a myotomy referral",
+    "read": "1 min",
+    "open": false,
+    "lead": "If the patient is aspirating, order nothing by mouth and a myotomy or dilation referral. Do not refill the proton-pump inhibitor as the treatment.",
+    "lines": [
+      "Manometry is the outpatient confirmatory test if it has not been done.",
+      "Endoscopy is ordered to exclude a cancer mimic.",
+      "Aspiration precautions are written for tonight."
+    ],
+    "miss": "A higher-dose proton-pump inhibitor and a regular diet.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Achalasia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK519515/",
+      "says": "Aspiration risk leads to bowel rest and a definitive LES procedure. Acid suppression is not the treatment."
+    },
+    "number": 106,
+    "id": "usmle-qb-s3-106"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "Chronic pancreatitis enzymes are written with meals",
+    "read": "1 min",
+    "open": false,
+    "lead": "Write the enzyme with each meal and snack. Order alcohol cessation as a prescription-level instruction, not a suggestion in the last line.",
+    "lines": [
+      "A glucose is on the discharge labs.",
+      "A new jaundice is an imaging order before discharge.",
+      "Pain control is a plan that is not only opioids."
+    ],
+    "miss": "One capsule at bedtime on the label.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Chronic Pancreatitis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/",
+      "says": "Enzymes are timed to meals. Alcohol cessation and evaluation of new jaundice are part of the order."
+    },
+    "number": 107,
+    "id": "usmle-qb-s3-107"
+  },
+  {
+    "step": "step-3",
+    "system": "gastrointestinal",
+    "group": "Gastrointestinal",
+    "title": "H. pylori treatment is a regimen and a test of cure",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a full eradication regimen and a test of cure. Do not order a proton-pump inhibitor alone for a positive test.",
+    "lines": [
+      "Stop the NSAID if it caused the ulcer.",
+      "The test of cure is timed after the antibiotics and after acid suppression is held.",
+      "Alarm symptoms still get an endoscopy rather than another empiric course."
+    ],
+    "miss": "A proton-pump inhibitor refill and no test of cure.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Peptic Ulcer Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK534792/",
+      "says": "Eradication therapy is prescribed and cure is confirmed. Acid suppression alone does not treat the infection."
+    },
+    "number": 108,
+    "id": "usmle-qb-s3-108"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "DKA orders: potassium, then insulin, then dextrose",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a potassium before the insulin. If it is under 3.3, replace it first. Add dextrose when the glucose falls and keep the insulin running until the gap closes.",
+    "lines": [
+      "Fluids are the first line of the order set.",
+      "Bicarbonate is not a routine order.",
+      "The home SGLT2 inhibitor is held and a sick-day plan is written."
+    ],
+    "miss": "Stopping the insulin drip at a glucose of 180 with a bicarbonate of 8.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report.",
+      "year": "2024",
+      "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
+      "says": "Potassium is known before insulin. Insulin continues, with dextrose, until ketoacidosis resolves."
+    },
+    "number": 109,
+    "id": "usmle-qb-s3-109"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Thyroid storm orders name the sequence",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a beta blocker and a thionamide, and write iodine after the thionamide has been given. Order a glucocorticoid and treat the trigger.",
+    "lines": [
+      "Do not order aspirin for the fever.",
+      "The iodine order has a start time, not a simultaneous start.",
+      "Cooling and monitoring are part of the set."
+    ],
+    "miss": "A single order for potassium iodide with no thionamide.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Thyroid Storm.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448095/",
+      "says": "The order sequence is beta blockade and a thionamide, then iodine, plus a glucocorticoid."
+    },
+    "number": 110,
+    "id": "usmle-qb-s3-110"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Adrenal crisis: hydrocortisone and saline are stat",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order hydrocortisone and normal saline as stat medications. Do not order a cosyntropin test as the first action.",
+    "lines": [
+      "A glucose is on the labs because it may be low.",
+      "The home steroid is written as a stress dose, not the maintenance dose.",
+      "Antibiotics are added if sepsis is the trigger."
+    ],
+    "miss": "A morning cortisol for tomorrow and a maintenance prednisone dose tonight.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Adrenal Insufficiency.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441832/",
+      "says": "Stress-dose hydrocortisone and saline are immediate orders. Diagnostic stimulation testing waits."
+    },
+    "number": 111,
+    "id": "usmle-qb-s3-111"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Pheochromocytoma preparation is an alpha blocker on the list before surgery",
+    "read": "1 min",
+    "open": false,
+    "lead": "The preoperative orders show an alpha blocker already in place and volume restored. A beta blocker is not the first preoperative drug.",
+    "lines": [
+      "Metanephrines are resulted before the incision, not drawn in the operating room.",
+      "The anesthesia team is told.",
+      "A hypertensive crisis order, phentolamine or a similar alpha drug, is available."
+    ],
+    "miss": "A preoperative beta blocker and an empty alpha-blocker line.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Pheochromocytoma.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK589700/",
+      "says": "Alpha blockade and volume replacement are completed before surgery. Beta blockade is not first."
+    },
+    "number": 112,
+    "id": "usmle-qb-s3-112"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Pregnancy hypertension at 140/90 is a treatment order",
+    "read": "1 min",
+    "open": false,
+    "lead": "For chronic hypertension in pregnancy, order treatment at 140/90 rather than waiting for 160/110. ACE inhibitors and ARBs are not on the list.",
+    "lines": [
+      "Labetalol or nifedipine is the usual agent.",
+      "Home pressures are ordered, not a single clinic number.",
+      "Aspirin prevention is a different order and does not treat today's severe pressure."
+    ],
+    "miss": "Continuing lisinopril and observing until the pressure is severe.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "ACOG Practice Advisory. Chronic Hypertension and Pregnancy (CHAP).",
+      "year": "2022",
+      "url": "https://www.acog.org/clinical/guidance/practice-advisory/2022/04/clinical-guidance-for-the-integration-of-the-findings-of-the-chronic-hypertension-and-pregnancy-chap-study",
+      "says": "Treatment starts at 140/90. ACE inhibitors and ARBs are stopped. Severe-range pressures are a separate emergency."
+    },
+    "number": 113,
+    "id": "usmle-qb-s3-113"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Severe pregnancy hypertension is treated within the hour",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order an intravenous or immediate-release oral antihypertensive for a sustained pressure of 160 or 110, and order magnesium for seizure prevention. Do not wait for labs.",
+    "lines": [
+      "Recheck the pressure on a schedule after the dose.",
+      "The goal is not a normal pressure of 110. Overcorrection harms the placenta.",
+      "Postpartum patients get the same order. Discharge does not end the risk."
+    ],
+    "miss": "Waiting for the preeclampsia labs before the first dose of labetalol.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "ACOG Practice Bulletin. Gestational Hypertension and Preeclampsia.",
+      "year": "2020",
+      "url": "https://www.acog.org/clinical/guidance/practice-bulletin/articles/2020/06/gestational-hypertension-and-preeclampsia",
+      "says": "Severe-range pressures are treated promptly. Magnesium is ordered for seizure prophylaxis and does not replace the antihypertensive."
+    },
+    "number": 114,
+    "id": "usmle-qb-s3-114"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Aspirin for preeclampsia is ordered after 12 weeks in high-risk patients",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order 81 mg of aspirin after 12 weeks for a high-risk patient, and do not order it as the treatment of a pressure that is already severe.",
+    "lines": [
+      "The high-risk list is prior preeclampsia, multiples, chronic hypertension, diabetes, kidney disease, or autoimmune disease.",
+      "Start it at the visit you identify the risk, not at 34 weeks.",
+      "The severe-pressure order is a different drug."
+    ],
+    "miss": "Starting aspirin at the delivery admission for a pressure of 180.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Aspirin Use to Prevent Preeclampsia.",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-use-to-prevent-preeclampsia-and-related-morbidity-and-mortality",
+      "says": "Low-dose aspirin after 12 weeks is a prevention order for high-risk patients."
+    },
+    "number": 115,
+    "id": "usmle-qb-s3-115"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Ectopic: surgery if unstable, methotrexate only if every criterion is met",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order the operating room for an unstable ectopic pregnancy. Order methotrexate only if the patient is stable, the hCG is in range, and follow-up is certain.",
+    "lines": [
+      "A type and screen is on the unstable patient's orders.",
+      "Rh immunoglobulin is ordered if the patient is Rh negative.",
+      "A discharge on methotrexate includes the day of the next hCG."
+    ],
+    "miss": "Methotrexate and a discharge for a dizzy patient with a positive pregnancy test.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Ectopic Pregnancy.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK539860/",
+      "says": "Unstable patients go to surgery. Methotrexate discharges include verified follow-up and selection criteria."
+    },
+    "number": 116,
+    "id": "usmle-qb-s3-116"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Abruption orders are blood and a fetal monitor",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order blood products, a fetal monitor, and large-bore access. Do not order a digital cervical exam.",
+    "lines": [
+      "A fibrinogen is on the labs.",
+      "The obstetric team is called when the diagnosis is suspected.",
+      "Pain control is ordered and does not delay resuscitation."
+    ],
+    "miss": "A cervical check as the first order.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Placental Abruption.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482335/",
+      "says": "Resuscitation, coagulation studies, and fetal monitoring are the orders. Digital examination waits until previa is excluded."
+    },
+    "number": 117,
+    "id": "usmle-qb-s3-117"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Previa orders: no digital exam, ultrasound, and a cesarean plan",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order pelvic rest, an ultrasound, and a cesarean plan if the placenta covers the cervix. Write no digital exam.",
+    "lines": [
+      "A prior cesarean plus previa triggers an accreta plan at a capable hospital.",
+      "The acute bleed gets the same blood-bank orders as any maternal hemorrhage.",
+      "An outpatient bleed that has stopped still leaves with precautions and a dated delivery plan."
+    ],
+    "miss": "An induction order for a complete previa.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Placenta Previa.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK539818/",
+      "says": "No digital examination is written as an order. Complete previa is a cesarean plan, and accreta risk changes the location."
+    },
+    "number": 118,
+    "id": "usmle-qb-s3-118"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Gestational diabetes discharge watches the newborn and rescreens the mother",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order an early feed and a glucose check for the newborn, and a postpartum diabetes test for the mother. Insulin, if used, is not automatically continued at the pregnancy dose.",
+    "lines": [
+      "The mother is taught the sick-day difference between pregnancy and afterward.",
+      "A very high postpartum glucose is treated, not ignored because the pregnancy ended.",
+      "Contraception is discussed because the next pregnancy's glucose starts before the first prenatal visit."
+    ],
+    "miss": "Discharging the pair with no neonatal glucose and no maternal follow-up test.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Gestational Diabetes.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK545196/",
+      "says": "Neonatal glucose is checked and the mother is rescreened for diabetes after delivery."
+    },
+    "number": 119,
+    "id": "usmle-qb-s3-119"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Ask about PDE-5 inhibitors before the first nitroglycerin",
+    "read": "1 min",
+    "open": false,
+    "lead": "The chest-pain order set includes a question about PDE-5 inhibitors before nitroglycerin is given. If the answer is yes, the nitrate is not given.",
+    "lines": [
+      "The ECG and aspirin are still ordered.",
+      "Document the time of the last dose if you know it.",
+      "Do not guess that enough hours have passed if you are unsure."
+    ],
+    "miss": "Giving the nitrate because the protocol says so.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Erectile Dysfunction.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK562253/",
+      "says": "Nitroglycerin is withheld after a recent PDE-5 inhibitor. The rest of the ACS evaluation proceeds."
+    },
+    "number": 120,
+    "id": "usmle-qb-s3-120"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "BPH retention is a catheter, not a sample of tamsulosin",
+    "read": "1 min",
+    "open": false,
+    "lead": "Acute urinary retention gets a catheter and a recorded residual. An alpha blocker is started after the bladder is empty, not instead of emptying it.",
+    "lines": [
+      "A creatinine is ordered if retention was prolonged.",
+      "A nodule is not attributed to hyperplasia.",
+      "Finasteride is not the drug that empties the bladder tonight."
+    ],
+    "miss": "A tamsulosin prescription and no catheter for a painful full bladder.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Benign Prostatic Hyperplasia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK558920/",
+      "says": "Retention is drained. An alpha blocker may be started afterward. A 5-alpha-reductase inhibitor does not relieve acute retention."
+    },
+    "number": 121,
+    "id": "usmle-qb-s3-121"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Testicular torsion: consent for the operating room, not a morning ultrasound",
+    "read": "1 min",
+    "open": false,
+    "lead": "Write the surgical consent and the nothing-by-mouth order when the exam is torsion. Ultrasound is ordered only if it will not consume the window and the exam is unclear.",
+    "lines": [
+      "The contralateral orchiopexy is part of the consent.",
+      "Pain medicine is ordered and does not delay the room.",
+      "A urology call is a now call."
+    ],
+    "miss": "An ultrasound order for 8 a.m. and a regular diet.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Testicular Torsion.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448199/",
+      "says": "Operative exploration is ordered immediately for a convincing exam. Imaging is not allowed to delay it."
+    },
+    "number": 122,
+    "id": "usmle-qb-s3-122"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Ovarian torsion: surgical consent even when Doppler shows flow",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order surgical evaluation for suspected ovarian torsion regardless of a Doppler report that shows flow. Order a pregnancy test.",
+    "lines": [
+      "Nothing by mouth and consent are written.",
+      "Pain control is ordered.",
+      "An ectopic pregnancy remains on the differential until the test returns."
+    ],
+    "miss": "Cancelling the surgical consult because the report said flow was present.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Ovarian Torsion.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/",
+      "says": "Operative evaluation is ordered on clinical grounds. Doppler flow is not a cancellation criterion."
+    },
+    "number": 123,
+    "id": "usmle-qb-s3-123"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Pelvic inflammatory disease: treat the partner in the note",
+    "read": "1 min",
+    "open": false,
+    "lead": "The discharge names the partner treatment and the return precautions for worsening pain. A pregnancy test is resulted before the drug.",
+    "lines": [
+      "An abscess that is not improving gets a drainage order, not another day of the same antibiotic only.",
+      "Perihepatitis is not discharged as simple biliary colic.",
+      "Follow-up testing for cure or reinfection is written."
+    ],
+    "miss": "A prescription with no mention of the partner and no return precautions.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Pelvic Inflammatory Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499959/",
+      "says": "Partner treatment and follow-up are part of the order. Abscesses that fail antibiotics are drained."
+    },
+    "number": 124,
+    "id": "usmle-qb-s3-124"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Postmenopausal bleeding is a biopsy order, not a repeat Pap",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order an endometrial biopsy or a referral that will do one. Do not order a repeat Pap smear as the evaluation.",
+    "lines": [
+      "Ultrasound stripe thickness can triage some patients and does not replace a biopsy when bleeding is persistent.",
+      "Stop unopposed estrogen if that is the cause, and still evaluate.",
+      "Anticoagulation is not an adequate explanation by itself."
+    ],
+    "miss": "A repeat Pap smear in a year.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Endometrial Cancer.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK525981/",
+      "says": "Endometrial sampling is the order. Cervical cytology does not evaluate the endometrium."
+    },
+    "number": 125,
+    "id": "usmle-qb-s3-125"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "Hyperthyroidism in pregnancy: the drug matches the trimester",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order propylthiouracil in the first trimester and a plan to change to methimazole afterward. Do not order radioactive iodine.",
+    "lines": [
+      "The lowest controlling dose is written, with a thyroid test interval.",
+      "Both drugs cross the placenta.",
+      "Uncontrolled disease is more dangerous than the drug, so do not stop treatment entirely."
+    ],
+    "miss": "Continuing methimazole from conception through week 10, or ordering a thyroid scan.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Hyperthyroidism in Pregnancy.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK559203/",
+      "says": "Propylthiouracil is used in the first trimester. Radioactive iodine is contraindicated. The dose is the lowest that controls the mother."
+    },
+    "number": 126,
+    "id": "usmle-qb-s3-126"
+  },
+  {
+    "step": "step-3",
+    "system": "reproductive-endocrine",
+    "group": "Reproductive and endocrine",
+    "title": "A pituitary mass with a TSH of 80 is thyroid hormone, not a surgical date",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order thyroid hormone and a repeat image for pituitary enlargement caused by severe hypothyroidism. Do not book surgery first.",
+    "lines": [
+      "A prolactin is interpreted in light of the TSH.",
+      "The surgical referral is cancelled or delayed until the thyroid is replaced.",
+      "The patient is warned that the mass can shrink."
+    ],
+    "miss": "A transsphenoidal date for a patient whose TSH has not been checked.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Pituitary Hyperplasia in Primary Hypothyroidism.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK562316/",
+      "says": "Thyroid replacement is the order. Surgery is deferred until hyperplasia has had time to regress."
+    },
+    "number": 127,
+    "id": "usmle-qb-s3-127"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Sepsis orders are lactate, cultures, drug, and a fluid with a reassessment",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a lactate, cultures if they will not delay the drug, a broad antibiotic, and crystalloid if the pressure is low or the lactate is at least 4. Order a blood pressure reassessment, not an unmeasured bolus.",
+    "lines": [
+      "A vasopressor is ordered if the pressure stays low, aimed at a mean pressure of 65.",
+      "The suspected source is named so the drug matches it.",
+      "A virus swab does not replace the antibiotic."
+    ],
+    "miss": "One liter of fluid and a lactate in the morning.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "Surviving Sepsis Campaign 2021 Adult Guidelines.",
+      "year": "2021",
+      "url": "https://journals.lww.com/ccmjournal/fulltext/2021/11000/surviving_sepsis_campaign__international.21.aspx",
+      "says": "The hour-1 actions are lactate, cultures, antibiotics, crystalloid for hypoperfusion, and vasopressors if hypotension persists."
+    },
+    "number": 128,
+    "id": "usmle-qb-s3-128"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Anaphylaxis: epinephrine in the thigh, and a period of watching",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order intramuscular epinephrine in the mid-outer thigh and a period of observation. Do not order diphenhydramine as the only drug.",
+    "lines": [
+      "The adult dose is 0.3 to 0.5 mg of the 1 mg/mL concentration.",
+      "A second dose is ordered if the first fails.",
+      "The patient does not drive home ten minutes later."
+    ],
+    "miss": "Diphenhydramine, a steroid, and discharge in ten minutes.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Anaphylaxis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482124/",
+      "says": "Intramuscular epinephrine and observation are the orders. Antihistamines do not replace epinephrine."
+    },
+    "number": 129,
+    "id": "usmle-qb-s3-129"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Carbon monoxide: 100% oxygen now, and the cohabitants",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order 100% oxygen and a carboxyhemoglobin. Ask who else was in the house and order them evaluated if they share the exposure.",
+    "lines": [
+      "Do not be reassured by a pulse oximeter.",
+      "Hyperbaric oxygen is ordered for coma, pregnancy, or cardiac ischemia.",
+      "The source, a heater or a fire, is removed."
+    ],
+    "miss": "Discharge on a normal pulse oximeter after a heater exposure.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Carbon Monoxide Poisoning.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557888/",
+      "says": "High-flow oxygen is started immediately and co-exposed people are identified. Oximetry does not clear the patient."
+    },
+    "number": 130,
+    "id": "usmle-qb-s3-130"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Acetaminophen: start the antidote and plot the time",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order N-acetylcysteine when the level is toxic or the time of a large ingestion is unknown. Write the time of ingestion on the order so the nomogram is used correctly.",
+    "lines": [
+      "A staggered ingestion is not plotted on the single-time nomogram.",
+      "Charcoal is ordered only if the airway is safe and the ingestion was recent.",
+      "The ALT is trended. A normal first ALT is not a stop order."
+    ],
+    "miss": "Holding the antidote for tomorrow's liver enzymes.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Acetaminophen Toxicity.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441917/",
+      "says": "N-acetylcysteine is ordered for toxic and unplottable ingestions. The first enzyme does not clear the patient."
+    },
+    "number": 131,
+    "id": "usmle-qb-s3-131"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Naloxone is an order with a recheck, not a single dose and a goodbye",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order naloxone and an observation period long enough for the opioid you suspect. A long-acting opioid gets a longer watch or an infusion.",
+    "lines": [
+      "The airway is opened if the patient is apneic.",
+      "A second dose is written as a nursing parameter, not discovered when the patient stops breathing in the lobby.",
+      "The discharge names the risk of recurrence."
+    ],
+    "miss": "One dose and a discharge at 20 minutes after methadone.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Opioid Toxicity.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470415/",
+      "says": "Observation matches the opioid's duration. Recurrence of apnea is an expected order, not a surprise."
+    },
+    "number": 132,
+    "id": "usmle-qb-s3-132"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Do not order flumazenil on a daily benzodiazepine user",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order airway support. Do not order flumazenil for a patient who takes a benzodiazepine every day.",
+    "lines": [
+      "If an opioid is also on board, naloxone is the apnea drug.",
+      "A seizure from flumazenil is harder to treat if you just blocked the benzodiazepine.",
+      "A taper, not an antidote, is the discharge for dependence."
+    ],
+    "miss": "Flumazenil intravenous once to facilitate discharge.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Benzodiazepine Toxicity.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482238/",
+      "says": "Supportive care is ordered. Flumazenil is not ordered in dependent patients."
+    },
+    "number": 133,
+    "id": "usmle-qb-s3-133"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Alcohol withdrawal: a scored benzodiazepine protocol and thiamine first",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a symptom-triggered benzodiazepine protocol and thiamine before any glucose. Do not order haloperidol as the only withdrawal drug.",
+    "lines": [
+      "A monitored bed is ordered for delirium tremens.",
+      "The last drink time is written so the team expects the late delirium.",
+      "Electrolytes, especially magnesium, are on the labs."
+    ],
+    "miss": "Haloperidol every six hours and a glucose infusion with no thiamine.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Alcohol Withdrawal Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441882/",
+      "says": "Symptom-triggered benzodiazepines and thiamine before glucose are the orders. Antipsychotics are not the withdrawal treatment."
+    },
+    "number": 134,
+    "id": "usmle-qb-s3-134"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Rhabdomyolysis: a fluid rate and a repeat potassium",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order intravenous fluids at a stated rate and a repeat potassium. Order a microscope look at the urine, not only the dipstick.",
+    "lines": [
+      "A compartment pressure or a surgical consult is ordered for a tight limb.",
+      "The statin is held on the order.",
+      "The creatine kinase is trended, not used as a one-time curiosity."
+    ],
+    "miss": "A single bag of saline and no repeat potassium.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Rhabdomyolysis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448168/",
+      "says": "A defined fluid rate and repeat potassium are the orders. The urine is examined microscopically."
+    },
+    "number": 135,
+    "id": "usmle-qb-s3-135"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Malignant hyperthermia: stop the gas and give dantrolene",
+    "read": "1 min",
+    "open": false,
+    "lead": "The intraoperative order is to stop the volatile agent, hyperventilate with 100% oxygen, and give dantrolene. Cooling is ordered with it.",
+    "lines": [
+      "The dantrolene dose is repeated as the protocol says. One vial is not the whole treatment.",
+      "Potassium and urine output are ordered because muscle is dying.",
+      "The team is told this is not light anesthesia."
+    ],
+    "miss": "Increasing the vaporizer and ordering acetaminophen.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Malignant Hyperthermia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430828/",
+      "says": "The triggering anesthetic is stopped and dantrolene is given, with hyperventilation and cooling."
+    },
+    "number": 136,
+    "id": "usmle-qb-s3-136"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Fat embolism: oxygen and fix the fracture",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order oxygen and early fracture fixation. Do not order heparin as the specific treatment of fat embolism.",
+    "lines": [
+      "A chest finding and petechiae are documented.",
+      "A true venous clot is still considered and is a separate order.",
+      "The orthopedic team is called for the fixation, which is the source control."
+    ],
+    "miss": "A heparin drip as the only order and a delayed fixation.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
+      "says": "Supportive oxygen and fracture fixation are the orders. Heparin is not a specific fat-embolism antidote."
+    },
+    "number": 137,
+    "id": "usmle-qb-s3-137"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Delirium: stop diphenhydramine and search the bladder",
+    "read": "1 min",
+    "open": false,
+    "lead": "Order a stop to anticholinergic drugs, a bladder scan, and a search for infection. Do not order a benzodiazepine for a non-withdrawal delirium.",
+    "lines": [
+      "Glasses and hearing aids are an order, not a courtesy.",
+      "Restraints are not the first safety order.",
+      "The family is asked what the patient was like last week."
+    ],
+    "miss": "Lorazepam around the clock and a Foley catheter for convenience.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Differentiating Delirium Versus Dementia in Older Adults.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK570594/",
+      "says": "Deliriogenic drugs are stopped and reversible causes are sought. Benzodiazepines are not routine treatment."
+    },
+    "number": 138,
+    "id": "usmle-qb-s3-138"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "A Beers list drug is removed at discharge if it caused the admission",
+    "read": "1 min",
+    "open": false,
+    "lead": "If a benzodiazepine, a strong anticholinergic, or sliding-scale insulin alone contributed to the admission, take it off the discharge list.",
+    "lines": [
+      "The 2023 AGS Beers Criteria name the drugs to avoid in older adults.",
+      "Replace the indication, do not leave a hole: pain, sleep, or glucose still need a plan.",
+      "Tell the patient why the familiar pill is gone."
+    ],
+    "miss": "Restarting the admission-causing benzodiazepine because it is on the home list.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "2023 AGS Beers Criteria.",
+      "year": "2023",
+      "url": "https://agsjournals.onlinelibrary.wiley.com/doi/10.1111/jgs.18372",
+      "says": "Drugs that are potentially inappropriate and that contributed to harm are not restarted at discharge."
+    },
+    "number": 139,
+    "id": "usmle-qb-s3-139"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "Opioid start: immediate release, a low dose, and naloxone if the risk is high",
+    "read": "1 min",
+    "open": false,
+    "lead": "If an opioid is started, order immediate release, the lowest effective dose, and naloxone if the patient has overdose risk. Do not start an extended-release opioid.",
+    "lines": [
+      "A nonopioid is ordered for many acute pains and is not skipped.",
+      "The duration is days, written as a number.",
+      "Benzodiazepines are not combined without a reason you would defend."
+    ],
+    "miss": "A long-acting opioid as the first prescription after an injury.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "CDC Clinical Practice Guideline for Prescribing Opioids.",
+      "year": "2022",
+      "url": "https://www.cdc.gov/mmwr/volumes/71/rr/rr7103a1.htm",
+      "says": "Initial opioids are immediate-release and low dose. Naloxone is offered when overdose risk is present. Extended-release opioids are not started first."
+    },
+    "number": 140,
+    "id": "usmle-qb-s3-140"
+  },
+  {
+    "step": "step-3",
+    "system": "multisystem",
+    "group": "Multisystem",
+    "title": "A handoff uses I-PASS out loud",
+    "read": "1 min",
+    "open": false,
+    "lead": "The handoff order of information is illness severity, a patient summary, the action list, situational awareness, and a synthesis by the receiver.",
+    "lines": [
+      "The receiver says the plan back.",
+      "Illness severity is one word the next clinician can use at 3 a.m.",
+      "A written note that was not spoken is not a handoff."
+    ],
+    "miss": "A signed-out list with no severity and no read-back.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "Starmer et al. I-PASS. New England Journal of Medicine.",
+      "year": "2014",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMsa1405556",
+      "says": "I-PASS structures the handoff: illness severity, patient summary, action list, situation awareness, and synthesis by the receiver."
+    },
+    "number": 141,
+    "id": "usmle-qb-s3-141"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "A positive stool test orders a colonoscopy",
+    "read": "1 min",
+    "open": false,
+    "lead": "A positive stool-based colorectal test is followed by colonoscopy. Do not order a repeat stool test.",
+    "lines": [
+      "The patient is told that before the first stool kit.",
+      "Average-risk screening still starts at 45.",
+      "Iron deficiency is a diagnostic colonoscopy, not a screening interval."
+    ],
+    "miss": "Repeating the stool card after a positive result.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Colorectal cancer screening.",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
+      "says": "A positive stool test is an indication for colonoscopy, not for another stool test."
+    },
+    "number": 142,
+    "id": "usmle-qb-s3-142"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "A breast lump is a diagnostic order, not the next screening date",
+    "read": "1 min",
+    "open": false,
+    "lead": "A palpable breast mass is a diagnostic imaging order now. It is not postponed until the next biennial mammogram.",
+    "lines": [
+      "Screening mammography is for people without that symptom.",
+      "Age 40 to 74 is the screening window. A mass at any age in that window is still diagnostic.",
+      "A family history suggestive of a BRCA-associated cancer is a different, earlier plan."
+    ],
+    "miss": "Scheduling a screening mammogram in eight months for a new lump.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Breast cancer screening.",
+      "year": "2024",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
+      "says": "Screening schedules do not apply to a palpable mass. Diagnostic imaging is ordered."
+    },
+    "number": 143,
+    "id": "usmle-qb-s3-143"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Document the lung-screening conversation before the scan",
+    "read": "1 min",
+    "open": false,
+    "lead": "Before the first low-dose CT, document the shared decision: the benefit, the false positives, and that the patient still smokes or quit within 15 years.",
+    "lines": [
+      "Eligibility is age 50 to 80 and at least 20 pack-years.",
+      "A symptomatic cough is a diagnostic CT, not a screening code.",
+      "The annual order stops when the patient is no longer eligible."
+    ],
+    "miss": "Ordering the scan with no note that the patient agreed after hearing the harms.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Lung cancer screening.",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
+      "says": "Shared decision-making is documented before the initial low-dose CT. Symptoms convert the order from screening to diagnosis."
+    },
+    "number": 144,
+    "id": "usmle-qb-s3-144"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Stop cervical screening at 65 only if the prior tests were adequate",
+    "read": "1 min",
+    "open": false,
+    "lead": "You may stop cervical screening at 65 only when the recent tests were adequate and negative. A patient with no records is not stopped.",
+    "lines": [
+      "HPV testing alone is not the order before age 30.",
+      "Bleeding after sex is examined now even if the last test was normal.",
+      "Vaccination does not delete the schedule."
+    ],
+    "miss": "Stopping screening at 65 because the patient cannot remember her last Pap.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Cervical cancer screening.",
+      "year": "2018",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
+      "says": "Stopping at 65 requires adequate prior negative screening. Symptoms are evaluated regardless of the schedule."
+    },
+    "number": 145,
+    "id": "usmle-qb-s3-145"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Do not order HPV testing alone before age 30",
+    "read": "1 min",
+    "open": false,
+    "lead": "Ages 21 to 29 are cytology every 3 years. Do not order high-risk HPV testing alone in that age band.",
+    "lines": [
+      "After 30, HPV testing every 5 years is an option.",
+      "A yearly Pap is not the recommendation.",
+      "A visible cervical lesion is a biopsy, not a screening interval."
+    ],
+    "miss": "An HPV-only order for a 24-year-old.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Cervical cancer screening.",
+      "year": "2018",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
+      "says": "Primary HPV testing is not the strategy before age 30. Cytology every 3 years is."
+    },
+    "number": 146,
+    "id": "usmle-qb-s3-146"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Age 75 mammography is a decision, not an automatic order",
+    "read": "1 min",
+    "open": false,
+    "lead": "At 75 and older, do not order mammography automatically. The USPSTF found the evidence insufficient, so you decide with the patient.",
+    "lines": [
+      "A lump is still diagnostic at any age.",
+      "A patient who would not treat a cancer found on the scan should not have the scan.",
+      "The every-other-year order applies through 74."
+    ],
+    "miss": "A standing yearly mammogram order with no stop date for an 82-year-old.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Breast cancer screening.",
+      "year": "2024",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
+      "says": "Evidence is insufficient at age 75 and older, so screening is an individual decision rather than an automatic order."
+    },
+    "number": 147,
+    "id": "usmle-qb-s3-147"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Colon screening after 75 is selective",
+    "read": "1 min",
+    "open": false,
+    "lead": "From 76 to 85, colorectal screening is selective. It is not ordered for a patient whose other illnesses will not allow a benefit.",
+    "lines": [
+      "Through 75 it is recommended for average risk.",
+      "A prior colonoscopy date is retrieved before you order another.",
+      "A positive prior stool test that was never scoped is completed."
+    ],
+    "miss": "Ordering a first colonoscopy at 84 for a patient in hospice-level heart failure.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Colorectal cancer screening.",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
+      "says": "Ages 76 to 85 are a selective offer based on health and prior screening, not an automatic start."
+    },
+    "number": 148,
+    "id": "usmle-qb-s3-148"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "An early colon cancer in the family moves the start age",
+    "read": "1 min",
+    "open": false,
+    "lead": "A first-degree relative with colorectal cancer before 60, or two relatives at any age, starts screening earlier than 45. Order that earlier plan.",
+    "lines": [
+      "Average risk remains 45.",
+      "The tool, often colonoscopy, is named.",
+      "Do not apply the average-risk stool-kit interval to a high-risk family."
+    ],
+    "miss": "A stool kit at 45 for a patient whose father had colon cancer at 48.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Colorectal cancer screening.",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
+      "says": "Family history of early colorectal cancer changes the start age and often the test. The average-risk age of 45 does not apply."
+    },
+    "number": 149,
+    "id": "usmle-qb-s3-149"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Do not order supplemental ultrasound for dense breasts as a proven add-on",
+    "read": "1 min",
+    "open": false,
+    "lead": "The USPSTF does not recommend supplemental ultrasound or MRI for dense breasts on an otherwise negative mammogram. Do not order it as if it were required.",
+    "lines": [
+      "Density is discussed. It is not an automatic second test.",
+      "A lump is still imaged diagnostically.",
+      "The biennial mammogram remains the screening order."
+    ],
+    "miss": "An automatic breast ultrasound every year because the report said dense.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Breast cancer screening.",
+      "year": "2024",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
+      "says": "Supplemental screening for dense breasts has an insufficient evidence grade and is not an automatic order."
+    },
+    "number": 150,
+    "id": "usmle-qb-s3-150"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "A depression screen without a follow-up slot is an incomplete order",
+    "read": "1 min",
+    "open": false,
+    "lead": "If you screen for depression, the order includes a way to diagnose and treat this week. A form in the chart with no visit is not the USPSTF recommendation.",
+    "lines": [
+      "Pregnancy and the postpartum months are included.",
+      "A positive score is an interview, not a prescription by itself.",
+      "A universal suicide questionnaire is not the required screen."
+    ],
+    "miss": "A PHQ-9 in the portal with no one assigned to read it.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Screening for Depression in Adults.",
+      "year": "2023",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/depression-in-adults-screening",
+      "says": "Screening is recommended only when systems exist to diagnose and treat. An unread form does not meet that standard."
+    },
+    "number": 151,
+    "id": "usmle-qb-s3-151"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Do not build a quality metric out of a universal suicide screen",
+    "read": "1 min",
+    "open": false,
+    "lead": "Do not order a stand-alone suicide-risk questionnaire on every adult as a population screen. The USPSTF grade is I.",
+    "lines": [
+      "Ask about suicide when the patient or the depression interview opens that door.",
+      "That question is care. It is not the same as a required screen.",
+      "A positive depression screen still gets an interview."
+    ],
+    "miss": "A required suicide score on every annual visit with no depression question.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Suicide risk in adults and older adults.",
+      "year": "2023",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/suicide-risk-in-adults-and-older-adults-screening",
+      "says": "The task force found insufficient evidence for stand-alone suicide-risk screening in all adults."
+    },
+    "number": 152,
+    "id": "usmle-qb-s3-152"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Write the absolute numbers in the after-visit summary",
+    "read": "1 min",
+    "open": false,
+    "lead": "When you recommend a preventive drug or a screen, the after-visit summary states the absolute benefit, not only a relative percentage.",
+    "lines": [
+      "A 50% relative reduction of a rare event can be one in a thousand.",
+      "The harm, including false positives, is in the same sentence.",
+      "A patient who would decline the next step is not screened."
+    ],
+    "miss": "A handout that says cuts your risk in half and gives no baseline.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Lung cancer screening.",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
+      "says": "Shared decision-making uses absolute benefits and harms. Relative reductions alone are misleading."
+    },
+    "number": 153,
+    "id": "usmle-qb-s3-153"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Do not order a screening test the patient would not act on",
+    "read": "1 min",
+    "open": false,
+    "lead": "If a patient would not accept a biopsy or a treatment for the disease you might find, do not order the screening test.",
+    "lines": [
+      "Ask before the scan.",
+      "A diagnostic test for a symptom is different. Symptoms are still evaluated.",
+      "Document the refusal of screening, not a failure to offer it."
+    ],
+    "miss": "Ordering a screening colonoscopy for a patient who has said they would never treat a cancer.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "USPSTF. Colorectal cancer screening.",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
+      "says": "Screening is offered to patients who could benefit from the downstream care. It is not ordered when that care would be declined."
+    },
+    "number": 154,
+    "id": "usmle-qb-s3-154"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Two positive-required tests will miss more people",
+    "read": "1 min",
+    "open": false,
+    "lead": "If you order two tests and require both to be positive before you act, tell the patient you will miss more disease. That structure raises specificity.",
+    "lines": [
+      "Either-positive testing does the opposite.",
+      "Write which structure you intended so the next clinician does not mix them.",
+      "A single very sensitive test is a different order."
+    ],
+    "miss": "Requiring both a sensitive and a specific test to be positive and thinking you lost no cases.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
+      "says": "Series testing increases specificity and decreases sensitivity. The patient is told which misses become more likely."
+    },
+    "number": 155,
+    "id": "usmle-qb-s3-155"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Either-positive tests need a false-alarm plan",
+    "read": "1 min",
+    "open": false,
+    "lead": "If either of two tests being positive will trigger a biopsy, order the biopsy capacity before you order the pair. Parallel testing creates more false alarms.",
+    "lines": [
+      "The patient is told that more alarms are the price of fewer misses.",
+      "Do not add the second test without a plan for the positive.",
+      "A pretest probability still comes first."
+    ],
+    "miss": "Ordering every available test and a promise that a positive means the disease.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
+      "says": "Parallel testing raises sensitivity and lowers specificity. The downstream plan for false positives is arranged first."
+    },
+    "number": 156,
+    "id": "usmle-qb-s3-156"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "A lower cutoff is an order you defend",
+    "read": "1 min",
+    "open": false,
+    "lead": "If you lower a test's cutoff to miss fewer cases, write why, because you will label more healthy people as sick.",
+    "lines": [
+      "You cannot have both perfect sensitivity and perfect specificity at one number.",
+      "The lab's reference range is the default unless you document a reason.",
+      "A cutoff copied from another population is not automatically yours."
+    ],
+    "miss": "Lowering a cutoff and telling patients the test became more accurate in every way.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
+      "says": "A lower threshold increases sensitivity and decreases specificity. The trade is a deliberate order."
+    },
+    "number": 157,
+    "id": "usmle-qb-s3-157"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Do not quote a predictive value from a different population",
+    "read": "1 min",
+    "open": false,
+    "lead": "The positive predictive value you read in a paper does not transfer to your clinic if the disease is rarer here. Recalculate or do not quote it.",
+    "lines": [
+      "Sensitivity can transfer. The predictive value cannot, without the local prevalence.",
+      "A screening fair and an emergency department do not share a predictive value.",
+      "Write the prevalence you assumed."
+    ],
+    "miss": "Telling a low-risk patient the positive predictive value from a specialty-clinic study.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
+      "says": "Predictive values depend on prevalence. A published predictive value is not cited as if it were universal."
+    },
+    "number": 158,
+    "id": "usmle-qb-s3-158"
+  },
+  {
+    "step": "step-3",
+    "system": "biostats-epi",
+    "group": "Biostatistics and population health",
+    "title": "Write the pre-test chance before you order a rare-disease test",
+    "read": "1 min",
+    "open": false,
+    "lead": "Before you order a test for a rare disease, write the chance you believe the patient has it. A positive result will often be false if that chance is tiny.",
+    "lines": [
+      "Sensitivity does not rescue a near-zero pre-test chance.",
+      "The likelihood ratio then revises the number you wrote.",
+      "If you cannot name a pre-test chance, you are not ready to interpret the result."
+    ],
+    "miss": "Ordering a rare-disease panel because it is on the menu, with no estimate of the chance.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
+      "says": "Pre-test probability is recorded before a low-prevalence test. Positive results in that setting are often false."
+    },
+    "number": 159,
+    "id": "usmle-qb-s3-159"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "The handoff note names severity in one line",
+    "read": "1 min",
+    "open": false,
+    "lead": "The written handoff starts with illness severity in words the night clinician can use. A list of problems without severity is not a handoff.",
+    "lines": [
+      "The action list is timed: tonight, not soon.",
+      "The receiver's read-back is part of the verbal handoff even when the note exists.",
+      "A contingency, what to do if the pressure falls, is one sentence."
+    ],
+    "miss": "A copied problem list with no watch item.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "Starmer et al. I-PASS. New England Journal of Medicine.",
+      "year": "2014",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMsa1405556",
+      "says": "Illness severity and a timed action list are required. A problem list alone does not transfer the plan."
+    },
+    "number": 160,
+    "id": "usmle-qb-s3-160"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "An opioid agreement is not a reason to abandon the patient",
+    "read": "1 min",
+    "open": false,
+    "lead": "If you stop an opioid, you still treat the pain and the withdrawal. Stopping the prescription is not the end of the relationship.",
+    "lines": [
+      "Naloxone stays on the list if the risk remains.",
+      "A benzodiazepine combination is addressed directly.",
+      "The CDC guideline does not ask you to desert the patient."
+    ],
+    "miss": "Dismissing a patient from the clinic the day you stop the opioid, with no taper and no follow-up.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "CDC Clinical Practice Guideline for Prescribing Opioids.",
+      "year": "2022",
+      "url": "https://www.cdc.gov/mmwr/volumes/71/rr/rr7103a1.htm",
+      "says": "Clinicians continue care when opioids are reduced or stopped. Abandonment is not part of opioid stewardship."
+    },
+    "number": 161,
+    "id": "usmle-qb-s3-161"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Document the interpreter's name in the consent note",
+    "read": "1 min",
+    "open": false,
+    "lead": "The consent note names the professional interpreter. A family member in that blank is an incomplete consent.",
+    "lines": [
+      "The language is recorded.",
+      "Questions the patient asked are in the note.",
+      "A short interpreter encounter is rescheduled if the procedure is elective and the discussion was rushed."
+    ],
+    "miss": "Consent obtained via the patient's child, with no interpreter identified.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Informed Consent.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
+      "says": "The interpreter's identity is part of the consent documentation. Family members are not substituted."
+    },
+    "number": 162,
+    "id": "usmle-qb-s3-162"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Write the chaperone's name or the patient's decline",
+    "read": "1 min",
+    "open": false,
+    "lead": "For a breast, pelvic, or genital exam, the note names the chaperone or records that the patient declined one after it was offered.",
+    "lines": [
+      "The exam stops if consent is withdrawn.",
+      "Each step is explained first.",
+      "A declined chaperone is not the same as an offer that was never made."
+    ],
+    "miss": "No mention of a chaperone in a pelvic-exam note.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Medical Ethics.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
+      "says": "The offer of a chaperone and the patient's response are documented for sensitive examinations."
+    },
+    "number": 163,
+    "id": "usmle-qb-s3-163"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "A DNR order does not discontinue the antibiotics",
+    "read": "1 min",
+    "open": false,
+    "lead": "If the order is do not resuscitate, the antibiotic, the surgery, and the pain medicine stay unless a separate order stops them.",
+    "lines": [
+      "Write the limits in specific words.",
+      "Ask the patient which treatments they still want.",
+      "Comfort medication is ordered even when resuscitation is not."
+    ],
+    "miss": "A blanket hold on all medications because DNR was checked.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Advance Directives.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459133/",
+      "says": "Resuscitation status is specific. Other treatments continue unless they are separately declined."
+    },
+    "number": 164,
+    "id": "usmle-qb-s3-164"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Comfort medicines are ordered before the ventilator is stopped",
+    "read": "1 min",
+    "open": false,
+    "lead": "Before a ventilator is withdrawn, order the opioid or benzodiazepine that will treat air hunger. The withdrawal order and the comfort order are written together.",
+    "lines": [
+      "The intent, relief, is in the note.",
+      "A dose chosen to relieve symptoms is not an order to end life.",
+      "The family is told what they will see."
+    ],
+    "miss": "Stopping the ventilator with no medication for air hunger.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Medical Ethics.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
+      "says": "Symptom-relieving medication is ordered before withdrawal of ventilatory support. The intent is comfort."
+    },
+    "number": 165,
+    "id": "usmle-qb-s3-165"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Put the blood-refusal on the chart before the incision",
+    "read": "1 min",
+    "open": false,
+    "lead": "A capable patient's refusal of blood is a signed order visible to the anesthesiologist and the blood bank before the operation starts.",
+    "lines": [
+      "The consequence, including death, is in the note.",
+      "A surrogate does not create a refusal the patient did not make.",
+      "A child is transfused if transfusion is life-saving, even if a parent refuses."
+    ],
+    "miss": "Discovering the refusal as the blood is hanging.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Informed Consent.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
+      "says": "Refusal of transfusion is documented and communicated before surgery. It is not left as a verbal aside."
+    },
+    "number": 166,
+    "id": "usmle-qb-s3-166"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Emergency treatment of a child is ordered when a parent refuses",
+    "read": "1 min",
+    "open": false,
+    "lead": "If a parent refuses emergency care that would prevent a child's death or serious harm, order the treatment and notify the protective system.",
+    "lines": [
+      "Explain once, clearly.",
+      "Do not delay a life-saving transfusion for a prolonged debate.",
+      "Elective care is not this rule."
+    ],
+    "miss": "Holding a life-saving transfusion because a parent said no.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Medical Ethics.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
+      "says": "Emergency treatment is given to a child despite parental refusal when delay would cause death or serious harm."
+    },
+    "number": 167,
+    "id": "usmle-qb-s3-167"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "A cesarean refusal is documented, and the patient is not taken against it",
+    "read": "1 min",
+    "open": false,
+    "lead": "If a capable patient refuses a cesarean, document the fetal risk you explained and do not write an order to proceed.",
+    "lines": [
+      "Continue to offer care.",
+      "Coercion is not an order.",
+      "The note quotes the patient's words."
+    ],
+    "miss": "An operative order after a clear refusal.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Informed Consent.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
+      "says": "A capable patient's refusal of cesarean delivery is recorded and honored."
+    },
+    "number": 168,
+    "id": "usmle-qb-s3-168"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Sterilization is not added to a cesarean consent in labor",
+    "read": "1 min",
+    "open": false,
+    "lead": "Do not add tubal ligation to a cesarean consent signed during labor unless a considered consent was obtained before labor.",
+    "lines": [
+      "Pain and fear make that moment inadequate.",
+      "A prior antenatal consent is confirmed, not assumed.",
+      "The cesarean itself still needs its own current consent."
+    ],
+    "miss": "Writing tubal ligation in the margin during a contraction.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Informed Consent.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
+      "says": "Sterilization consent is completed before labor. It is not added under the pressure of active labor."
+    },
+    "number": 169,
+    "id": "usmle-qb-s3-169"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Implied consent is a note that says why you could not wait",
+    "read": "1 min",
+    "open": false,
+    "lead": "When you treat an emergency without consent, the note says what the emergency was, whom you tried to reach, and why delay was unsafe.",
+    "lines": [
+      "Elective additions are not covered by that note.",
+      "Keep trying to reach a surrogate.",
+      "The note is written by the clinician who decided, not reconstructed a day later as if it were contemporaneous."
+    ],
+    "miss": "A blank consent form signed by no one, added the next day.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Informed Consent.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
+      "says": "Emergency treatment without consent is documented with the reason delay was unsafe and the attempt to find a decision-maker."
+    },
+    "number": 170,
+    "id": "usmle-qb-s3-170"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Recheck capacity when the sodium or the drug wears off",
+    "read": "1 min",
+    "open": false,
+    "lead": "A capacity determination is redone when the sodium, the oxygen, or the sedative changes. Do not leave a one-time note as a permanent label.",
+    "lines": [
+      "The question is this decision, today.",
+      "A refusal that appears after the patient clears may be valid.",
+      "The earlier note is not deleted. An addendum says what changed."
+    ],
+    "miss": "A capacity-lacking flag that follows the patient for the rest of the admission after the delirium clears.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Competency and Capacity.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK532862/",
+      "says": "Capacity is reassessed when the reversible cause changes. It is decision-specific and not a permanent label."
+    },
+    "number": 171,
+    "id": "usmle-qb-s3-171"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "An against-advice departure still gets the prescription that makes leaving safer",
+    "read": "1 min",
+    "open": false,
+    "lead": "If a capable patient leaves against advice, order the antibiotic or the insulin they need for a safer exit, and document the risks you explained.",
+    "lines": [
+      "A signature is ideal and is not required for the note to count.",
+      "Offer to treat the dangerous problem before they go.",
+      "Capacity for this decision is one line in the note."
+    ],
+    "miss": "Withholding a needed antibiotic to punish the departure.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Informed Consent.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
+      "says": "Bridging treatment is offered. The risks and the capacity assessment are documented even if the patient refuses to sign."
+    },
+    "number": 172,
+    "id": "usmle-qb-s3-172"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "A POLST is placed where emergency clinicians will see it",
+    "read": "1 min",
+    "open": false,
+    "lead": "A completed POLST is copied to the record and the patient is told to keep it where ambulance crews look. An advance directive in a lawyer's office does not travel.",
+    "lines": [
+      "The order and the directive are not swapped.",
+      "A capable patient can void it, and that voiding is communicated.",
+      "Inconsistent orders, full code in one place and DNR in another, are reconciled before discharge."
+    ],
+    "miss": "Telling the family the living will in the safe-deposit box will guide the paramedics.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Advance Directives.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459133/",
+      "says": "Portable medical orders have to be available to emergency clinicians. Advance directives stored off-site do not function as those orders."
+    },
+    "number": 173,
+    "id": "usmle-qb-s3-173"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Report suspected elder abuse before discharge",
+    "read": "1 min",
+    "open": false,
+    "lead": "If you suspect elder abuse, the report is made before discharge, and the suspected abuser is not the person you ask for permission.",
+    "lines": [
+      "Treat the injury.",
+      "A safe destination is part of the discharge.",
+      "You do not need proof to report."
+    ],
+    "miss": "Discharging a fearful older adult back to the person you suspect, with no report.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Elder Abuse.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560883/",
+      "says": "The report is made when suspicion exists, and a safe disposition is arranged. The suspected abuser does not authorize the report."
+    },
+    "number": 174,
+    "id": "usmle-qb-s3-174"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Report suspected child abuse from the emergency department",
+    "read": "1 min",
+    "open": false,
+    "lead": "Suspected child abuse is reported before the child leaves, or the report is made and the child is kept safe until it is. A parent's objection is not a hold.",
+    "lines": [
+      "Photograph and document injuries in words a later reader can see.",
+      "Treat the injury.",
+      "Do not promise the family you will keep it between you."
+    ],
+    "miss": "A discharge home with a plan to think about reporting tomorrow.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Medical Ethics.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
+      "says": "Suspected child abuse is reported promptly. Parental permission is not required."
+    },
+    "number": 175,
+    "id": "usmle-qb-s3-175"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Remove an impaired colleague from patients before the report is finished",
+    "read": "1 min",
+    "open": false,
+    "lead": "If a colleague is impaired now, they stop seeing patients immediately. The report follows. It does not come first while they keep working.",
+    "lines": [
+      "The patients already seen are reviewed.",
+      "A suspicion you cannot yet support is reported through the proper channel, not announced in the hallway.",
+      "Your discomfort is not a reason to wait."
+    ],
+    "miss": "Waiting until the end of the impaired colleague's shift to say something.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Medical Ethics.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
+      "says": "Immediate risk is interrupted first. Reporting follows and does not delay removal from patient care."
+    },
+    "number": 176,
+    "id": "usmle-qb-s3-176"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "An addendum after a complication is timed and signed",
+    "read": "1 min",
+    "open": false,
+    "lead": "After a complication, corrections are an addendum with the time you learned the fact. Do not reopen and rewrite the original note.",
+    "lines": [
+      "The disclosure to the patient matches the addendum.",
+      "A late entry is labeled late.",
+      "Deleting a line is not an option the record allows honestly."
+    ],
+    "miss": "Changing the original assessment after the outcome is known.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Medical Ethics.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
+      "says": "Late corrections are addended, timed, and signed. The original entry is left intact."
+    },
+    "number": 177,
+    "id": "usmle-qb-s3-177"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Research procedures are a separate consent form",
+    "read": "1 min",
+    "open": false,
+    "lead": "A research biopsy or an extra vial is a separate consent. It is not added to the clinical consent the morning of surgery.",
+    "lines": [
+      "The patient can refuse and still have the operation.",
+      "The form says what is experimental.",
+      "The person obtaining research consent can explain the study."
+    ],
+    "miss": "Adding an extra research biopsy to the surgical consent in the preoperative bay.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Informed Consent.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
+      "says": "Research activities require their own consent and can be declined without affecting standard care."
+    },
+    "number": 178,
+    "id": "usmle-qb-s3-178"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Do not order a placebo disguised as a drug",
+    "read": "1 min",
+    "open": false,
+    "lead": "Do not order a placebo labeled as an active pain medicine. If a symptom needs treatment, order a real treatment or an honest explanation.",
+    "lines": [
+      "A research placebo is a consented order.",
+      "The patient who improves on a real explanation does not need a deception.",
+      "Trust is part of the next visit."
+    ],
+    "miss": "A sugar capsule labeled as a strong analgesic.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Medical Ethics.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
+      "says": "Deceptive placebo prescribing is not an acceptable order. Research placebos are consented."
+    },
+    "number": 179,
+    "id": "usmle-qb-s3-179"
+  },
+  {
+    "step": "step-3",
+    "system": "social-sciences",
+    "group": "Ethics and systems",
+    "title": "Call the designated requester for organ donation",
+    "read": "1 min",
+    "open": false,
+    "lead": "When death is near and donation is possible, call the designated requester. Do not tie your recommendation to stop support to a yes on donation.",
+    "lines": [
+      "The withdrawal decision is documented on its own.",
+      "The family is not told that stopping depends on agreeing to donation.",
+      "Your role and the requester's role stay separate."
+    ],
+    "miss": "Offering to stop the ventilator only if the family agrees to donation.",
+    "diagram": null,
+    "diagramAlt": null,
+    "source": {
+      "name": "StatPearls. Medical Ethics.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
+      "says": "Donation conversations are made by a designated requester and are not a condition of withdrawing support."
+    },
+    "number": 180,
+    "id": "usmle-qb-s3-180"
+  }
+]

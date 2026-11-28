@@ -1,0 +1,287 @@
+{
+  "episode": "ep41-abstract-and-advertisement",
+  "title": "The Abstract, and the Advertisement",
+  "video": "quick-bites-usmle-ep41-abstract-and-advertisement-web.mp4",
+  "questions": [
+    {
+      "id": "ep41-q01",
+      "type": "single_best_answer",
+      "stem": "CONSORT 2025 is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A score that proves a trial was done well"
+        },
+        {
+          "id": "B",
+          "text": "A reporting checklist for a randomized trial"
+        },
+        {
+          "id": "C",
+          "text": "A formula for number needed to treat"
+        },
+        {
+          "id": "D",
+          "text": "An advertising rule"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "It is not a universal quality score. You still judge the choices the investigators made.",
+      "videoTimestamp": "0:06"
+    },
+    {
+      "id": "ep41-q02",
+      "type": "single_best_answer",
+      "stem": "The abstract item asks for a structured summary of:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only the p value"
+        },
+        {
+          "id": "B",
+          "text": "Design, methods, results, and conclusions"
+        },
+        {
+          "id": "C",
+          "text": "Only the sponsor"
+        },
+        {
+          "id": "D",
+          "text": "Only the subgroup that was significant"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "That is item 1b.",
+      "videoTimestamp": "0:15"
+    },
+    {
+      "id": "ep41-q03",
+      "type": "single_best_answer",
+      "stem": "An abstract may include a result that is not in the paper:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, if it is exciting"
+        },
+        {
+          "id": "B",
+          "text": "No. It must match the full paper"
+        },
+        {
+          "id": "C",
+          "text": "Yes, if the editor agrees"
+        },
+        {
+          "id": "D",
+          "text": "Only in the conclusion"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "It also must not add information the paper does not contain.",
+      "videoTimestamp": "0:23"
+    },
+    {
+      "id": "ep41-q04",
+      "type": "single_best_answer",
+      "stem": "The primary outcome is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Whatever became significant"
+        },
+        {
+          "id": "B",
+          "text": "The prespecified outcome of greatest importance, used for the sample size"
+        },
+        {
+          "id": "C",
+          "text": "Any subgroup"
+        },
+        {
+          "id": "D",
+          "text": "The harm that was omitted"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A later favorite does not replace it.",
+      "videoTimestamp": "0:31"
+    },
+    {
+      "id": "ep41-q05",
+      "type": "single_best_answer",
+      "stem": "Quoting only a significant secondary result or subgroup:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is the right lead"
+        },
+        {
+          "id": "B",
+          "text": "Is spin. Do not skip the primary outcome"
+        },
+        {
+          "id": "C",
+          "text": "Is required"
+        },
+        {
+          "id": "D",
+          "text": "Replaces harms"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not lead with a result that was not the primary.",
+      "videoTimestamp": "0:37"
+    },
+    {
+      "id": "ep41-q06",
+      "type": "single_best_answer",
+      "stem": "Leaving important harms out of the abstract:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is acceptable if the benefit is large"
+        },
+        {
+          "id": "B",
+          "text": "Misleads the balance of benefit and harm"
+        },
+        {
+          "id": "C",
+          "text": "Is required by the checklist"
+        },
+        {
+          "id": "D",
+          "text": "Proves the trial was safe"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Harms belong in the summary.",
+      "videoTimestamp": "0:46"
+    },
+    {
+      "id": "ep41-q07",
+      "type": "single_best_answer",
+      "stem": "A page that lists a benefit and hides the harm:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is the whole result"
+        },
+        {
+          "id": "B",
+          "text": "Is the same mistake as an abstract that hides harm"
+        },
+        {
+          "id": "C",
+          "text": "Replaces the primary outcome"
+        },
+        {
+          "id": "D",
+          "text": "Is a CONSORT score"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "This episode does not quote a separate advertising regulation. The reading habit is the same.",
+      "videoTimestamp": "0:52"
+    },
+    {
+      "id": "ep41-q08",
+      "type": "single_best_answer",
+      "stem": "If the primary result was null, a significant subgroup:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Becomes the conclusion"
+        },
+        {
+          "id": "B",
+          "text": "Does not let you claim a win"
+        },
+        {
+          "id": "C",
+          "text": "Must lead the abstract"
+        },
+        {
+          "id": "D",
+          "text": "Erases the harms"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The conclusion cannot outrun the primary result.",
+      "videoTimestamp": "2:12"
+    },
+    {
+      "id": "ep41-q09",
+      "type": "single_best_answer",
+      "stem": "A complete report means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The methods were certainly right"
+        },
+        {
+          "id": "B",
+          "text": "You can see the choices, and you still have to judge them"
+        },
+        {
+          "id": "C",
+          "text": "The trial should change practice automatically"
+        },
+        {
+          "id": "D",
+          "text": "Harms can be skipped"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The checklist is not a medal.",
+      "videoTimestamp": "1:08"
+    },
+    {
+      "id": "ep41-q10",
+      "type": "single_best_answer",
+      "stem": "This episode does not teach:",
+      "options": [
+        {
+          "id": "A",
+          "text": "How to read a trial abstract"
+        },
+        {
+          "id": "B",
+          "text": "Sensitivity, predictive value, or number needed to treat"
+        },
+        {
+          "id": "C",
+          "text": "That harms belong in the summary"
+        },
+        {
+          "id": "D",
+          "text": "That the abstract must match the paper"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Those formulas are other talks.",
+      "videoTimestamp": "1:29"
+    }
+  ]
+}

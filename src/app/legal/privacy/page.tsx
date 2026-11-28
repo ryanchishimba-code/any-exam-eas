@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
+import { publicBreadcrumbJsonLd } from "@/lib/seo/public-schema";
 
 export const metadata: Metadata = {
   title: { absolute: "Privacy Policy — AnyExamEasy" },
@@ -14,6 +16,9 @@ export default function PrivacyPage() {
 
   return (
     <div className="min-h-screen pt-24 pb-20">
+      <JsonLdScript
+        data={publicBreadcrumbJsonLd([{ name: "Privacy Policy", path: "/legal/privacy" }])}
+      />
       <article className="mx-auto max-w-2xl px-6">
         <h1 className="text-3xl font-semibold">Privacy Policy</h1>
         <p className="mt-2 text-xs text-[var(--color-ink-muted)]">
@@ -105,17 +110,29 @@ export default function PrivacyPage() {
               Sign-in uses a session cookie. A first-touch cookie named aee_ft can store the
               campaign tags and referrer from your first visit for up to 180 days so a later signup
               can be tied to that visit. A short-lived aee_evt cookie carries signup events in the
-              browser after a social login. A short-lived aee_legal cookie records that a new social
-              signup accepted the current terms. These are first-party cookies. We do not sell or
-              share personal information for cross-context targeted advertising.
+              browser after a social login. A short-lived aee_ads_signup cookie records that a new
+              account was created, and a short-lived aee_ads_purchase cookie records a confirmed
+              payment, so the browser can send each conversion once. A short-lived aee_legal cookie
+              records that a new social signup accepted the current terms. These are first-party
+              cookies. We do not sell or share personal information for cross-context targeted
+              advertising.
             </p>
             <p className="mt-2">
-              The app includes a Google Analytics loader that runs only when a measurement id is
-              configured. The production Content-Security-Policy allows scripts from this site and
-              Stripe only, so googletagmanager.com does not load. Vercel Web Analytics and Speed
-              Insights do load. Vercel&apos;s current documentation says those products do not set
+              If you arrive from a Google ad, a short first-party cookie named aee_gads can keep
+              the ad click id and the time it was seen for up to 90 days. The cookie does not hold
+              your name, email, or card details.
+            </p>
+            <p className="mt-2">
+              The app loads the Google tag from googletagmanager.com for Google Ads conversion
+              measurement, and for Google Analytics when a measurement id is configured. The
+              production Content-Security-Policy allows that tag along with scripts from this site
+              and Stripe. Consent Mode starts with analytics and ad storage denied in the EEA, the
+              UK, and Switzerland, and granted elsewhere. There is no cookie banner to change that
+              choice. When you create an account or pay, the tag can send a SHA-256 hash of your
+              email address so Google Ads can match the conversion. Vercel Web Analytics and Speed
+              Insights also load. Vercel&apos;s current documentation says those products do not set
               cookies: Web Analytics uses a request hash discarded after one day, and Speed Insights
-              sends page-performance measurements. We do not show a separate cookie banner for them.
+              sends page-performance measurements.
             </p>
           </section>
 

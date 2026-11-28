@@ -5,9 +5,9 @@ export function hasClinicalStudyTools(_slug: ExamSlug | string | null | undefine
   return true;
 }
 
-/** @deprecated MPJE removed — always false. */
-export function isMpjeExam(_slug: ExamSlug | string | null | undefined): boolean {
-  return false;
+/** Pharmacy-law board. Clinical drug and anatomy tools stay off this exam. */
+export function isMpjeExam(slug: ExamSlug | string | null | undefined): boolean {
+  return slug === "mpje";
 }
 
 /** @deprecated MPJE removed — no redirect needed. */

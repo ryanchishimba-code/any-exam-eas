@@ -31,6 +31,7 @@ import {
   seedChapterCache,
 } from "@/lib/nclex-study-guide/client-cache";
 import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
+import type { StudyGuideReaderKey } from "@/lib/nclex-study-guide/client-cache";
 import { visibleBookSection } from "@/lib/nclex-study-guide/display-label";
 import { presentChapterCitations } from "@/lib/nclex-study-guide/chapter-citations";
 import { stripRenderedPremiumMarkers } from "@/lib/nclex-study-guide/markdown";
@@ -169,12 +170,30 @@ function useStableCallback<A extends unknown[], R>(fn: (...args: A) => R) {
   return useCallback((...args: A) => ref.current(...args), []);
 }
 
+type StepNavItem = {
+  id: string;
+  label: string;
+  href: string;
+};
+
 type Props = {
-  exam: StudyGuideExam;
+  exam: StudyGuideReaderKey;
   guideId: string;
   guideTitle: string;
   chapters: SgTocChapter[];
   chapter: SgChapterDto;
+  /** Defaults to `exam`. USMLE passes `usmle` so the switch banner stays on the board. */
+  boardExam?: StudyGuideExam | "usmle";
+  /** Step switcher. Omitted for every book that is not a USMLE Step. */
+  stepNav?: readonly StepNavItem[];
+  book?: {
+    routeBase: string;
+    legal: {
+      examName: string;
+      owner: string;
+      programNoun: string;
+    };
+  };
 };
 
 function bindImageErrors(node: HTMLElement | null) {
@@ -227,8 +246,12 @@ export function StudyGuideReader({
   guideTitle,
   chapters,
   chapter: initialChapter,
+  boardExam,
+  stepNav,
+  book,
 }: Props) {
-  const config = STUDY_GUIDES[exam];
+  const config = book ?? STUDY_GUIDES[exam as StudyGuideExam];
+  const bannerExam = boardExam ?? (exam as StudyGuideExam);
   const reduceMotion = useReducedMotion();
   const isDesktop = useIsDesktop();
   const paperRef = useRef<HTMLElement>(null);
@@ -1034,7 +1057,22 @@ export function StudyGuideReader({
         <div ref={progressFillRef} className="sg-progress-fill h-full bg-[#2ec4b6]" />
       </div>
 
-      <CrossBoardStudyGuideBanner guideExam={exam} />
+      {stepNav && stepNav.length > 0 ? (
+        <nav className="sg-step-nav" aria-label="USMLE Step">
+          {stepNav.map((step) => (
+            <Link
+              key={step.id}
+              href={step.href}
+              aria-current={step.id === exam ? "page" : undefined}
+              className={step.id === exam ? "is-on" : undefined}
+            >
+              {step.label}
+            </Link>
+          ))}
+        </nav>
+      ) : null}
+
+      <CrossBoardStudyGuideBanner guideExam={bannerExam} />
 
       <div className="relative flex min-h-0 flex-1">
         {/* LEFT TOC — in the DOM always, collapsed with CSS until opened.
@@ -1203,6 +1241,11 @@ export function StudyGuideReader({
                       {...chapterMotion}
                       transition={{ duration: reduceMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
                     >
+                      <p className="sg-ai-disclosure" role="note">
+                        <strong>AI disclosure.</strong> Portions are AI-generated. Where this
+                        chapter names a guideline and year, that citation is the source for the
+                        point.
+                      </p>
                       {visibleBookSection(chapter.sectionLabel) ? (
                         <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] opacity-60">
                           {visibleBookSection(chapter.sectionLabel)}
@@ -1310,13 +1353,9 @@ export function StudyGuideReader({
           {/* The global site footer is suppressed on reader routes, so the
               study-aid disclaimer and legal links live here instead. */}
           <div className="shrink-0 border-t border-white/10 px-3 py-3 sm:px-4">
-            <p className="sg-ai-disclosure" role="note">
-              <strong>AI disclosure.</strong> Portions are AI-generated. Where this chapter
-              names a guideline and year, that citation is the source for the point.
-            </p>
-            <p className="mt-2 text-[11px] leading-relaxed text-white/45">
+            <p className="text-[11px] leading-relaxed text-white/45">
               Study aid only — not medical advice or a substitute for your{" "}
-              {config.legal.programNoun}, facility policy, or official board documents.
+              {config.legal.programNoun}, facility policy, or official board documents.{" "}
               {config.legal.examName}® is a registered trademark of{" "}
               {config.legal.owner}. Not affiliated with or endorsed by{" "}
               {config.legal.owner}.{" "}

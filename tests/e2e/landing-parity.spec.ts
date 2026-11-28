@@ -3,6 +3,15 @@ import { expect, test, type Page } from "@playwright/test";
 const TRIAL = "/signup?plan=trial&interval=monthly&tier=pro";
 /** Hero primary label. Same string as HERO_TRIAL_CTA_LABEL. */
 const HERO_TRIAL_LABEL = "Start free trial, no card required";
+/** NCLEX, NAPLEX, PANCE, and AANP-FNP heroes. Same string as BOARD_PHOTO_HERO_TRIAL_LABEL. */
+const BOARD_PHOTO_HERO_TRIAL_LABEL = "Start 5-day free trial, no card required";
+
+function heroTrialLabel(path: string): string {
+  if (path === "/nclex" || path === "/naplex" || path === "/pance" || path === "/aanp-fnp") {
+    return BOARD_PHOTO_HERO_TRIAL_LABEL;
+  }
+  return HERO_TRIAL_LABEL;
+}
 
 const PAGES = [
   { path: "/", hero: "home", ctaName: "hero_trial", location: "hero", see: "#quick-bites-heading" },
@@ -71,6 +80,7 @@ type Shot = {
   border: string | null;
   preload: string | null;
   preloadMedia: string | null;
+  imagePreloads: { href: string | null; media: string | null; type: string | null; srcset: string | null }[];
   sectionH: number | null;
   photoEndsWithHero: boolean;
   joinGap: number | null;
@@ -138,6 +148,12 @@ async function readLanding(page: Page): Promise<Shot> {
     const heroBottom = hero ? hero.getBoundingClientRect().bottom + window.scrollY : null;
     const nextTop = next ? next.getBoundingClientRect().top + window.scrollY : null;
     const preload = document.querySelector('link[rel="preload"][as="image"]');
+    const imagePreloads = [...document.querySelectorAll('link[rel="preload"][as="image"]')].map((el) => ({
+      href: el.getAttribute("href"),
+      media: el.getAttribute("media"),
+      type: el.getAttribute("type"),
+      srcset: el.getAttribute("imagesrcset"),
+    }));
     const photoStyle = photo ? getComputedStyle(photo) : null;
     const nextStyle = next ? getComputedStyle(next) : null;
     return {
@@ -164,6 +180,7 @@ async function readLanding(page: Page): Promise<Shot> {
       border: photoStyle?.borderImageSource ?? null,
       preload: preload?.getAttribute("href") ?? null,
       preloadMedia: preload?.getAttribute("media") ?? null,
+      imagePreloads,
       photoEndsWithHero:
         photo != null &&
         hero != null &&
@@ -194,11 +211,17 @@ function same(values: { path: string; value: unknown }[], label: string) {
 }
 
 function sharedShot(shot: Shot) {
+  const primary = shot.primary ? { ...shot.primary } : shot.primary;
+  if (primary) {
+    // Four board heroes use a longer trial label. Text and the box it wraps
+    // into are checked per page. Font, color, and shape stay shared.
+    delete primary.width;
+    delete primary.height;
+  }
   return {
     h1: shot.h1,
     sub: shot.sub,
-    primaryText: shot.primaryText,
-    primary: shot.primary,
+    primary,
     secondaryText: shot.secondaryText,
     secondary: shot.secondary,
     navH: shot.navH,
@@ -223,12 +246,25 @@ function expectPageIdentity(entry: Landing, shot: Shot) {
   const href = trialHref(entry.path);
   expect(shot.hero, entry.path).toBe(entry.hero);
   expect(shot.h1Count, entry.path).toBe(1);
-  expect(shot.primaryText, entry.path).toBe(HERO_TRIAL_LABEL);
-  expect(shot.secondaryText, entry.path).toBe("See questions");
+  expect(shot.primaryText, entry.path).toBe(heroTrialLabel(entry.path));
+  expect(shot.secondaryText, entry.path).toBeNull();
   expect(shot.primaryHref, entry.path).toBe(href);
   expect(shot.navHref, entry.path).toBe(href);
-  expect(shot.secondaryHref, entry.path).toBe(entry.see);
-  expect(shot.preload, entry.path).toBeNull();
+  expect(shot.secondaryHref, entry.path).toBeNull();
+  if (entry.hero === "home") {
+    expect(shot.imagePreloads, entry.path).toHaveLength(2);
+    expect(
+      shot.imagePreloads.find((link) => (link.href ?? "").endsWith("home-desktop.avif")),
+      entry.path
+    ).toMatchObject({ media: "(min-width: 768px)", type: "image/avif" });
+    const mobilePreload = shot.imagePreloads.find((link) => link.media === "(max-width: 767px)");
+    expect(mobilePreload, entry.path).toMatchObject({ type: "image/avif" });
+    expect(mobilePreload?.srcset ?? "", entry.path).toContain("home-mobile.avif");
+    expect(mobilePreload?.srcset ?? "", entry.path).toContain("home-mobile-2x.avif");
+    expect(mobilePreload?.srcset ?? "", entry.path).toContain("home-mobile-3x.avif");
+  } else {
+    expect(shot.preload, entry.path).toBeNull();
+  }
   expect(shot.border ?? "", entry.path).toContain(`/images/marketing/heroes/${entry.hero}-`);
   expect(shot.photoH, entry.path).toBe(shot.svh);
   expect(shot.sectionH, entry.path).toBe(shot.svh);
@@ -507,13 +543,13 @@ test.describe("landing parity", () => {
       });
       expect(html.hero, entry.path).toBe(entry.hero);
       expect(html.h1.length, entry.path).toBeGreaterThan(8);
-      expect(html.cta, entry.path).toBe(HERO_TRIAL_LABEL);
+      expect(html.cta, entry.path).toBe(heroTrialLabel(entry.path));
       expect(html.href, entry.path).toBe(trialHref(entry.path));
       expect(html.over, entry.path).toBe(true);
       expect(html.h1Count, entry.path).toBe(1);
       rows.push({
         path: entry.path,
-        value: { cta: html.cta, over: html.over, h1Count: html.h1Count },
+        value: { over: html.over, h1Count: html.h1Count },
       });
     }
     same(rows, "no javascript");
@@ -539,8 +575,10 @@ test.describe("landing parity", () => {
       });
       document.addEventListener("scroll", note, { passive: true });
     });
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await page.locator("footer a[href='/naplex']").first().click();
+    const naplexLink = page.locator("footer a[href='/naplex']").first();
+    await naplexLink.scrollIntoViewIfNeeded();
+    await naplexLink.focus();
+    await page.keyboard.press("Enter");
     await page.locator("[data-hero='naplex'] h1").waitFor();
     const arrived = await page.evaluate(() => {
       const w = window as Window & { __headerMiss?: number };

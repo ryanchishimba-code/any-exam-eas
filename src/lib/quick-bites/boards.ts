@@ -4,9 +4,9 @@
  * The free episode for each board stays in that board's catalog.
  */
 
-export type QuickBiteSeriesId = "nursing" | "pharmacy" | "fnp" | "pance";
+export type QuickBiteSeriesId = "nursing" | "pharmacy" | "fnp" | "pance" | "usmle" | "medmath";
 
-export type QuickBiteExam = "nclex" | "naplex" | "aanp-fnp" | "pance";
+export type QuickBiteExam = "nclex" | "naplex" | "aanp-fnp" | "pance" | "usmle" | "npte-pt";
 
 export type QuickBiteBoard = {
   exam: QuickBiteExam;
@@ -50,6 +50,22 @@ export const QUICK_BITE_BOARDS: Record<QuickBiteExam, QuickBiteBoard> = {
     navId: "quick-bites-pance",
     navLabel: "Quick Bites: PANCE",
     legacyHash: "video-quick-bites-pance",
+  },
+  usmle: {
+    exam: "usmle",
+    series: "usmle",
+    route: "/usmle/quick-bites",
+    navId: "usmle-video-quick-bites",
+    navLabel: "Video Quick Bites",
+    legacyHash: "video-quick-bites-usmle",
+  },
+  "npte-pt": {
+    exam: "npte-pt",
+    series: "medmath",
+    route: "/npte-pt/quick-bites",
+    navId: "quick-bites-medmath",
+    navLabel: "Medical Math",
+    legacyHash: "video-quick-bites-medmath",
   },
 };
 

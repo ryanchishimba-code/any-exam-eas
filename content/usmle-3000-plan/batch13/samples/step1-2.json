@@ -1,0 +1,24 @@
+{
+  "id": "b13-s1-15",
+  "fieldId": "usmle-step-1",
+  "stepLevel": "step1",
+  "outlineSystem": "blood-lymph-immune",
+  "outlineWeight": 11,
+  "blueprintTopic": "ttp",
+  "blueprintDomain": "blood-lymph-immune",
+  "difficulty": 3,
+  "subjectId": "pathology",
+  "examTakeaway": "Thrombotic thrombocytopenic purpura is a deficiency of ADAMTS13, so huge von Willebrand multimers make platelet thrombi. Platelet transfusion is not the treatment of the count.",
+  "scenario": "A 35-year-old man has platelets of 15,000, schistocytes, creatinine 2.1 mg/dL, and confusion. Coagulation times are normal. A classmate orders platelets to 50,000 as the only therapy. He is the patient in front of the clinician.",
+  "question": "Which protein is missing, and why are platelets alone the wrong plan?",
+  "options": [
+    "Factor VIII is missing, so platelets are the replacement",
+    "Spectrin is missing, so splenectomy tonight is the only care",
+    "ADAMTS13 is high, so more platelets are required to match it",
+    "Immunoglobulin against glycoproteins, treated only by transfusion",
+    "ADAMTS13 is missing. Plasma exchange, not platelet transfusion, is the disease treatment"
+  ],
+  "correctAnswer": "ADAMTS13 is missing. Plasma exchange, not platelet transfusion, is the disease treatment",
+  "explanation": "Thrombotic thrombocytopenic purpura is a deficiency of ADAMTS13, so huge von Willebrand multimers make platelet thrombi. Platelet transfusion is not the treatment of the count. Normal coagulation times separate this from disseminated intravascular coagulation. Transfusing platelets can feed the thrombi. ISTH guidance on thrombotic thrombocytopenic purpura, 2020.\n\nADAMTS13 is missing. Plasma exchange, not platelet transfusion, is the disease treatment\nFactor VIII is missing, so platelets are the replacement \u2014 Coagulation times would be abnormal in a factor deficiency of that size, and the smear would not show schistocytes as the main clue.\nSpectrin is missing, so splenectomy tonight is the only care \u2014 Spherocytes, not schistocytes and confusion, mark that disease.\nADAMTS13 is high, so more platelets are required to match it \u2014 The enzyme is deficient, not high.\nImmunoglobulin against glycoproteins, treated only by transfusion \u2014 That is immune thrombocytopenia, which lacks schistocytes and organ failure.",
+  "citation": "ISTH guidance on thrombotic thrombocytopenic purpura, 2020."
+}

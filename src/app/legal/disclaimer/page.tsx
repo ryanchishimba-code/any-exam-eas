@@ -1,12 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED, PUBLIC_DISCLAIMER_KEYS } from "@/lib/legal";
+import { shareMeta } from "@/lib/seo/public-tool-metadata";
+
+const DISCLAIMER_TITLE = "Disclaimers — AnyExamEasy";
+const DISCLAIMER_DESCRIPTION =
+  "Read AnyExamEasy disclaimers — educational purpose, no outcome guarantees, AI content notes and billing terms for board exam prep users today.";
 
 export const metadata: Metadata = {
-  title: { absolute: "Disclaimers — AnyExamEasy" },
-  description:
-    "Read AnyExamEasy disclaimers — educational purpose, no outcome guarantees, AI content notes and billing terms for board exam prep users today.",
+  title: { absolute: DISCLAIMER_TITLE },
+  description: DISCLAIMER_DESCRIPTION,
   alternates: { canonical: "/legal/disclaimer" },
+  ...shareMeta(DISCLAIMER_TITLE, DISCLAIMER_DESCRIPTION, "/legal/disclaimer"),
 };
 
 const DISCLAIMER_LABELS: Partial<Record<(typeof PUBLIC_DISCLAIMER_KEYS)[number], string>> = {

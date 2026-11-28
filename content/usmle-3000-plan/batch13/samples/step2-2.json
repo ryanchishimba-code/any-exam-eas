@@ -1,0 +1,24 @@
+{
+  "id": "b13-s2-20",
+  "fieldId": "usmle-step-2",
+  "stepLevel": "step2",
+  "outlineSystem": "msk-skin",
+  "outlineWeight": 9,
+  "blueprintTopic": "rheumatoid-arthritis",
+  "blueprintDomain": "msk-skin",
+  "difficulty": 3,
+  "subjectId": "rheumatology",
+  "examTakeaway": "DMARD-naive rheumatoid arthritis with moderate or high activity starts with methotrexate, not a biologic as the first drug.",
+  "scenario": "A 49-year-old man has 10 swollen joints, morning stiffness lasting two hours, and a positive rheumatoid factor. He has never taken a disease-modifying drug. His liver enzymes are normal and he does not drink. A colleague starts a TNF inhibitor alone and says methotrexate is only for people who fail a biologic.",
+  "question": "Which drug is the initial disease-modifying choice?",
+  "options": [
+    "A TNF inhibitor alone, with methotrexate reserved for biologic failure",
+    "Two biologics together on day 1",
+    "Prednisone 60 mg indefinitely and no DMARD",
+    "Colchicine, because stiffness means crystals",
+    "Methotrexate, not a biologic as the first drug"
+  ],
+  "correctAnswer": "Methotrexate, not a biologic as the first drug",
+  "explanation": "DMARD-naive rheumatoid arthritis with moderate or high activity starts with methotrexate, not a biologic as the first drug. His joints and stiffness meet that activity, and nothing here blocks methotrexate. 2021 American College of Rheumatology Guideline for the Treatment of Rheumatoid Arthritis.\n\nMethotrexate, not a biologic as the first drug\nA TNF inhibitor alone, with methotrexate reserved for biologic failure \u2014 The order is the reverse for a patient who has never had a DMARD.\nTwo biologics together on day 1 \u2014 Combining biologics is recommended against.\nPrednisone 60 mg indefinitely and no DMARD \u2014 A steroid is not the long-term disease-modifying plan.\nColchicine, because stiffness means crystals \u2014 The serology and the joint count are not treated as gout.",
+  "citation": "2021 American College of Rheumatology Guideline for the Treatment of Rheumatoid Arthritis."
+}

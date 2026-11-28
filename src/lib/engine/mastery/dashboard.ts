@@ -41,7 +41,7 @@ async function cachedMasteryDashboard(
   loader: () => Promise<MasteryDashboardPayload | null>
 ): Promise<MasteryDashboardPayload | null> {
   return cacheGetOrSet(
-    cacheKey(["mastery-dashboard-v3", userId, examKey]),
+    cacheKey(["mastery-dashboard-v4", userId, examKey]),
     CACHE_TTL.learningDashboard,
     loader,
     { staleTtlMs: CACHE_STALE.learningDashboard }
@@ -95,7 +95,7 @@ export async function loadNclexMasteryDashboard(userId: string): Promise<{
                 ? 35
                 : answered > 0
                   ? 40
-                  : 10;
+                  : 0;
 
       return {
         id: need.id,
@@ -230,7 +230,7 @@ export async function loadNaplexMasteryDashboard(userId: string): Promise<{
                 ? 35
                 : answered > 0
                   ? 40
-                  : 10;
+                  : 0;
 
       return {
         id: domain.id,
@@ -295,7 +295,7 @@ export async function loadUsmleMasteryDashboard(
                 ? 35
                 : answered > 0
                   ? 40
-                  : 10;
+                  : 0;
 
       return {
         id: sys.id,

@@ -44,7 +44,7 @@ describe("how to pass video", () => {
 
   it("publishes poster and video tags", () => {
     const meta = buildHowToPassMetadata();
-    expect(meta.openGraph?.title).toBe(HOW_TO_PASS_TITLE);
+    expect(meta.openGraph?.title).toBe("Six-Board Study Walkthrough, 3 Minutes | AnyExamEasy");
     expect(meta.openGraph?.videos).toEqual([
       expect.objectContaining({ type: "video/mp4", url: expect.stringMatching(/how-to-pass\.mp4$/) }),
     ]);

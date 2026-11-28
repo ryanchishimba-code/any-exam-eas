@@ -1,0 +1,297 @@
+{
+  "episode": "ep37-soft-tissue-and-hip",
+  "title": "A Dying Soft Tissue, and a Hip That Broke",
+  "video": "quick-bites-usmle-ep37-soft-tissue-and-hip-web.mp4",
+  "questions": [
+    {
+      "id": "ep37-q01",
+      "stem": "Suspected necrotizing fasciitis in the 2014 IDSA guideline is first:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A cream and a clinic visit tomorrow"
+        },
+        {
+          "id": "B",
+          "text": "Prompt surgical consultation"
+        },
+        {
+          "id": "C",
+          "text": "A scan, then surgery next week"
+        },
+        {
+          "id": "D",
+          "text": "Antibiotics alone"
+        }
+      ],
+      "key": "B",
+      "explanation": "Prompt surgical consultation is a strong recommendation when the infection looks aggressive or necrosis is suspected.",
+      "videoTimestamp": "0:16",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep37-q02",
+      "stem": "Surgery is the primary treatment when necrotizing infection is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only after a CT report"
+        },
+        {
+          "id": "B",
+          "text": "Confirmed or suspected"
+        },
+        {
+          "id": "C",
+          "text": "Never needed"
+        },
+        {
+          "id": "D",
+          "text": "Only if there is pus"
+        }
+      ],
+      "key": "B",
+      "explanation": "A scan is not the permission slip. Suspicion is enough to operate.",
+      "videoTimestamp": "0:25",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep37-q03",
+      "stem": "Empiric antibiotics while the operating room opens are:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Penicillin alone"
+        },
+        {
+          "id": "B",
+          "text": "Vancomycin or linezolid plus piperacillin-tazobactam, a carbapenem, or ceftriaxone plus metronidazole"
+        },
+        {
+          "id": "C",
+          "text": "A topical antibiotic"
+        },
+        {
+          "id": "D",
+          "text": "No antibiotics"
+        }
+      ],
+      "key": "B",
+      "explanation": "Start broad because the cause may be mixed or a single aggressive organism.",
+      "videoTimestamp": "0:49",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep37-q04",
+      "stem": "Penicillin plus clindamycin is for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Every red leg before cultures"
+        },
+        {
+          "id": "B",
+          "text": "Documented group A streptococcus"
+        },
+        {
+          "id": "C",
+          "text": "A broken hip"
+        },
+        {
+          "id": "D",
+          "text": "Gas that has not been proven"
+        }
+      ],
+      "key": "B",
+      "explanation": "Do not start with that narrow pair when the organism is unknown.",
+      "videoTimestamp": "0:57",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep37-q05",
+      "stem": "After the first debridement, most people return to the operating room:",
+      "options": [
+        {
+          "id": "A",
+          "text": "In a week"
+        },
+        {
+          "id": "B",
+          "text": "In 24 to 36 hours, then daily until no more tissue needs removal"
+        },
+        {
+          "id": "C",
+          "text": "Never"
+        },
+        {
+          "id": "D",
+          "text": "Only if fever lasts 7 days"
+        }
+      ],
+      "key": "B",
+      "explanation": "One trip is not the end.",
+      "videoTimestamp": "1:08",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep37-q06",
+      "stem": "These wounds need aggressive fluid because:",
+      "options": [
+        {
+          "id": "A",
+          "text": "They pour fluid even with little pus"
+        },
+        {
+          "id": "B",
+          "text": "The hip fracture guideline says so"
+        },
+        {
+          "id": "C",
+          "text": "The scan is delayed"
+        },
+        {
+          "id": "D",
+          "text": "Blood pressure is always normal"
+        }
+      ],
+      "key": "A",
+      "explanation": "A ward dressing change is not the second look.",
+      "videoTimestamp": "1:17",
+      "type": "single_best_answer",
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "id": "ep37-q07",
+      "stem": "For an older adult with a hip fracture, the 2021 AAOS window is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Surgery within 24 to 48 hours of admission"
+        },
+        {
+          "id": "B",
+          "text": "Surgery within 12 hours of the fall"
+        },
+        {
+          "id": "C",
+          "text": "Surgery next week"
+        },
+        {
+          "id": "D",
+          "text": "No surgery"
+        }
+      ],
+      "key": "A",
+      "explanation": "The window is from admission. The recommendation strength is moderate and the evidence is low quality.",
+      "videoTimestamp": "1:34",
+      "type": "single_best_answer",
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "id": "ep37-q08",
+      "stem": "That hip recommendation was upgraded because:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Every trial was randomized"
+        },
+        {
+          "id": "B",
+          "text": "Delay can harm"
+        },
+        {
+          "id": "C",
+          "text": "Imaging is required first"
+        },
+        {
+          "id": "D",
+          "text": "The evidence was high quality"
+        }
+      ],
+      "key": "B",
+      "explanation": "The evidence is low quality. The committee still called the strength moderate.",
+      "videoTimestamp": "1:41",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep37-q09",
+      "stem": "The hip window should not be used to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Watch suspected dying fascia overnight"
+        },
+        {
+          "id": "B",
+          "text": "Plan admission"
+        },
+        {
+          "id": "C",
+          "text": "Talk with the family"
+        },
+        {
+          "id": "D",
+          "text": "Treat blood pressure"
+        }
+      ],
+      "key": "A",
+      "explanation": "Dying fascia and a stable hip fracture are different clocks.",
+      "videoTimestamp": "2:04",
+      "type": "single_best_answer",
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "id": "ep37-q10",
+      "stem": "This episode does not teach:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Necrotizing soft tissue infection"
+        },
+        {
+          "id": "B",
+          "text": "Compartment pressure or fat embolism"
+        },
+        {
+          "id": "C",
+          "text": "The 24 to 48 hour hip window"
+        },
+        {
+          "id": "D",
+          "text": "Broad antibiotics while surgery is arranged"
+        }
+      ],
+      "key": "B",
+      "explanation": "Compartment syndrome, fat embolism, and ordinary back pain are other talks.",
+      "videoTimestamp": "2:19",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    }
+  ]
+}

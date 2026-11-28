@@ -29,11 +29,16 @@ import { STUDY_NAV_COLOR } from "@/lib/layout/nav-motion";
 import { isExamPracticeLockedRoute } from "@/lib/navigation/app-shell";
 import {
   STUDY_GUIDE_EXAMS,
+  USMLE_STUDY_GUIDE,
   getStudyGuideConfig,
 } from "@/lib/nclex-study-guide/guide-registry";
+import { isUsmleStudyGuidePublic } from "@/lib/nclex-study-guide/usmle-guide-flags";
 import { QUICK_BITE_BOARDS, QUICK_BITE_EXAMS } from "@/lib/quick-bites/boards";
+import { isUsmleQuickBitesPublic, USMLE_QUICK_BITES_PATH } from "@/lib/quick-bites/usmle-flags";
+import { isUsmleVideoQuickBitesPublic } from "@/lib/quick-bites/usmle-video-flags";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { STUDY_FEEDS } from "@/lib/study-feed/catalog";
+import { isUsmleStudyFeedPublic, USMLE_FEED_PATH } from "@/lib/study-feed/usmle-feed";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -89,7 +94,20 @@ const NAV_SECTIONS: NavSection[] = [
         icon: BookMarked,
         exams: STUDY_GUIDE_EXAMS,
       },
-      ...QUICK_BITE_EXAMS.map((exam) => {
+      ...(isUsmleStudyGuidePublic()
+        ? [
+            {
+              id: "usmle-study-guide",
+              href: USMLE_STUDY_GUIDE.hubHref,
+              label: "Study Guide",
+              icon: BookMarked,
+              exams: ["usmle" as const],
+            },
+          ]
+        : []),
+      ...QUICK_BITE_EXAMS.filter(
+        (exam) => exam !== "usmle" || isUsmleVideoQuickBitesPublic()
+      ).map((exam) => {
         const board = QUICK_BITE_BOARDS[exam];
         return {
           id: board.navId,
@@ -99,6 +117,17 @@ const NAV_SECTIONS: NavSection[] = [
           exams: [board.exam],
         };
       }),
+      ...(isUsmleQuickBitesPublic()
+        ? [
+            {
+              id: "usmle-quick-bites",
+              href: USMLE_QUICK_BITES_PATH,
+              label: "Rapid Review Cards",
+              icon: Clapperboard,
+              exams: ["usmle" as const],
+            },
+          ]
+        : []),
       {
         id: "pance-feed",
         href: STUDY_FEEDS.pance.href,
@@ -127,6 +156,17 @@ const NAV_SECTIONS: NavSection[] = [
         icon: Layers,
         exams: ["aanp-fnp"],
       },
+      ...(isUsmleStudyFeedPublic()
+        ? [
+            {
+              id: "usmle-feed",
+              href: USMLE_FEED_PATH,
+              label: "USMLE Feed",
+              icon: Layers,
+              exams: ["usmle"],
+            },
+          ]
+        : []),
     ],
   },
   {

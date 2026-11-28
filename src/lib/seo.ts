@@ -5,7 +5,8 @@ import {
   formatMonthlyPrice,
   formatPricingCheckoutTrialOffer,
 } from "@/lib/site";
-import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
+import { BRAND_DESCRIPTION, organizationJsonLdNode, organizationRef } from "@/lib/seo/brand-entity";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS, MONTHLY_PRICE_USD } from "@/lib/billing-config";
 import {
   enforceMetaDescription,
@@ -102,7 +103,7 @@ export function buildHomeMetadata(
 ): Metadata {
   const title = enforceMetaTitle("NCLEX, NAPLEX, PANCE & USMLE Practice Questions", "home");
   const description = enforceMetaDescription(
-    "NCLEX, NAPLEX, PANCE, AANP FNP, USMLE, and NPTE-PT practice questions with full rationales, timed practice exams, and a study plan built for test day.",
+    "Practice questions with a rationale for every option: NCLEX, USMLE, NAPLEX, PANCE, AANP FNP and NPTE-PT. Try free questions, then a 5-day free trial.",
     "home"
   );
   void totalQuestionsLabel;
@@ -192,32 +193,15 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
   return {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Organization",
-        "@id": `${url}/#organization`,
-        name: LEGAL_ENTITY.companyName,
-        legalName: LEGAL_ENTITY.companyName,
-        url,
-        logo: absoluteUrl("/icons/icon-192.png"),
-        description: `${LEGAL_ENTITY.productName} — ${seoPlatformPitch(totalQuestionsLabel)}`,
-        sameAs: [url],
-        contactPoint: organizationContactPoint(),
-      },
+      organizationJsonLdNode(),
       {
         "@type": "WebSite",
         "@id": `${url}/#website`,
         url,
         name: SCHEMA_BRAND_NAME,
-        publisher: { "@id": `${url}/#organization` },
+        description: BRAND_DESCRIPTION,
+        publisher: organizationRef(),
         inLanguage: "en-US",
-        potentialAction: {
-          "@type": "SearchAction",
-          target: {
-            "@type": "EntryPoint",
-            urlTemplate: `${url}/toolkit?q={search_term_string}`,
-          },
-          "query-input": "required name=search_term_string",
-        },
       },
       {
         "@type": "SoftwareApplication",

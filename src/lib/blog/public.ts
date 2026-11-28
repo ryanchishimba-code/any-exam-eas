@@ -8,17 +8,11 @@ import {
   publicBlogExcerpt,
   publicBlogTitle,
 } from "@/lib/blog/public-copy";
+import { BLOG_PUBLIC_SLUGS, publicBlogSlug } from "@/lib/blog/public-slugs";
 
 export const BLOG_CACHE_TAG = "blog-posts";
 
-/** Stored slug → public URL slug. `/blog/strategies` 301s to the public slug. */
-const BLOG_PUBLIC_SLUGS: Record<string, string> = {
-  strategies: "nclex-study-plan-rn-pn",
-};
-
-export function publicBlogSlug(stored: string): string {
-  return BLOG_PUBLIC_SLUGS[stored] ?? stored;
-}
+export { publicBlogSlug };
 
 function storedBlogSlug(slug: string): string {
   const match = Object.entries(BLOG_PUBLIC_SLUGS).find(([, pub]) => pub === slug);
@@ -114,7 +108,7 @@ const listPublishedBlogPostsCached = unstable_cache(
     return rows.map(toCard);
   },
   ["blog-list"],
-  { revalidate: 60, tags: [BLOG_CACHE_TAG] }
+  { revalidate: 3600, tags: [BLOG_CACHE_TAG] }
 );
 
 export async function listPublishedBlogPosts(opts?: {
@@ -162,7 +156,7 @@ const getPublishedBlogPostBySlugCached = unstable_cache(
     };
   },
   ["blog-by-slug"],
-  { revalidate: 60, tags: [BLOG_CACHE_TAG] }
+  { revalidate: 3600, tags: [BLOG_CACHE_TAG] }
 );
 
 export async function getPublishedBlogPostBySlug(
@@ -204,7 +198,7 @@ const listRelatedBlogPostsCached = unstable_cache(
     return [...sameCategory, ...other].slice(0, limit).map(toCard);
   },
   ["blog-related"],
-  { revalidate: 60, tags: [BLOG_CACHE_TAG] }
+  { revalidate: 3600, tags: [BLOG_CACHE_TAG] }
 );
 
 export async function listRelatedBlogPosts(
@@ -225,7 +219,7 @@ const listPublishedBlogSlugsCached = unstable_cache(
     return [...new Set(rows.map((r) => publicBlogSlug(r.slug)))];
   },
   ["blog-slugs"],
-  { revalidate: 60, tags: [BLOG_CACHE_TAG] }
+  { revalidate: 3600, tags: [BLOG_CACHE_TAG] }
 );
 
 export async function listPublishedBlogSlugs(): Promise<string[]> {

@@ -25,6 +25,13 @@ describe("share fab public routes", () => {
       "/npte-pt",
       "/dev/home-frames",
       "/faq",
+      "/daily",
+      "/daily-vitals",
+      "/daily-vitals/2026-11-28",
+      "/nclex-study-guide",
+      "/pance-study-guide",
+      "/usmle-study-guide/step-1",
+      "/npte-pt-study-guide",
     ]) {
       expect(isShareFabHiddenRoute(path), path).toBe(true);
     }

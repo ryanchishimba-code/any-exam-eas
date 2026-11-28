@@ -126,22 +126,144 @@ export function isStudyGuideExam(value: unknown): value is StudyGuideExam {
   return typeof value === "string" && value in STUDY_GUIDES;
 }
 
-/** Config for an exam, or undefined when that exam has no book. */
+/**
+ * Config for an exam, or undefined when that exam has no book.
+ *
+ * USMLE is intentionally absent. Homepages, the board hub, and the offer
+ * cards read this helper. The USMLE books stay hidden until their own flags
+ * are on, and even then the sidebar uses `isUsmleStudyGuidePublic` rather than
+ * this map, so an unset flag cannot change `/usmle` or any homepage.
+ */
 export function getStudyGuideConfig(exam: string): StudyGuideConfig | undefined {
   return isStudyGuideExam(exam) ? STUDY_GUIDES[exam] : undefined;
 }
 
+/** One USMLE entry, three books. Step 2 is Clinical Knowledge, not CS. */
+export type UsmleStudyStepId = "step-1" | "step-2-ck" | "step-3";
+
+export type UsmleStudyBook = {
+  exam: "usmle";
+  step: UsmleStudyStepId;
+  /** Client cache key. Chapter slugs collide across the three books. */
+  readerKey: `usmle-${UsmleStudyStepId}`;
+  shortLabel: string;
+  track: UsmleStudyStepId;
+  guideId: string;
+  title: string;
+  bookTitle: string;
+  routeBase: string;
+  hubHref: string;
+  contentDir: string;
+  visualsPrefix: string;
+  legal: StudyGuideConfig["legal"];
+};
+
+const USMLE_LEGAL: StudyGuideConfig["legal"] = {
+  examName: "USMLE",
+  owner: "the Federation of State Medical Boards and the National Board of Medical Examiners",
+  programNoun: "medical school or residency program",
+};
+
+export const USMLE_STUDY_GUIDE = {
+  exam: "usmle" as const,
+  /** Hub that picks a book. Not itself a chapter reader. */
+  hubHref: "/usmle/study-guide",
+  legal: USMLE_LEGAL,
+  steps: {
+    "step-1": {
+      exam: "usmle",
+      step: "step-1",
+      readerKey: "usmle-step-1",
+      shortLabel: "Step 1",
+      track: "step-1",
+      guideId: "sg_guide_usmle_step_1",
+      title: "USMLE Step 1 Study Guide",
+      bookTitle: "AnyExamEasy USMLE Step 1 Reference Book",
+      routeBase: "/usmle/study-guide/step-1",
+      hubHref: "/usmle",
+      contentDir: "usmle-study-guide/step-1",
+      visualsPrefix: "/usmle-study-guide/step-1/visuals/",
+      legal: USMLE_LEGAL,
+    },
+    "step-2-ck": {
+      exam: "usmle",
+      step: "step-2-ck",
+      readerKey: "usmle-step-2-ck",
+      shortLabel: "Step 2 CK",
+      track: "step-2-ck",
+      guideId: "sg_guide_usmle_step_2_ck",
+      title: "USMLE Step 2 CK Study Guide",
+      bookTitle: "AnyExamEasy USMLE Step 2 CK Reference Book",
+      routeBase: "/usmle/study-guide/step-2-ck",
+      hubHref: "/usmle",
+      contentDir: "usmle-study-guide/step-2-ck",
+      visualsPrefix: "/usmle-study-guide/step-2-ck/visuals/",
+      legal: USMLE_LEGAL,
+    },
+    "step-3": {
+      exam: "usmle",
+      step: "step-3",
+      readerKey: "usmle-step-3",
+      shortLabel: "Step 3",
+      track: "step-3",
+      guideId: "sg_guide_usmle_step_3",
+      title: "USMLE Step 3 Study Guide",
+      bookTitle: "AnyExamEasy USMLE Step 3 Reference Book",
+      routeBase: "/usmle/study-guide/step-3",
+      hubHref: "/usmle",
+      contentDir: "usmle-study-guide/step-3",
+      visualsPrefix: "/usmle-study-guide/step-3/visuals/",
+      legal: USMLE_LEGAL,
+    },
+  },
+} as const satisfies {
+  exam: "usmle";
+  hubHref: string;
+  legal: StudyGuideConfig["legal"];
+  steps: Record<UsmleStudyStepId, UsmleStudyBook>;
+};
+
+export const USMLE_STUDY_STEPS = Object.keys(USMLE_STUDY_GUIDE.steps) as UsmleStudyStepId[];
+
+export function isUsmleStudyStep(value: unknown): value is UsmleStudyStepId {
+  return typeof value === "string" && value in USMLE_STUDY_GUIDE.steps;
+}
+
+export function usmleStudyBook(step: UsmleStudyStepId): UsmleStudyBook {
+  return USMLE_STUDY_GUIDE.steps[step];
+}
+
+/** Saved bank field (`usmle-step-2`) → the matching book. Unknown values fall back to Step 1. */
+export function usmleStudyBookForField(fieldId: string | null | undefined): UsmleStudyBook {
+  if (fieldId === "usmle-step-2") return usmleStudyBook("step-2-ck");
+  if (fieldId === "usmle-step-3") return usmleStudyBook("step-3");
+  return usmleStudyBook("step-1");
+}
+
+export function usmleStudyGuideRouteBases(): string[] {
+  return USMLE_STUDY_STEPS.map((step) => USMLE_STUDY_GUIDE.steps[step].routeBase);
+}
+
 /** Route bases for every guide, for premium gating and middleware matchers. */
 export function studyGuideRouteBases(): string[] {
-  return STUDY_GUIDE_EXAMS.map((e) => STUDY_GUIDES[e].routeBase);
+  return [
+    ...STUDY_GUIDE_EXAMS.map((e) => STUDY_GUIDES[e].routeBase),
+    ...usmleStudyGuideRouteBases(),
+  ];
 }
 
 /**
  * The guide whose reader owns this pathname, if any. Used by the app shell to
  * decide whether to collapse into immersive mode.
  */
-export function studyGuideForPathname(pathname: string): StudyGuideConfig | undefined {
-  return STUDY_GUIDE_EXAMS.map((e) => STUDY_GUIDES[e]).find(
+export function studyGuideForPathname(
+  pathname: string
+): StudyGuideConfig | UsmleStudyBook | undefined {
+  const published = STUDY_GUIDE_EXAMS.map((e) => STUDY_GUIDES[e]).find(
+    (g) => pathname === g.routeBase || pathname.startsWith(`${g.routeBase}/`)
+  );
+  if (published) return published;
+  return USMLE_STUDY_STEPS.map((step) => USMLE_STUDY_GUIDE.steps[step]).find(
     (g) => pathname === g.routeBase || pathname.startsWith(`${g.routeBase}/`)
   );
 }

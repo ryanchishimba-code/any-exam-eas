@@ -1,0 +1,289 @@
+{
+  "episode": "ep15-chromosomes-prostate",
+  "title": "Chromosomes, the Prostate, and a Dangerous Mix",
+  "video": "quick-bites-usmle-ep15-chromosomes-prostate-web.mp4",
+  "questions": [
+    {
+      "id": "ep15-q01",
+      "type": "single_best_answer",
+      "stem": "Chest pain, and the patient took an erection medicine this morning. What do you not give?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Aspirin"
+        },
+        {
+          "id": "B",
+          "text": "A nitrate spray"
+        },
+        {
+          "id": "C",
+          "text": "A twelve-lead tracing"
+        },
+        {
+          "id": "D",
+          "text": "A look at the vital signs"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The mix can drop the pressure hard. Aspirin and the tracing still happen.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-q02",
+      "type": "single_best_answer",
+      "stem": "DiGeorge syndrome should make you look at:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only the calcium, and stop"
+        },
+        {
+          "id": "B",
+          "text": "The calcium, the infections, and the outflow tract of the heart"
+        },
+        {
+          "id": "C",
+          "text": "Only the prostate"
+        },
+        {
+          "id": "D",
+          "text": "Only the nails"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "No thymus, no parathyroids, and a conotruncal heart lesion.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-q03",
+      "type": "single_best_answer",
+      "stem": "Short stature, a webbed neck, and unmatched arm and leg pressures in a girl. Think:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Klinefelter syndrome"
+        },
+        {
+          "id": "B",
+          "text": "Turner syndrome"
+        },
+        {
+          "id": "C",
+          "text": "A nitrate mix"
+        },
+        {
+          "id": "D",
+          "text": "Wilson disease"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Turner is 45,X. Check arm and leg pressures.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-q04",
+      "type": "single_best_answer",
+      "stem": "A tall man with small testes and infertility is most consistent with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Turner syndrome"
+        },
+        {
+          "id": "B",
+          "text": "Klinefelter syndrome"
+        },
+        {
+          "id": "C",
+          "text": "Marfan syndrome diagnosed from height alone"
+        },
+        {
+          "id": "D",
+          "text": "DiGeorge syndrome"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "47,XXY. Height alone is not Marfan if the testes are small.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-q05",
+      "type": "single_best_answer",
+      "stem": "A hard, nodular prostate is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Always simple hyperplasia"
+        },
+        {
+          "id": "B",
+          "text": "Cancer until evaluated"
+        },
+        {
+          "id": "C",
+          "text": "A reason to skip the exam"
+        },
+        {
+          "id": "D",
+          "text": "Proof of a chromosome deletion"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Simple hyperplasia is smooth and symmetric.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-q06",
+      "type": "single_best_answer",
+      "stem": "After menopause, dryness and urgency with a negative culture are often:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A reason for months of antibiotics"
+        },
+        {
+          "id": "B",
+          "text": "Thin tissue from low estrogen, not an infection"
+        },
+        {
+          "id": "C",
+          "text": "A bird's beak"
+        },
+        {
+          "id": "D",
+          "text": "Fat embolism"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Culture before repeated antibiotics.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-q07",
+      "type": "single_best_answer",
+      "stem": "Cervical cancer is driven mainly by:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A single normal smear, which ends all future screening"
+        },
+        {
+          "id": "B",
+          "text": "Persistent high-risk human papillomavirus"
+        },
+        {
+          "id": "C",
+          "text": "A nitrate"
+        },
+        {
+          "id": "D",
+          "text": "Unconjugated bilirubin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A vaccinated patient is still screened. Do not start screening before 21.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-q08",
+      "type": "single_best_answer",
+      "stem": "If you do not know when the last erection medicine was taken, and the patient has chest pain:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give the nitrate anyway"
+        },
+        {
+          "id": "B",
+          "text": "Do not give the nitrate; the tracing and aspirin still happen"
+        },
+        {
+          "id": "C",
+          "text": "Skip the tracing"
+        },
+        {
+          "id": "D",
+          "text": "Skip aspirin because of the mix"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The unknown timing still forbids the nitrate.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-q09",
+      "type": "single_best_answer",
+      "stem": "Do not start cervical screening:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Before age twenty-one"
+        },
+        {
+          "id": "B",
+          "text": "After vaccination, ever"
+        },
+        {
+          "id": "C",
+          "text": "If there is bleeding after sex"
+        },
+        {
+          "id": "D",
+          "text": "In any adult"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Bleeding after sex is an exam now. A vaccinated patient is still screened.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Never mix an erection medicine with a nitrate."
+        },
+        {
+          "id": "B",
+          "text": "Turner is 45,X; Klinefelter is XXY."
+        },
+        {
+          "id": "C",
+          "text": "A nodular prostate can be called simple growth without evaluation."
+        },
+        {
+          "id": "D",
+          "text": "High-risk virus, not a single smear, drives cervical cancer."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A hard, nodular gland is cancer until evaluated.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

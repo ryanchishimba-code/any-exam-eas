@@ -18,6 +18,11 @@ import {
   readFirstTouchFromCookieHeader,
   type FirstTouchAttribution,
 } from "@/lib/marketing/first-touch";
+import {
+  ADS_SIGNUP_COOKIE,
+  adsCookieOptions,
+  encodeSignupCookie,
+} from "@/lib/analytics/google-ads";
 
 export const runtime = "nodejs";
 
@@ -100,12 +105,21 @@ export async function POST(req: Request) {
       metadata: { plan: user.plan },
     });
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       ok: true,
       user,
       plan: user.passRedeemed ? "pass" : user.plan,
       passRedeemed: Boolean(user.passRedeemed),
     });
+    const signupCookie = encodeSignupCookie({
+      method: "email",
+      userId: user.id,
+      trial: user.plan === "trial" && !user.passRedeemed,
+    });
+    if (signupCookie) {
+      response.cookies.set(ADS_SIGNUP_COOKIE, signupCookie, adsCookieOptions());
+    }
+    return response;
   } catch (e) {
     if (e instanceof ZodError) {
       const message = e.errors[0]?.message ?? "Invalid registration data.";

@@ -117,7 +117,7 @@ describe("NCLEX landing model", () => {
     expect(model.faqs.map((faq) => faq.question).join(" ")).toMatch(/how many|Next Gen|cost|trial|rationales|reviews/i);
     const types = (model.jsonLd["@graph"] as { "@type": string }[]).map((node) => node["@type"]);
     expect(types).toEqual(
-      expect.arrayContaining(["Organization", "BreadcrumbList", "Course", "FAQPage", "VideoObject"])
+      expect.arrayContaining(["BreadcrumbList", "Course", "FAQPage", "VideoObject"])
     );
     const video = (model.jsonLd["@graph"] as { "@type": string; name?: string; uploadDate?: string }[]).find(
       (node) => node["@type"] === "VideoObject"
@@ -194,11 +194,14 @@ describe("bank type sums", () => {
 });
 
 describe("NCLEX crawl files", () => {
-  it("keeps /nclex in the sitemap and allows it in robots", () => {
-    const sitemap = readFileSync(path.resolve(process.cwd(), "src/app/sitemap.ts"), "utf8");
+  it("keeps /nclex in the sitemap and allows it in robots", async () => {
+    const { buildSitemapGroups } = await import("@/lib/seo/sitemap-catalog");
+    const { robotsAllowsPath } = await import("@/lib/seo/crawl-policy");
     const robots = readFileSync(path.resolve(process.cwd(), "src/app/robots.ts"), "utf8");
-    expect(sitemap).toContain('path === "/nclex"');
-    expect(robots).toContain('"/nclex"');
-    expect(robots).not.toMatch(/disallow:\s*\[[^\]]*\/nclex/);
+    expect(
+      buildSitemapGroups({ posts: [] }).pages.some((url) => url.loc.endsWith("/nclex"))
+    ).toBe(true);
+    expect(robotsAllowsPath("/nclex")).toBe(true);
+    expect(robots).toContain("https://www.anyexameasy.com/sitemap.xml");
   });
 });

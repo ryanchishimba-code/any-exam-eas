@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { AccessBlockedNotice } from "@/components/AccessBlockedNotice";
+import { UsmleVideoQuickBites } from "@/components/quick-bites/UsmleVideoQuickBites";
 import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBitesSection";
 import { getCachedSession } from "@/lib/auth/session";
 import {
@@ -17,7 +18,17 @@ import { ROUTES } from "@/lib/routes";
  * posters; playback of every episode except the board's fixed free sample
  * stays on the paid check inside the section.
  */
-export async function QuickBitesPage({ exam }: { exam: QuickBiteExam }) {
+export async function QuickBitesPage({
+  exam,
+  previewNote,
+  initialVideoStepQuery = null,
+  includeHeldVideos = false,
+}: {
+  exam: QuickBiteExam;
+  previewNote?: string;
+  initialVideoStepQuery?: string | null;
+  includeHeldVideos?: boolean;
+}) {
   const board = QUICK_BITE_BOARDS[exam];
   const session = await getCachedSession();
   if (!session?.user?.id) {
@@ -36,13 +47,37 @@ export async function QuickBitesPage({ exam }: { exam: QuickBiteExam }) {
 
   return (
     <div className="dashboard-ui mx-auto w-full min-w-0 max-w-5xl">
-      <VideoQuickBitesSection
-        series={board.series}
-        titleAs="h1"
-        canPlay={canPlayQuickBites(access)}
-        upgradeHref={upgradeHref}
-        upgradeLabel={access.role === "free" ? "Subscribe to watch" : "Upgrade to watch"}
-      />
+      {previewNote ? (
+        <p className="mb-3 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">{previewNote}</p>
+      ) : null}
+      {exam === "usmle" ? (
+        <UsmleVideoQuickBites
+          initialQuery={initialVideoStepQuery}
+          includeHeld={includeHeldVideos}
+          canPlay={canPlayQuickBites(access)}
+          upgradeHref={upgradeHref}
+          upgradeLabel={access.role === "free" ? "Subscribe to watch" : "Upgrade to watch"}
+        />
+      ) : (
+        <VideoQuickBitesSection
+          series={board.series}
+          titleAs="h1"
+          canPlay={canPlayQuickBites(access)}
+          upgradeHref={upgradeHref}
+          upgradeLabel={access.role === "free" ? "Subscribe to watch" : "Upgrade to watch"}
+        />
+      )}
+      {exam === "npte-pt" ? null : (
+        <div className="mt-8">
+          <VideoQuickBitesSection
+            series="medmath"
+            titleAs="h2"
+            canPlay={canPlayQuickBites(access)}
+            upgradeHref={upgradeHref}
+            upgradeLabel={access.role === "free" ? "Subscribe to watch" : "Upgrade to watch"}
+          />
+        </div>
+      )}
     </div>
   );
 }

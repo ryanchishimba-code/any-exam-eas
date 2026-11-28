@@ -1,0 +1,147 @@
+{
+  "episode": "ep31-fever-too-young",
+  "title": "A Fever Too Young to Send Home",
+  "video": "quick-bites-usmle-ep31-fever-too-young-web.mp4",
+  "questions": [
+    {
+      "id": "ep31-q01",
+      "type": "single_best_answer",
+      "stem": "Which infant is on the 2021 well-appearing febrile pathway?",
+      "options": [
+        {"id": "A", "text": "A moderately ill 10-day-old"},
+        {"id": "B", "text": "A well term 40-day-old with a fever of 38.0°C"},
+        {"id": "C", "text": "A 4-day-old still in the birth hospital"},
+        {"id": "D", "text": "A preterm 30-day-old"}
+      ],
+      "keys": ["B"],
+      "explanation": "The pathway is for well-appearing infants born at 37 to under 42 weeks, 8 to 60 days old, with fever of at least 38.0°C.",
+      "videoTimestamp": "0:15"
+    },
+    {
+      "id": "ep31-q02",
+      "type": "single_best_answer",
+      "stem": "A well 12-day-old with a fever of 38.0°C needs which plan?",
+      "options": [
+        {"id": "A", "text": "A clinic visit the next morning"},
+        {"id": "B", "text": "Urine, blood culture, spinal fluid, parenteral antibiotics, and hospital monitoring"},
+        {"id": "C", "text": "A bag urine, then home if the dipstick is negative"},
+        {"id": "D", "text": "Acetaminophen only"}
+      ],
+      "keys": ["B"],
+      "explanation": "Infants 8 to 21 days get urine, a blood culture, cerebrospinal fluid, parenteral antibiotics, and hospital monitoring.",
+      "videoTimestamp": "0:41"
+    },
+    {
+      "id": "ep31-q03",
+      "type": "single_best_answer",
+      "stem": "How should urine be obtained in that youngest band?",
+      "options": [
+        {"id": "A", "text": "A bag"},
+        {"id": "B", "text": "Catheter or suprapubic aspiration"},
+        {"id": "C", "text": "A diaper squeeze"},
+        {"id": "D", "text": "No urine test"}
+      ],
+      "keys": ["B"],
+      "explanation": "The guideline uses catheterization or suprapubic aspiration, not a bag, and not a dipstick instead of a culture.",
+      "videoTimestamp": "0:51"
+    },
+    {
+      "id": "ep31-q04",
+      "type": "single_best_answer",
+      "stem": "Inflammatory markers in an 8- to 21-day-old:",
+      "options": [
+        {"id": "A", "text": "Replace the lumbar puncture"},
+        {"id": "B", "text": "May be drawn, and do not replace the tap"},
+        {"id": "C", "text": "Are required before any culture"},
+        {"id": "D", "text": "Mean the baby can go home"}
+      ],
+      "keys": ["B"],
+      "explanation": "Markers may be assessed. They do not skip cerebrospinal fluid in the youngest band.",
+      "videoTimestamp": "0:59"
+    },
+    {
+      "id": "ep31-q05",
+      "type": "single_best_answer",
+      "stem": "Parenteral antibiotics in a hospitalized 8- to 21-day-old may stop when:",
+      "options": [
+        {"id": "A", "text": "The fever has lasted 6 hours"},
+        {"id": "B", "text": "Cultures are negative for 24 to 36 hours and the infant looks well or is improving"},
+        {"id": "C", "text": "One marker has been drawn"},
+        {"id": "D", "text": "The family prefers home"}
+      ],
+      "keys": ["B"],
+      "explanation": "Stop when cultures are negative for 24 to 36 hours, or only contaminants grew, the infant looks well or is improving, and there is no other reason to stay.",
+      "videoTimestamp": "1:09"
+    },
+    {
+      "id": "ep31-q06",
+      "type": "single_best_answer",
+      "stem": "Why is a lumbar puncture preferred before antibiotics at 22 to 28 days?",
+      "options": [
+        {"id": "A", "text": "Meningitis is more common than under 22 days"},
+        {"id": "B", "text": "Spinal fluid is hard to interpret after antibiotics"},
+        {"id": "C", "text": "Urine culture is optional"},
+        {"id": "D", "text": "Markers are always normal"}
+      ],
+      "keys": ["B"],
+      "explanation": "The tap comes before antimicrobials so the fluid is not partially treated. Deferring it is a judgment, not the default.",
+      "videoTimestamp": "1:26"
+    },
+    {
+      "id": "ep31-q07",
+      "type": "single_best_answer",
+      "stem": "Which marker cut point is used with this guideline?",
+      "options": [
+        {"id": "A", "text": "Procalcitonin above 0.5 ng/mL"},
+        {"id": "B", "text": "Procalcitonin above 5 ng/mL"},
+        {"id": "C", "text": "C-reactive protein above 2 mg/L"},
+        {"id": "D", "text": "Temperature above 37.5°C"}
+      ],
+      "keys": ["A"],
+      "explanation": "Abnormal markers include temperature above 38.5°C, procalcitonin above 0.5 ng/mL, and C-reactive protein above 20 mg/L.",
+      "videoTimestamp": "1:42"
+    },
+    {
+      "id": "ep31-q08",
+      "type": "single_best_answer",
+      "stem": "The published abnormal neutrophil range in this guideline is:",
+      "options": [
+        {"id": "A", "text": "Above 500 per cubic millimeter"},
+        {"id": "B", "text": "Above 4,000 to 5,200 per cubic millimeter"},
+        {"id": "C", "text": "Above 15,000 only"},
+        {"id": "D", "text": "A single cutoff of 1,000"}
+      ],
+      "keys": ["B"],
+      "explanation": "The guideline's abnormal absolute neutrophil count is the published range above 4,000 to 5,200 per cubic millimeter, not one invented cutoff.",
+      "videoTimestamp": "1:42"
+    },
+    {
+      "id": "ep31-q09",
+      "type": "single_best_answer",
+      "stem": "Normal inflammatory markers are most useful for holding an immediate tap in which band?",
+      "options": [
+        {"id": "A", "text": "8 to 21 days"},
+        {"id": "B", "text": "29 to 60 days"},
+        {"id": "C", "text": "Under 8 days"},
+        {"id": "D", "text": "Only ill-appearing infants"}
+      ],
+      "keys": ["B"],
+      "explanation": "In the 29- to 60-day band, normal markers can usually let the immediate lumbar puncture wait.",
+      "videoTimestamp": "2:02"
+    },
+    {
+      "id": "ep31-q10",
+      "type": "single_best_answer",
+      "stem": "An ill-appearing febrile infant should:",
+      "options": [
+        {"id": "A", "text": "Follow the well-baby algorithm"},
+        {"id": "B", "text": "Leave this pathway, which is only for well-appearing infants"},
+        {"id": "C", "text": "Go home if the urinalysis is negative"},
+        {"id": "D", "text": "Wait until morning for a tap"}
+      ],
+      "keys": ["B"],
+      "explanation": "Moderately or severely ill infants are excluded. The pathway also does not apply under 8 days of age.",
+      "videoTimestamp": "0:34"
+    }
+  ]
+}

@@ -18,7 +18,11 @@ import { ROUTES, fullExamHref } from "@/lib/routes";
  * A study-guide URL names a book. It does not change the saved primary exam.
  * Nav stays on that exam until the learner confirms the switch.
  */
-export function CrossBoardStudyGuideBanner({ guideExam }: { guideExam: StudyGuideExam }) {
+export function CrossBoardStudyGuideBanner({
+  guideExam,
+}: {
+  guideExam: StudyGuideExam | "usmle";
+}) {
   const router = useRouter();
   const queryClient = useContext(QueryClientContext);
   const { examSlug, loading, setExamSlug } = useAppPreferences();

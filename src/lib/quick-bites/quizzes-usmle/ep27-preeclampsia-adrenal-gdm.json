@@ -1,0 +1,287 @@
+{
+  "episode": "ep27-preeclampsia-adrenal-gdm",
+  "title": "Pressure in Pregnancy, a Crisis, and Sugar",
+  "video": "quick-bites-usmle-ep27-preeclampsia-adrenal-gdm-web.mp4",
+  "questions": [
+    {
+      "id": "ep27-preeclampsia-adrenal-gdm-q01",
+      "type": "single_best_answer",
+      "stem": "A pregnant patient has a sustained pressure of 170 over 112. This pressure:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Can wait until the morning clinic"
+        },
+        {
+          "id": "B",
+          "text": "Is treated promptly"
+        },
+        {
+          "id": "C",
+          "text": "Is treated with aspirin as the antihypertensive"
+        },
+        {
+          "id": "D",
+          "text": "Is ignored if there is no protein in the urine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A sustained 160 systolic or 110 diastolic is treated promptly.",
+      "videoTimestamp": "0:13"
+    },
+    {
+      "id": "ep27-preeclampsia-adrenal-gdm-q02",
+      "type": "single_best_answer",
+      "stem": "Magnesium in preeclampsia with severe features, or in eclampsia, is given for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The pressure itself, as a blood-pressure drug"
+        },
+        {
+          "id": "B",
+          "text": "To prevent seizures. It is not a blood-pressure drug"
+        },
+        {
+          "id": "C",
+          "text": "Replacing insulin"
+        },
+        {
+          "id": "D",
+          "text": "The stim test"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Magnesium is for preeclampsia with severe features, or for eclampsia, to prevent seizures. It is not a blood-pressure drug. You still treat the pressure separately.",
+      "videoTimestamp": "0:38"
+    },
+    {
+      "id": "ep27-preeclampsia-adrenal-gdm-q03",
+      "type": "single_best_answer",
+      "stem": "Low-dose aspirin after twelve weeks in a high-risk pregnancy is used to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Treat a pressure of 170"
+        },
+        {
+          "id": "B",
+          "text": "Lower the risk of preeclampsia"
+        },
+        {
+          "id": "C",
+          "text": "Replace hydrocortisone in adrenal crisis"
+        },
+        {
+          "id": "D",
+          "text": "Replace insulin in gestational diabetes"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Prevention is low-dose aspirin after twelve weeks. It does not treat a crisis pressure.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep27-preeclampsia-adrenal-gdm-q04",
+      "type": "single_best_answer",
+      "stem": "Adrenal crisis. The first treatment is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A stim test, then steroids if it is positive"
+        },
+        {
+          "id": "B",
+          "text": "Hydrocortisone and saline now"
+        },
+        {
+          "id": "C",
+          "text": "Aspirin 81 milligrams"
+        },
+        {
+          "id": "D",
+          "text": "A 24-hour urine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The stim test can wait until the patient is alive.",
+      "videoTimestamp": "0:54"
+    },
+    {
+      "id": "ep27-preeclampsia-adrenal-gdm-q05",
+      "type": "single_best_answer",
+      "stem": "A stim test in suspected adrenal crisis:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Must finish before any steroid is given"
+        },
+        {
+          "id": "B",
+          "text": "Can wait; do not delay hydrocortisone and saline"
+        },
+        {
+          "id": "C",
+          "text": "Replaces saline"
+        },
+        {
+          "id": "D",
+          "text": "Diagnoses preeclampsia"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not delay treatment for the confirmatory test.",
+      "videoTimestamp": "0:54"
+    },
+    {
+      "id": "ep27-preeclampsia-adrenal-gdm-q06",
+      "type": "single_best_answer",
+      "stem": "Gestational diabetes that diet does not control is treated with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Insulin"
+        },
+        {
+          "id": "B",
+          "text": "A thionamide"
+        },
+        {
+          "id": "C",
+          "text": "A beta blocker as first-line sugar treatment"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Insulin is the medicine when diet fails.",
+      "videoTimestamp": "1:49"
+    },
+    {
+      "id": "ep27-preeclampsia-adrenal-gdm-q07",
+      "type": "single_best_answer",
+      "stem": "After birth, a baby whose mother had gestational diabetes should be watched for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hyperglycemia from leftover maternal insulin"
+        },
+        {
+          "id": "B",
+          "text": "Hypoglycemia"
+        },
+        {
+          "id": "C",
+          "text": "Cushing syndrome first"
+        },
+        {
+          "id": "D",
+          "text": "A failed suppression test"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The newborn is watched for hypoglycemia.",
+      "videoTimestamp": "1:49"
+    },
+    {
+      "id": "ep27-preeclampsia-adrenal-gdm-q08",
+      "type": "single_best_answer",
+      "stem": "After pregnancy, a mother who had gestational diabetes:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Has no later metabolic risk"
+        },
+        {
+          "id": "B",
+          "text": "Should be rescreened; later type 2 risk remains"
+        },
+        {
+          "id": "C",
+          "text": "Should start magnesium for life"
+        },
+        {
+          "id": "D",
+          "text": "Should avoid all future screening"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The mother's later type 2 risk remains, and she is rescreened.",
+      "videoTimestamp": "2:05"
+    },
+    {
+      "id": "ep27-preeclampsia-adrenal-gdm-q09",
+      "type": "single_best_answer",
+      "stem": "Aspirin at a pressure of 170 in preeclampsia:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is the antihypertensive of choice"
+        },
+        {
+          "id": "B",
+          "text": "Does not treat that pressure"
+        },
+        {
+          "id": "C",
+          "text": "Replaces magnesium for seizure prophylaxis in a crisis"
+        },
+        {
+          "id": "D",
+          "text": "Is given instead of delivery planning"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Aspirin is prevention, not the treatment of a crisis pressure.",
+      "videoTimestamp": "0:47"
+    },
+    {
+      "id": "ep27-preeclampsia-adrenal-gdm-q10",
+      "type": "single_best_answer",
+      "stem": "The blood-pressure numbers that trigger prompt treatment in pregnancy are a sustained:",
+      "options": [
+        {
+          "id": "A",
+          "text": "140 over 90 only, always with no further action at 160"
+        },
+        {
+          "id": "B",
+          "text": "160 systolic or 110 diastolic"
+        },
+        {
+          "id": "C",
+          "text": "200 over 130 only"
+        },
+        {
+          "id": "D",
+          "text": "Any reading above 120"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Treat a sustained 160 or 110 promptly.",
+      "videoTimestamp": "0:23"
+    }
+  ]
+}

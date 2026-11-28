@@ -1,0 +1,20 @@
+{
+  "id": "b16-s1-25",
+  "stepLevel": "step1",
+  "difficulty": 3,
+  "subjectId": "pharmacology",
+  "outlineSystem": "blood-lymph-immune",
+  "blueprintTopic": "protamine",
+  "scenario": "A 68-year-old man is bleeding after a bypass. He has been on a high dose of unfractionated heparin. The aPTT is very long. A classmate gives vitamin K because all anticoagulants reverse the same way.",
+  "question": "What binds the heparin, and why is vitamin K the wrong reversal?",
+  "options": [
+    "Vitamin K, because the aPTT is long",
+    "Platelets, the heparin reversal product",
+    "More heparin, to stabilize the clot",
+    "A fibrinolytic, to seal the bypass site",
+    "Protamine binds the drug"
+  ],
+  "correctAnswer": "Protamine binds the drug",
+  "explanation": "Protamine binds heparin and reverses unfractionated heparin. It does not reverse warfarin. Heparin is a drug already in the blood. Protamine neutralizes it. Vitamin K lets the liver make factors and is the warfarin reversal, which takes time. Katzung BG, Vanderah TW. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.\n\nProtamine binds the drug\nVitamin K, because the aPTT is long — A long aPTT from heparin is not a vitamin K problem.\nPlatelets, the heparin reversal product — Platelets do not bind heparin.\nMore heparin, to stabilize the clot — More heparin worsens bleeding.\nA fibrinolytic, to seal the bypass site — A fibrinolytic would increase bleeding.",
+  "citation": "Katzung BG, Vanderah TW. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021."
+}

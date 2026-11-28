@@ -25,6 +25,8 @@ export type BoardLandingHeroProps = {
   /** Bands that sit on the photo, ending before the features section. */
   trail?: ReactNode;
   signedIn?: boolean;
+  /** Signed-out hero label. Defaults to the sitewide trial label. */
+  trialLabel?: string;
 };
 
 export function BoardLandingHero({
@@ -39,6 +41,7 @@ export function BoardLandingHero({
   boardName,
   trail,
   signedIn = false,
+  trialLabel,
 }: BoardLandingHeroProps) {
   return (
     <>
@@ -63,8 +66,10 @@ export function BoardLandingHero({
               ctaName={heroCtaName}
               ctaLocation={heroCtaLocation}
               seeQuestionsHref={BOARD_LANDING_HERO_QUIZ_HREF}
+              showSeeQuestions={false}
               className="mkt-photo-hero__actions"
               signedIn={signedIn}
+              trialLabel={trialLabel}
             />
           }
         />

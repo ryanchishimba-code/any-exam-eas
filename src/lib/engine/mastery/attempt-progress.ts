@@ -67,19 +67,16 @@ export function statesWithAttemptedDomains(
   for (const tally of tallies) {
     if (tally.answered <= 0) continue;
     const systemCells = cells.filter((cell) => cell.systemKey === tally.domainId);
-    const already = systemCells.some((cell) => {
-      const state = next.get(cell.cellKey)?.state ?? "unseen";
-      return state !== "unseen";
-    });
-    if (already) continue;
-    const cell = systemCells[0];
-    if (!cell) continue;
-    const base = emptyCellState(cell.cellKey);
-    next.set(cell.cellKey, {
-      ...base,
-      state: "primed",
-      itemsAnswered: Math.min(4, tally.answered),
-    });
+    const unseen = systemCells.filter((cell) => (next.get(cell.cellKey)?.state ?? "unseen") === "unseen");
+    const touch = Math.min(unseen.length, Math.max(1, Math.ceil(tally.answered / 8)));
+    for (const cell of unseen.slice(0, touch)) {
+      const base = emptyCellState(cell.cellKey);
+      next.set(cell.cellKey, {
+        ...base,
+        state: "primed",
+        itemsAnswered: Math.min(4, tally.answered),
+      });
+    }
   }
   return next;
 }

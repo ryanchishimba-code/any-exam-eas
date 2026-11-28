@@ -1,0 +1,297 @@
+{
+  "episode": "ep38-first-hour-of-sepsis",
+  "title": "The First Hour of Sepsis",
+  "video": "quick-bites-usmle-ep38-first-hour-of-sepsis-web.mp4",
+  "questions": [
+    {
+      "id": "ep38-q01",
+      "stem": "The 2026 Surviving Sepsis Campaign says sepsis and septic shock are:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A next-day problem"
+        },
+        {
+          "id": "B",
+          "text": "Medical emergencies, and treatment starts immediately"
+        },
+        {
+          "id": "C",
+          "text": "Only a lactate problem"
+        },
+        {
+          "id": "D",
+          "text": "A scan-first problem"
+        }
+      ],
+      "key": "B",
+      "explanation": "That is a good practice statement.",
+      "videoTimestamp": "0:06",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep38-q02",
+      "stem": "Possible, probable, or definite septic shock gets antimicrobials:",
+      "options": [
+        {
+          "id": "A",
+          "text": "After the scan"
+        },
+        {
+          "id": "B",
+          "text": "Immediately, ideally within 1 hour"
+        },
+        {
+          "id": "C",
+          "text": "Within 24 hours"
+        },
+        {
+          "id": "D",
+          "text": "Only if the white count is high"
+        }
+      ],
+      "key": "B",
+      "explanation": "This is a strong recommendation. The certainty of the evidence is very low.",
+      "videoTimestamp": "0:14",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep38-q03",
+      "stem": "Probable or definite sepsis without shock:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Waits three hours by default"
+        },
+        {
+          "id": "B",
+          "text": "Gets the same one-hour antimicrobial recommendation"
+        },
+        {
+          "id": "C",
+          "text": "Needs no antibiotics"
+        },
+        {
+          "id": "D",
+          "text": "Is not in the guideline"
+        }
+      ],
+      "key": "B",
+      "explanation": "The one-hour recommendation is not limited to shock.",
+      "videoTimestamp": "0:23",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep38-q04",
+      "stem": "Possible sepsis without shock:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Always gets antibiotics in 15 minutes"
+        },
+        {
+          "id": "B",
+          "text": "Gets a fast look, then antimicrobials within 3 hours if concern persists"
+        },
+        {
+          "id": "C",
+          "text": "Goes home"
+        },
+        {
+          "id": "D",
+          "text": "Waits for a normal lactate"
+        }
+      ],
+      "key": "B",
+      "explanation": "Three hours is a suggestion, not a free afternoon.",
+      "videoTimestamp": "0:32",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep38-q05",
+      "stem": "For poor perfusion or septic shock, the suggested initial crystalloid is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "10 mL/kg over 24 hours"
+        },
+        {
+          "id": "B",
+          "text": "At least 30 mL/kg in the first 3 hours"
+        },
+        {
+          "id": "C",
+          "text": "Fluid until the lactate is zero"
+        },
+        {
+          "id": "D",
+          "text": "No fluid"
+        }
+      ],
+      "key": "B",
+      "explanation": "Certainty is low. Reassess so you do not give too little or too much.",
+      "videoTimestamp": "0:56",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep38-q06",
+      "stem": "If body mass index is above 30, the fluid weight used is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Always actual weight"
+        },
+        {
+          "id": "B",
+          "text": "Adjusted or ideal body weight"
+        },
+        {
+          "id": "C",
+          "text": "The last clinic weight from years ago"
+        },
+        {
+          "id": "D",
+          "text": "Not specified"
+        }
+      ],
+      "key": "B",
+      "explanation": "Otherwise use actual body weight.",
+      "videoTimestamp": "1:03",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep38-q07",
+      "stem": "Examples of poor perfusion in the guideline include:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A normal blood pressure and a normal lactate"
+        },
+        {
+          "id": "B",
+          "text": "Mean arterial pressure under 65, or systolic under 90"
+        },
+        {
+          "id": "C",
+          "text": "A fever alone"
+        },
+        {
+          "id": "D",
+          "text": "A cough"
+        }
+      ],
+      "key": "B",
+      "explanation": "A systolic pressure far below that person's usual, or an elevated lactate, also counts.",
+      "videoTimestamp": "1:18",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep38-q08",
+      "stem": "A lactate above 2 and under 4:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Never deserves fluid"
+        },
+        {
+          "id": "B",
+          "text": "Can still deserve fluid"
+        },
+        {
+          "id": "C",
+          "text": "Is the only trigger"
+        },
+        {
+          "id": "D",
+          "text": "Means antibiotics can wait"
+        }
+      ],
+      "key": "B",
+      "explanation": "Four or more was the old trigger. Intermediate elevation is common.",
+      "videoTimestamp": "1:26",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep38-q09",
+      "stem": "If sepsis is dropping the blood pressure, the suggestion is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vasopressor first and no fluid"
+        },
+        {
+          "id": "B",
+          "text": "Crystalloid, then a vasopressor if pressure stays low"
+        },
+        {
+          "id": "C",
+          "text": "Antibiotics only"
+        },
+        {
+          "id": "D",
+          "text": "A morning recheck"
+        }
+      ],
+      "key": "B",
+      "explanation": "Unstable shock on exam may need the vasopressor at the same time as the fluid.",
+      "videoTimestamp": "1:36",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    },
+    {
+      "id": "ep38-q10",
+      "stem": "Serial lactate should not be used to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Guide resuscitation when lactate is high or there is shock"
+        },
+        {
+          "id": "B",
+          "text": "Keep pouring fluid until the lactate is normal"
+        },
+        {
+          "id": "C",
+          "text": "Decide to reassess"
+        },
+        {
+          "id": "D",
+          "text": "Follow a person in shock"
+        }
+      ],
+      "key": "B",
+      "explanation": "After the first bolus, individualize. Do not chase a normal lactate.",
+      "videoTimestamp": "1:52",
+      "type": "single_best_answer",
+      "keys": [
+        "B"
+      ]
+    }
+  ]
+}

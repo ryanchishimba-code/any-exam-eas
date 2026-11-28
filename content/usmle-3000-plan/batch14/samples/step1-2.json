@@ -1,0 +1,20 @@
+{
+  "id": "b14-s1-11",
+  "stepLevel": "step1",
+  "outlineSystem": "blood-lymph-immune",
+  "subjectId": "pathology",
+  "difficulty": 2,
+  "blueprintTopic": "cll",
+  "scenario": "A 71-year-old man has a white count of 42,000 that is mostly lymphocytes. The smear shows ruptured cells. He feels well and has small nodes. A classmate starts chemotherapy the same day because any high white count is acute leukemia.",
+  "question": "Which disease fits the ruptured cells, and why is same-day induction the wrong reflex?",
+  "options": [
+    "CLL, and many patients are observed at first",
+    "Acute lymphoblastic leukemia, so blasts should fill the smear",
+    "CML, so a low enzyme score and a huge spleen are expected",
+    "A viral lymphocytosis that ruptures cells the same way",
+    "Iron deficiency, because fatigue is assumed"
+  ],
+  "correctAnswer": "CLL, and many patients are observed at first",
+  "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2021.",
+  "examTakeaway": "Smudge cells in an older adult with a high lymphocyte count are the fragile cells of CLL."
+}

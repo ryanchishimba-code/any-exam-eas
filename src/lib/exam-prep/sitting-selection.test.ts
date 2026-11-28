@@ -348,7 +348,7 @@ describe("finalizeAssembledSitting caps", () => {
     expect(choleCount).toBeLessThanOrEqual(entityShareCap(89));
     expect(doseCount).toBeLessThanOrEqual(1);
     expect(doseCount).toBeLessThanOrEqual(nursingDosageShareCap(89));
-    expect(nursingDosageShareCap(89)).toBe(8);
+    expect(nursingDosageShareCap(89)).toBe(4);
   });
 
   it("reserves about 8 percent real calculation items when the pharmacy pool has them", () => {

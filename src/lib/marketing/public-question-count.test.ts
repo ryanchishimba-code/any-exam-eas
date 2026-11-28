@@ -5,6 +5,7 @@ import { formatExactQuestionCount, formatRoundedDownQuestionCount } from "@/lib/
 import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
 import { buildLandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 import { bundleFromServedCounts, staticQuestionCountLabel } from "@/lib/marketing/public-question-count";
+import { buildPricingMetadata } from "@/lib/seo/marketing-metadata";
 import { inventoryFromLiveFieldCounts } from "@/lib/marketing/served-question-counts";
 
 describe("staticQuestionCountLabel", () => {
@@ -105,6 +106,19 @@ describe("homepage counts use the served gate", () => {
     expect(display.exams.find((exam) => exam.slug === "nclex")?.countLabel).toBe("3,947");
     expect(bundle!.snapshot.boards?.nclex?.caseItems).toBe(234);
     expect(display.totalServed).not.toBe(34_543 + 300);
+  });
+});
+
+describe("pricing metadata states the plan, not a question total", () => {
+  it("uses the live price and trial and does not keep a bank-size slogan", () => {
+    const description = String(buildPricingMetadata("34,500+").description);
+    expect(description).toContain("$27.99/mo");
+    expect(description).toContain("5-day free trial");
+    expect(description).not.toContain("34,500+");
+    expect(description).not.toContain("28,400");
+    const source = readFileSync("src/app/(marketing)/pricing/page.tsx", "utf8");
+    expect(source).toContain("loadPublicQuestionCounts");
+    expect(source).not.toContain("28,400");
   });
 });
 

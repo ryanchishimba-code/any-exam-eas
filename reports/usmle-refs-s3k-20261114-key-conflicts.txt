@@ -1,0 +1,9 @@
+id	step	key	why
+cmr8n3tky00r21ygi020f4ipo	step-3	Bronchiolitis	Keyed as bronchiolitis, but the child is 3 or older. Merck defines bronchiolitis as a viral lower-airway infection in infants under 24 months.
+cmr8kib85004i1ygi180rcuid	step-3	Bronchiolitis	Keyed as bronchiolitis, but the child is 3 or older. Merck defines bronchiolitis as a viral lower-airway infection in infants under 24 months.
+cmr9auf4801891ywyc92as5ek	step-3	Bronchiolitis	Keyed as bronchiolitis, but the child is 3 or older. Merck defines bronchiolitis as a viral lower-airway infection in infants under 24 months.
+cmr8baks6004r1ylosnfqua0n	step-3	Bronchiolitis	Keyed as bronchiolitis, but the child is 3 or older. Merck defines bronchiolitis as a viral lower-airway infection in infants under 24 months.
+cmr8bakdn004n1ylo42pbrt0c	step-3	Viral bronchiolitis	Keyed as bronchiolitis, but the child is 3 or older. Merck defines bronchiolitis as a viral lower-airway infection in infants under 24 months.
+cmr9aubow01741ywy5u1wyz5f	step-3	Viral bronchiolitis	Keyed as bronchiolitis, but the child is 3 or older. Merck defines bronchiolitis as a viral lower-airway infection in infants under 24 months.
+cmru8v3c0000h1y0sy3truwrz	step-3	Bronchiolitis	Keyed as bronchiolitis, but the child is 3 or older. Merck defines bronchiolitis as a viral lower-airway infection in infants under 24 months.
+cmr9auara016t1ywyer95hswq	step-3	Bronchiolitis	Keyed as bronchiolitis, but the child is 3 or older. Merck defines bronchiolitis as a viral lower-airway infection in infants under 24 months.

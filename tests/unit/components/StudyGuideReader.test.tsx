@@ -229,9 +229,16 @@ describe("StudyGuideReader", () => {
       "href",
       "https://www.ncsbn.org"
     );
-    expect(screen.getByRole("note")).toHaveTextContent(
+    const note = screen.getByRole("note");
+    expect(note).toHaveTextContent(
       "Portions are AI-generated. Where this chapter names a guideline and year, that citation is the source for the point."
     );
+    expect(note).toHaveClass("sg-ai-disclosure");
+    expect(container.querySelector("article.sg-paper")?.contains(note)).toBe(true);
+    const prose = container.querySelector(".sg-prose");
+    expect(prose).toBeTruthy();
+    expect(note.compareDocumentPosition(prose!)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(screen.getByText(/Study aid only/i).parentElement?.contains(note)).toBe(false);
   });
 
   it("shows bookmark and highlight controls without a trial upsell", () => {

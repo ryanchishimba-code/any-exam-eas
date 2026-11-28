@@ -1,0 +1,289 @@
+{
+  "episode": "ep20-acs-afib",
+  "title": "The Clock in the Chest, and a Rhythm That Clots",
+  "video": "quick-bites-usmle-ep20-acs-afib-web.mp4",
+  "questions": [
+    {
+      "id": "ep20-q01",
+      "type": "single_best_answer",
+      "stem": "S T elevation, and this hospital can open the artery in the lab. A lytic in the parking lot?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, always"
+        },
+        {
+          "id": "B",
+          "text": "No. Take them to the lab"
+        },
+        {
+          "id": "C",
+          "text": "Wait for the troponin first, then decide in an hour"
+        },
+        {
+          "id": "D",
+          "text": "Give oxygen to everyone, and stop"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A lytic is the backup when you will miss the clock, not the default at a ready lab.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-q02",
+      "type": "single_best_answer",
+      "stem": "A twelve-lead tracing in suspected heart-attack care is due:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Within ten minutes"
+        },
+        {
+          "id": "B",
+          "text": "After the troponin returns, always"
+        },
+        {
+          "id": "C",
+          "text": "The next day"
+        },
+        {
+          "id": "D",
+          "text": "Only if the saturation is low"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "S T elevation does not wait for the troponin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-q03",
+      "type": "single_best_answer",
+      "stem": "Oxygen in this chest-pain workup is for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Every patient, because of the diagnosis"
+        },
+        {
+          "id": "B",
+          "text": "A low saturation, not the diagnosis itself"
+        },
+        {
+          "id": "C",
+          "text": "Replacing aspirin"
+        },
+        {
+          "id": "D",
+          "text": "Replacing the tracing"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "If the saturation is already fine, routine oxygen is not the treatment.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-q04",
+      "type": "single_best_answer",
+      "stem": "Atrial fibrillation with a mechanical mitral valve. Which thinner?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A newer blood thinner, and stop warfarin"
+        },
+        {
+          "id": "B",
+          "text": "Warfarin"
+        },
+        {
+          "id": "C",
+          "text": "Aspirin alone"
+        },
+        {
+          "id": "D",
+          "text": "No thinner, because the valve is already there"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A mechanical valve, or significant mitral narrowing, still gets warfarin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-q05",
+      "type": "single_best_answer",
+      "stem": "After a successful cardioversion in a patient who needed a thinner:",
+      "options": [
+        {
+          "id": "A",
+          "text": "You can stop the thinner that week"
+        },
+        {
+          "id": "B",
+          "text": "Resetting the rhythm does not cancel the thinner"
+        },
+        {
+          "id": "C",
+          "text": "Aspirin becomes the substitute"
+        },
+        {
+          "id": "D",
+          "text": "The yearly risk no longer matters"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The indication is the risk, not today's tracing.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-q06",
+      "type": "single_best_answer",
+      "stem": "A dissection that involves the ascending aorta is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A clinic problem for next month"
+        },
+        {
+          "id": "B",
+          "text": "An operation"
+        },
+        {
+          "id": "C",
+          "text": "Treated first with a clot-busting medicine"
+        },
+        {
+          "id": "D",
+          "text": "Treated first with a pure vessel-opener and no beta blocker"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A beta blocker comes before a pure vessel-opener. A lytic extends the tear.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-q07",
+      "type": "single_best_answer",
+      "stem": "Tamponade is treated by:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A diuretic, as the definitive plan"
+        },
+        {
+          "id": "B",
+          "text": "Draining the fluid; a diuretic takes away needed preload"
+        },
+        {
+          "id": "C",
+          "text": "A nitrate plus an erection medicine"
+        },
+        {
+          "id": "D",
+          "text": "Watching overnight with no plan"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Fluids may bridge while drainage is arranged.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-q08",
+      "type": "single_best_answer",
+      "stem": "If you will miss the clock to open the artery, a clot-busting medicine is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Never appropriate"
+        },
+        {
+          "id": "B",
+          "text": "The backup, if it is safe"
+        },
+        {
+          "id": "C",
+          "text": "Given in the parking lot of a ready lab anyway"
+        },
+        {
+          "id": "D",
+          "text": "A reason to skip the tracing"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "About ninety minutes at a hospital that can open the artery, or two hours if the patient has to be moved.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-q09",
+      "type": "single_best_answer",
+      "stem": "Aspirin, in a suspected heart-attack workup without a reason to avoid it:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is still indicated"
+        },
+        {
+          "id": "B",
+          "text": "Is replaced by routine oxygen"
+        },
+        {
+          "id": "C",
+          "text": "Is cancelled by atrial fibrillation"
+        },
+        {
+          "id": "D",
+          "text": "Waits for the troponin, like the lab activation"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Oxygen is not the substitute.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "S T elevation does not wait for the troponin."
+        },
+        {
+          "id": "B",
+          "text": "Open the artery if you can; a lytic is the backup when you will miss the clock."
+        },
+        {
+          "id": "C",
+          "text": "Aspirin is the blood-thinner substitute in atrial fibrillation."
+        },
+        {
+          "id": "D",
+          "text": "Tamponade is drained, not diuresed."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Aspirin is not the substitute for anticoagulation in atrial fibrillation.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

@@ -3,14 +3,17 @@ import path from "node:path";
 import { readImageSize } from "@/lib/nclex-study-guide/image-dimensions";
 import { markdownToSimpleHtml } from "@/lib/nclex-study-guide/markdown";
 import { absoluteUrl, getSiteUrl } from "@/lib/seo";
-import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
+import { organizationRef } from "@/lib/seo/brand-entity";
 
 export const PANCE_STUDY_GUIDE_PATH = "/pance-study-guide";
 
-export const PANCE_STUDY_GUIDE_TITLE = "Free PANCE Study Guide (2026): NCCPA Blueprint";
+export const PANCE_STUDY_GUIDE_TITLE = "PANCE Study Guide: 2026 NCCPA Blueprint | AnyExamEasy";
 
 export const PANCE_STUDY_GUIDE_DESCRIPTION =
   "Free PANCE study guide for the NCCPA blueprint: 300 questions in five blocks, a $550 application fee, passing score 350, and study plans. Independent of NCCPA.";
+
+/** Content date for the public guide and its sitemap lastmod. */
+export const PANCE_STUDY_GUIDE_UPDATED = "2026-10-24";
 
 const CONTENT_DIR = path.join(process.cwd(), "content/pance-study-guide");
 const VISUALS_DIR = path.join(process.cwd(), "public/pance-study-guide/visuals");
@@ -31,11 +34,11 @@ function chapterFiles(): string[] {
 }
 
 /**
- * Paid depth is wrapped in these markers. The public teaser keeps the
- * manuscript outside them. The gated reader ingests the full file.
+ * The public guide includes the full manuscript. Markers stay in source files
+ * for the reader ingest, and the HTML converter drops the comments themselves.
  */
 export function stripPremiumBlocks(markdown: string): string {
-  return markdown.replace(/<!--\s*premium\s*-->[\s\S]*?<!--\s*\/premium\s*-->/g, "\n");
+  return markdown;
 }
 
 function rewriteVisuals(markdown: string): string {
@@ -74,7 +77,7 @@ function parseFaqs(markdown: string): PanceFaq[] {
     i += 1;
     while (i < lines.length && !(lines[i] ?? "").trim().startsWith("#")) {
       const line = (lines[i] ?? "").trim();
-      if (line && line !== "---") answer.push(line);
+      if (line && line !== "---" && !line.startsWith("<!--")) answer.push(line);
       i += 1;
     }
     i -= 1;
@@ -101,10 +104,10 @@ function buildJsonLd(h1: string, faqs: PanceFaq[]): Record<string, unknown> {
         "@type": "Article",
         headline: h1,
         description: PANCE_STUDY_GUIDE_DESCRIPTION,
-        dateModified: "2026-10-24",
+        dateModified: PANCE_STUDY_GUIDE_UPDATED,
         mainEntityOfPage: pageUrl,
-        author: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
-        publisher: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
+        author: organizationRef(),
+        publisher: organizationRef(),
       },
       {
         "@type": "FAQPage",
@@ -121,7 +124,7 @@ function buildJsonLd(h1: string, faqs: PanceFaq[]): Record<string, unknown> {
 export function loadPanceStudyGuidePage(): PanceStudyGuidePage {
   const files = chapterFiles();
   const parts = files.map((name) =>
-    stripPremiumBlocks(readFileSync(path.join(CONTENT_DIR, name), "utf8"))
+    readFileSync(path.join(CONTENT_DIR, name), "utf8")
   );
   const faqFile = parts.find((_, index) => files[index] === "20-faq.md") ?? "";
   const faqs = parseFaqs(faqFile);

@@ -1,4 +1,3 @@
-import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
 import { BoardLandingHero } from "@/components/marketing/board-landing/BoardLandingHero";
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
@@ -12,17 +11,15 @@ import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/Pra
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import type { NclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { BoardCrosswordPromo } from "@/components/marketing/board-landing/BoardCrosswordPromo";
+import { BoardPublicLinks } from "@/components/marketing/board-landing/BoardPublicLinks";
 import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
 import { WhyAnyExamEasy } from "@/components/marketing/WhyAnyExamEasy";
-import { HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
-import { getCachedSession } from "@/lib/auth/session";
-import { ROUTES } from "@/lib/routes";
+import { SessionAwareTrialCta } from "@/components/marketing/SessionAwareTrialCta";
+import { BOARD_PHOTO_HERO_TRIAL_LABEL } from "@/lib/marketing/home-cta";
 
-export async function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderModel }) {
-  const session = await getCachedSession();
-  const signedIn = Boolean(session?.user);
+export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderModel }) {
   const depthChart = model.nclexCompare;
   const stories = storiesBelowHero(model.stories, model.heroTestimonial?.quote);
 
@@ -38,14 +35,12 @@ export async function NclexBoardLanding({ model }: { model: NclexBoardLandingRen
         testimonial={model.heroTestimonial}
         proofFacts={boardHeroProofFacts(model.heroOffer)}
         boardName={model.boardName}
-        signedIn={signedIn}
+        trialLabel={BOARD_PHOTO_HERO_TRIAL_LABEL}
         trail={
           <>
+      <BoardPublicLinks exam="nclex" />
       <div className="bl-band">
         <FreePracticeLink board="nclex" prominent />
-      </div>
-      <div className="bl-band">
-        <BoardCrosswordPromo board="nclex" />
       </div>
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
@@ -76,7 +71,7 @@ export async function NclexBoardLanding({ model }: { model: NclexBoardLandingRen
         }
       />
 
-      <WhyAnyExamEasy board="nclex" trialHref={model.trialHref} signedIn={signedIn} />
+      <WhyAnyExamEasy board="nclex" trialHref={model.trialHref} />
 
       {model.features.length > 0 ? (
         <div className="bl-band">
@@ -105,13 +100,11 @@ export async function NclexBoardLanding({ model }: { model: NclexBoardLandingRen
 
       <section className="bl-final bl-band bl-band--final" aria-labelledby="final-heading">
         <h2 id="final-heading">{model.finalHeading}</h2>
-        <LandingCta
-          href={signedIn ? ROUTES.dashboard : model.trialHref}
-          ctaName={signedIn ? "continue_studying" : model.finalCtaName}
+        <SessionAwareTrialCta
+          trialHref={model.trialHref}
+          signedOutCtaName={model.finalCtaName}
           location={model.finalCtaLocation}
-        >
-          {signedIn ? "Continue studying" : HERO_TRIAL_CTA_LABEL}
-        </LandingCta>
+        />
       </section>
 
       <div className="bl-band bl-band--alt bl-band--faq">
@@ -128,6 +121,9 @@ export async function NclexBoardLanding({ model }: { model: NclexBoardLandingRen
             ))}
           </div>
         </section>
+      </div>
+      <div className="bl-band">
+        <BoardCrosswordPromo board="nclex" />
       </div>
     </div>
   );

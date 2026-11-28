@@ -78,7 +78,7 @@ export function naplexMetaTitle(): string {
 
 export function naplexMetaDescription(): string {
   return enforceMetaDescription(
-    "NAPLEX practice questions for the calculations and the drugs. Pharmacy calculations, drug vignettes, flashcards, and explanations that show the work.",
+    "NAPLEX practice questions for the calculations and the drugs: pharmacy calculations, patient cases, flashcards and worked explanations. Try free questions.",
     "/naplex"
   );
 }
@@ -207,7 +207,7 @@ export function buildNaplexLandingModel(input: {
     { href: qotdPath("naplex"), label: "Question of the Day" },
     { href: ROUTES.pricing, label: "Pricing" },
     ...(formats.length > 0 ? [{ href: "#naplex-formats", label: "NAPLEX item types" }] : []),
-    { href: "/naplex/study-guide", label: "NAPLEX study guide" },
+    { href: "/naplex-study-guide", label: "NAPLEX study guide" },
     { href: "/practice/naplex", label: "NAPLEX practice" },
     { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
   ];

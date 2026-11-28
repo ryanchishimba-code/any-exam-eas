@@ -28,13 +28,13 @@ const monthly = () => formatPlanUsd(TIER_MONTHLY_USD.pro);
 export const PLATFORM_TAGLINE =
   "Premium board prep for every major licensing exam — high-quality practice, smart Roadmap, and one accessible subscription.";
 
-export const PLATFORM_EXAM_LIST = "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT";
+export const PLATFORM_EXAM_LIST = "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, NPTE-PT, and MPJE";
 
-export const PLATFORM_EXAM_LIST_MIDDOT = "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP · NPTE-PT";
+export const PLATFORM_EXAM_LIST_MIDDOT = "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP · NPTE-PT · MPJE";
 
 /** Compact list for banners, checkout, and PWA manifest (no Oxford "and"). */
 export const PLATFORM_EXAM_LIST_COMPACT =
-  "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT";
+  "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, NPTE-PT & MPJE";
 
 export type LandingExam = {
   id: string;

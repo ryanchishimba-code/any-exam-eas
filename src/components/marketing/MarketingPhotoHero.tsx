@@ -1,11 +1,14 @@
 import type { CSSProperties, ReactNode } from "react";
+import { preload } from "react-dom";
 import { DeferredHeroPhoto } from "@/components/marketing/DeferredHeroPhoto";
 import {
   type MarketingPhotoHeroId,
   MARKETING_PHOTO_HERO_BOX_ASPECT,
   MARKETING_PHOTO_HERO_IMAGE_ASPECT,
   MARKETING_PHOTO_HERO_MOBILE_FOCAL,
+  MARKETING_PHOTO_HERO_MOBILE_MEDIA,
   MARKETING_PHOTO_HEROES,
+  marketingPhotoHeroDesktopImageSet,
   marketingPhotoHeroMobileImageSet,
   marketingPhotoHeroSlice,
   marketingPhotoHeroSrc,
@@ -73,13 +76,29 @@ export function MarketingPhotoHero({
 }: MarketingPhotoHeroProps) {
   const config = MARKETING_PHOTO_HEROES[heroId];
   const examAttr = heroId === "home" || heroId === "about" ? undefined : heroId;
-  const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
   // The about photo is applied after first paint. A full-bleed image that
   // finishes before the heading is still charged to the lab LCP, even though
   // border-image is not the painted element.
   const deferPhoto = heroId === "about";
   const mobileImage = marketingPhotoHeroMobileImageSet(heroId);
-  const desktopImage = `url("${desktopAvif}")`;
+  const desktopImage = marketingPhotoHeroDesktopImageSet(heroId);
+  if (heroId === "home") {
+    preload(marketingPhotoHeroSrc(heroId, "desktop", "avif"), {
+      as: "image",
+      type: "image/avif",
+      media: "(min-width: 768px)",
+    });
+    preload(marketingPhotoHeroSrc(heroId, "mobile", "avif"), {
+      as: "image",
+      type: "image/avif",
+      media: MARKETING_PHOTO_HERO_MOBILE_MEDIA,
+      imageSrcSet: [
+        `${marketingPhotoHeroSrc(heroId, "mobile", "avif")} 1x`,
+        `${marketingPhotoHeroSrc(heroId, "mobile2x", "avif")} 2x`,
+        `${marketingPhotoHeroSrc(heroId, "mobile3x", "avif")} 3x`,
+      ].join(", "),
+    });
+  }
 
   return (
     <section
@@ -119,9 +138,11 @@ export function MarketingPhotoHero({
         .mkt-hero-foot__slot{width:min(1120px,calc(100% - 2rem));height:100%;margin-inline:auto}
         .mkt-hero-foot__card{box-sizing:border-box;height:100%;max-width:40rem;overflow:hidden}
         .mkt-photo-hero:has(.mkt-hero-foot) .mkt-photo-hero__inner{padding-bottom:calc(9.75rem + 1.35rem)}
+        .mkt-photo-hero__photo{position:absolute;inset:0;z-index:0;width:100%;height:100%;margin:0;pointer-events:none;background:radial-gradient(70% 55% at 82% 28%, rgba(15, 118, 110, 0.2), transparent 62%),linear-gradient(165deg, #07182c 0%, #0a2540 58%, #10283f 100%);border-style:solid;border-width:0;border-image-source:var(--mkt-hero-mobile);border-image-slice:var(--mkt-hero-slice-mobile);border-image-width:0;border-image-repeat:stretch}
         @media (min-width:768px){
           .mkt-hero-foot{height:8rem;bottom:1.25rem}
           .mkt-photo-hero:has(.mkt-hero-foot) .mkt-photo-hero__inner{padding-bottom:calc(8rem + 1.5rem)}
+          .mkt-photo-hero__photo{border-image-source:var(--mkt-hero-desktop);border-image-slice:var(--mkt-hero-slice-desktop)}
         }
       `}</style>
       <div className="mkt-photo-hero__photo" aria-hidden="true" />

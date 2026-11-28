@@ -1,7 +1,7 @@
 {
   "name": "AnyExamEasy",
   "short_name": "AnyExamEasy",
-  "description": "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT board exam prep with integrated Roadmaps and adaptive practice.",
+  "description": "Practice questions for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT, with a rationale for every option. One Pro plan after a 5-day free trial.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -76,6 +76,29 @@ export function resolveDashboardUpgradeContext(
   return null;
 }
 
+/**
+ * Quiet minute countdown. Relative to the student's clock, so it never says UTC.
+ * Under an hour it drops the hours. The last partial minute still reads as 1m.
+ */
+export function formatOfferCountdown(expiresAt: string, now = Date.now()): string | null {
+  const end = Date.parse(expiresAt);
+  if (Number.isNaN(end)) return null;
+  const remaining = end - now;
+  if (remaining <= 0) return "Ended";
+  const totalMinutes = Math.floor(remaining / 60_000);
+  if (totalMinutes < 60) return `Ends in ${Math.max(1, totalMinutes)}m`;
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  return `Ends in ${hours}h ${minutes}m`;
+}
+
+/** In-app trial-end offer. Checkout reads the same token from /upgrade. */
+export function dashboardTrialEndOfferHref(token: string): string {
+  const params = new URLSearchParams();
+  params.set("offer", token.trim());
+  return `/upgrade?${params.toString()}`;
+}
+
 export function dashboardUpgradePricingHref(variant: DashboardUpgradeVariant): string {
   if (variant === "free") {
     return postTrialCheckoutHref("/dashboard");

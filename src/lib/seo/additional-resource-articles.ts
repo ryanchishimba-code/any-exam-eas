@@ -45,7 +45,7 @@ function article(
 export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   article({
     slug: "multi-exam-board-prep-2026",
-    title: "Multi-Exam Board Prep in One Subscription (2026)",
+    title: "Six Board Exams, One Subscription (2026) | AnyExamEasy",
     metaDescription: `One Pro plan at ${formatMonthlyPrice("pro")}/mo for unlimited access, Deep Dives, and Full Exams across NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE-PT. ${TRIAL_DAYS}-day free trial: ${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment required.`,
     examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
     keywords: [
@@ -109,7 +109,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "nclex-single-exam-qbank-comparison-2026",
-    title: "NCLEX Prep: Single-Exam QBank vs One Plan (2026)",
+    title: "NCLEX QBank vs One Six-Board Plan | AnyExamEasy",
     metaDescription: `Compare NCLEX study workflows — NGN formats, Roadmap, Deep Dives, and Full Exams on Pro at ${formatMonthlyPrice("pro")}/mo with six boards. ${TRIAL_DAYS}-day trial: ${TRIAL_LIFETIME_QUESTIONS} questions.`,
     examTags: ["nclex"],
     primaryExam: "nclex",
@@ -366,7 +366,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "nclex-cat-workflow-prep-comparison-2026",
-    title: "NCLEX Prep: CAT Practice vs Multi-Exam Workflow (2026)",
+    title: "NCLEX CAT Practice vs One Study Plan | AnyExamEasy",
     metaDescription: `NCLEX CAT-style practice, NGN coverage, and Roadmap workflow on Pro at ${formatMonthlyPrice("pro")}/mo with six boards. ${TRIAL_DAYS}-day trial with ${TRIAL_LIFETIME_QUESTIONS} questions.`,
     examTags: ["nclex"],
     primaryExam: "nclex",
@@ -455,7 +455,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "naplex-single-exam-qbank-comparison-2026",
-    title: "NAPLEX Prep: Pharmacy QBank vs Multi-Exam Plan (2026)",
+    title: "NAPLEX QBank vs One Six-Board Plan | AnyExamEasy",
     metaDescription: `NAPLEX calculations, Roadmap, Deep Dives, and Full Exams on Pro at ${formatMonthlyPrice("pro")}/mo with six boards. ${TRIAL_DAYS}-day trial: ${TRIAL_LIFETIME_QUESTIONS} questions.`,
     examTags: ["naplex"],
     primaryExam: "naplex",

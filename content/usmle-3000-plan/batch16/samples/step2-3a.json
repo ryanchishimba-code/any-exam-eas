@@ -1,0 +1,20 @@
+{
+  "id": "b16-s2-09",
+  "stepLevel": "step2",
+  "difficulty": 3,
+  "subjectId": "gastroenterology",
+  "outlineSystem": "gastrointestinal",
+  "blueprintTopic": "varices",
+  "scenario": "A 54-year-old man with cirrhosis vomits blood. Pressure is 88/50 and the heart rate is 120. He is resuscitated. A classmate orders only a proton-pump inhibitor and a clinic endoscopy next month.",
+  "question": "Which drug is added now, and when is banding done?",
+  "options": [
+    "Only a proton-pump inhibitor and a scope next month",
+    "Beta blockade during active hematemesis",
+    "A large-volume paracentesis as the bleeding treatment",
+    "Octreotide plus an antibiotic, then urgent banding",
+    "Observation, because cirrhosis vomit is gastritis until a month has passed"
+  ],
+  "correctAnswer": "Octreotide plus an antibiotic, then urgent banding",
+  "explanation": "Suspected variceal bleeding is treated with a vasoactive drug such as octreotide, an antibiotic, and urgent endoscopy for banding. A proton-pump inhibitor alone is not enough. Variceal bleeding needs a splanchnic constrictor, infection prophylaxis, and endoscopy now. A delayed clinic scope misses the bleed. Laine L, Barkun AN, Saltzman JR, Martel M, Leontiadis GI. ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding. American Journal of Gastroenterology. 2021.\n\nOctreotide plus an antibiotic, then urgent banding\nOnly a proton-pump inhibitor and a scope next month — The bleed needs treatment today.\nBeta blockade during active hematemesis — A beta blocker is prevention after the bleed is controlled, not the first act while hypotensive.\nA large-volume paracentesis as the bleeding treatment — Paracentesis treats tense ascites, not hematemesis.\nObservation, because cirrhosis vomit is gastritis until a month has passed — Hypotension means an urgent source.",
+  "citation": "Laine L, Barkun AN, Saltzman JR, Martel M, Leontiadis GI. ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding. American Journal of Gastroenterology. 2021."
+}

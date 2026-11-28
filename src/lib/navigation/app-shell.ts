@@ -1,5 +1,6 @@
 import { studyGuideRouteBases } from "@/lib/nclex-study-guide/guide-registry";
 import { quickBiteRouteBases } from "@/lib/quick-bites/boards";
+import { USMLE_QUICK_BITES_PATH } from "@/lib/quick-bites/usmle-flags";
 import type { ExamSlug } from "@/types/edtech";
 
 /** Derived from the guide registry so reader chrome cannot drift per exam. */
@@ -18,6 +19,7 @@ export const APP_SHELL_PREFIXES = [
   "/study/drugs300",
   ...studyGuideRouteBases(),
   ...quickBiteRouteBases(),
+  USMLE_QUICK_BITES_PATH,
 ] as const;
 
 export const MINIMAL_CHROME_PREFIXES = [
@@ -38,6 +40,7 @@ export const MINIMAL_CHROME_PREFIXES = [
   "/study-tools/nclex/feed",
   "/study-tools/naplex/feed",
   "/study-tools/aanp-fnp/feed",
+  "/study-tools/usmle/feed",
 ] as const;
 
 export function isAppShellRoute(pathname: string): boolean {

@@ -28,19 +28,29 @@ import {
   pharmacyQuickBitePoster,
   pharmacyQuickBiteVideoPath,
 } from "@/lib/quick-bites/pharmacy-catalog";
+import {
+  USMLE_VIDEO_QUICK_BITE_EPISODES,
+  getUsmleVideoQuickBiteBySlug,
+  usmleVideoQuickBiteCaptionsPath,
+  usmleVideoQuickBitePoster,
+  usmleVideoQuickBiteVideoPath,
+} from "@/lib/quick-bites/usmle-video-catalog";
 
 const PHARM_PREFIX = "quick-bites-pharm-";
 const FNP_PREFIX = "quick-bites-fnp-";
 const PANCE_PREFIX = "quick-bites-pance-";
+const USMLE_PREFIX = "quick-bites-usmle-";
 
 const isPharmacySlug = (slug: string) => slug.startsWith(PHARM_PREFIX);
 const isFnpSlug = (slug: string) => slug.startsWith(FNP_PREFIX);
 const isPanceSlug = (slug: string) => slug.startsWith(PANCE_PREFIX);
+const isUsmleSlug = (slug: string) => slug.startsWith(USMLE_PREFIX);
 
 const OTHER_LOOKUPS = [
   getPharmacyQuickBiteBySlug,
   getFnpQuickBiteBySlug,
   getPanceQuickBiteBySlug,
+  getUsmleVideoQuickBiteBySlug,
 ] as const;
 
 function assertNursingOnly(slug: string) {
@@ -67,7 +77,8 @@ const ALL_SERIES = [
     episodes: QUICK_BITE_EPISODES,
     quizzes: () => readQuizzes("quizzes"),
     slugFromQuiz: (quiz: RawQuiz) => `quick-bites-${quiz.episode}`,
-    isOwn: (slug: string) => !isPharmacySlug(slug) && !isFnpSlug(slug) && !isPanceSlug(slug),
+    isOwn: (slug: string) =>
+      !isPharmacySlug(slug) && !isFnpSlug(slug) && !isPanceSlug(slug) && !isUsmleSlug(slug),
     lookup: getQuickBiteBySlug,
     videoPath: quickBiteVideoPath,
     captionsPath: quickBiteCaptionsPath,
@@ -114,6 +125,19 @@ const ALL_SERIES = [
     blobPrefix: "quick-bites-pance/",
     publicPrefix: "/quick-bites-pance/",
   },
+  {
+    label: "usmle",
+    episodes: USMLE_VIDEO_QUICK_BITE_EPISODES,
+    quizzes: () => readQuizzes("quizzes-usmle"),
+    slugFromQuiz: (quiz: RawQuiz) => quiz.video.replace(/-web\.mp4$/, ""),
+    isOwn: isUsmleSlug,
+    lookup: getUsmleVideoQuickBiteBySlug,
+    videoPath: usmleVideoQuickBiteVideoPath,
+    captionsPath: usmleVideoQuickBiteCaptionsPath,
+    poster: usmleVideoQuickBitePoster,
+    blobPrefix: "quick-bites-usmle/",
+    publicPrefix: "/quick-bites-usmle/",
+  },
 ] as const;
 
 describe("Quick Bites series separation", () => {
@@ -146,6 +170,14 @@ describe("Quick Bites series separation", () => {
       expect(getQuickBiteBySlug(episode.slug)).toBeUndefined();
       expect(getPharmacyQuickBiteBySlug(episode.slug)).toBeUndefined();
       expect(getFnpQuickBiteBySlug(episode.slug)).toBeUndefined();
+      expect(getUsmleVideoQuickBiteBySlug(episode.slug)).toBeUndefined();
+    }
+    for (const episode of USMLE_VIDEO_QUICK_BITE_EPISODES) {
+      expect(isUsmleSlug(episode.slug)).toBe(true);
+      expect(getQuickBiteBySlug(episode.slug)).toBeUndefined();
+      expect(getPharmacyQuickBiteBySlug(episode.slug)).toBeUndefined();
+      expect(getFnpQuickBiteBySlug(episode.slug)).toBeUndefined();
+      expect(getPanceQuickBiteBySlug(episode.slug)).toBeUndefined();
     }
   });
 
@@ -189,6 +221,7 @@ describe("Quick Bites series separation", () => {
     expect(boards).toContain('series: "pharmacy"');
     expect(boards).toContain('series: "fnp"');
     expect(boards).toContain('series: "pance"');
+    expect(boards).toContain('series: "usmle"');
     for (const exam of ["nclex", "naplex", "aanp-fnp", "pance"] as const) {
       const route = readFileSync(
         new URL(`../../app/(app)/${exam}/quick-bites/page.tsx`, import.meta.url),

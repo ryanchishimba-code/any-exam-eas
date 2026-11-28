@@ -174,7 +174,7 @@ describe("Quick Bites: Pharmacy catalog", () => {
     expect(boards).toContain('exam: "naplex"');
     expect(boards).toContain('series: "pharmacy"');
     expect(route).toContain('exam="naplex"');
-    const sitemap = readFileSync(new URL("../../app/sitemap.ts", import.meta.url), "utf8");
+    const sitemap = readFileSync(new URL("../../lib/seo/sitemap-catalog.ts", import.meta.url), "utf8");
     expect(sitemap).not.toContain("quick-bites-pharmacy");
     expect(sitemap).not.toContain("Quick Bites: Pharmacy");
   });

@@ -105,6 +105,7 @@ export function PublicHome({
               ctaName="hero_trial"
               ctaLocation="hero"
               seeQuestionsHref={HOME_SEE_QUESTIONS_HREF}
+              showSeeQuestions={false}
               className="mkt-photo-hero__actions home-hero__actions"
             />
           }

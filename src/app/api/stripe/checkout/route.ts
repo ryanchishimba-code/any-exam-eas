@@ -30,6 +30,13 @@ import { requireSessionGuard } from "@/lib/session-guard";
 import { requireOneTimeStripePriceId, requireStripePriceId } from "@/lib/stripe-prices";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { ROUTES } from "@/lib/routes";
+import {
+  ADS_PURCHASE_COOKIE,
+  STRIPE_CHECKOUT_SUCCESS_PATH,
+  adsCookieOptions,
+  buildConfirmedPurchase,
+  encodePurchaseCookie,
+} from "@/lib/analytics/google-ads";
 
 export const runtime = "nodejs";
 
@@ -142,10 +149,54 @@ export async function POST(req: Request) {
   let stripeCouponId: string | null = null;
   let promoCode: string | null = null;
   let promoValidation = null;
-  if (typeof body?.promoCode === "string" && body.promoCode.trim()) {
+  let upgradeOfferId: string | null = null;
+  const offerToken = typeof body?.offerToken === "string" ? body.offerToken.trim() : "";
+  const requestedPromo = typeof body?.promoCode === "string" ? body.promoCode.trim() : "";
+
+  if (offerToken) {
+    try {
+      const { evaluateTrialUpgradeOffer } = await import("@/lib/billing/trial-upgrade-offer-db");
+      const { resolveCheckoutOffer } = await import("@/lib/billing/trial-upgrade-offer");
+      const evaluation = await evaluateTrialUpgradeOffer({
+        userId: session.user.id,
+        token: offerToken,
+        subscription: sub,
+      });
+      const resolution = resolveCheckoutOffer({
+        tokenPresent: true,
+        status: evaluation.status,
+        offerId: evaluation.offerId,
+        promoCodePresent: Boolean(requestedPromo),
+      });
+      if (resolution.action === "reject") {
+        return NextResponse.json({ error: resolution.message }, { status: 400 });
+      }
+      if (resolution.action === "apply") {
+        const { resolveTrialUpgradeCouponId } = await import("@/lib/billing/trial-upgrade-coupon");
+        const { stripe: stripeClient } = await import("@/lib/stripe");
+        if (!stripeClient) {
+          return NextResponse.json(
+            { error: "The upgrade offer could not be applied. Try again in a moment." },
+            { status: 503 }
+          );
+        }
+        stripeCouponId = await resolveTrialUpgradeCouponId(stripeClient);
+        upgradeOfferId = resolution.offerId;
+      }
+    } catch (error) {
+      console.error(
+        "[stripe/checkout] trial upgrade offer failed",
+        error instanceof Error ? error.message : error
+      );
+      return NextResponse.json(
+        { error: "The upgrade offer could not be applied. Try again in a moment." },
+        { status: 503 }
+      );
+    }
+  } else if (requestedPromo) {
     const { validateDiscount } = await import("@/lib/discount");
     const promo = await validateDiscount({
-      code: body.promoCode.trim(),
+      code: requestedPromo,
       plan,
       interval,
       userId: session.user.id,
@@ -217,9 +268,10 @@ export async function POST(req: Request) {
         interval,
         stripeCouponId,
         promoCode,
+        upgradeOfferId,
         renewalConsent,
       });
-      return NextResponse.json({
+      const response = NextResponse.json({
         upgraded: true,
         status: converted.status,
         redirectTo: `${ROUTES.dashboard}?checkout=success`,
@@ -227,6 +279,20 @@ export async function POST(req: Request) {
         tier,
         interval,
       });
+      if (converted.charge) {
+        const purchase = buildConfirmedPurchase({
+          transactionId: converted.stripeSubscriptionId,
+          amountCents: converted.charge.amountCents,
+          currency: converted.charge.currency,
+          tier,
+          interval,
+        });
+        const purchaseCookie = purchase ? encodePurchaseCookie(purchase) : null;
+        if (purchaseCookie) {
+          response.cookies.set(ADS_PURCHASE_COOKIE, purchaseCookie, adsCookieOptions());
+        }
+      }
+      return response;
     } catch (e) {
       if (e instanceof Error && (e.name === "NoPaymentMethodError" || e.message === "NO_PAYMENT_METHOD")) {
         // Fall through to Checkout Session to collect a payment method.
@@ -249,12 +315,15 @@ export async function POST(req: Request) {
     paymentMode,
     stripeCouponId,
     promoCode,
+    upgradeOfferId,
     renewalConsent,
-    successUrl: `${origin}${ROUTES.dashboard}?checkout=success`,
+    successUrl: `${origin}${STRIPE_CHECKOUT_SUCCESS_PATH}`,
     // Hosted Checkout cancel should return to plan review, not the marketing page.
     cancelUrl: `${origin}/checkout?cancelled=1&plan=${plan}&tier=${tier}&interval=${interval}${
       paymentMode === "manual" ? "&mode=manual" : ""
-    }${reactivating ? "&reactivate=1" : ""}`,
+    }${reactivating ? "&reactivate=1" : ""}${
+      upgradeOfferId ? `&offer=${encodeURIComponent(offerToken)}` : ""
+    }`,
   };
 
   try {

@@ -2,16 +2,20 @@ import dynamic from "next/dynamic";
 import { getCachedSession } from "@/lib/auth/session";
 import { GuestTrialBanner } from "@/components/marketing/GuestTrialBanner";
 import { DrugReviewStudioSkeleton } from "@/components/study/DrugReviewStudioSkeleton";
+import { DrugCatalogIndex } from "@/components/study/DrugCatalogIndex";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope";
 import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import { safetyPathLabel } from "@/lib/drugs300/safety-path";
 import { studyUi } from "@/lib/study/study-ui";
+import { buildLearningResourceJsonLd } from "@/lib/seo/learning-resource-jsonld";
+import {
+  DRUGS_PAGE_DESCRIPTION,
+  DRUGS_PAGE_TITLE,
+  drugsPageMetadata,
+} from "@/lib/seo/public-tool-metadata";
 
-export const metadata = {
-  title: `${DRUGS_DECK_MARKETING_TITLE} — AnyExamEasy`,
-  description:
-    "One shared Top 500 drug list for NCLEX, USMLE, and NAPLEX — flashcards with spaced repetition.",
-};
+export const metadata = drugsPageMetadata();
 
 export const maxDuration = 60;
 
@@ -39,6 +43,14 @@ export default async function Drugs300Page({
 
   return (
     <div className={studyUi.page}>
+      <JsonLdScript
+        data={buildLearningResourceJsonLd({
+          name: DRUGS_PAGE_TITLE,
+          description: DRUGS_PAGE_DESCRIPTION,
+          path: "/study/drugs300",
+          learningResourceType: "Flashcards",
+        })}
+      />
       <header>
         <p className={studyUi.eyebrow}>{safetyPath ? "Today’s block" : "Study tools"}</p>
         <h1 className={studyUi.title}>
@@ -47,6 +59,7 @@ export default async function Drugs300Page({
       </header>
       {guestPreview ? <GuestTrialBanner className="mt-4" /> : null}
       <DrugReviewStudio guestPreview={guestPreview} />
+      <DrugCatalogIndex />
     </div>
   );
 }

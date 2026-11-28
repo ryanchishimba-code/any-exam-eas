@@ -26,6 +26,7 @@ const HUB_DESCRIPTIONS: Record<(typeof EXAM_SLUGS)[number], string> = {
   pance: "Physician assistant clinical vignettes — NCCPA blueprint effective January 2025 across 15 content categories and 8 task areas.",
   "aanp-fnp": "Family nurse practitioner vignettes — NPCB Assess, Diagnose, Plan, Evaluate across the lifespan.",
   "npte-pt": "Physical therapy clinical scenarios — FSBPT musculoskeletal, neuromuscular, cardiopulmonary, and practice systems.",
+  mpje: "Pharmacy law — federal and state rules, controlled substances, and dispensing.",
 };
 
 /** Four board exams — derived from canonical EXAM_CATALOG. */
@@ -60,21 +61,27 @@ export function studyHubProgressHref(): string {
   return ROUTES.analytics;
 }
 
-/** @deprecated MPJE removed — use PANCE question bank. */
+/** MPJE question bank. State and variant stay on the query so the bank can scope them. */
 export function studyHubMpjeHref(): string {
-  return `${STUDY_HUB_PATH}?exam=pance`;
+  return mpjePracticeHref({ mode: "bank" });
 }
 
-/** @deprecated MPJE removed — use questionBankHref("pance"). */
-export function mpjePracticeHref(_options?: {
+export function mpjePracticeHref(options?: {
   mode?: "timed" | "bank";
   variant?: "uniform" | "state";
   stateCode?: string;
 }): string {
-  return questionBankHref("pance");
+  const params = new URLSearchParams({
+    field: "mpje",
+    mode: options?.mode ?? "bank",
+  });
+  if (options?.variant) params.set("mpjeVariant", options.variant);
+  if (options?.stateCode) params.set("state", options.stateCode);
+  return `/question-bank?${params.toString()}`;
 }
 
-/** @deprecated MPJE removed — redirects to PANCE full exam. */
-export function mpjePracticeExamHref(_stateCode?: string): string {
-  return "/full-exam/pance?mode=full&autostart=1";
+/** Full-length MPJE sitting (120 items, countdown). Not the PANCE simulator. */
+export function mpjePracticeExamHref(stateCode?: string): string {
+  if (!stateCode) return "/mpje/practice-exam";
+  return `/mpje/practice-exam?state=${encodeURIComponent(stateCode)}`;
 }

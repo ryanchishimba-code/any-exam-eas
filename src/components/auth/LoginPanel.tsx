@@ -13,6 +13,7 @@ import {
 import { stampBoardIntentFromLocation } from "@/lib/auth/board-intent";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
+import { syncCrosswordProgress } from "@/lib/crossword/sync-progress";
 import { ROUTES } from "@/lib/routes";
 import {
   firstName,
@@ -124,6 +125,7 @@ export function LoginPanel({
       // Flip to redirecting immediately so the button stops waiting on routing APIs.
       setRedirecting(true);
       setRedirectMessage("Welcome back! Opening your Study Hub…");
+      await syncCrosswordProgress();
       onSuccess?.();
       const result = await completeLoginFlow({
         router,

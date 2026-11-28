@@ -6,14 +6,14 @@ describe("boardHeroMarketingCopy", () => {
     expect(boardHeroMarketingCopy("nclex").headline).toBe(
       "NCLEX-RN questions that match the current test plan."
     );
-    expect(boardHeroMarketingCopy("nclex").subline).toMatch(/Next Generation case studies/i);
+    expect(boardHeroMarketingCopy("nclex").subline).toMatch(/Next Generation cases/i);
     expect(boardHeroMarketingCopy("nclex").subline).not.toMatch(/\bpass\b/i);
     expect(boardHeroMarketingCopy("usmle").subline).not.toMatch(/flashcard|NGN|case stud/i);
     expect(boardHeroMarketingCopy("npte-pt").subline).not.toMatch(/flashcard|NGN/i);
     expect(boardHeroMarketingCopy("naplex").headline).toBe(
       "NAPLEX questions for the calculations and the drugs."
     );
-    expect(boardHeroMarketingCopy("naplex").subline).toMatch(/flashcards/i);
+    expect(boardHeroMarketingCopy("naplex").subline).toMatch(/calculations/i);
     expect(boardHeroMarketingCopy("pance").headline).toMatch(/^PANCE /);
     expect(boardHeroMarketingCopy("aanp-fnp").headline).toMatch(/AANP FNP/);
     expect(boardHeroMarketingCopy("npte-pt").headline).toMatch(/^NPTE-PT /);

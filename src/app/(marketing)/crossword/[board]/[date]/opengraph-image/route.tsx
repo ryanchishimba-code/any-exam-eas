@@ -21,9 +21,9 @@ export async function GET(_request: Request, { params }: Params) {
   return new ImageResponse(
     (
       <OgCard
-        kicker={`${profile.shortName} daily crossword`}
-        title={formatCrosswordDate(date)}
-        footer="Today's high-yield crossword. No spoilers in this preview."
+        kicker="FREE DAILY CROSSWORD"
+        title={profile.titleName}
+        footer={`${formatCrosswordDate(date)} · ${profile.spokenName} · Spoiler-free`}
         cells={maskFromGrid(puzzle.grid)}
       />
     ),

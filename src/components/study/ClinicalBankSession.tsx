@@ -237,8 +237,8 @@ export function ClinicalBankSession({ session, reviewQueue = false, onExit }: Pr
         {progress}
       </div>
       {phase === "answer" ? (
-        <p className={`mb-3 text-sm ${ngnMuted}`}>
-          Feedback for each item appears after you submit the whole case.
+        <p className="mb-3 rounded-2xl border border-[#e2e8f0] bg-white px-4 py-3 text-sm leading-relaxed text-[#0A2540]">
+          Feedback for each item comes after you submit the whole case, not after each step.
         </p>
       ) : null}
       <CaseStudyPlayer

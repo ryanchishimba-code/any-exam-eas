@@ -11,6 +11,8 @@
  * GA4 setup (mark the same event names as conversions):
  *   Admin → Configure → Events → find each event → toggle "Mark as conversion"
  *   Events: cta_clicked, pricing_viewed, plan_selected, trial_started, signup_completed
+ *   Ad conversions use the standard names sign_up and purchase (see google-ads.ts),
+ *   not signup_completed. signup_completed stays the internal funnel event.
  *   Product tour events (tour_shown, tour_step_viewed, tour_completed, tour_dismissed,
  *   tour_replayed), daily-set events (today_set_started, today_set_completed),
  *   and question-of-the-day events (daily_answer, daily_trial_cta_click,

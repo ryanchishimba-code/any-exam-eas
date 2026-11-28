@@ -1,0 +1,19 @@
+{
+  "id": "b17-s2-90",
+  "difficulty": 3,
+  "subjectId": "ethics",
+  "outlineSystem": "social-sciences",
+  "blueprintTopic": "bup-pain",
+  "scenario": "A 41-year-old man on stable buprenorphine breaks a bone and has severe pain. He is in the emergency department. A classmate stops the buprenorphine and gives no other opioid.",
+  "question": "Is buprenorphine stopped, and how is the pain treated?",
+  "options": [
+    "Stop it and give no opioid",
+    "Give a benzodiazepine as the fracture drug",
+    "Refuse all analgesia because of the opioid history",
+    "Discharge with no plan and the fracture unset",
+    "Continue it and treat the pain"
+  ],
+  "correctAnswer": "Continue it and treat the pain",
+  "explanation": "Acute severe pain in a patient on buprenorphine is treated by continuing buprenorphine and adding a short-acting opioid or other analgesia, coordinated with the prescriber. Stopping buprenorphine abruptly is not the pain plan. Stopping a stable dose precipitates withdrawal and still leaves the fracture untreated. Analgesia is added. The usual prescriber is involved. American Medical Association. Code of Medical Ethics. Chicago: AMA; 2017.\n\nContinue it and treat the pain\nStop it and give no opioid — That choice causes withdrawal and ignores the fracture.\nGive a benzodiazepine as the fracture drug — A sedative is not bone-pain treatment.\nRefuse all analgesia because of the opioid history — Acute severe pain is treated.\nDischarge with no plan and the fracture unset — The bone and the pain both need a plan.",
+  "citation": "American Medical Association. Code of Medical Ethics. Chicago: AMA; 2017."
+}

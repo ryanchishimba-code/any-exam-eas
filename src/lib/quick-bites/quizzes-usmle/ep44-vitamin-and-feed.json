@@ -1,0 +1,287 @@
+{
+  "episode": "ep44-vitamin-and-feed",
+  "title": "The Vitamin You Give First, and a Feed You Start",
+  "video": "quick-bites-usmle-ep44-vitamin-and-feed-web.mp4",
+  "questions": [
+    {
+      "id": "ep44-vitamin-and-feed-q01",
+      "type": "single_best_answer",
+      "stem": "Before dextrose in a starved person, give:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Thiamine 100 mg"
+        },
+        {
+          "id": "B",
+          "text": "Insulin only"
+        },
+        {
+          "id": "C",
+          "text": "No vitamin"
+        },
+        {
+          "id": "D",
+          "text": "A statin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Also give it before feeding. ASPEN 2020.",
+      "videoTimestamp": "0:07"
+    },
+    {
+      "id": "ep44-vitamin-and-feed-q02",
+      "type": "single_best_answer",
+      "stem": "Enteral nutrition for an adult who cannot eat should start:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Within 24 to 48 hours"
+        },
+        {
+          "id": "B",
+          "text": "After bowel sounds"
+        },
+        {
+          "id": "C",
+          "text": "After a week in every patient"
+        },
+        {
+          "id": "D",
+          "text": "Only by vein"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "SCCM/ASPEN 2016 B1. Evidence quality is very low.",
+      "videoTimestamp": "0:16"
+    },
+    {
+      "id": "ep44-vitamin-and-feed-q03",
+      "type": "single_best_answer",
+      "stem": "Bowel sounds before the feed are:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Not required"
+        },
+        {
+          "id": "B",
+          "text": "Mandatory"
+        },
+        {
+          "id": "C",
+          "text": "A contraindication"
+        },
+        {
+          "id": "D",
+          "text": "The only indication"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Overt contractions are not required before enteral nutrition.",
+      "videoTimestamp": "0:36"
+    },
+    {
+      "id": "ep44-vitamin-and-feed-q04",
+      "type": "single_best_answer",
+      "stem": "Low nutrition risk can:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Skip specialized nutrition for the first ICU week"
+        },
+        {
+          "id": "B",
+          "text": "Always need immediate parenteral nutrition"
+        },
+        {
+          "id": "C",
+          "text": "Never be fed"
+        },
+        {
+          "id": "D",
+          "text": "Need 100 percent of goal in 6 hours"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Example: NRS 2002 of 3 or less, or NUTRIC of 5 or less.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "ep44-vitamin-and-feed-q05",
+      "type": "single_best_answer",
+      "stem": "High risk or severe malnutrition should:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Move toward goal over 24 to 48 hours while watching refeeding"
+        },
+        {
+          "id": "B",
+          "text": "Wait a week"
+        },
+        {
+          "id": "C",
+          "text": "Get no thiamine"
+        },
+        {
+          "id": "D",
+          "text": "Avoid the gut"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Try to give more than 80 percent of goal energy and protein within 48 to 72 hours.",
+      "videoTimestamp": "0:47"
+    },
+    {
+      "id": "ep44-vitamin-and-feed-q06",
+      "type": "single_best_answer",
+      "stem": "Exclusive parenteral nutrition is for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "High risk when the gut cannot be used"
+        },
+        {
+          "id": "B",
+          "text": "Every low-risk patient on day 1"
+        },
+        {
+          "id": "C",
+          "text": "Obesity treatment"
+        },
+        {
+          "id": "D",
+          "text": "Pancreatitis only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Start it as soon as possible after ICU admission in that situation.",
+      "videoTimestamp": "1:06"
+    },
+    {
+      "id": "ep44-vitamin-and-feed-q07",
+      "type": "single_best_answer",
+      "stem": "The target population is an adult expected to stay:",
+      "options": [
+        {
+          "id": "A",
+          "text": "More than 2 or 3 days in intensive care"
+        },
+        {
+          "id": "B",
+          "text": "Less than 6 hours"
+        },
+        {
+          "id": "C",
+          "text": "Only on a ward"
+        },
+        {
+          "id": "D",
+          "text": "Only in pregnancy"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Medical or surgical intensive care.",
+      "videoTimestamp": "0:26"
+    },
+    {
+      "id": "ep44-vitamin-and-feed-q08",
+      "type": "single_best_answer",
+      "stem": "This episode does not teach:",
+      "options": [
+        {
+          "id": "A",
+          "text": "An obesity-drug threshold"
+        },
+        {
+          "id": "B",
+          "text": "Thiamine before dextrose"
+        },
+        {
+          "id": "C",
+          "text": "Early enteral feeding"
+        },
+        {
+          "id": "D",
+          "text": "When a feeding line is justified"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Obesity medicine and early feeding in pancreatitis are other talks.",
+      "videoTimestamp": "1:09"
+    },
+    {
+      "id": "ep44-vitamin-and-feed-q09",
+      "type": "single_best_answer",
+      "stem": "Thiamine comes:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Before carbohydrate"
+        },
+        {
+          "id": "B",
+          "text": "After a week of dextrose"
+        },
+        {
+          "id": "C",
+          "text": "Only by mouth at discharge"
+        },
+        {
+          "id": "D",
+          "text": "Instead of a feed"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "100 mg before feeding or dextrose-containing fluid.",
+      "videoTimestamp": "0:07"
+    },
+    {
+      "id": "ep44-vitamin-and-feed-q10",
+      "type": "single_best_answer",
+      "stem": "A line is not the first choice when:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The gut can be used"
+        },
+        {
+          "id": "B",
+          "text": "Risk is high and the gut cannot"
+        },
+        {
+          "id": "C",
+          "text": "The person is severely malnourished and cannot be fed enterally"
+        },
+        {
+          "id": "D",
+          "text": "Refeeding is being watched"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Use the gut when it works.",
+      "videoTimestamp": "1:06"
+    }
+  ]
+}

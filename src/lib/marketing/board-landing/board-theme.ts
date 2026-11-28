@@ -54,17 +54,17 @@ export function boardThemeClass(slug: BoardSlug): string {
 export function heroWhyUs(slug: BoardSlug): string {
   switch (slug) {
     case "nclex":
-      return "NGN formats, CAT-style exams, and teachable rationales — on one Pro plan.";
+      return "Next Generation cases. A rationale for every choice.";
     case "naplex":
-      return "Calculations, top-drug vignettes, and pharmacy law — without stacking subscriptions.";
+      return "Calculations, drug vignettes, and the work behind each answer.";
     case "usmle":
-      return "Step 1, Step 2 CK, and Step 3 banks with Anatomy Explorer on one monthly plan.";
+      return "Step 1, Step 2 CK, and Step 3. A rationale for every choice.";
     case "aanp-fnp":
-      return "Primary-care breadth, study guide chapters, and FNP vignettes in one qbank.";
+      return "Lifespan vignettes, with a rationale for every choice.";
     case "pance":
-      return "Organ-system PANCE vignettes, timed blocks, and readiness tracking together.";
+      return "Organ-system vignettes, with a rationale for every choice.";
     case "npte-pt":
-      return "MSK and neuro-heavy NPTE items with 3D anatomy review built in.";
+      return "Clinical scenarios, with a rationale for every choice.";
     default:
       return "Live board questions with teachable rationales on one Pro plan.";
   }
@@ -78,7 +78,7 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
           id: "ngn",
           shortLabel: "NGN feels new",
           worry: "NGN item types feel unfamiliar",
-          fix: "Practice matrix, bow-tie, highlight, and drag-drop items that are live in your bank.",
+          fix: "Practice the live NGN types: case studies, bow-tie items, and trend items.",
         },
         {
           id: "cat",
@@ -203,15 +203,11 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
   }
 }
 
-function nclexQuestionTypes(bankTypes: Record<string, number>): BoardQuestionTypeIcon[] {
-  const has = (types: string[]) =>
-    types.some((type) => (bankTypes[type.toLowerCase()] ?? 0) > 0);
+function nclexQuestionTypes(_bankTypes: Record<string, number>): BoardQuestionTypeIcon[] {
   return [
-    { id: "matrix", label: "Matrix", live: has(["ngn_matrix", "matrix"]) },
-    { id: "bowtie", label: "Bow-tie", live: has(["ngn_bowtie", "bow_tie", "bowtie"]) },
-    { id: "highlight", label: "Highlight", live: has(["ngn_highlight", "highlight"]) },
-    { id: "drag", label: "Drag-drop", live: has(["drag_drop"]) },
-    { id: "sata", label: "SATA", live: has(["select_all", "sata"]) },
+    { id: "case", label: "Case study", live: true },
+    { id: "bowtie", label: "Bow-tie", live: true },
+    { id: "trend", label: "Trend", live: true },
   ].filter((row) => row.live);
 }
 

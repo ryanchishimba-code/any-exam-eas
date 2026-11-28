@@ -13,11 +13,15 @@ import { loadMemoryCards } from "@/lib/library/memory-cards";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
-export const metadata = {
-  title: "3D Anatomy Model — AnyExamEasy",
-  description:
-    "Orbit a stylized 3D body, explore organs, and jump into pearls, tours, and board-style practice.",
-};
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { buildLearningResourceJsonLd } from "@/lib/seo/learning-resource-jsonld";
+import {
+  ANATOMY_PAGE_DESCRIPTION,
+  ANATOMY_PAGE_TITLE,
+  anatomyPageMetadata,
+} from "@/lib/seo/public-tool-metadata";
+
+export const metadata = anatomyPageMetadata();
 
 export const maxDuration = 60;
 
@@ -93,8 +97,17 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
   return (
     <div className="w-full space-y-4">
       <CtAtlasHeadHints />
+      <JsonLdScript
+        data={buildLearningResourceJsonLd({
+          name: ANATOMY_PAGE_TITLE,
+          description: ANATOMY_PAGE_DESCRIPTION,
+          path: "/anatomy",
+          learningResourceType: "Interactive model",
+        })}
+      />
       <header className="sr-only">
-        <h1>Anatomy Explorer</h1>
+        <h1>3D Anatomy Explorer</h1>
+        <p>{ANATOMY_PAGE_DESCRIPTION}</p>
       </header>
 
       <Suspense fallback={<AnatomySkeleton />}>

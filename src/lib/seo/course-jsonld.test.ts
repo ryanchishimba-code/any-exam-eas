@@ -110,8 +110,8 @@ describe("Course JSON-LD replaces Product", () => {
       const course = courseNodes(page.data)[0];
       expect(course?.name, page.path).toBe(page.courseName);
       expect(String(course?.description).length, page.path).toBeLessThanOrEqual(COURSE_DESCRIPTION_MAX);
-      const provider = course?.provider as { name?: string };
-      expect(provider.name, page.path).toBe(SCHEMA_BRAND_NAME);
+      const provider = course?.provider as { "@id"?: string };
+      expect(provider["@id"], page.path).toBe("https://www.anyexameasy.com/#organization");
       const serialized = JSON.stringify(page.data);
       expect(serialized, page.path).not.toMatch(/"@type":"Product"/);
       expect(serialized, page.path).not.toMatch(/aggregateRating|reviewCount|ratingValue|ratingCount/);

@@ -1,0 +1,20 @@
+{
+  "id": "b14-s2-29",
+  "stepLevel": "step2",
+  "outlineSystem": "msk-skin",
+  "subjectId": "orthopedics",
+  "difficulty": 2,
+  "blueprintTopic": "back-imaging",
+  "scenario": "A 38-year-old woman has had lumbar pain for 5 days after lifting a box. She has no weakness, no fever, and no history of cancer. The straight-leg raise is negative. A classmate orders an MRI today.",
+  "question": "Why is imaging not indicated, and what is the initial care?",
+  "options": [
+    "MRI today, because 5 days is long enough to require a scan",
+    "Bed rest for two weeks, which outperforms staying active",
+    "A steroid taper as the required first drug",
+    "Skip the MRI. Stay active and use a simple analgesic",
+    "Plain films of the lumbar spine in a 38-year-old with no trauma"
+  ],
+  "correctAnswer": "Skip the MRI. Stay active and use a simple analgesic",
+  "citation": "American College of Radiology. ACR Appropriateness Criteria: Low Back Pain. 2021.",
+  "examTakeaway": "Acute low-back pain without red flags does not need imaging. Early MRI does not improve outcomes."
+}

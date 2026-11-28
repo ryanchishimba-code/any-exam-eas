@@ -8,18 +8,22 @@
  * rolled off (and is no longer the alias source) is not selected.
  *
  * Commands:
- *   prepare   Write smoke-guard.json and set GitHub outputs.
- *             Exit 0 = run the smoke test.
- *             Exit 2 = skip (disabled, or this build is not the live alias).
- *             Exit 1 = missing token or an unreadable project. Do not roll back.
- *   rollback  Point production at fromDeploymentId. Only when the live
- *             alias was a promote. A failed smoke of an existing rollback
- *             stays put, so a bad deploy is not promoted back.
+ *   prepare   Poll the public site for this deployment's commit, then write
+ *             smoke-guard.json. Does not need VERCEL_TOKEN.
+ *             Exit 0 and should_smoke=true = run the signed-in smoke.
+ *             Exit 0 and should_smoke=false = skip (disabled, or this commit
+ *             is not what www.anyexameasy.com is serving).
+ *             Exit 1 = no commit SHA to wait for. Do not roll back.
+ *   rollback  Point production at fromDeploymentId. Needs VERCEL_TOKEN.
+ *             Without it, fail loudly and leave production as-is.
+ *             Only when the live alias was a promote. A failed smoke of an
+ *             existing rollback stays put, so a bad deploy is not promoted back.
  *
  * Disable: repository variable PRODUCTION_SMOKE_ROLLBACK=false
  *   or Actions → Production student smoke → Disable workflow.
  */
 import { readFileSync, writeFileSync } from "node:fs";
+import { liveCheckResult, rollbackBlocker, shaFromBuildResponse } from "./production-smoke-live.mjs";
 
 const PROJECT_ID = "prj_SE0xEweZIfBMYoNyBx6T9EcMx1IP";
 const TEAM_ID = "team_mkSkAoZA4a1JACXEk9sh4b5n";
@@ -75,38 +79,6 @@ async function vercel(path, { method = "GET", body } = {}) {
   return json;
 }
 
-function eventDeploymentHint() {
-  if (process.env.GITHUB_EVENT_NAME === "workflow_dispatch") return null;
-  const eventPath = process.env.GITHUB_EVENT_PATH;
-  if (!eventPath) return null;
-  const event = JSON.parse(readFileSync(eventPath, "utf8"));
-  const payload = event.deployment?.payload ?? {};
-  const idCandidates = [
-    payload.id,
-    payload.deploymentId,
-    payload.deployment?.id,
-    payload.meta?.deploymentId,
-  ];
-  const id = idCandidates.find((value) => typeof value === "string" && value.startsWith("dpl_"));
-  if (id) return { id };
-
-  const status = event.deployment_status ?? {};
-  const urls = [status.target_url, status.environment_url, status.log_url, payload.url];
-  for (const raw of urls) {
-    if (typeof raw !== "string" || !raw.startsWith("http")) continue;
-    let host = "";
-    try {
-      host = new URL(raw).hostname;
-    } catch {
-      continue;
-    }
-    if (!host.endsWith(".vercel.app")) continue;
-    if (host.startsWith("any-exam-eas-") || host.startsWith("any-exam-eas.")) continue;
-    return { host };
-  }
-  return null;
-}
-
 async function liveDeployment() {
   const json = await vercel(`/v13/deployments/${PRODUCTION_HOST}`);
   const deployment = json?.deployment ?? json;
@@ -127,85 +99,127 @@ async function aliasRequest() {
   };
 }
 
+async function readLiveSha(origin) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8_000);
+  try {
+    const response = await fetch(new URL("/api/build", origin), {
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+      signal: controller.signal,
+    });
+    if (!response.ok) return null;
+    const body = await response.json().catch(() => null);
+    return shaFromBuildResponse({
+      header: response.headers.get("x-aee-build-sha"),
+      body,
+    });
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function prepare() {
   if ((process.env.PRODUCTION_SMOKE_ROLLBACK ?? "true").toLowerCase() === "false") {
     summary("Production student smoke is disabled (PRODUCTION_SMOKE_ROLLBACK=false).");
     githubOutput("should_smoke", "false");
     process.exit(0);
   }
-  if (!token) {
-    fail("VERCEL_TOKEN is not set. Smoke was not run and production was not changed.");
-  }
 
-  const hint = eventDeploymentHint();
-  let wanted = hint?.id ?? null;
-  if (!wanted && hint?.host) {
-    const resolved = await vercel(`/v13/deployments/${hint.host}`);
-    wanted = resolved?.deployment?.id ?? resolved?.id ?? null;
-    if (!wanted) fail(`Could not resolve deployment host ${hint.host}. Production was not changed.`);
-  }
-  if (process.env.GITHUB_EVENT_NAME === "deployment_status" && !wanted) {
-    summary(
-      "This production deployment status did not include a Vercel deployment id or URL. Smoke skipped. Production was not changed."
-    );
-    githubOutput("should_smoke", "false");
-    process.exit(0);
-  }
-
-  let live = await liveDeployment();
+  const origin = process.env.PRODUCTION_SMOKE_ORIGIN ?? `https://${PRODUCTION_HOST}`;
+  const expectedSha = process.env.EXPECTED_SHA ?? "";
   const deadline = Date.now() + 3 * 60 * 1000;
-  while (wanted && live.id !== wanted && Date.now() < deadline) {
-    console.log(`Live deployment is ${live.id}; waiting for ${wanted}`);
+  let liveSha = null;
+  let timedOut = false;
+  while (true) {
+    liveSha = await readLiveSha(origin);
+    const decision = liveCheckResult({ expectedSha, liveSha, timedOut: false });
+    if (decision.action === "fail") fail(decision.message ?? "No commit SHA to wait for.");
+    if (decision.action === "smoke") break;
+    if (Date.now() >= deadline) {
+      timedOut = true;
+      break;
+    }
+    console.log(`Live commit is ${liveSha ?? "unknown"}; waiting for ${expectedSha.trim().toLowerCase()}`);
     await new Promise((resolve) => setTimeout(resolve, 10_000));
-    live = await liveDeployment();
   }
 
-  if (wanted && live.id !== wanted) {
-    summary(
-      `Deployment ${wanted} is not serving ${PRODUCTION_HOST} (live is ${live.id}). ` +
-        "Auto-promotion is paused or this build was not assigned. Smoke skipped. Production was not changed."
-    );
+  const decision = liveCheckResult({ expectedSha, liveSha, timedOut });
+  if (decision.action === "fail") fail(decision.message ?? "No commit SHA to wait for.");
+  if (decision.action !== "smoke") {
+    summary(decision.message ?? "Smoke skipped. Production was not changed.");
     githubOutput("should_smoke", "false");
     process.exit(0);
   }
 
-  const alias = await aliasRequest();
   const state = {
-    liveId: live.id,
-    liveUrl: live.url,
-    fromId: alias?.fromDeploymentId ?? null,
-    aliasType: alias?.type ?? null,
-    aliasStatus: alias?.jobStatus ?? null,
-    aliasTo: alias?.toDeploymentId ?? null,
+    liveSha,
+    expectedSha: expectedSha.trim().toLowerCase(),
+    liveId: null,
+    liveUrl: null,
+    fromId: null,
+    aliasType: null,
+    aliasStatus: null,
+    aliasTo: null,
   };
+
+  if (token) {
+    try {
+      const live = await liveDeployment();
+      const alias = await aliasRequest();
+      state.liveId = live.id;
+      state.liveUrl = live.url;
+      state.fromId = alias?.fromDeploymentId ?? null;
+      state.aliasType = alias?.type ?? null;
+      state.aliasStatus = alias?.jobStatus ?? null;
+      state.aliasTo = alias?.toDeploymentId ?? null;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`Could not record a rollback target (${message}). The smoke will still run.`);
+    }
+  } else {
+    console.log("VERCEL_TOKEN is not set. The signed-in smoke will run. Rollback will be unavailable.");
+  }
+
   writeFileSync(STATE_PATH, JSON.stringify(state, null, 2));
   console.log(
-    `Live ${state.liveId}. Last alias ${state.aliasType ?? "unknown"} ` +
+    `Live commit ${state.liveSha}. Last alias ${state.aliasType ?? "unknown"} ` +
       `${state.fromId ?? "?"} -> ${state.aliasTo ?? "?"}`
   );
   githubOutput("should_smoke", "true");
-  githubOutput("live_id", state.liveId);
+  if (state.liveId) githubOutput("live_id", state.liveId);
 }
 
 async function rollback() {
-  if ((process.env.PRODUCTION_SMOKE_ROLLBACK ?? "true").toLowerCase() === "false") {
+  const enabled = (process.env.PRODUCTION_SMOKE_ROLLBACK ?? "true").toLowerCase() !== "false";
+  let state = {};
+  try {
+    state = JSON.parse(readFileSync(STATE_PATH, "utf8"));
+  } catch {
+    state = {};
+  }
+  const blocker = rollbackBlocker(state, { token, rollbackEnabled: enabled });
+  if (blocker === "disabled") {
     fail("Smoke failed and PRODUCTION_SMOKE_ROLLBACK=false, so production was left as-is.");
   }
-  if (!token) {
-    fail("Smoke failed and VERCEL_TOKEN is not set, so production was left as-is.");
-  }
-
-  const state = JSON.parse(readFileSync(STATE_PATH, "utf8"));
-  if (state.aliasType !== "promote") {
+  if (blocker === "missing_token") {
     fail(
-      `Smoke failed on ${state.liveId}, which became live via ${state.aliasType ?? "an unknown alias change"} ` +
+      "Smoke failed and VERCEL_TOKEN is not set, so production was left as-is. " +
+        "Add the VERCEL_TOKEN secret to roll a failed student smoke back."
+    );
+  }
+  if (blocker === "not_promote") {
+    fail(
+      `Smoke failed on ${state.liveId ?? state.liveSha ?? "this deploy"}, which became live via ${state.aliasType ?? "an unknown alias change"} ` +
         "rather than a promote. Production was left as-is so a previous rollback is not undone."
     );
   }
-  if (!state.fromId || state.fromId === state.liveId) {
+  if (blocker === "no_previous") {
     fail(`Smoke failed on ${state.liveId}, and there is no previous deployment to restore.`);
   }
-  if (state.aliasTo && state.aliasTo !== state.liveId) {
+  if (blocker === "alias_moved") {
     fail(
       `Smoke failed, but the last alias target is ${state.aliasTo} rather than live ${state.liveId}. Production was left as-is.`
     );

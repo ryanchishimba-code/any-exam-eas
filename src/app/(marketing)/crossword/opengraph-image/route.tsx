@@ -7,9 +7,9 @@ export function GET() {
   return new ImageResponse(
     (
       <OgCard
-        kicker="Free daily tool"
-        title="Today's high-yield crossword"
-        footer="Six boards. New puzzle at midnight, America/Chicago. Not a promise you'll pass."
+        kicker="FREE DAILY CROSSWORD"
+        title="Nursing, pharmacy, and more"
+        footer="A new puzzle at midnight, America/Chicago. Not a promise you'll pass."
       />
     ),
     size,

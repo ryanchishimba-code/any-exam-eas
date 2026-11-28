@@ -4,9 +4,11 @@ import { getCachedSession } from "@/lib/auth/session";
 import { requireAppPage } from "@/lib/require-premium-page";
 import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
 import { resolveDashboardUpgradeContext } from "@/lib/dashboard/upgrade-banner";
+import { loadDashboardTrialEndOffer } from "@/lib/dashboard/load-trial-end-upgrade-offer";
 import { QuickBitesDashboardRedirect } from "@/components/app/QuickBitesDashboardRedirect";
 import type { UserAccess } from "@/lib/access-control";
 import { DashboardPageContent } from "@/components/app/DashboardPageContent";
+import { StudyProgressCard } from "@/components/dashboard/StudyProgressCard";
 import { AccessBlockedNotice } from "@/components/AccessBlockedNotice";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
@@ -39,10 +41,11 @@ import {
 import {
   computeStudyCompletion,
   studyCompletionSupportedForExam,
+  type StudyCompletionResult,
 } from "@/lib/learning/study-completion/compute-study-completion";
 
 export const metadata = {
-  title: "Dashboard — AnyExamEasy",
+  title: { absolute: "Dashboard — AnyExamEasy" },
   description: "Your personalized NCLEX, USMLE, NAPLEX, and PANCE study dashboard.",
 };
 
@@ -69,17 +72,21 @@ async function settled<T>(promise: Promise<T>, fallback: T, label: string): Prom
   }
 }
 
-async function DashboardContent({
-  userId,
-  userName,
-  access,
-  examSlug,
+async function StudyCompletionSection({
+  promise,
 }: {
-  userId: string;
-  userName?: string | null;
-  access: UserAccess;
-  examSlug: ExamSlug;
+  promise: Promise<StudyCompletionResult | null>;
 }) {
+  const studyCompletion = await promise;
+  if (!studyCompletion) return null;
+  return <StudyProgressCard data={studyCompletion} />;
+}
+
+/**
+ * Board reads start as soon as the exam preference is known, overlapping the
+ * access check. Study progress is not in this wave; it streams under the today block.
+ */
+async function startDashboardRead(userId: string, examSlug: ExamSlug) {
   // Kick metadata early so non-USMLE wave-1 work overlaps the preference read;
   // USMLE still awaits it for the step-aware field id (React-cached within the request).
   const metadataPromise = getUserEdtechMetadata(userId);
@@ -91,11 +98,7 @@ async function DashboardContent({
         )
       : fieldIdForExamSlug(examSlug);
 
-  // One wave, after Neon is awake. Starting the roadmap only after the
-  // dashboard returned left the second connection idle and held the HTML
-  // stream open for both round trips. Format buckets are an analytics chart;
-  // the dashboard does not render them.
-  const [stats, dashboard, inventory, roadmap, metadata, usage, mastery, drugsCompletedToday, servedBank] =
+  const [stats, dashboard, inventory, roadmap, metadata, mastery, drugsCompletedToday, servedBank] =
     await runPageDb(() => {
       const masteryPromise =
         examSlug === "nclex"
@@ -143,7 +146,6 @@ async function DashboardContent({
           "roadmap"
         ),
         settled(metadataPromise, null, "metadata"),
-        settled(getStudyUsageSnapshot(access), null, "usage"),
         masteryPromise,
         settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
         settled(getCachedPracticeBankStats(fieldId), null, "served bank"),
@@ -156,6 +158,59 @@ async function DashboardContent({
   const accountAttemptCount = tourSeen
     ? null
     : await settled(readAccountAttemptCount(userId), null, "tour attempts");
+
+  // Starts after the pooled reads so it does not take a connection the today block needs.
+  const studyCompletionPromise = studyCompletionSupportedForExam(examSlug)
+    ? settled(computeStudyCompletion(userId, examSlug), null, "study completion")
+    : Promise.resolve(null);
+
+  return {
+    fieldId,
+    stats,
+    dashboard,
+    inventory,
+    roadmap,
+    metadata,
+    mastery,
+    drugsCompletedToday,
+    servedBank,
+    tourSeen,
+    accountAttemptCount,
+    studyCompletionPromise,
+  };
+}
+
+async function DashboardContent({
+  userId,
+  userName,
+  access,
+  examSlug,
+  readPromise,
+}: {
+  userId: string;
+  userName?: string | null;
+  access: UserAccess;
+  examSlug: ExamSlug;
+  readPromise: ReturnType<typeof startDashboardRead>;
+}) {
+  const [read, usage] = await Promise.all([
+    readPromise,
+    settled(getStudyUsageSnapshot(access), null, "usage"),
+  ]);
+  const {
+    fieldId,
+    stats,
+    dashboard,
+    inventory,
+    roadmap,
+    metadata,
+    mastery,
+    drugsCompletedToday,
+    servedBank,
+    tourSeen,
+    accountAttemptCount,
+    studyCompletionPromise,
+  } = read;
 
   const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;
   const boardCounts = boardStudyCountsFromSources({
@@ -192,9 +247,22 @@ async function DashboardContent({
     accountAttemptCount,
   });
 
-  const studyCompletion = studyCompletionSupportedForExam(examSlug)
-    ? await settled(computeStudyCompletion(userId, examSlug), null, "study completion")
-    : null;
+  const upgrade = usage ? resolveDashboardUpgradeContext(access, usage) : null;
+  // A failed offer lookup keeps the regular Subscribe banner and the rest of the page.
+  const trialEndOffer =
+    upgrade?.variant === "free"
+      ? await settled(
+          loadDashboardTrialEndOffer({
+            userId,
+            role: access.role,
+            subscriptionStatus: access.subscription.status,
+            trialEndsAt: access.subscription.trialEndsAt,
+            questionsAnswered: stats.questionsAnswered,
+          }),
+          null,
+          "trial upgrade offer"
+        )
+      : null;
 
   return (
     <DashboardPageContent
@@ -208,7 +276,8 @@ async function DashboardContent({
       testDate={testDate}
       hasPremiumAccess={access.hasPremiumAccess}
       hasStudyAccess={access.hasStudyAccess}
-      upgrade={usage ? resolveDashboardUpgradeContext(access, usage) : null}
+      upgrade={upgrade}
+      trialEndOffer={trialEndOffer}
       practiceFieldId={fieldId}
       masteryRollup={mastery?.rollup ?? null}
       masteryMapTiles={mastery?.mapTiles ?? null}
@@ -226,7 +295,11 @@ async function DashboardContent({
             }
           : null
       }
-      studyCompletion={studyCompletion}
+      belowToday={
+        <Suspense fallback={null}>
+          <StudyCompletionSection promise={studyCompletionPromise} />
+        </Suspense>
+      }
     />
   );
 }
@@ -237,11 +310,14 @@ export default async function DashboardPage() {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.dashboard)}`);
   }
 
-  // Access + exam pref in parallel (session/pref are React-cached with layout).
-  const [access, pref] = await Promise.all([
-    runPageDb(() => requireAppPage(ROUTES.dashboard)),
-    runPageDb(() => getUserExamPreference(session.user.id)),
-  ]);
+  // Preference is usually cached from the layout. The board read starts as soon
+  // as it resolves and overlaps the subscription lookup.
+  const prefPromise = runPageDb(() => getUserExamPreference(session.user.id));
+  const accessPromise = runPageDb(() => requireAppPage(ROUTES.dashboard));
+  const readPromise = prefPromise.then((pref) =>
+    pref ? startDashboardRead(session.user.id, pref.examSlug) : Promise.resolve(null)
+  );
+  const [access, pref] = await Promise.all([accessPromise, prefPromise]);
 
   if (access.blockReason === "email_unverified") {
     return (
@@ -267,6 +343,10 @@ export default async function DashboardPage() {
           userName={session.user.name}
           access={access}
           examSlug={pref.examSlug}
+          readPromise={readPromise.then((read) => {
+            if (!read) throw new Error("Dashboard read did not start");
+            return read;
+          })}
         />
       </Suspense>
     </>

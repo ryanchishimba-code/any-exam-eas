@@ -1,28 +1,27 @@
-import { LandingCta } from "@/components/landing/LandingCta";
-import { HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
+import { SessionAwareTrialCta } from "@/components/marketing/SessionAwareTrialCta";
 import { CONSENTED_TESTIMONIAL_SEEDS } from "@/lib/testimonials/consented-seed";
 import "@/styles/why-anyexameasy.css";
 
 const FACTS = [
   {
-    title: "Six boards on one plan",
-    body: "Six boards: NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. USMLE includes Step 1, Step 2 CK, and Step 3.",
+    title: "Six boards",
+    body: "NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT.",
   },
   {
-    title: "An explanation with the answer",
-    body: "Practice questions include a rationale for the answer.",
+    title: "A rationale",
+    body: "Every choice is explained.",
   },
   {
     title: "Adaptive exams",
-    body: "Full-length adaptive exams are on the plan. The free trial includes one.",
+    body: "One full-length exam is included in the trial.",
   },
   {
     title: "NGN case studies",
-    body: "NCLEX practice includes Next Generation case studies.",
+    body: "Next Generation cases are in the NCLEX bank.",
   },
   {
-    title: "A plan for the board you are taking",
-    body: "Roadmap follows that board’s outline.",
+    title: "A roadmap",
+    body: "It follows the outline for your board.",
   },
 ] as const;
 
@@ -38,11 +37,9 @@ function quotesForBoard(board?: string) {
 export function WhyAnyExamEasy({
   board,
   trialHref,
-  signedIn = false,
 }: {
   board?: string;
   trialHref: string;
-  signedIn?: boolean;
 }) {
   const quotes = quotesForBoard(board);
   const facts = board === "naplex" ? FACTS.filter((fact) => fact.title !== "NGN case studies") : FACTS;
@@ -74,13 +71,11 @@ export function WhyAnyExamEasy({
             ))}
           </div>
         ) : null}
-        <LandingCta
-          href={signedIn ? "/dashboard" : trialHref}
-          ctaName={signedIn ? "continue_studying" : "why_trial"}
+        <SessionAwareTrialCta
+          trialHref={trialHref}
+          signedOutCtaName="why_trial"
           location={board ? `why_${board}` : "why_home"}
-        >
-          {signedIn ? "Continue studying" : HERO_TRIAL_CTA_LABEL}
-        </LandingCta>
+        />
       </div>
     </section>
   );

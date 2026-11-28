@@ -175,7 +175,7 @@ export function Navigation() {
   const landingMinimal = isMarketingLandingPath(pathname);
   // Full guest links plus the long trial label overflow this bar. The actions
   // column then hangs left and the Log in icon covers About.
-  const crosswordNav = pathname.startsWith("/crossword");
+  const crosswordNav = pathname.startsWith("/crossword") || pathname.startsWith("/daily-vitals");
   // The homepage hero already carries the trial button. On a phone the nav
   // copy crowds the logo, Log in, and menu.
   const hideMobileNavTrialCta = landingMinimal && pathname === "/";
@@ -202,7 +202,7 @@ export function Navigation() {
           priority={pathname !== "/" && pathname !== "/about"}
         />
 
-        <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-4" role="list">
+        <ul className="aee-nav-links hidden lg:flex lg:items-center" role="list">
           <li>
             <ExamsDropdown />
           </li>

@@ -21,7 +21,6 @@ import { TRIAL_DAYS } from "@/lib/billing-config";
 import { resolveDisplayedTrial } from "@/lib/auth/trial-welcome-math";
 import { fetchSubscriptionStatus } from "@/lib/client/post-login";
 import { analytics } from "@/lib/analytics";
-
 type TrialWelcomeGate = {
   active: boolean;
   /** False until the client has checked the session flag after mount. */

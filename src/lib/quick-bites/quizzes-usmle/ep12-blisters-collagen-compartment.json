@@ -1,0 +1,289 @@
+{
+  "episode": "ep12-blisters-collagen-compartment",
+  "title": "Blisters, Collagen, and a Tight Compartment",
+  "video": "quick-bites-usmle-ep12-blisters-collagen-compartment-web.mp4",
+  "questions": [
+    {
+      "id": "ep12-q01",
+      "type": "single_best_answer",
+      "stem": "Pain out of proportion after a fracture, pain on passive stretch, and a pulse is still present. Next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Wait for the pulse to disappear"
+        },
+        {
+          "id": "B",
+          "text": "More opioid overnight"
+        },
+        {
+          "id": "C",
+          "text": "Call for fasciotomy"
+        },
+        {
+          "id": "D",
+          "text": "Reassure, because a pulse is present"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "A pulse can still be there. That does not rule out a tight compartment.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-q02",
+      "type": "single_best_answer",
+      "stem": "Stevens-Johnson syndrome and toxic epidermal necrolysis are:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Two unrelated hives"
+        },
+        {
+          "id": "B",
+          "text": "One peeling drug-rash disease; stop the drug"
+        },
+        {
+          "id": "C",
+          "text": "Always a tight compartment"
+        },
+        {
+          "id": "D",
+          "text": "Type one collagen disorders"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The name changes with how much skin peels.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-q03",
+      "type": "single_best_answer",
+      "stem": "Flaccid blisters and a mouth that is almost always involved. Think:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bullous pemphigoid"
+        },
+        {
+          "id": "B",
+          "text": "Pemphigus"
+        },
+        {
+          "id": "C",
+          "text": "Erysipelas only"
+        },
+        {
+          "id": "D",
+          "text": "Marfan syndrome"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Pemphigus splits inside the epidermis. Pemphigoid is tense and subepidermal.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-q04",
+      "type": "single_best_answer",
+      "stem": "A raised, sharply bordered facial redness is most consistent with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Deep cellulitis with a fading edge"
+        },
+        {
+          "id": "B",
+          "text": "Erysipelas"
+        },
+        {
+          "id": "C",
+          "text": "A drainable abscess that should only get a longer pill"
+        },
+        {
+          "id": "D",
+          "text": "A bird's beak"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Erysipelas is more superficial, raised, and sharp.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-q05",
+      "type": "single_best_answer",
+      "stem": "In Marfan syndrome, the life-threatening target to measure is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only the finger length"
+        },
+        {
+          "id": "B",
+          "text": "The aortic root"
+        },
+        {
+          "id": "C",
+          "text": "A mitochondrial antibody"
+        },
+        {
+          "id": "D",
+          "text": "Ceruloplasmin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The lens goes up, and the aorta is the danger.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-q06",
+      "type": "single_best_answer",
+      "stem": "Blue sclerae, fractures with little force, and hearing loss suggest:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Type one collagen disease"
+        },
+        {
+          "id": "B",
+          "text": "A nitrate mix"
+        },
+        {
+          "id": "C",
+          "text": "Primary biliary cholangitis"
+        },
+        {
+          "id": "D",
+          "text": "A thunderclap bleed"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Osteogenesis imperfecta. Child protection still stays open.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-q07",
+      "type": "single_best_answer",
+      "stem": "A missing pulse in suspected compartment syndrome is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Required to make the diagnosis"
+        },
+        {
+          "id": "B",
+          "text": "A late sign, not required"
+        },
+        {
+          "id": "C",
+          "text": "Proof that fasciotomy can wait overnight"
+        },
+        {
+          "id": "D",
+          "text": "A reason to give only more opioid"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Pain out of proportion and pain on stretch are the early clues.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-q08",
+      "type": "single_best_answer",
+      "stem": "The first move in a severe peeling drug rash is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give the same drug again"
+        },
+        {
+          "id": "B",
+          "text": "Stop the drug and treat as a burn"
+        },
+        {
+          "id": "C",
+          "text": "Call it ordinary hives and send the patient home"
+        },
+        {
+          "id": "D",
+          "text": "Start a nitrate"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not re-expose the patient to the culprit.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-q09",
+      "type": "single_best_answer",
+      "stem": "Blue sclerae in a child with a fracture:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Close the child-protection question automatically"
+        },
+        {
+          "id": "B",
+          "text": "Do not close a child-protection question; both can be present"
+        },
+        {
+          "id": "C",
+          "text": "Diagnose Marfan syndrome"
+        },
+        {
+          "id": "D",
+          "text": "Prove the injury was accidental"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The disease and inflicted injury can coexist.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fasciotomy is the treatment of a tight compartment."
+        },
+        {
+          "id": "B",
+          "text": "A present pulse rules out compartment syndrome."
+        },
+        {
+          "id": "C",
+          "text": "Pemphigus is flaccid and usually oral."
+        },
+        {
+          "id": "D",
+          "text": "In Marfan syndrome, measure the aortic root."
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "A pulse may still be present; pulselessness is late.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "b14-s1-36",
+  "stepLevel": "step1",
+  "outlineSystem": "cardiovascular",
+  "subjectId": "physiology",
+  "difficulty": 3,
+  "blueprintTopic": "aortic-stenosis",
+  "scenario": "A 76-year-old man has exertional syncope. He has a harsh systolic murmur at the right upper sternal border that radiates to the neck, and his carotid upstroke is slow. A classmate calls it mitral regurgitation because both are systolic.",
+  "question": "Which valve lesion fits the radiation, and why does the carotid upstroke matter?",
+  "options": [
+    "Outflow obstruction, with a delayed carotid peak",
+    "Mitral regurgitation, which radiates to the neck and slows the carotid",
+    "Aortic regurgitation, so the murmur should be diastolic",
+    "Hypertrophic obstruction that gets louder when he squats",
+    "A flow murmur of anemia, so the upstroke should be bounding"
+  ],
+  "correctAnswer": "Outflow obstruction, with a delayed carotid peak",
+  "citation": "Hall JE, Hall ME. Guyton and Hall Textbook of Medical Physiology. 14th ed. Elsevier; 2021.",
+  "examTakeaway": "Severe aortic stenosis is a crescendo-decrescendo murmur at the base that radiates to the carotids, with a slow carotid upstroke."
+}

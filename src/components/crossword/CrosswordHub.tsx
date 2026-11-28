@@ -6,6 +6,7 @@ import {
   CROSSWORD_PRACTICE_NOTE,
   boardProfile,
 } from "@/lib/crossword/boards";
+import { formatTrialLabel } from "@/lib/site";
 import { hubJsonLd } from "@/lib/crossword/metadata";
 import {
   crosswordBoardPath,
@@ -28,6 +29,9 @@ export function CrosswordHub() {
       <p className="xw-lede">
         {formatCrosswordDateLong(today)}. One new puzzle for each board, shared by everyone until midnight,
         America/Chicago. {CROSSWORD_PRACTICE_NOTE}
+      </p>
+      <p className="xw-note">
+        Prefer a one-word case? Play <Link href="/daily-vitals">Daily Vitals</Link>.
       </p>
       <div className="xw-hub-grid">
         {CROSSWORD_BOARDS.map((board) => {
@@ -58,7 +62,7 @@ export function CrosswordHub() {
           <li>Solve from the clues. Check your work, or reveal a letter or word if you are stuck.</li>
           <li>Finish for a one-line rationale, a spoiler-free share card, and a link to 10 free questions.</li>
         </ol>
-        <p className="xw-note">No account required. A streak stays in this browser. {CROSSWORD_PRACTICE_NOTE}</p>
+        <p className="xw-note">No account required. A streak stays on this device until you create a free account. {CROSSWORD_PRACTICE_NOTE}</p>
       </section>
       <section className="xw-faq xw-card" style={{ marginTop: "1rem" }} aria-label="Crossword questions">
         <h2>Questions</h2>
@@ -68,7 +72,7 @@ export function CrosswordHub() {
         </details>
         <details>
           <summary>Do I need an account?</summary>
-          <p className="xw-note">No. Play first. Create an account when you want the question bank.</p>
+          <p className="xw-note">No. Play first. Create a free account when you want to keep a streak, or start a {formatTrialLabel()}. No card needed.</p>
         </details>
         <details>
           <summary>Does this mean I will pass?</summary>

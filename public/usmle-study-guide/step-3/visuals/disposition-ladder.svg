@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="360" viewBox="0 0 680 360" role="img" aria-label="Step 3 disposition ladder">
+<title>Where the person sleeps</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#102027">Where the person sleeps tonight</text>
+<g font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="15" fill="#1C2830">
+  <rect x="24" y="56" width="632" height="40" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="81">Home, with a drug, a warning, and a follow-up that exists on a calendar.</text>
+  <rect x="24" y="106" width="632" height="40" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="131">Observe. You expect a turnaround you can see before you let them leave.</text>
+  <rect x="24" y="156" width="632" height="40" rx="8" fill="#0F766E"/>
+  <text x="36" y="181" fill="#FFFFFF">Ward. They need a treatment, a watch, or both, and they are not crashing.</text>
+  <rect x="24" y="206" width="632" height="40" rx="8" fill="#115E59"/>
+  <text x="36" y="231" fill="#FFFFFF">Monitored bed or ICU. Airway, pressure, or a rhythm can change in minutes.</text>
+  <rect x="24" y="256" width="632" height="40" rx="8" fill="#102027"/>
+  <text x="36" y="281" fill="#FFFFFF">Operating room or procedure. The next drug is not the treatment.</text>
+  <text x="28" y="324" fill="#5C6B73">Step 3 and CCS ask this fork before they ask for a clever test.</text>
+</g>
+</svg>

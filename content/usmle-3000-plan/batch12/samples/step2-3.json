@@ -1,0 +1,24 @@
+{
+  "id": "b12-s2-47",
+  "fieldId": "usmle-step-2",
+  "stepLevel": "step2",
+  "outlineSystem": "gastrointestinal",
+  "outlineWeight": 8,
+  "blueprintTopic": "gi-bleed-management",
+  "blueprintDomain": "gastrointestinal",
+  "difficulty": 3,
+  "subjectId": "gastroenterology",
+  "examTakeaway": "A hypotensive patient with an upper gastrointestinal bleed may need red cells even when the first hemoglobin is still above 7 g/dL, because the value falls further as fluid is given.",
+  "scenario": "A 49-year-old patient is vomiting blood. Blood pressure is 78/50 mm Hg and the heart rate is 126/min. Hemoglobin, drawn before fluids, is 8.4 g/dL. He has no known heart disease. A colleague refuses red cells because 8.4 is above 7 and says crystalloid alone is the entire resuscitation.",
+  "question": "Why is a hemoglobin of 8.4 g/dL not a reason to withhold red cells?",
+  "options": [
+    "No red cells are given above 7 g/dL, even in shock",
+    "He is hypotensive, so red cells are reasonable now even though the first hemoglobin is 8.4 g/dL",
+    "Transfuse only after the hemoglobin is repeated and is still above 8 g/dL",
+    "Give erythropoietin instead of red cells",
+    "The hemoglobin of 8.4 g/dL proves the bleeding has stopped"
+  ],
+  "correctAnswer": "He is hypotensive, so red cells are reasonable now even though the first hemoglobin is 8.4 g/dL",
+  "explanation": "A hypotensive patient with an upper gastrointestinal bleed may need red cells even when the first hemoglobin is still above 7 g/dL, because the value falls further as fluid is given. American College of Gastroenterology Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding, 2021. He is hypotensive, so red cells are reasonable now even though the first hemoglobin is 8.4 g/dL. ACG 2021 separates hypotensive patients from the stable trials. Hemoglobin falls further after fluid, so transfusion above 7 g/dL is appropriate while he is in shock. No red cells are given above 7 g/dL, even in shock. The stable restrictive threshold does not govern exsanguinating hypotension. Transfuse only after the hemoglobin is repeated and is still above 8 g/dL. Waiting for a second number while the pressure is 78/50 delays resuscitation. Give erythropoietin instead of red cells. Erythropoietin does not restore volume or hemoglobin in the next hour. The hemoglobin of 8.4 g/dL proves the bleeding has stopped. Tachycardia and hypotension say the opposite. A single pre-dilution hemoglobin does not prove hemostasis.",
+  "citation": "American College of Gastroenterology Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding, 2021."
+}

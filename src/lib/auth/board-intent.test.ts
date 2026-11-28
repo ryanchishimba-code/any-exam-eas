@@ -20,7 +20,7 @@ import {
   writeBoardIntentCookie,
 } from "@/lib/auth/board-intent";
 
-const BOARDS = ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"] as const;
+const BOARDS = ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt", "mpje"] as const;
 
 describe("signup from a board page", () => {
   it.each(BOARDS)("puts ?board=%s on the trial CTA and locks signup to that exam", (board) => {
@@ -173,8 +173,8 @@ describe("study guide and legacy MPJE", () => {
     }
   });
 
-  it("maps a legacy MPJE field to PANCE and does not overwrite a saved board", () => {
-    expect(parseBoardSlug("mpje")).toBe("pance");
+  it("keeps MPJE on its own board and does not overwrite a saved board", () => {
+    expect(parseBoardSlug("mpje")).toBe("mpje");
     expect(shouldPersistIncomingBoard("nclex", parseBoardSlug("mpje"), "capture")).toEqual({
       persist: false,
       examSlug: "nclex",

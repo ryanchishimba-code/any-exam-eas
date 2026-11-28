@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { auth } from "@/auth";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { DeferredPlatformScripts } from "@/components/analytics/DeferredPlatformScripts";
+import { GoogleTagBootstrap } from "@/components/analytics/GoogleTagBootstrap";
 import { FirstTouchCapture } from "@/components/analytics/FirstTouchCapture";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { AppProviders } from "@/components/providers/AppProviders";
@@ -11,17 +12,22 @@ import { buildRootMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildRootMetadata();
 
-export default async function RootLayout({
+/**
+ * No session read here. Reading the session cookie would force every public
+ * page to render per request. The client session provider loads the signed-in
+ * menu after hydration. Signed-in routes still read the session themselves.
+ */
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
   return (
     <html lang="en" className={`scroll-smooth ${marketingFontVariables}`} suppressHydrationWarning>
       <head>
         <meta name="color-scheme" content="light" />
         <ThemeScript />
+        <GoogleTagBootstrap />
         {/*
           Photo heroes must not leave room for the fold offer. The homepage
           static shell can include that bar (its client pathname is not "/"
@@ -41,11 +47,12 @@ export default async function RootLayout({
         <a href="#main-content" className="skip-link sr-only">
           Skip to main content
         </a>
-        <AppProviders session={session}>
+        <AppProviders>
           <FirstTouchCapture />
           <SiteShell>{children}</SiteShell>
         </AppProviders>
         <DeferredPlatformScripts />
+        <SpeedInsights />
       </body>
     </html>
   );

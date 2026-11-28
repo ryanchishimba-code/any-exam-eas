@@ -49,8 +49,15 @@ const FOLD_HIDDEN_PREFIXES = [
   "/contact",
   "/daily",
   "/crossword",
+  "/daily-vitals",
   "/how-to-pass",
   "/free-practice-questions",
+  "/nclex-study-guide",
+  "/naplex-study-guide",
+  "/pance-study-guide",
+  "/aanp-fnp-study-guide",
+  "/usmle-study-guide",
+  "/npte-pt-study-guide",
 ];
 
 function showPublicFoldOffer(pathname: string): boolean {

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { DailyTrialSticky } from "@/components/marketing/DailyTrialCta";
 import { QotdPractice } from "@/components/marketing/QotdPractice";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import {
   getQotdForExam,
   isQotdExamSlug,
@@ -10,7 +11,9 @@ import {
   toPublicQotd,
 } from "@/lib/demo/qotd";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import { qotdExamMetaDescription, qotdExamTitle } from "@/lib/demo/qotd-titles";
 import { getSiteUrl } from "@/lib/seo";
+import { publicWebPageJsonLd } from "@/lib/seo/public-schema";
 import { qotdPath } from "@/lib/demo/qotd";
 
 type Props = { params: Promise<{ exam: string }> };
@@ -36,17 +39,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = getQotdForExam(exam, today);
   if (!item) return {};
   const name = EXAM_CATALOG[exam].shortName;
-  const canonical = qotdAbsoluteUrl(exam, today);
-  const description =
-    item.stem.length > 155 ? `${item.stem.slice(0, 152)}…` : item.stem;
+  const canonical = `${getSiteUrl()}${qotdPath(exam)}`;
+  const description = qotdExamMetaDescription(exam);
   const ogImage = `${getSiteUrl()}${qotdPath(exam, today)}/opengraph-image`;
 
+  const title = qotdExamTitle(name);
   return {
-    title: `${name} Question of the Day`,
+    title: { absolute: title },
     description,
     alternates: { canonical },
     openGraph: {
-      title: `${name} Question of the Day | AnyExamEasy`,
+      title,
       description,
       url: canonical,
       type: "website",
@@ -54,14 +57,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${name} Question of the Day | AnyExamEasy`,
+      title,
       description,
       images: [ogImage],
     },
   };
 }
 
-/** Today’s QOTD for an exam — canonical points at the dated share URL. */
+/** Today’s QOTD for an exam — canonical stays on /daily/{exam}. */
 export default async function DailyExamTodayPage({ params }: Props) {
   const { exam } = await params;
   if (!isQotdExamSlug(exam)) notFound();
@@ -70,8 +73,24 @@ export default async function DailyExamTodayPage({ params }: Props) {
   const item = getQotdForExam(exam, today);
   if (!item) notFound();
 
+  const name = EXAM_CATALOG[exam].shortName;
+  const path = qotdPath(exam);
+  const title = qotdExamTitle(name);
+  const description = qotdExamMetaDescription(exam);
+
   return (
     <div className="aee-qotd-page">
+      <JsonLdScript
+        data={publicWebPageJsonLd({
+          name: title,
+          description,
+          path,
+          crumbs: [
+            { name: "Daily", path: "/daily" },
+            { name, path },
+          ],
+        })}
+      />
       <div className="aee-qotd-page__inner">
         <QotdPractice
           item={toPublicQotd(item)}

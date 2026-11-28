@@ -1,5 +1,3 @@
-import { readFileSync } from "node:fs";
-import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { boardQuestionUnits } from "@/lib/counts";
 import { OPEN_PHARMACY_QUICK_BITE_SLUG } from "@/lib/quick-bites/pharmacy-catalog";
@@ -44,7 +42,7 @@ describe("NAPLEX landing model", () => {
     expect(title.length).toBeLessThanOrEqual(SEO_TITLE_MAX);
     expect(description.length).toBeGreaterThanOrEqual(SEO_DESC_MIN);
     expect(description.length).toBeLessThanOrEqual(SEO_DESC_MAX);
-    expect(title).toMatch(/NAPLEX questions/i);
+    expect(title).toMatch(/NAPLEX Practice Questions/);
     expect(description).not.toMatch(/\$|one plan/i);
   });
 
@@ -83,14 +81,12 @@ describe("NAPLEX landing model", () => {
     expect(model.stats.map((stat) => stat.label)).toEqual(["Questions", "Patient vignettes", "NABP outline"]);
     expect(model.stats[0]?.value).toBe("80");
     const types = (model.jsonLd["@graph"] as { "@type": string }[]).map((node) => node["@type"]);
-    expect(types).toEqual(
-      expect.arrayContaining(["Organization", "BreadcrumbList", "Course", "FAQPage", "VideoObject"])
-    );
-    const video = (model.jsonLd["@graph"] as { "@type": string; embedUrl?: string; uploadDate?: string }[]).find(
-      (node) => node["@type"] === "VideoObject"
-    );
-    expect(video?.embedUrl).toMatch(/\/naplex#quick-bites$/);
-    expect(JSON.stringify(model.jsonLd)).not.toMatch(/"uploadDate":"\d{4}-\d{2}-\d{2}"(?!T)/);
+    expect(types).toEqual(expect.arrayContaining(["BreadcrumbList", "Course", "FAQPage"]));
+    expect(types).not.toContain("VideoObject");
+    const crumbs = (model.jsonLd["@graph"] as { "@type": string; itemListElement?: { name?: string; item?: string }[] }[])
+      .find((node) => node["@type"] === "BreadcrumbList")?.itemListElement;
+    expect(crumbs?.map((crumb) => crumb.name)).toEqual(["Home", "NAPLEX"]);
+    expect(crumbs?.every((crumb) => typeof crumb.item === "string" && crumb.item.startsWith("http"))).toBe(true);
   });
 
   it("omits the question total when the bank lookup failed", () => {
@@ -147,10 +143,12 @@ describe("pharmacy dosing hero", () => {
 });
 
 describe("NAPLEX crawl files", () => {
-  it("keeps /naplex in the sitemap and allows it in robots", () => {
-    const sitemap = readFileSync(path.resolve(process.cwd(), "src/app/sitemap.ts"), "utf8");
-    const robots = readFileSync(path.resolve(process.cwd(), "src/app/robots.ts"), "utf8");
-    expect(sitemap).toContain('path === "/naplex"');
-    expect(robots).toContain('"/naplex"');
+  it("keeps /naplex in the sitemap and allows it in robots", async () => {
+    const { buildSitemapGroups } = await import("@/lib/seo/sitemap-catalog");
+    const { robotsAllowsPath } = await import("@/lib/seo/crawl-policy");
+    expect(
+      buildSitemapGroups({ posts: [] }).pages.some((url) => url.loc.endsWith("/naplex"))
+    ).toBe(true);
+    expect(robotsAllowsPath("/naplex")).toBe(true);
   });
 });
