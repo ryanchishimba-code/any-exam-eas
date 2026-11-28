@@ -15,6 +15,7 @@ import {
   blogArticleJsonLd,
   blogBreadcrumbJsonLd,
   blogFaqJsonLd,
+  expandFlattenedBlogFaq,
   extractBlogFaqs,
 } from "@/lib/blog/schema";
 import { ROUTES } from "@/lib/routes";
@@ -114,9 +115,10 @@ export default async function BlogPostPage({ params }: Props) {
 
   const related = await listRelatedBlogPosts(post.slug, post.category, 3);
   const isNclexPlan = post.slug === "nclex-study-plan-rn-pn";
-  const body = isNclexPlan
+  const source = isNclexPlan
     ? post.content.replace(/<p>(?:(?!<\/p>)[\s\S])*Try for free(?:(?!<\/p>)[\s\S])*<\/p>/gi, "")
     : post.content;
+  const body = expandFlattenedBlogFaq(source);
   const toc = extractToc(body);
   const html = injectHeadingIds(body, toc);
   const url = blogPostAbsoluteUrl(post.slug);
