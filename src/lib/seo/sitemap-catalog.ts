@@ -11,6 +11,7 @@ import { EXAM_SLUGS } from "@/lib/edtech/exams";
 import { qotdPath } from "@/lib/demo/qotd-public";
 import { PANCE_STUDY_GUIDE_PATH, PANCE_STUDY_GUIDE_UPDATED } from "@/lib/pance-study-guide/public-guide";
 import { contentUpdatedOn } from "@/lib/study-guides/content-updated";
+import { studyGuideChapterPaths } from "@/lib/study-guides/load-public-guide";
 import { PUBLIC_STUDY_GUIDE_LIST, USMLE_PUBLIC_STEPS } from "@/lib/study-guides/public-catalog";
 import { CANONICAL_ORIGIN, isNonIndexablePath, normalizePath } from "@/lib/seo/crawl-policy";
 import { isGatedStudyGuidePath } from "@/lib/seo/gated-study-guide-paths";
@@ -108,6 +109,9 @@ export function buildSitemapGroups(input: {
     }),
     ...USMLE_PUBLIC_STEPS.map((step) =>
       entry(step.path, contentUpdatedOn([step.contentDir], now).iso)
+    ),
+    ...studyGuideChapterPaths().map((chapter) =>
+      entry(chapter.path, contentUpdatedOn([chapter.contentDir], now).iso)
     ),
     ...RESOURCE_ARTICLES.map((article) =>
       entry(`/resources/${article.slug}`, article.updatedAt)

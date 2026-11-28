@@ -248,6 +248,10 @@
   padding: 0.4em 0.55em;
   text-align: left;
   vertical-align: top;
+  /* The prose column uses overflow-wrap: anywhere so long drug names fit.
+     That setting splits ordinary words in narrow table cells ("Cardio / vascular"). */
+  overflow-wrap: normal;
+  word-break: normal;
 }
 .sg-prose th {
   font-weight: 650;

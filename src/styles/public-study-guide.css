@@ -261,8 +261,19 @@ html:has(.psg) {
   scroll-margin-top: 6.5rem;
 }
 
-.psg-body table {
+.psg-body .sg-table-scroll {
   width: 100%;
+  max-width: 100%;
+  margin: 0 0 1.25rem;
+  overflow-x: auto;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.psg-body table {
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
   font-size: 0.98rem;
 }
@@ -273,6 +284,8 @@ html:has(.psg) {
   border-bottom: 1px solid rgba(15, 23, 42, 0.1);
   text-align: left;
   vertical-align: top;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .psg-body img,
@@ -284,11 +297,24 @@ html:has(.psg) {
   border-radius: 0.5rem;
 }
 
-.psg-body table {
-  display: block;
-  overflow-x: auto;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  border-radius: 0.5rem;
+.psg-body .sg-figure {
+  margin: 1.25rem 0 1.5rem;
+}
+
+.psg-body .sg-figure img,
+.psg-body img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+}
+
+.psg-body figcaption {
+  margin-top: 0.45rem;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  text-align: center;
 }
 
 .psg-body thead th {
@@ -328,6 +354,126 @@ html:has(.psg) {
 
 .psg-callout--pitfall .psg-callout__label {
   color: #9a3412;
+}
+
+.psg-callout--remember {
+  background: rgba(46, 196, 182, 0.1);
+  border: 1px solid rgba(15, 118, 110, 0.28);
+  border-left: 3px solid #0f766e;
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+
+.psg-callout--remember .psg-callout__label {
+  color: #0f766e;
+}
+
+.psg-callout ul {
+  margin: 0 0 0.85rem;
+  padding-left: 1.2rem;
+}
+
+.psg-callout li + li {
+  margin-top: 0.35rem;
+}
+
+.psg-chapters,
+.psg-hub {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0 0 1.5rem;
+}
+
+.psg-chapter-card,
+.psg-hub-card {
+  margin: 0;
+  padding: 1rem 1.1rem 1.05rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.05rem;
+  background: #fff;
+}
+
+.psg-chapter-card h2,
+.psg-hub-card h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.psg-chapter-card p,
+.psg-hub-card p {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.psg-chapter-card a,
+.psg-hub-card a {
+  color: #0f766e;
+  font-weight: 700;
+  text-underline-offset: 0.16em;
+}
+
+.psg-hub-card ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.psg-hub-card li + li {
+  margin-top: 0.35rem;
+}
+
+.psg-hub-card li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-weight: 650;
+}
+
+.psg-chapter {
+  width: min(100% - 2rem, 42rem);
+  margin: 0 auto;
+  padding: 5.25rem 0 4.5rem;
+}
+
+.psg-chapter-kicker {
+  margin: 0;
+  color: #0f766e;
+  font-size: 0.85rem;
+  font-weight: 750;
+}
+
+.psg-chapter-kicker a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.psg-chapter h1 {
+  margin: 0.2rem 0 0.75rem;
+  max-width: 20em;
+  font-size: clamp(1.75rem, 5vw, 2.6rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.psg-pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.psg-pager a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid rgba(15, 118, 110, 0.28);
+  border-radius: 999px;
+  color: #0f766e;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .psg-rail {
@@ -404,6 +550,26 @@ html:has(.psg) {
   background: #1c1917;
 }
 
+:root[data-theme="dark"] .psg-callout--remember {
+  background: rgba(15, 118, 110, 0.18);
+  border-color: rgba(153, 246, 228, 0.35);
+}
+
+:root[data-theme="dark"] .psg-callout--remember .psg-callout__label {
+  color: #5eead4;
+}
+
+:root[data-theme="dark"] .psg-chapter-card,
+:root[data-theme="dark"] .psg-hub-card {
+  background: #111827;
+  border-color: rgba(153, 246, 228, 0.22);
+  color: #e2e8f0;
+}
+
+:root[data-theme="dark"] .psg-body figcaption {
+  color: #cbd5e1;
+}
+
 :root[data-theme="dark"] .psg-toc a {
   background: #0f172a;
   color: #99f6e4;
@@ -433,9 +599,20 @@ html:has(.psg) {
   .psg-faq,
   .psg-steps,
   .psg-body,
+  .psg-chapters,
+  .psg-hub,
   .psg-end,
   .psg-links {
     grid-column: 2;
+  }
+
+  .psg-hub-card ol {
+    columns: 2;
+    column-gap: 1.25rem;
+  }
+
+  .psg-hub-card li {
+    break-inside: avoid;
   }
 
   .psg-try {
