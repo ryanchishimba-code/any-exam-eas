@@ -8,6 +8,7 @@ import { initialClientSession } from "@/lib/auth/client-session";
 import { LoginModalRoot } from "@/components/auth/LoginModalRoot";
 import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { GoogleAdsPurchaseListener } from "@/components/analytics/GoogleAdsPurchaseListener";
 import { ShareFabLazy } from "@/components/share/ShareFabLazy";
 import { ClientRecovery } from "@/components/ClientRecovery";
 import { PwaRegister } from "@/components/PwaRegister";
@@ -32,6 +33,9 @@ export function AppProviders({
           <BoardIntentBeacon />
         </Suspense>
         <SessionProvider session={initialClientSession(session)}>
+          <Suspense fallback={null}>
+            <GoogleAdsPurchaseListener />
+          </Suspense>
           <UserAccessProvider>
             <LoginModalRoot>
               <ClientRecovery />

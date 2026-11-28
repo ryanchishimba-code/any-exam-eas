@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { auth } from "@/auth";
 import "./globals.css";
 import { DeferredPlatformScripts } from "@/components/analytics/DeferredPlatformScripts";
+import { GoogleAdsTag } from "@/components/analytics/GoogleAdsTag";
 import { FirstTouchCapture } from "@/components/analytics/FirstTouchCapture";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { AppProviders } from "@/components/providers/AppProviders";
@@ -41,6 +42,7 @@ export default async function RootLayout({
         <a href="#main-content" className="skip-link sr-only">
           Skip to main content
         </a>
+        <GoogleAdsTag />
         <AppProviders session={session}>
           <FirstTouchCapture />
           <SiteShell>{children}</SiteShell>

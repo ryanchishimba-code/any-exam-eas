@@ -29,6 +29,7 @@ import {
 import { requireSessionGuard } from "@/lib/session-guard";
 import { requireOneTimeStripePriceId, requireStripePriceId } from "@/lib/stripe-prices";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
+import { paidCheckoutSuccessUrl, paidUpgradeReturnPath } from "@/lib/analytics/google-ads";
 import { ROUTES } from "@/lib/routes";
 
 export const runtime = "nodejs";
@@ -267,7 +268,7 @@ export async function POST(req: Request) {
       return NextResponse.json({
         upgraded: true,
         status: converted.status,
-        redirectTo: `${ROUTES.dashboard}?checkout=success`,
+        redirectTo: paidUpgradeReturnPath(ROUTES.dashboard, converted.stripeSubscriptionId),
         promo: promoValidation,
         tier,
         interval,
@@ -296,7 +297,7 @@ export async function POST(req: Request) {
     promoCode,
     upgradeOfferId,
     renewalConsent,
-    successUrl: `${origin}${ROUTES.dashboard}?checkout=success`,
+    successUrl: paidCheckoutSuccessUrl(origin, ROUTES.dashboard),
     // Hosted Checkout cancel should return to plan review, not the marketing page.
     cancelUrl: `${origin}/checkout?cancelled=1&plan=${plan}&tier=${tier}&interval=${interval}${
       paymentMode === "manual" ? "&mode=manual" : ""

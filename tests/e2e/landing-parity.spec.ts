@@ -3,6 +3,15 @@ import { expect, test, type Page } from "@playwright/test";
 const TRIAL = "/signup?plan=trial&interval=monthly&tier=pro";
 /** Hero primary label. Same string as HERO_TRIAL_CTA_LABEL. */
 const HERO_TRIAL_LABEL = "Start free trial, no card required";
+/** NCLEX, NAPLEX, PANCE, and AANP-FNP heroes. Same string as BOARD_PHOTO_HERO_TRIAL_LABEL. */
+const BOARD_PHOTO_HERO_TRIAL_LABEL = "Start 5-day free trial, no card required";
+
+function heroTrialLabel(path: string): string {
+  if (path === "/nclex" || path === "/naplex" || path === "/pance" || path === "/aanp-fnp") {
+    return BOARD_PHOTO_HERO_TRIAL_LABEL;
+  }
+  return HERO_TRIAL_LABEL;
+}
 
 const PAGES = [
   { path: "/", hero: "home", ctaName: "hero_trial", location: "hero", see: "#quick-bites-heading" },
@@ -202,11 +211,17 @@ function same(values: { path: string; value: unknown }[], label: string) {
 }
 
 function sharedShot(shot: Shot) {
+  const primary = shot.primary ? { ...shot.primary } : shot.primary;
+  if (primary) {
+    // Four board heroes use a longer trial label. Text and the box it wraps
+    // into are checked per page. Font, color, and shape stay shared.
+    delete primary.width;
+    delete primary.height;
+  }
   return {
     h1: shot.h1,
     sub: shot.sub,
-    primaryText: shot.primaryText,
-    primary: shot.primary,
+    primary,
     secondaryText: shot.secondaryText,
     secondary: shot.secondary,
     navH: shot.navH,
@@ -231,7 +246,7 @@ function expectPageIdentity(entry: Landing, shot: Shot) {
   const href = trialHref(entry.path);
   expect(shot.hero, entry.path).toBe(entry.hero);
   expect(shot.h1Count, entry.path).toBe(1);
-  expect(shot.primaryText, entry.path).toBe(HERO_TRIAL_LABEL);
+  expect(shot.primaryText, entry.path).toBe(heroTrialLabel(entry.path));
   expect(shot.secondaryText, entry.path).toBe("See questions");
   expect(shot.primaryHref, entry.path).toBe(href);
   expect(shot.navHref, entry.path).toBe(href);
@@ -528,13 +543,13 @@ test.describe("landing parity", () => {
       });
       expect(html.hero, entry.path).toBe(entry.hero);
       expect(html.h1.length, entry.path).toBeGreaterThan(8);
-      expect(html.cta, entry.path).toBe(HERO_TRIAL_LABEL);
+      expect(html.cta, entry.path).toBe(heroTrialLabel(entry.path));
       expect(html.href, entry.path).toBe(trialHref(entry.path));
       expect(html.over, entry.path).toBe(true);
       expect(html.h1Count, entry.path).toBe(1);
       rows.push({
         path: entry.path,
-        value: { cta: html.cta, over: html.over, h1Count: html.h1Count },
+        value: { over: html.over, h1Count: html.h1Count },
       });
     }
     same(rows, "no javascript");
