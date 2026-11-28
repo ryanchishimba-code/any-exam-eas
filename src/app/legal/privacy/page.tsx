@@ -113,6 +113,11 @@ export default function PrivacyPage() {
               advertising.
             </p>
             <p className="mt-2">
+              If you arrive from a Google ad, a short first-party cookie named aee_gads can keep
+              the ad click id and the time it was seen for up to 90 days. The cookie does not hold
+              your name, email, or card details.
+            </p>
+            <p className="mt-2">
               The app loads the Google tag from googletagmanager.com for Google Ads conversion
               measurement, and for Google Analytics when a measurement id is configured. The
               production Content-Security-Policy allows that tag along with scripts from this site
