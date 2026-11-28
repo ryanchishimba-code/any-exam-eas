@@ -31,12 +31,10 @@ export const STUDY_GUIDE_SERVER_FILES: Record<string, string[]> = {
     "./content/usmle-study-guide/step-1/**/*",
     "./content/usmle-study-guide/step-2-ck/**/*",
     "./content/usmle-study-guide/step-3/**/*",
-    "./public/usmle-study-guide/**/*",
   ],
   "/usmle-study-guide/[step]": [
     "./content/usmle-study-guide/step-1/**/*",
     "./content/usmle-study-guide/step-2-ck/**/*",
     "./content/usmle-study-guide/step-3/**/*",
-    "./public/usmle-study-guide/**/*",
   ],
 };

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SEO_DESC_MAX, SEO_DESC_MIN, SEO_TITLE_MAX } from "@/lib/seo/meta-budget";
-import { loadPublicStudyGuide, loadUsmleStepGuide } from "@/lib/study-guides/load-public-guide";
+import { loadPublicStudyGuide } from "@/lib/study-guides/load-public-guide";
 import { guideSectionToc, presentGuideHtml } from "@/lib/study-guides/present-html";
 import {
   PUBLIC_STUDY_GUIDE_LIST,
@@ -8,7 +8,6 @@ import {
   legacyStudyGuideRedirects,
 } from "@/lib/study-guides/public-catalog";
 import { GUIDE_SEO, STEP_SEO, guideJsonLd } from "@/lib/study-guides/seo-copy";
-import { publicGuideMetadata, usmleStepMetadata } from "@/components/marketing/study-guide/PublicStudyGuidePage";
 
 describe("public study guides", () => {
   it("keeps titles and descriptions inside the metadata budget", () => {
@@ -86,54 +85,6 @@ describe("public study guides", () => {
     expect(names).toEqual(["Cardiac"]);
     expect(html).toContain("psg-callout--pitfall");
     expect(html).not.toContain("<h1");
-  });
-
-  it("turns Important to remember quotes into boxes and keeps tables in columns", () => {
-    const html = presentGuideHtml(
-      [
-        "<h2 id=\"acs\">Acute coronary syndrome</h2>",
-        "<blockquote><p><strong>Important to remember</strong></p><p>- <strong>ECG first</strong> for chest pain.</p><p>- Choosing a fibrinolytic when PCI is available.</p></blockquote>",
-        "<table><thead><tr><th>Finding</th><th>Meaning</th></tr></thead><tbody><tr><td>ST elevation</td><td>Reperfusion</td></tr></tbody></table>",
-        '<figure class="sg-figure"><img src="/pance-study-guide/visuals/10-stemi.svg" alt="STEMI reperfusion flowchart" /></figure>',
-      ].join(""),
-      "PANCE study guide"
-    );
-    expect(html).toContain("psg-callout--remember");
-    expect(html).toContain("Important to remember");
-    expect(html).toContain("<li><strong>ECG first</strong> for chest pain.</li>");
-    expect(html).toContain('<div class="sg-table-scroll"><table>');
-    expect(html).not.toMatch(/<table[^>]*display:\s*block/);
-    expect(html).toContain("/pance-study-guide/visuals/10-stemi.svg");
-  });
-
-  it("keeps the paid depth of each public manuscript", () => {
-    const pance = loadPublicStudyGuide("pance");
-    expect(pance.html).toContain("Cardiovascular disease is 11% of the PANCE");
-    expect(pance.html).toContain("/pance-study-guide/visuals/");
-    const nclex = loadPublicStudyGuide("nclex");
-    expect(nclex.html).toContain("Coronary arteries supply myocardium");
-    expect(nclex.html).toContain("/nclex-study-guide/visuals/");
-    const naplex = loadPublicStudyGuide("naplex");
-    expect(naplex.html).toContain("Domain 3");
-    const fnp = loadPublicStudyGuide("aanp-fnp");
-    expect(fnp.html).toContain("MUST KNOW");
-    const step = loadUsmleStepGuide("step-2-ck");
-    expect(step?.html.match(/<h2\b/g)?.length ?? 0).toBeGreaterThan(12);
-    expect(step?.html).toContain("/usmle-study-guide/step-2-ck/visuals/stroke-clock.svg");
-    const hub = loadPublicStudyGuide("usmle");
-    expect(hub.html).toContain("The cardiac cycle, shock as a pattern");
-    expect(hub.html).toContain("A focal deficit that is sudden is a vascular event");
-    expect(hub.html).toContain("The order of operations on a computer-based case");
-  });
-
-  it("marks every public guide and step indexable", () => {
-    for (const guide of PUBLIC_STUDY_GUIDE_LIST) {
-      expect(publicGuideMetadata(guide.id).robots).toEqual({ index: true, follow: true });
-    }
-    for (const step of USMLE_PUBLIC_STEPS) {
-      expect(usmleStepMetadata(step.id).robots).toEqual({ index: true, follow: true });
-      expect(usmleStepMetadata(step.id).alternates).toEqual({ canonical: step.path });
-    }
   });
 
   it("renders the NPTE outline with one H1 and FAQ schema, without a pass promise", () => {

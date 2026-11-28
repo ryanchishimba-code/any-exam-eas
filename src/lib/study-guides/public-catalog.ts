@@ -23,6 +23,8 @@ export type PublicStudyGuide = {
   photoBase: string;
   /** Markdown directories, relative to the repo. Empty when the page is built from structured outline data. */
   contentDirs: string[];
+  /** When set, only these filename prefixes are loaded (the hub, not a whole book). */
+  filePrefixes?: string[];
   visualsPublicPrefix: string;
 };
 
@@ -113,6 +115,7 @@ export const PUBLIC_STUDY_GUIDES: Record<PublicStudyGuideId, PublicStudyGuide> =
       "content/usmle-study-guide/step-2-ck",
       "content/usmle-study-guide/step-3",
     ],
+    filePrefixes: ["00-", "17-"],
     visualsPublicPrefix: "/usmle-study-guide/visuals/",
   },
   "npte-pt": {
