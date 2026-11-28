@@ -74,6 +74,12 @@ export default function DailyHubPage() {
         <FreePracticeLink />
         <DailyInboxCapture />
         <p className="aee-qotd-hub__date">{formatQotdDisplayDate(today)}</p>
+        <p className="aee-qotd-hub__lede">
+          <Link href="/daily-vitals" prefetch={false}>
+            Daily Vitals
+          </Link>{" "}
+          is the free one-word case, beside the daily crossword.
+        </p>
 
         <section className="aee-qotd-hub__featured" aria-labelledby="featured-qotd">
           <p className="aee-qotd-hub__featured-label">Today&apos;s featured board</p>

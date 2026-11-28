@@ -1,0 +1,246 @@
+{
+  "version": "2026-11-28",
+  "review": "Preview bank for clinician review. NCLEX-style nursing cases. Not medical advice.",
+  "puzzles": [
+    {
+      "id": "dv-01",
+      "board": "nclex",
+      "word": "GLUCOSE",
+      "clue": "The finger-stick reading is 38 mg/dL and the person is too drowsy to swallow. An IV is already in place.",
+      "prompt": "What do you give?",
+      "explanation": "Do not give juice when the person cannot swallow safely. Give IV glucose and recheck the glucose."
+    },
+    {
+      "id": "dv-02",
+      "board": "nclex",
+      "word": "SALINE",
+      "clue": "Glucose is 510 mg/dL, with deep rapid breathing and a fruity breath. The person is awake.",
+      "prompt": "What fluid do you start first?",
+      "explanation": "In diabetic ketoacidosis, start isotonic saline first. Check potassium before insulin, because insulin can drop the potassium."
+    },
+    {
+      "id": "dv-03",
+      "board": "nclex",
+      "word": "CALCIUM",
+      "clue": "Potassium is 6.9 mEq/L and the monitor shows peaked T waves.",
+      "prompt": "What do you give first to protect the heart?",
+      "explanation": "IV calcium stabilizes the heart membrane when a high potassium changes the ECG. Then shift or remove potassium and recheck the tracing."
+    },
+    {
+      "id": "dv-04",
+      "board": "nclex",
+      "word": "INSULIN",
+      "clue": "Potassium is 6.1 mEq/L, the ECG is unchanged, and glucose is 180 mg/dL.",
+      "prompt": "What do you give with glucose to shift potassium?",
+      "explanation": "IV regular insulin given with glucose shifts potassium into cells when the ECG is unchanged. Recheck potassium and glucose so the person does not go low."
+    },
+    {
+      "id": "dv-05",
+      "board": "nclex",
+      "word": "ASPIRIN",
+      "clue": "Crushing chest pain and sweating. There is no drug allergy and no bleeding.",
+      "prompt": "What do you have the person chew?",
+      "explanation": "Have the person chew aspirin, 162 to 325 mg, when there is no allergy or active bleeding. Activate the chest-pain response and stay with the person."
+    },
+    {
+      "id": "dv-06",
+      "board": "nclex",
+      "word": "OXYGEN",
+      "clue": "The person is short of breath and the saturation is 86% on room air.",
+      "prompt": "What do you start?",
+      "explanation": "Give oxygen for a low saturation. For most adults the target is about 92% to 96%, and about 88% to 92% if the person retains carbon dioxide."
+    },
+    {
+      "id": "dv-07",
+      "board": "nclex",
+      "word": "INHALER",
+      "clue": "Known asthma, wheezing, and speech in short phrases. Saturation is 94%.",
+      "prompt": "What do you give first?",
+      "explanation": "Give the short-acting bronchodilator inhaler first and sit the person up. A steroid may be added. It is not the first puff."
+    },
+    {
+      "id": "dv-08",
+      "board": "nclex",
+      "word": "FOWLER",
+      "clue": "Breathing has suddenly become hard. Oxygen is being started for a low saturation.",
+      "prompt": "What position do you use?",
+      "explanation": "A high Fowler position, sitting upright, eases the work of breathing. Stay with the person while oxygen is started."
+    },
+    {
+      "id": "dv-09",
+      "board": "nclex",
+      "word": "SUCTION",
+      "clue": "A person with a tracheostomy is gurgling and the saturation is falling.",
+      "prompt": "What do you do first?",
+      "explanation": "Suction the airway when secretions are blocking it. Give oxygen and call for help. Do not wait while the saturation falls."
+    },
+    {
+      "id": "dv-10",
+      "board": "nclex",
+      "word": "LATERAL",
+      "clue": "A seizure has stopped. The person is breathing, with secretions in the mouth.",
+      "prompt": "What position do you use?",
+      "explanation": "Place a breathing person on the side after a seizure so secretions can drain. Do not put anything in the mouth."
+    },
+    {
+      "id": "dv-11",
+      "board": "nclex",
+      "word": "DIGOXIN",
+      "clue": "The morning apical pulse is 48 beats per minute, just before the scheduled dose.",
+      "prompt": "What do you hold?",
+      "explanation": "Hold digoxin when the apical rate is under the hold parameter, often 60 in adults, and notify the prescriber. A low potassium raises the risk, so check it."
+    },
+    {
+      "id": "dv-12",
+      "board": "nclex",
+      "word": "LITHIUM",
+      "clue": "Coarse tremor, vomiting, and a level of 2.1 mEq/L. The evening dose is due.",
+      "prompt": "Which medicine do you hold?",
+      "explanation": "Hold lithium and notify the prescriber when the level is high or these toxic signs are present. Do not give the dose while you wait."
+    },
+    {
+      "id": "dv-13",
+      "board": "nclex",
+      "word": "HEPARIN",
+      "clue": "Platelets were 220,000 and are now 90,000 after 7 days of the infusion.",
+      "prompt": "What do you stop?",
+      "explanation": "A sharp platelet drop after several days of heparin can be heparin-induced thrombocytopenia. Stop all heparin, including flushes, and do not switch to low-molecular-weight heparin."
+    },
+    {
+      "id": "dv-14",
+      "board": "nclex",
+      "word": "FLUIDS",
+      "clue": "Fever, blood pressure 82/48, and warm skin. Blood cultures are already drawn.",
+      "prompt": "What do you start?",
+      "explanation": "Start IV crystalloid for sepsis with low blood pressure, then reassess perfusion. A common first order is about 30 mL/kg, then adjusted to the response."
+    },
+    {
+      "id": "dv-15",
+      "board": "nclex",
+      "word": "LACTATE",
+      "clue": "Infection is suspected and the blood pressure is soft. The first labs are being drawn.",
+      "prompt": "Which lab looks for poor perfusion?",
+      "explanation": "Draw a lactate with the first sepsis labs. A high lactate supports poor perfusion and should be rechecked after treatment."
+    },
+    {
+      "id": "dv-16",
+      "board": "nclex",
+      "word": "CULTURE",
+      "clue": "An antibiotic is due and the person is stable. No blood sample has been drawn.",
+      "prompt": "What do you obtain first?",
+      "explanation": "Draw blood cultures before the antibiotic when that will not meaningfully delay it. If the person is crashing, give the antibiotic and do not wait."
+    },
+    {
+      "id": "dv-17",
+      "board": "nclex",
+      "word": "GAUZE",
+      "clue": "Bright red blood is coming steadily from a forearm cut.",
+      "prompt": "What do you press on the wound?",
+      "explanation": "Apply firm direct pressure with gauze and call for help. If it soaks through, add more gauze on top. Do not lift the first layer to peek."
+    },
+    {
+      "id": "dv-18",
+      "board": "nclex",
+      "word": "SPLINT",
+      "clue": "An ankle is swollen after a twist and the person cannot bear weight. The foot pulse is present.",
+      "prompt": "What do you apply?",
+      "explanation": "Splint the limb in the position you find it. Check the pulse, color, and feeling before and after. Do not push a bone back into place."
+    },
+    {
+      "id": "dv-19",
+      "board": "nclex",
+      "word": "LOGROLL",
+      "clue": "The person fell from a ladder and the neck hurts. The team needs to turn them.",
+      "prompt": "How do you turn the person?",
+      "explanation": "Logroll with enough help so the head, back, and hips turn as one unit. Hold the neck still until the spine is cleared."
+    },
+    {
+      "id": "dv-20",
+      "board": "nclex",
+      "word": "ISOLATE",
+      "clue": "Cough for three weeks, night sweats, and an upper-lobe spot on the chest film.",
+      "prompt": "Which precaution do you start?",
+      "explanation": "Start airborne precautions while tuberculosis is evaluated, including a negative-pressure room. Staff use a respirator. The person wears a surgical mask for transport."
+    },
+    {
+      "id": "dv-21",
+      "board": "nclex",
+      "word": "DROPLET",
+      "clue": "Fever, a severe headache, and a stiff neck. The workup has just started.",
+      "prompt": "Which precaution do you start?",
+      "explanation": "Use droplet precautions, including a surgical mask, for suspected meningococcal disease. Start the ordered antibiotics promptly. Do not wait on every result."
+    },
+    {
+      "id": "dv-22",
+      "board": "nclex",
+      "word": "CONTACT",
+      "clue": "Watery diarrhea after a recent hospital stay. A C diff test is pending.",
+      "prompt": "Which precaution do you start?",
+      "explanation": "Use contact precautions for suspected C diff. Wash hands with soap and water. Alcohol gel does not remove the spores."
+    },
+    {
+      "id": "dv-23",
+      "board": "nclex",
+      "word": "FLOWERS",
+      "clue": "The absolute neutrophil count is 400. A visitor brought a gift.",
+      "prompt": "Which common gift stays out of the room?",
+      "explanation": "Keep fresh flowers and standing water out of a neutropenic room. Report a fever right away."
+    },
+    {
+      "id": "dv-24",
+      "board": "nclex",
+      "word": "RESCUE",
+      "clue": "You see smoke in a room and a person is still in the bed.",
+      "prompt": "What do you do first?",
+      "explanation": "Rescue the person in immediate danger first. Then sound the alarm, contain the smoke if you can do it safely, and extinguish only if it is safe."
+    },
+    {
+      "id": "dv-25",
+      "board": "nclex",
+      "word": "DEFIB",
+      "clue": "An adult has collapsed, has no pulse, and is not breathing. The crash cart is arriving.",
+      "prompt": "What do you attach as soon as it is there?",
+      "explanation": "Start chest compressions immediately. Attach the defibrillator as soon as it arrives so a shockable rhythm can be treated."
+    },
+    {
+      "id": "dv-26",
+      "board": "nclex",
+      "word": "COVER",
+      "clue": "A surgical wound has opened and bowel is visible.",
+      "prompt": "What do you place over it?",
+      "explanation": "Cover the bowel with sterile gauze moistened with saline and call the surgeon. Do not push the bowel back in, and keep the person from eating or drinking."
+    },
+    {
+      "id": "dv-27",
+      "board": "nclex",
+      "word": "BLOOD",
+      "clue": "During a transfusion the person develops fever, back pain, and dark urine.",
+      "prompt": "What do you stop?",
+      "explanation": "Stop the blood and keep the vein open with normal saline through new tubing. Stay with the person, recheck identity, and notify the team."
+    },
+    {
+      "id": "dv-28",
+      "board": "nclex",
+      "word": "JUICE",
+      "clue": "A 28-year-old with type 1 diabetes is found pale and clammy. The lunch tray is untouched.",
+      "prompt": "What do you give first?",
+      "explanation": "Glucose fell to 48 mg/dL after insulin and a missed meal. Give 4 oz juice, then recheck in 15 minutes."
+    },
+    {
+      "id": "dv-29",
+      "board": "nclex",
+      "word": "SWALLOW",
+      "clue": "New facial droop and slurred speech. A cup of water is at the bedside.",
+      "prompt": "What do you check before any sip?",
+      "explanation": "Complete a swallow screen before any oral intake after a suspected stroke. If it is not passed, give nothing by mouth, note when symptoms started, and activate the stroke response."
+    },
+    {
+      "id": "dv-30",
+      "board": "nclex",
+      "word": "DANGLE",
+      "clue": "The person has been in bed for two days and feels dizzy when sitting up.",
+      "prompt": "What should the person do before standing?",
+      "explanation": "Have the person sit and dangle the legs before standing, and stay with them. This lowers the chance of a fall from a drop in blood pressure."
+    }
+  ]
+}

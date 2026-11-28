@@ -9,6 +9,7 @@ const SHARE_FAB_HIDDEN_PREFIXES = [
   "/pricing",
   "/about",
   "/daily",
+  "/daily-vitals",
   "/nclex",
   "/usmle",
   "/naplex",

@@ -84,6 +84,7 @@ export function buildSitemapGroups(input: {
     ...PAGE_PATHS.map((path) => entry(path)),
     ...getExamMarketingSitemapPaths().map((path) => entry(path)),
     entry("/daily", today),
+    entry("/daily-vitals", today),
     entry(crosswordHubPath(), today),
     ...EXAM_SLUGS.flatMap((exam) => [
       entry(qotdPath(exam), today),
