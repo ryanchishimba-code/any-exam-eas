@@ -16,7 +16,7 @@ import { FreePracticeLink } from "@/components/marketing/free-practice/FreePract
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
 import { WhyAnyExamEasy } from "@/components/marketing/WhyAnyExamEasy";
-import { HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
+import { BOARD_PHOTO_HERO_TRIAL_LABEL, HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
 import { getCachedSession } from "@/lib/auth/session";
 import { ROUTES } from "@/lib/routes";
 
@@ -39,13 +39,11 @@ export async function NclexBoardLanding({ model }: { model: NclexBoardLandingRen
         proofFacts={boardHeroProofFacts(model.heroOffer)}
         boardName={model.boardName}
         signedIn={signedIn}
+        trialLabel={BOARD_PHOTO_HERO_TRIAL_LABEL}
         trail={
           <>
       <div className="bl-band">
         <FreePracticeLink board="nclex" prominent />
-      </div>
-      <div className="bl-band">
-        <BoardCrosswordPromo board="nclex" />
       </div>
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
@@ -128,6 +126,9 @@ export async function NclexBoardLanding({ model }: { model: NclexBoardLandingRen
             ))}
           </div>
         </section>
+      </div>
+      <div className="bl-band">
+        <BoardCrosswordPromo board="nclex" />
       </div>
     </div>
   );

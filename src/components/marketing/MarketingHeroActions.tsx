@@ -12,6 +12,8 @@ type MarketingHeroActionsProps = {
   className?: string;
   /** Signed-in visitors should not see the logged-out trial button. */
   signedIn?: boolean;
+  /** Overrides the signed-out label. Signed-in visitors still see “Continue studying”. */
+  trialLabel?: string;
 };
 
 export function MarketingHeroActions({
@@ -23,6 +25,7 @@ export function MarketingHeroActions({
   trialMicrocopy,
   className = "bl-actions",
   signedIn = false,
+  trialLabel = HERO_TRIAL_CTA_LABEL,
 }: MarketingHeroActionsProps) {
   return (
     <div className={className}>
@@ -32,7 +35,7 @@ export function MarketingHeroActions({
           ctaName={signedIn ? "continue_studying" : ctaName}
           location={ctaLocation}
         >
-          {signedIn ? "Continue studying" : HERO_TRIAL_CTA_LABEL}
+          {signedIn ? "Continue studying" : trialLabel}
         </LandingCta>
         {!signedIn && trialMicrocopy ? <p className="bl-hero-micro">{trialMicrocopy}</p> : null}
       </div>

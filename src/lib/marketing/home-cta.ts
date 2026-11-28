@@ -1,6 +1,12 @@
 /** Primary hero button on home and board landing pages. */
 export const HERO_TRIAL_CTA_LABEL = "Start free trial, no card required";
 
+/**
+ * Hero button on the NCLEX, NAPLEX, PANCE, and AANP-FNP photo pages.
+ * Other pages keep HERO_TRIAL_CTA_LABEL.
+ */
+export const BOARD_PHOTO_HERO_TRIAL_LABEL = "Start 5-day free trial, no card required";
+
 export function homeTrialCtaLabel(): string {
   return HERO_TRIAL_CTA_LABEL;
 }
