@@ -7,6 +7,7 @@ import { BlogViewTracker } from "@/components/blog/BlogViewTracker";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import {
   blogPostAbsoluteUrl,
+  blogShareImagePath,
   getPublishedBlogPostBySlug,
   listPublishedBlogSlugs,
   listRelatedBlogPosts,
@@ -19,7 +20,12 @@ import {
   extractBlogFaqs,
 } from "@/lib/blog/schema";
 import { ROUTES } from "@/lib/routes";
-import { absoluteUrl, DEFAULT_OG_IMAGE_PATH } from "@/lib/seo";
+import {
+  absoluteUrl,
+  DEFAULT_OG_IMAGE_HEIGHT,
+  DEFAULT_OG_IMAGE_PATH,
+  DEFAULT_OG_IMAGE_WIDTH,
+} from "@/lib/seo";
 import { clampMetaDescription, clampMetaTitle } from "@/lib/seo/meta-budget";
 import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { SITE_NAME } from "@/lib/site";
@@ -49,11 +55,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     post.metaDescription || post.excerpt || `${post.title} — board exam prep tips from ${SITE_NAME}.`
   );
   const url = blogPostAbsoluteUrl(post.slug);
-  const coverAbsolute = post.coverImage
-    ? post.coverImage.startsWith("http")
-      ? post.coverImage
-      : absoluteUrl(post.coverImage)
-    : absoluteUrl(DEFAULT_OG_IMAGE_PATH);
+  const sharePath = blogShareImagePath(post.slug);
+  const coverAbsolute = sharePath
+    ? absoluteUrl(sharePath)
+    : post.coverImage
+      ? post.coverImage.startsWith("http")
+        ? post.coverImage
+        : absoluteUrl(post.coverImage)
+      : absoluteUrl(DEFAULT_OG_IMAGE_PATH);
+  const shareSize = sharePath
+    ? { width: 1200, height: 630 }
+    : { width: DEFAULT_OG_IMAGE_WIDTH, height: DEFAULT_OG_IMAGE_HEIGHT };
 
   return {
     title: { absolute: title },
@@ -65,7 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       publishedTime: post.publishedAt ?? undefined,
       modifiedTime: post.updatedAt ?? post.publishedAt ?? undefined,
-      images: [{ url: coverAbsolute, alt: post.title }],
+      images: [{ url: coverAbsolute, alt: post.title, ...shareSize }],
     },
     twitter: {
       card: "summary_large_image",
@@ -126,11 +138,14 @@ export default async function BlogPostPage({ params }: Props) {
     post.metaDescription || post.excerpt || `${post.title} — board exam prep from ${SITE_NAME}.`
   );
   const faqs = blogFaqJsonLd(extractBlogFaqs(post.content));
-  const coverAbsolute = post.coverImage
-    ? post.coverImage.startsWith("http")
-      ? post.coverImage
-      : absoluteUrl(post.coverImage)
-    : null;
+  const sharePath = blogShareImagePath(post.slug);
+  const coverAbsolute = sharePath
+    ? absoluteUrl(sharePath)
+    : post.coverImage
+      ? post.coverImage.startsWith("http")
+        ? post.coverImage
+        : absoluteUrl(post.coverImage)
+      : null;
   const updatedLabel = formatDate(post.updatedAt);
   const publishedLabel = formatDate(post.publishedAt);
   const showUpdated = Boolean(updatedLabel && updatedLabel !== publishedLabel);

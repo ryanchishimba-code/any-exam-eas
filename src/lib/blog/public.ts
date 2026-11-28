@@ -41,6 +41,17 @@ export type PublicBlogPost = PublicBlogPostCard & {
   authorImage: string | null;
 };
 
+/** Post-specific Open Graph image. 1200×630. */
+export const PRACTICE_QUESTIONS_SHARE_IMAGE =
+  "/images/blog/practice-questions-beat-rereading.jpg";
+
+export function blogShareImagePath(slug: string): string | null {
+  if (publicBlogSlug(slug) === "practice-questions-beat-rereading") {
+    return PRACTICE_QUESTIONS_SHARE_IMAGE;
+  }
+  return null;
+}
+
 /** Prefer a cacheable cover URL over inlining multi-MB data: images in HTML. */
 export function publicCoverImageUrl(
   slug: string,

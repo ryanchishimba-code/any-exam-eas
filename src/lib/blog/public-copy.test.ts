@@ -5,6 +5,7 @@ import {
   publicBlogBody,
   publicBlogExcerpt,
   publicBlogTitle,
+  repairMojibake,
 } from "./public-copy";
 const publishedTotal = "the question bank";
 
@@ -68,6 +69,17 @@ describe("public blog copy", () => {
     expect(shortForms).not.toMatch(/43k/i);
     expect(shortForms).not.toMatch(/3-day/i);
     expect(shortForms).toContain("143,000 more elsewhere");
+  });
+
+  it("repairs stored mojibake and drops competitor names", () => {
+    const stored =
+      "constantly \u00e2\u20ac\u201d \u00e2\u20ac\u0153How many UWorld Q\u00e2\u20ac\u2122s/day?\u00e2\u20ac\u009d on r/step1, and 249\u00e2\u20ac\u201c255. PubMed \u00c2\u00b7 DOI";
+    const fixed = publicBlogBody(stored);
+    expect(fixed).not.toMatch(/UWorld|r\/step1|\u00e2\u20ac|\u00c2\u00b7/);
+    expect(fixed).toContain("How many questions a day?” in medical student threads");
+    expect(fixed).toContain("249\u2013255");
+    expect(fixed).toContain("PubMed \u00b7 DOI");
+    expect(repairMojibake("today\u00e2\u20ac\u2122s")).toBe("today\u2019s");
   });
 
   it("removes invented named quotes from blog HTML", () => {
