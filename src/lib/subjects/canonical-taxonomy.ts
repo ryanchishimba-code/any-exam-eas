@@ -241,6 +241,18 @@ export const SUBJECT_CROSSWALK: Record<string, Record<string, string>> = {
     "professional-responsibilities": "professional-ethics-law",
     "research-evidence": "research-evidence",
   },
+
+  mpje: {
+    "federal-pharmacy-law": "professional-ethics-law",
+    "uniform-mpje": "professional-ethics-law",
+    "controlled-substances": "professional-ethics-law",
+    "dispensing-procedures": "professional-ethics-law",
+    "pharmacy-operations": "professional-ethics-law",
+    "compounding-regulations": "professional-ethics-law",
+    "state-practice-act": "professional-ethics-law",
+    "pharmacy-ethics": "professional-ethics-law",
+    "patient-privacy": "professional-ethics-law",
+  },
 };
 
 export function getCanonicalTopicId(fieldId: string, subjectId: string): string | undefined {

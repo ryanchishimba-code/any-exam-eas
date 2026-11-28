@@ -10,6 +10,7 @@ const EXAM_FEATURED_IDS: Record<ExamSlug, string[]> = {
   pance: ["heart", "lungs", "liver", "kidneys", "thyroid", "spinal-cord"],
   "aanp-fnp": ["heart", "thyroid", "lungs", "kidneys", "liver", "spinal-cord"],
   "npte-pt": ["spinal-cord", "heart", "lungs", "femur", "scapula", "aorta"],
+  mpje: [],
 };
 
 /** High-yield structures prioritized for the active exam. */

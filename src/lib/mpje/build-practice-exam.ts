@@ -70,10 +70,19 @@ export function orderMpjeExamQuestions(
     ...shuffle(buckets.hard).slice(0, hardCount),
   ];
 
-  while (ordered.length < total) {
-    const pool = [...buckets.easy, ...buckets.medium, ...buckets.hard];
-    ordered.push(...shuffle(pool));
-    if (ordered.length > total * 2) break;
+  const used = new Set(
+    ordered.map((item) => item.id?.trim() || item.question.trim().toLowerCase())
+  );
+  const rest = shuffle([...buckets.easy, ...buckets.medium, ...buckets.hard]).filter((item) => {
+    const key = item.id?.trim() || item.question.trim().toLowerCase();
+    return key.length > 0 && !used.has(key);
+  });
+  for (const item of rest) {
+    if (ordered.length >= total) break;
+    const key = item.id?.trim() || item.question.trim().toLowerCase();
+    if (used.has(key)) continue;
+    used.add(key);
+    ordered.push(item);
   }
 
   const slice = ordered.slice(0, total);

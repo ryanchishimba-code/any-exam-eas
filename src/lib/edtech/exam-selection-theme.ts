@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Activity, Bone, BookOpenCheck, HeartPulse, Pill } from "lucide-react";
+import { Activity, Bone, BookOpenCheck, HeartPulse, Pill, Scale } from "lucide-react";
 import type { ExamSlug } from "@/types/edtech";
 
 /**
@@ -103,5 +103,17 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     iconColor: "text-white",
     ctaClass: "bg-white text-cyan-900 hover:bg-cyan-50",
     orb: "bg-cyan-300/25",
+  },
+  mpje: {
+    slug: "mpje",
+    tagline: "Federal and state pharmacy law — controlled substances, dispensing, and board rules.",
+    stats: ["Question bank", "120-item exam", "Scored review"],
+    icon: Scale,
+    gradient: "from-amber-600/90 via-orange-600/85 to-amber-800/90",
+    glow: "group-hover:shadow-amber-500/25 group-hover:border-amber-300/80",
+    iconBg: "bg-white/20 backdrop-blur-sm",
+    iconColor: "text-white",
+    ctaClass: "bg-white text-amber-900 hover:bg-amber-50",
+    orb: "bg-amber-300/25",
   },
 };

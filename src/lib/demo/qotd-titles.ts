@@ -23,6 +23,8 @@ export const QOTD_EXAM_DESCRIPTIONS = {
     "Free AANP FNP question of the day. Answer a primary-care item across the lifespan with a rationale for every choice, then start a 5-day free trial.",
   "npte-pt":
     "Free NPTE-PT question of the day. Answer a physical therapy scenario with a rationale for every choice, no account required, then start a 5-day free trial.",
+  mpje:
+    "Free MPJE question of the day. Answer a pharmacy-law item with a rationale for every choice, no account required, then start a 5-day free trial.",
 } as const satisfies Record<ExamSlug, string>;
 
 export function qotdExamMetaDescription(exam: ExamSlug): string {

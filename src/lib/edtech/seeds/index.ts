@@ -15,6 +15,7 @@ import { enrichNptePtTopics } from "@/lib/exam-prep/npte-pt/topic-registry";
 import { PANCE_HIGH_YIELD_TOPICS } from "./high-yield-pance";
 import { AANP_FNP_HIGH_YIELD_TOPICS } from "./high-yield-aanp-fnp";
 import { NPTE_PT_HIGH_YIELD_TOPICS } from "./high-yield-npte-pt";
+import { MPJE_HIGH_YIELD_TOPICS } from "./high-yield-mpje";
 import { mergeReviewModules } from "./review-module-topics";
 import { tagUsmleTopicSteps } from "@/lib/edtech/usmle-library-catalog";
 import { enrichUsmleTopics } from "@/lib/exam-prep/usmle/topic-registry";
@@ -37,6 +38,7 @@ export const HIGH_YIELD_BY_EXAM: Record<ExamSlug, HighYieldTopic[]> = {
   pance: enrichPanceTopics(mergeReviewModules(PANCE_HIGH_YIELD_TOPICS, "pance")),
   "aanp-fnp": enrichAanpFnpTopics(mergeReviewModules(AANP_FNP_HIGH_YIELD_TOPICS, "aanp-fnp")),
   "npte-pt": enrichNptePtTopics(mergeReviewModules(NPTE_PT_HIGH_YIELD_TOPICS, "npte-pt")),
+  mpje: MPJE_HIGH_YIELD_TOPICS,
 };
 
 export function getHighYieldTopics(examSlug: ExamSlug): HighYieldTopic[] {
@@ -59,4 +61,5 @@ export const ALL_HIGH_YIELD_TOPICS: HighYieldTopic[] = [
   ...HIGH_YIELD_BY_EXAM.pance,
   ...HIGH_YIELD_BY_EXAM["aanp-fnp"],
   ...HIGH_YIELD_BY_EXAM["npte-pt"],
+  ...HIGH_YIELD_BY_EXAM.mpje,
 ];

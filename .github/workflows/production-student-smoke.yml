@@ -43,7 +43,7 @@ jobs:
        (github.event.deployment.environment == 'Production' ||
         github.event.deployment.environment == 'production'))
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 50
     outputs:
       should_smoke: ${{ steps.prepare.outputs.should_smoke }}
     steps:
@@ -104,6 +104,8 @@ jobs:
           SMOKE_STUDENT_EMAIL: ${{ secrets.SMOKE_STUDENT_EMAIL }}
           SMOKE_STUDENT_PASSWORD: ${{ secrets.SMOKE_STUDENT_PASSWORD }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+          SMOKE_REQUIRE_SESSIONS: "1"
+          SMOKE_REQUIRE_FULL_EXAM: "1"
           CI: "true"
         run: npm run test:student-smoke
 

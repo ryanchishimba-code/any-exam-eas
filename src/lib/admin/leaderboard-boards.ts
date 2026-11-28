@@ -6,6 +6,7 @@ export const LEADERBOARD_BOARDS = [
   { id: "aanp-fnp", label: "AANP FNP" },
   { id: "usmle", label: "USMLE" },
   { id: "npte-pt", label: "NPTE-PT" },
+  { id: "mpje", label: "MPJE" },
 ] as const;
 
 export type LeaderboardBoardId = (typeof LEADERBOARD_BOARDS)[number]["id"];

@@ -24,8 +24,16 @@ describe("orderMpjeExamQuestions", () => {
     }
     const ordered = orderMpjeExamQuestions(pool, 120);
     expect(ordered).toHaveLength(120);
+    expect(new Set(ordered.map((q) => q.question)).size).toBe(120);
     const pretest = ordered.filter((q) => q.isPretest);
     expect(pretest).toHaveLength(MPJE_PRACTICE_EXAM_PRETEST_COUNT);
+  });
+
+  it("does not repeat a question when a difficulty band is short", () => {
+    const pool = Array.from({ length: 10 }, (_, i) => item("pharmacy-ethics", i));
+    const ordered = orderMpjeExamQuestions(pool, 40);
+    expect(ordered.length).toBe(10);
+    expect(new Set(ordered.map((q) => q.question)).size).toBe(10);
   });
 
   it("places easier subjects before harder ones on average", () => {

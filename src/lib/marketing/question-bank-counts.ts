@@ -327,7 +327,7 @@ export function landingServedTotal(snapshot: QuestionBankCountsSnapshot): number
  * the `usmle-step-2` snapshot slot so the six-board sum stays one row per exam.
  * The Qbank reads per-step totals from the inventory, not this slot.
  */
-const MARKETING_FIELD_BOARD: Record<ExamFieldId, ExamRouteSlug> = {
+const MARKETING_FIELD_BOARD: Record<Exclude<ExamFieldId, "mpje">, ExamRouteSlug> = {
   nursing: "nclex",
   "usmle-step-2": "usmle",
   pharmacy: "naplex",
@@ -341,7 +341,7 @@ export function snapshotFromActiveInventory(
   clinical: Partial<Record<CountBoardSlug, ClinicalQuestionExtra>> = {}
 ): QuestionBankCountsSnapshot {
   const boards = Object.fromEntries(
-    (Object.keys(MARKETING_FIELD_BOARD) as ExamFieldId[]).map((fieldId) => {
+    (Object.keys(MARKETING_FIELD_BOARD) as Array<Exclude<ExamFieldId, "mpje">>).map((fieldId) => {
       const slug = MARKETING_FIELD_BOARD[fieldId];
       const board = inventory.boards[slug];
       return [
@@ -358,6 +358,9 @@ export function snapshotFromActiveInventory(
 
   const fields = Object.fromEntries(
     EXAM_FIELD_IDS.map((fieldId) => {
+      if (fieldId === "mpje") {
+        return [fieldId, { fieldId, total: 0, active: 0, served: 0 }];
+      }
       const units = boards[MARKETING_FIELD_BOARD[fieldId]];
       const served = inventory.degraded || !units ? 0 : units.bankItems;
       return [fieldId, { fieldId, total: served, active: served, served }];

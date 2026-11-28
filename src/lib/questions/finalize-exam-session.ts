@@ -24,6 +24,7 @@ export const FULL_EXAM_FIELD_IDS = new Set([
   "pance",
   "aanp-fnp",
   "npte-pt",
+  "mpje",
   "usmle-step-2",
   "usmle-step-1",
   "usmle-step-3",
