@@ -34,7 +34,7 @@ const BOARD_TRACE = {
     "./content/aanp-fnp-study-guide/**/*",
     "./public/aanp-fnp-study-guide/visuals/**/*",
   ],
-} as const;
+} satisfies Record<string, string[]>;
 
 /**
  * Manuscripts and figure files copied into each public study-guide function.
