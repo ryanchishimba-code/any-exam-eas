@@ -10,7 +10,7 @@ import {
 } from "@/lib/daily-vitals/browser-store";
 import { drawShareCard, shareCardSize, type ShareCardInput } from "@/lib/daily-vitals/share-card";
 import { dailyVitalsShareText } from "@/lib/daily-vitals/share-text";
-import { nextStreak, visibleStreak } from "@/lib/daily-vitals/streak";
+import { nextStreak, STREAK_RULE, visibleStreak } from "@/lib/daily-vitals/streak";
 import type { PublicDailyVitals, TileMark } from "@/lib/daily-vitals/types";
 import { DAILY_VITALS_TRIES, monitorReading, triesLeftLabel } from "@/lib/daily-vitals/vitals";
 
@@ -122,6 +122,7 @@ export function DailyVitalsPlayer({
         setGuesses(nextGuesses);
         setMarks(nextMarks);
         setDraft("");
+        // A finished case counts whether it was saved or missed. An unfinished row does not.
         if (data.solved || data.lost) {
           setSolved(Boolean(data.solved));
           setWord(data.word);
@@ -416,6 +417,7 @@ export function DailyVitalsPlayer({
               <p className="dv-date-line">
                 {puzzle.dateLabel} · {puzzle.archive ? "Earlier case" : "Daily case"}
               </p>
+              <p className="dv-device">{STREAK_RULE}</p>
             </>
           ) : (
             <>
@@ -457,7 +459,7 @@ export function DailyVitalsPlayer({
                   </div>
                 </div>
               ) : null}
-              <p className="dv-device">Streak stays on this device.</p>
+              <p className="dv-device">{STREAK_RULE}</p>
             </>
           )}
         </div>

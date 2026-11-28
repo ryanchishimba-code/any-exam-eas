@@ -9,7 +9,7 @@ import { DAILY_VITALS_DESCRIPTION, DAILY_VITALS_TITLE } from "@/lib/daily-vitals
 import { scoreGuess } from "@/lib/daily-vitals/score";
 import { dailyVitalsShareText } from "@/lib/daily-vitals/share-text";
 import { DAILY_VITALS_SHARE_LABEL, DAILY_VITALS_SHARE_URL, todayIsoCentral } from "@/lib/daily-vitals/schedule";
-import { nextStreak, visibleStreak } from "@/lib/daily-vitals/streak";
+import { nextStreak, STREAK_RULE, visibleStreak } from "@/lib/daily-vitals/streak";
 import { validatePuzzle } from "@/lib/daily-vitals/validate";
 import { monitorReading } from "@/lib/daily-vitals/vitals";
 import { todayIsoCentral as qotdToday } from "@/lib/demo/qotd-public";
@@ -125,11 +125,23 @@ describe("daily vitals bank", () => {
     expect(text.toUpperCase()).not.toContain("JUICE");
     expect(text.toLowerCase()).not.toContain(BANNED);
     expect(dailyVitalsShareText({ solved: false, guessesUsed: 6, streak: 0 })).toContain("Missed in 6/6");
+    expect(text.toLowerCase()).not.toContain("sample result");
+    expect(readFileSync("src/lib/daily-vitals/share-card.ts", "utf8").toLowerCase()).not.toContain("sample result");
+    expect(readFileSync("src/lib/daily-vitals/share-text.ts", "utf8").toLowerCase()).not.toContain("sample result");
+  });
+
+  it("keeps a streak after a miss and breaks it only when a day is skipped", () => {
     expect(visibleStreak(undefined, "2026-11-28")).toBe(0);
-    expect(nextStreak(undefined, "2026-11-28")).toEqual({ last: "2026-11-28", streak: 1 });
-    expect(nextStreak({ last: "2026-11-27", streak: 6 }, "2026-11-28").streak).toBe(7);
-    expect(nextStreak({ last: "2026-11-28", streak: 7 }, "2026-11-28").streak).toBe(7);
-    expect(visibleStreak({ last: "2026-11-20", streak: 4 }, "2026-11-28")).toBe(0);
+    const firstDay = nextStreak(undefined, "2026-11-26");
+    expect(firstDay).toEqual({ last: "2026-11-26", streak: 1 });
+    const afterMiss = nextStreak({ last: "2026-11-27", streak: 6 }, "2026-11-28");
+    expect(afterMiss).toEqual({ last: "2026-11-28", streak: 7 });
+    expect(visibleStreak(afterMiss, "2026-11-28")).toBe(7);
+    expect(nextStreak(afterMiss, "2026-11-28")).toEqual(afterMiss);
+    const skipped = nextStreak({ last: "2026-11-26", streak: 6 }, "2026-11-28");
+    expect(skipped).toEqual({ last: "2026-11-28", streak: 1 });
+    expect(visibleStreak({ last: "2026-11-26", streak: 6 }, "2026-11-28")).toBe(0);
+    expect(visibleStreak({ last: "2026-11-27", streak: 6 }, "2026-11-28")).toBe(6);
   });
 
   it("keeps the title, description, and other board marks inside the rules", () => {
@@ -155,7 +167,10 @@ describe("daily vitals bank", () => {
     const player = readFileSync("src/components/daily-vitals/DailyVitalsPlayer.tsx", "utf8");
     expect(player).not.toContain("@/lib/daily-vitals/bank");
     expect(player).not.toContain("puzzles.json");
-    expect(player).toContain("Streak stays on this device.");
+    expect(player).toContain("STREAK_RULE");
+    expect(player).toContain("data.solved || data.lost");
+    expect(STREAK_RULE).toContain("saved or missed");
+    expect(STREAK_RULE).toContain("Skipping a day breaks it");
     for (const file of files) {
       const source = readFileSync(file, "utf8").toLowerCase();
       expect(source, file).not.toContain(BANNED);
