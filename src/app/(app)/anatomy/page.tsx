@@ -17,6 +17,7 @@ export const metadata = {
   title: "3D Anatomy Model — AnyExamEasy",
   description:
     "Orbit a stylized 3D body, explore organs, and jump into pearls, tours, and board-style practice.",
+  alternates: { canonical: "/anatomy" },
 };
 
 export const maxDuration = 60;

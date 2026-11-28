@@ -102,7 +102,7 @@ const content = [
     `Then do questions. Rereading the card is not practice. If you miss a case, fix that one line. Do not highlight the chapter again.`
   ),
   p(
-    `${a("/naplex", "NAPLEX prep")} on this site follows the same five domains, with calculations mixed into the bank and a Roadmap that shows which domain you are avoiding. The reference book at ${a("/naplex/study-guide", "the NAPLEX study guide")} is included during the trial and on Pro. It closes when the trial ends unless you continue. ${TRIAL_QUESTION_LIMIT}.`
+    `${a("/naplex", "NAPLEX prep")} on this site follows the same five domains, with calculations mixed into the bank and a Roadmap that shows which domain you are avoiding. The ${a("/naplex-study-guide", "NAPLEX study guide")} is public, with no login. The question bank is what the trial opens. ${TRIAL_QUESTION_LIMIT}.`
   ),
 
   h2("Mistakes that cost a retake"),
@@ -145,7 +145,7 @@ const content = [
     },
     {
       q: "Does the NAPLEX study guide come with the free trial?",
-      a: `The NAPLEX reference book is available during the ${TRIAL_DAYS}-day trial and on Pro. It is not a separate free book that stays open after the trial ends. The trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions and does not require a payment method.`,
+      a: `The NAPLEX study guide is public at /naplex-study-guide. The ${TRIAL_DAYS}-day trial, which does not require a payment method, includes ${TRIAL_LIFETIME_QUESTIONS} practice questions. The guide stays readable either way.`,
     },
   ]),
 ].join("");

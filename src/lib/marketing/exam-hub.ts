@@ -2,6 +2,7 @@ import { MARKETING_DARK_HERO_PATHS, marketingExamKeyFromPath } from "@/lib/marke
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 import { getExamSeoConfig, type ExamSeoKey } from "@/lib/seo/exam-config";
+import { PUBLIC_STUDY_GUIDES, type PublicStudyGuideId } from "@/lib/study-guides/public-catalog";
 
 export { MARKETING_DARK_HERO_PATHS, marketingExamKeyFromPath };
 
@@ -37,7 +38,21 @@ export function examHubProductLinks(examKey: ExamSeoKey): ExamHubProductLink[] {
   const guide = getStudyGuideConfig(examKey);
   const links: ExamHubProductLink[] = [];
 
-  if (guide) {
+  const publicGuide = PUBLIC_STUDY_GUIDES[examKey as PublicStudyGuideId];
+  if (publicGuide) {
+    links.push({
+      href: publicGuide.path,
+      title: `${config.shortName} study guide`,
+      body: "Read the full guide on this page. No login.",
+      accent: true,
+    });
+    links.push({
+      href: publicGuide.resourcePath,
+      title: publicGuide.resourceLabel,
+      body: "A shorter resources article for the same board.",
+      accent: false,
+    });
+  } else if (guide) {
     links.push({
       href: guide.routeBase,
       title: `${config.shortName} study guide`,
@@ -60,14 +75,18 @@ export function examHubProductLinks(examKey: ExamSeoKey): ExamHubProductLink[] {
     accent: false,
   });
 
-  if (examKey === "naplex") {
-    links.push({
-      href: ROUTES.toolkit,
-      title: "Toolkit",
-      body: "Official outlines, lab values, and calculators for NAPLEX study.",
-      accent: false,
-    });
-  }
+  links.push({
+    href: ROUTES.toolkit,
+    title: "Toolkit",
+    body: "Outlines, lab values, and calculators shared across the boards.",
+    accent: false,
+  });
+  links.push({
+    href: ROUTES.compare,
+    title: "Compare",
+    body: "How one Pro plan covers six boards.",
+    accent: false,
+  });
 
   return links;
 }

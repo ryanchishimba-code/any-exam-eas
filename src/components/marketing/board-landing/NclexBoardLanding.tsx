@@ -12,6 +12,7 @@ import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/Pra
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import type { NclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { BoardCrosswordPromo } from "@/components/marketing/board-landing/BoardCrosswordPromo";
+import { BoardPublicLinks } from "@/components/marketing/board-landing/BoardPublicLinks";
 import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
@@ -42,6 +43,7 @@ export async function NclexBoardLanding({ model }: { model: NclexBoardLandingRen
         trialLabel={BOARD_PHOTO_HERO_TRIAL_LABEL}
         trail={
           <>
+      <BoardPublicLinks exam="nclex" />
       <div className="bl-band">
         <FreePracticeLink board="nclex" prominent />
       </div>

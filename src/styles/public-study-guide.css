@@ -1,0 +1,497 @@
+html:has(.psg) {
+  scroll-behavior: smooth;
+}
+
+.psg {
+  color: var(--color-ink, #0f172a);
+  background: var(--color-bg, #fff);
+}
+
+.psg-hero {
+  position: relative;
+  height: 18rem;
+  overflow: hidden;
+  background: #071422;
+  color: #f8fafc;
+}
+
+.psg-hero picture,
+.psg-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.psg-hero img {
+  object-fit: cover;
+  object-position: var(--psg-focal, 42% 38%);
+}
+
+.psg-hero__scrim {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4.75rem 1.25rem 1.15rem;
+  background: linear-gradient(180deg, rgba(7, 20, 34, 0) 0%, rgba(7, 20, 34, 0) 42%, rgba(7, 20, 34, 0.72) 78%, rgba(7, 20, 34, 0.92) 100%);
+}
+
+.psg-kicker {
+  margin: 0 0 0.2rem;
+  color: #99f6e4;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.psg-hero h1 {
+  margin: 0;
+  max-width: 22ch;
+  color: #fff;
+  font-size: clamp(1.85rem, 6vw, 3.1rem);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.psg-hero__promise {
+  margin: 0.5rem 0 0;
+  max-width: 36rem;
+  color: #f8fafc;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.psg-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  width: min(100% - 2rem, 76rem);
+  margin: 1rem auto 0;
+  padding: 0;
+  list-style: none;
+  color: #334155;
+  font-size: 0.875rem;
+}
+
+.psg-stats strong {
+  color: #0f172a;
+  font-size: 1.125rem;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+}
+
+.psg-progress {
+  position: sticky;
+  top: 3.55rem;
+  z-index: 6;
+  height: 3px;
+  background: #0f766e;
+}
+
+.psg-faq__label {
+  margin: 0 0 0.75rem;
+  color: #0f766e;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.psg-wrap {
+  width: min(100% - 2rem, 76rem);
+  margin: 0 auto;
+  padding: 1.75rem 0 4.5rem;
+}
+
+.psg-lede {
+  max-width: 68ch;
+  margin: 0 0 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.psg-try,
+.psg-end {
+  max-width: 68ch;
+  margin: 0 0 1.5rem;
+  padding: 1.15rem 1.2rem 1.25rem;
+  border: 1px solid rgba(15, 118, 110, 0.22);
+  border-radius: 1.1rem;
+  background: #f0fdfa;
+}
+
+.psg-try h2,
+.psg-end h2,
+.psg-links h2,
+.psg-faq > h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.psg-try p,
+.psg-end p {
+  margin: 0 0 0.85rem;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+.psg-try a,
+.psg-end .aee-flagship-cta {
+  white-space: normal;
+  text-align: center;
+  text-wrap: balance;
+  line-height: 1.25;
+}
+
+.psg-toc--desktop {
+  display: none;
+}
+
+.psg-toc--mobile {
+  position: sticky;
+  top: 3.5rem;
+  z-index: 5;
+  margin: 0 0 1rem;
+}
+
+.psg-toc--mobile summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.25rem 1rem;
+  border: 1px solid rgba(15, 118, 110, 0.28);
+  border-radius: 999px;
+  background: #fff;
+  color: #0f766e;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.psg-toc--mobile ol {
+  margin: 0.5rem 0 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1rem;
+  background: #fff;
+  list-style: none;
+}
+
+.psg-toc a {
+  color: #134e4a;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.psg-toc li + li {
+  margin-top: 0.5rem;
+}
+
+.psg-toc__label {
+  margin: 0 0 0.35rem;
+  color: #0f766e;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.psg-toc--mobile ol {
+  display: block;
+}
+
+.psg-toc--desktop ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.psg-faq {
+  max-width: 68ch;
+  margin-bottom: 1.75rem;
+}
+
+.psg-card {
+  max-width: 72ch;
+  margin: 0 0 1rem;
+  padding: 0.2rem 1.15rem 0.35rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.05rem;
+  background: #fff;
+  scroll-margin-top: 6.5rem;
+}
+
+.psg-card h2 {
+  margin: 0.85rem 0 0.45rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.psg-card p,
+.psg-body {
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+.psg-card--tip {
+  border-color: rgba(15, 118, 110, 0.35);
+  background: #f0fdfa;
+}
+
+.psg-card--pitfall {
+  border-color: rgba(180, 83, 9, 0.35);
+  background: #fffbeb;
+}
+
+.psg-body {
+  max-width: 72ch;
+}
+
+.psg-body h2,
+.psg-body h3 {
+  scroll-margin-top: 6.5rem;
+}
+
+.psg-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+}
+
+.psg-body th,
+.psg-body td {
+  padding: 0.55rem 0.65rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.psg-body img,
+.psg-body svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+}
+
+.psg-body table {
+  display: block;
+  overflow-x: auto;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 0.5rem;
+}
+
+.psg-body thead th {
+  background: #f8fafc;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.psg-callout {
+  margin: 1rem 0;
+  padding: 1rem 1rem 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.psg-callout--tip {
+  background: #f0fdfa;
+  border: 1px solid rgba(15, 118, 110, 0.28);
+}
+
+.psg-callout--pitfall {
+  background: #fffbeb;
+  border: 1px solid rgba(180, 83, 9, 0.28);
+}
+
+.psg-callout__label {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.psg-callout--tip .psg-callout__label {
+  color: #0f766e;
+}
+
+.psg-callout--pitfall .psg-callout__label {
+  color: #9a3412;
+}
+
+.psg-rail {
+  display: none;
+}
+
+.psg-text-link {
+  color: #0f766e;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.psg-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.psg-steps a,
+.psg-try a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: #0f766e;
+  color: #fff;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.psg-end {
+  margin-top: 2rem;
+}
+
+.psg-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.psg-links a {
+  color: #0f766e;
+  font-weight: 650;
+}
+
+:root[data-theme="dark"] .psg {
+  color: #e2e8f0;
+  background: #0b1220;
+}
+
+:root[data-theme="dark"] .psg-lede,
+:root[data-theme="dark"] .psg-card p {
+  color: #e2e8f0;
+}
+
+:root[data-theme="dark"] .psg-card,
+:root[data-theme="dark"] .psg-toc {
+  background: #111827;
+  border-color: rgba(153, 246, 228, 0.22);
+  color: #e2e8f0;
+}
+
+:root[data-theme="dark"] .psg-card--tip {
+  background: #042f2e;
+}
+
+:root[data-theme="dark"] .psg-card--pitfall {
+  background: #1c1917;
+}
+
+:root[data-theme="dark"] .psg-toc a {
+  background: #0f172a;
+  color: #99f6e4;
+}
+
+:root[data-theme="dark"] .psg-try,
+:root[data-theme="dark"] .psg-end {
+  background: #042f2e;
+  color: #ecfeff;
+}
+
+@media (min-width: 768px) {
+  .psg-hero {
+    height: 18rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .psg-wrap {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 68ch) 17rem;
+    column-gap: 2rem;
+    align-items: start;
+  }
+
+  .psg-lede,
+  .psg-faq,
+  .psg-steps,
+  .psg-body,
+  .psg-end,
+  .psg-links {
+    grid-column: 2;
+  }
+
+  .psg-try {
+    display: none;
+  }
+
+  .psg-toc--mobile {
+    display: none;
+  }
+
+  .psg-toc--desktop {
+    display: block;
+    grid-column: 1;
+    grid-row: 1 / span 8;
+    position: sticky;
+    top: 5.5rem;
+    max-height: calc(100svh - 6.5rem);
+    overflow: auto;
+    margin: 0;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+  }
+
+  .psg-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    grid-column: 3;
+    grid-row: 1 / span 8;
+    position: sticky;
+    top: 5.5rem;
+    margin: 0;
+    padding: 1.25rem;
+    border: 1px solid rgba(15, 118, 110, 0.2);
+    border-radius: 1rem;
+    background: #f8fafc;
+  }
+
+  .psg-rail p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .psg-rail__kicker {
+    color: #0f766e;
+    font-size: 0.75rem;
+    font-weight: 750;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .psg-rail .aee-flagship-cta {
+    white-space: normal;
+    text-align: center;
+    text-wrap: balance;
+    line-height: 1.3;
+  }
+}

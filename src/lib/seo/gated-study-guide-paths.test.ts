@@ -28,7 +28,9 @@ describe("login-gated study guides stay out of the sitemap", () => {
     expect(sitemap).not.toContain('path: "/signup"');
     expect(sitemap).not.toContain("forgot-password");
     expect(sitemap).not.toContain("/nclex/study-guide");
-    expect(robots).toContain("gatedStudyGuidePaths");
+    expect(robots).not.toContain("gatedStudyGuidePaths");
+    expect(robots).not.toContain("/nclex-study-guide");
+    expect(robots).not.toContain("/pance-study-guide");
     expect(robots).toContain("https://www.anyexameasy.com/sitemap.xml");
   });
 });

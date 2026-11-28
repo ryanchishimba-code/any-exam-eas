@@ -14,6 +14,8 @@ export const BLOG_CACHE_TAG = "blog-posts";
 /** Stored slug → public URL slug. `/blog/strategies` 301s to the public slug. */
 const BLOG_PUBLIC_SLUGS: Record<string, string> = {
   strategies: "nclex-study-plan-rn-pn",
+  why: "affordable-nclex-prep",
+  okay: "naplex-study-plan",
 };
 
 export function publicBlogSlug(stored: string): string {

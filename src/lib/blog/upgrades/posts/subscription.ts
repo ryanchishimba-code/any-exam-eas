@@ -8,7 +8,7 @@ const content = [
     `One Pro subscription covers six boards: NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. USMLE includes Step 1, Step 2 CK, and Step 3. You do not buy a separate bank for each board. The offer is ${TRIAL_OFFER} ${TRIAL_QUESTION_LIMIT}. After the trial, practice stays locked unless you continue on Pro.`
   ),
   p(
-    `This page is what the product actually includes. It is not a comparison that invents another company’s price, and it is not a claim that you will pass. For how to study, use the ${a("/blog/nclex-study-plan-rn-pn", "NCLEX study plan")}, the ${a("/blog/why", "budget NCLEX guide")}, or the ${a("/blog/okay", "NAPLEX study plan")}.`
+    `This page is what the product actually includes. It is not a comparison that invents another company’s price, and it is not a claim that you will pass. For how to study, use the ${a("/blog/nclex-study-plan-rn-pn", "NCLEX study plan")}, the ${a("/blog/affordable-nclex-prep", "budget NCLEX guide")}, or the ${a("/blog/naplex-study-plan", "NAPLEX study plan")}.`
   ),
 
   h2("Who the plan is for"),
@@ -38,12 +38,12 @@ const content = [
   p(
     `AI Tutor walks through why you missed an item on NCLEX, NAPLEX, and the USMLE steps. It is not turned on for PANCE, AANP FNP, or NPTE-PT. Those banks still have rationales, Roadmap, and full-length exams.`
   ),
-  h3("Reference books are not a free download"),
+  h3("Study guides are public. The question bank is the trial"),
   p(
-    `The NCLEX, NAPLEX, AANP FNP, and PANCE study guides are reference books inside the product. They open for a signed-in trial or Pro account. When the trial ends, they close with the rest of the study tools. Bookmarks and highlights stay on the account if you continue. There is no separate “free PDF” that replaces the book.`
+    `The NCLEX, NAPLEX, AANP FNP, PANCE, USMLE, and NPTE study guides are public pages. You can read them without an account. There is no separate PDF. The trial and Pro open the question bank, Roadmap, and exams. Bookmarks inside the old reader are not required to read the guide.`
   ),
   p(
-    `Open them from ${a("/nclex/study-guide", "NCLEX")}, ${a("/naplex/study-guide", "NAPLEX")}, ${a("/aanp-fnp/study-guide", "AANP FNP")}, or ${a("/pance/study-guide", "PANCE")} after you start. USMLE and NPTE-PT prep on this plan is the question bank, Roadmap, and exams, not a matching reference book.`
+    `Open them from ${a("/nclex-study-guide", "nursing boards")}, ${a("/naplex-study-guide", "pharmacy boards")}, ${a("/aanp-fnp-study-guide", "nurse practitioner boards")}, ${a("/pance-study-guide", "physician assistant boards")}, ${a("/usmle-study-guide", "physician boards")}, or ${a("/npte-pt-study-guide", "physical therapy boards")}.`
   ),
 
   h2("NCLEX item types in the bank"),
@@ -68,7 +68,7 @@ const content = [
     `It does not promise a license, a score, or a job.`,
     `It is not affiliated with NCSBN, NABP, NBME, FSMB, NCCPA, NPCB, or FSBPT.`,
     `It does not set your eligibility. Your board or medical authority does.`,
-    `It does not replace the official test plan, content outline, or candidate bulletin. Those stay the source of exam rules. The ${a("/blog/nclex-study-plan-rn-pn", "NCLEX guide")} and ${a("/blog/okay", "NAPLEX guide")} link them.`,
+    `It does not replace the official test plan, content outline, or candidate bulletin. Those stay the source of exam rules. The ${a("/blog/nclex-study-plan-rn-pn", "NCLEX guide")} and ${a("/blog/naplex-study-plan", "NAPLEX guide")} link them.`,
   ]),
   p(
     `Price after the trial is $27.99 per month on the monthly plan. Longer billing intervals exist on ${a("/pricing", "pricing")} if you want them. The trial itself does not ask for a payment method. ${a(TRIAL_HREF, "Try for free")} when you want to see a case and a rationale, not a feature list.`

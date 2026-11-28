@@ -4,6 +4,7 @@ import {
   GOOGLE_TAG_SCRIPT_HOSTS,
 } from "./src/lib/analytics/google-tag-policy";
 import { retiredStudyRedirects } from "./src/lib/navigation/retired-study-redirects";
+import { legacyStudyGuideRedirects } from "./src/lib/study-guides/legacy-redirects";
 
 /** Standalone is for Docker/AWS only — Vercel uses its own serverless output (faster builds). */
 const useStandaloneOutput = !process.env.VERCEL;
@@ -76,6 +77,31 @@ const nextConfig: NextConfig = {
   ...(devDeploymentId ? { deploymentId: devDeploymentId } : {}),
   poweredByHeader: false,
   // Quiz JSON is read from disk at request time so a reviewed file can be swapped in.
+  outputFileTracingExcludes: Object.fromEntries(
+    [
+      "/nclex-study-guide",
+      "/naplex-study-guide",
+      "/pance-study-guide",
+      "/aanp-fnp-study-guide",
+      "/npte-pt-study-guide",
+      "/usmle-study-guide",
+      "/usmle-study-guide/[step]",
+    ].map((route) => [
+      route,
+      [
+        ".git/**",
+        "node_modules/@prisma/**",
+        "node_modules/prisma/**",
+        "node_modules/@next/swc-linux-x64-gnu/**",
+        "node_modules/@next/swc-linux-x64-musl/**",
+        "node_modules/typescript/**",
+        "node_modules/three/**",
+        "node_modules/three-stdlib/**",
+        "node_modules/@img/**",
+        "node_modules/lucide-react/**",
+      ],
+    ])
+  ),
   outputFileTracingIncludes: {
     "/api/quick-bites/[slug]/quiz": ["./src/lib/quick-bites/quizzes/**/*"],
     "/api/quick-bites-pharmacy/[slug]/quiz": ["./src/lib/quick-bites/quizzes-pharmacy/**/*"],
@@ -221,6 +247,51 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=86400" },
         ],
       },
+      ...[
+        "/",
+        "/nclex",
+        "/naplex",
+        "/usmle",
+        "/pance",
+        "/aanp-fnp",
+        "/npte-pt",
+        "/pricing",
+        "/compare",
+        "/toolkit",
+        "/blog",
+        "/blog/:path*",
+        "/resources/:path*",
+        "/daily",
+        "/daily/:path*",
+        "/crossword",
+        "/crossword/:path*",
+        "/anatomy",
+        "/study/drugs300",
+        "/free-guides",
+        "/about",
+        "/faq",
+        "/nclex-study-guide",
+        "/naplex-study-guide",
+        "/pance-study-guide",
+        "/aanp-fnp-study-guide",
+        "/usmle-study-guide",
+        "/usmle-study-guide/:path*",
+        "/npte-pt-study-guide",
+      ].map((source) => ({
+        source,
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=300, stale-while-revalidate=86400",
+          },
+        ],
+      })),
+      ...["/dashboard/:path*", "/question-bank", "/question-bank/:path*", "/settings", "/checkout", "/api/:path*"].map(
+        (source) => ({
+          source,
+          headers: [{ key: "Cache-Control", value: "private, no-store" }],
+        })
+      ),
       {
         source: "/:path*",
         headers: [
@@ -242,6 +313,17 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       ...retiredStudyRedirects(),
+      ...legacyStudyGuideRedirects(),
+      {
+        source: "/blog/why",
+        destination: "/blog/affordable-nclex-prep",
+        statusCode: 301,
+      },
+      {
+        source: "/blog/okay",
+        destination: "/blog/naplex-study-plan",
+        statusCode: 301,
+      },
       {
         source: "/npte",
         destination: "/npte-pt",

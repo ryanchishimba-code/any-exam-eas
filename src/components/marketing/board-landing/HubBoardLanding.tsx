@@ -12,6 +12,8 @@ import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePla
 import { hubLiveBarChartHeading } from "@/lib/marketing/board-landing/hub-live-bar-chart";
 import type { HubBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { BoardCrosswordPromo } from "@/components/marketing/board-landing/BoardCrosswordPromo";
+import { BoardPublicLinks } from "@/components/marketing/board-landing/BoardPublicLinks";
+import type { PublicStudyGuideId } from "@/lib/study-guides/public-catalog";
 import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
@@ -50,6 +52,7 @@ export async function HubBoardLanding({
         trialLabel={heroTrialLabel}
         trail={
           <>
+      <BoardPublicLinks exam={model.layout as PublicStudyGuideId} />
       <div className="bl-band">
         <FreePracticeLink board={freeQuizBoard} prominent />
       </div>
