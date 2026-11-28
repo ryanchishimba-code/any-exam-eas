@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import robots from "@/app/robots";
 import { exactRedirectSources } from "@/lib/seo/canonical-redirects";
 import {
   INDEXNOW_KEY,
@@ -8,6 +9,11 @@ import {
   noindexHeaderSources,
   robotsAllowsPath,
 } from "@/lib/seo/crawl-policy";
+import { isGatedStudyGuidePath } from "@/lib/seo/gated-study-guide-paths";
+import { PANCE_STUDY_GUIDE_UPDATED } from "@/lib/pance-study-guide/public-guide";
+import { contentUpdatedOn } from "@/lib/study-guides/content-updated";
+import { studyGuideChapterPaths } from "@/lib/study-guides/load-public-guide";
+import { PUBLIC_STUDY_GUIDE_LIST, USMLE_PUBLIC_STEPS } from "@/lib/study-guides/public-catalog";
 import { RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
 import {
   SITEMAP_IDS,
@@ -144,6 +150,58 @@ describe("sitemap catalog", () => {
     expect(robotsAllowsPath("/api/health")).toBe(false);
     expect(robotsAllowsPath("/nclex")).toBe(true);
     expect(robotsAllowsPath("/naplex")).toBe(true);
+    expect(robotsAllowsPath("/nclex-study-guide/02-fundamentals-safety")).toBe(true);
+  });
+
+  it("lists every free study guide, step, and chapter on www with a content date", () => {
+    const chapters = studyGuideChapterPaths();
+    const expected = new Map<string, string>();
+    for (const guide of PUBLIC_STUDY_GUIDE_LIST) {
+      const dirs = guide.contentDirs.length
+        ? [...guide.contentDirs]
+        : ["src/lib/exam-prep/npte-pt/content-outline.ts"];
+      const lastmod =
+        guide.path === "/pance-study-guide"
+          ? PANCE_STUDY_GUIDE_UPDATED
+          : contentUpdatedOn(dirs, NOW).iso;
+      expected.set(guide.path, lastmod);
+    }
+    for (const step of USMLE_PUBLIC_STEPS) {
+      expected.set(step.path, contentUpdatedOn([step.contentDir], NOW).iso);
+    }
+    for (const chapter of chapters) {
+      expected.set(chapter.path, contentUpdatedOn([chapter.contentDir], NOW).iso);
+    }
+
+    const guides = built["study-guides"];
+    const byPath = new Map(guides.map((url) => [new URL(url.loc).pathname, url]));
+    expect(expected.size).toBeGreaterThan(100);
+    for (const [path, lastmod] of expected) {
+      const url = byPath.get(path);
+      expect(url?.loc, path).toBe(`https://www.anyexameasy.com${path}`);
+      expect(url?.lastmod, path).toBe(lastmod);
+      expect(lastmod, path).not.toBe("2026-11-28");
+      expect(isGatedStudyGuidePath(path), path).toBe(false);
+      expect(exactRedirectSources(), path).not.toContain(path);
+      expect(robotsAllowsPath(path), path).toBe(true);
+    }
+
+    const paths = [...byPath.keys()];
+    expect(paths).toContain("/usmle-study-guide");
+    expect(paths).toContain("/usmle-study-guide/step-1");
+    expect(paths).toContain("/usmle-study-guide/step-2-ck");
+    expect(paths).toContain("/usmle-study-guide/step-3");
+    expect(paths).toContain("/nclex-study-guide/04-cardiac");
+    expect(paths).toContain("/naplex-study-guide/05-cardiology");
+    expect(paths).toContain("/aanp-fnp-study-guide/04-cardiology");
+    expect(paths.some((path) => path.startsWith("/pance-study-guide/"))).toBe(false);
+    expect(paths.some((path) => path.startsWith("/nclex/study-guide"))).toBe(false);
+    expect(paths.some((path) => path.includes("login") || path.includes("signup"))).toBe(false);
+
+    const index = renderSitemapIndex(built);
+    expect(index).toContain("https://www.anyexameasy.com/sitemap/study-guides.xml");
+    expect(robots().sitemap).toBe("https://www.anyexameasy.com/sitemap.xml");
+    expect(robots().host).toBe("https://www.anyexameasy.com");
   });
 });
 

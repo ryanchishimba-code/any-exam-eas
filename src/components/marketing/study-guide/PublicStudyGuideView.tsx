@@ -8,6 +8,7 @@ import {
 } from "@/lib/marketing/marketing-photo-heroes";
 import { contentUpdatedOn } from "@/lib/study-guides/content-updated";
 import type { LoadedPublicGuide } from "@/lib/study-guides/load-public-guide";
+import type { UsmleHubCard } from "@/lib/study-guides/load-public-guide";
 import { guideSectionToc, presentGuideHtml, readingMinutes, readingTimeLabel } from "@/lib/study-guides/present-html";
 import {
   PUBLIC_STUDY_GUIDE_LIST,
@@ -27,16 +28,20 @@ function seoFor(guide: PublicStudyGuide, stepId?: string): GuideSeoCopy {
 export function PublicStudyGuideView({
   guide,
   page,
-  stepLinks,
   stepId,
   questionCount,
+  hubCards,
+  chapterLinks,
+  minutesOverride,
 }: {
   guide: PublicStudyGuide;
   page: LoadedPublicGuide;
-  stepLinks?: readonly { href: string; label: string }[];
   stepId?: string;
   /** Floored live total, already formatted with a plus, such as 3,900+. */
   questionCount?: string | null;
+  hubCards?: UsmleHubCard[];
+  chapterLinks?: readonly { href: string; title: string; excerpt: string }[];
+  minutesOverride?: number;
 }) {
   const seo = seoFor(guide, stepId);
   const step = USMLE_PUBLIC_STEPS.find((item) => item.id === stepId);
@@ -46,7 +51,7 @@ export function PublicStudyGuideView({
   const focal = MARKETING_PHOTO_HEROES[heroId].focalPosition;
   const body = presentGuideHtml(page.html, seo.query);
   const sections = guideSectionToc(body);
-  const minutes = readingMinutes(body, `${seo.lede} ${seo.answers.map((item) => item.answer).join(" ")}`);
+  const minutes = minutesOverride ?? readingMinutes(body, `${seo.lede} ${seo.answers.map((item) => item.answer).join(" ")}`);
   const contentDirs = step
     ? [step.contentDir]
     : guide.contentDirs.length > 0
@@ -61,11 +66,24 @@ export function PublicStudyGuideView({
           <a href={`#${item.id}`}>{item.question}</a>
         </li>
       ))}
-      {sections.map((item) => (
-        <li key={item.id}>
-          <a href={`#${item.id}`}>{item.text}</a>
-        </li>
-      ))}
+      {hubCards
+        ? hubCards.map((card) => (
+            <li key={card.id}>
+              <a href={`#${card.id}`}>{card.label}</a>
+            </li>
+          ))
+        : null}
+      {chapterLinks
+        ? chapterLinks.map((chapter) => (
+            <li key={chapter.href}>
+              <a href={chapter.href}>{chapter.title}</a>
+            </li>
+          ))
+        : sections.map((item) => (
+            <li key={item.id}>
+              <a href={`#${item.id}`}>{item.text}</a>
+            </li>
+          ))}
     </ol>
   );
 
@@ -154,17 +172,45 @@ export function PublicStudyGuideView({
           ))}
         </section>
 
-        {stepLinks && stepLinks.length > 0 ? (
-          <nav className="psg-steps" aria-label="Step books">
-            {stepLinks.map((step) => (
-              <Link key={step.href} href={step.href}>
-                {step.label}
-              </Link>
+        {hubCards && hubCards.length > 0 ? (
+          <div className="psg-hub">
+            {hubCards.map((card) => (
+              <article key={card.id} id={card.id} className="psg-hub-card">
+                <h2>
+                  <Link href={card.href}>{card.label}</Link>
+                </h2>
+                <p>{card.summary}</p>
+                {card.chapters.length > 0 ? (
+                  <ol>
+                    {card.chapters.map((chapter) => (
+                      <li key={chapter.href}>
+                        <Link href={chapter.href}>{chapter.title}</Link>
+                      </li>
+                    ))}
+                  </ol>
+                ) : (
+                  <Link href={card.href}>Read the {card.label} study guide</Link>
+                )}
+              </article>
             ))}
-          </nav>
+          </div>
         ) : null}
 
-        <div className="psg-body sg-paper sg-prose" dangerouslySetInnerHTML={{ __html: body }} />
+        {chapterLinks && chapterLinks.length > 0 ? (
+          <div className="psg-chapters">
+            {chapterLinks.map((chapter) => (
+              <article key={chapter.href} className="psg-chapter-card">
+                <h2>
+                  <Link href={chapter.href}>{chapter.title}</Link>
+                </h2>
+                {chapter.excerpt ? <p>{chapter.excerpt}</p> : null}
+                <Link href={chapter.href}>Read this section</Link>
+              </article>
+            ))}
+          </div>
+        ) : null}
+
+        {body ? <div className="psg-body sg-paper sg-prose" dangerouslySetInnerHTML={{ __html: body }} /> : null}
 
         <aside className="psg-end">
           <h2>Read the guide. Practice when you want the bank.</h2>
