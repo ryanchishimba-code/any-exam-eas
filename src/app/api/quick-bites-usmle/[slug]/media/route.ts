@@ -20,7 +20,7 @@ export async function GET(
   if (!gate.ok) return gate.response;
 
   const episode = getUsmleVideoQuickBiteBySlug(slug);
-  if (!usmleHeldEpisodeIsServable(episode, gate)) {
+  if (!episode || !usmleHeldEpisodeIsServable(episode, gate)) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
   }
 
