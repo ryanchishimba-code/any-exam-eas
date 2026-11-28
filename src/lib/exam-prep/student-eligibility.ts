@@ -417,10 +417,7 @@ export function resetIneligibleServedIdCache(): void {
   ineligibleIdCache.clear();
 }
 
-/** Active qaPassed ids the structural rule suppresses. Restored rows are omitted. */
-export async function ineligibleServedIds(fieldId: string): Promise<string[]> {
-  const hit = ineligibleIdCache.get(fieldId);
-  if (hit && Date.now() - hit.at < CASE_GROUP_CACHE_MS) return hit.ids;
+async function queryIneligibleServedIds(fieldId: string): Promise<string[]> {
   const { sqlQuery } = await import("@/lib/db");
   const { STUDENT_ELIGIBLE_SQL } = await import("@/lib/exam-prep/student-eligibility-sql");
   const stepGuard =
@@ -439,7 +436,39 @@ export async function ineligibleServedIds(fieldId: string): Promise<string[]> {
     `,
     [fieldId]
   )) as Array<{ id: string }>;
-  const ids = rows.map((row) => row.id);
+  return rows.map((row) => row.id);
+}
+
+/**
+ * Active qaPassed ids the structural rule suppresses. Restored rows are omitted.
+ * The predicate parses option JSON, so the shared cache keeps it off every
+ * dashboard and today-mix isolate. The inventory tag drops it on a bank purge.
+ */
+export async function ineligibleServedIds(fieldId: string): Promise<string[]> {
+  const hit = ineligibleIdCache.get(fieldId);
+  if (hit && Date.now() - hit.at < CASE_GROUP_CACHE_MS) return hit.ids;
+
+  let ids: string[];
+  try {
+    const { unstable_cache } = await import("next/cache");
+    const { ACTIVE_INVENTORY_CACHE_TAG, ACTIVE_INVENTORY_CACHE_TTL_SECONDS } = await import(
+      "@/lib/inventory/active-inventory-cache"
+    );
+    ids = await unstable_cache(
+      () => queryIneligibleServedIds(fieldId),
+      ["ineligible-served-ids-v1", fieldId],
+      {
+        revalidate: ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+        tags: [ACTIVE_INVENTORY_CACHE_TAG],
+      }
+    )();
+  } catch (error) {
+    console.warn(
+      "[eligibility] ineligible-id cache unavailable:",
+      error instanceof Error ? error.message : error
+    );
+    ids = await queryIneligibleServedIds(fieldId);
+  }
   ineligibleIdCache.set(fieldId, { at: Date.now(), ids });
   return ids;
 }

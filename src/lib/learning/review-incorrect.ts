@@ -34,8 +34,8 @@ export async function loadServableReviewBankIds(
   const ngnIds = ids.filter((id) => id.startsWith("ngn:"));
   if (ngnIds.length === 0) return servable;
   try {
-    const { keysForCatalog, loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
-    const published = keysForCatalog((await loadPublishedClinicalBank(fieldId)).catalog);
+    const { loadPublishedClinicalKeys } = await import("@/lib/marketing/clinical-extra-http");
+    const published = await loadPublishedClinicalKeys(fieldId);
     for (const id of ngnIds) {
       if (published.has(id)) servable.add(id);
     }

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import {
@@ -88,6 +89,7 @@ export function DashboardPageContent({
   deferTodayMix = false,
   trialStartHere = null,
   studyCompletion = null,
+  belowToday = null,
   accuracyTrend = [],
 }: {
   examSlug: ExamSlug;
@@ -122,6 +124,8 @@ export function DashboardPageContent({
     show: boolean;
   } | null;
   studyCompletion?: StudyCompletionResult | null;
+  /** Streamed after the today block. Study progress uses this so the block does not wait on it. */
+  belowToday?: ReactNode;
   accuracyTrend?: AccuracyTrendPoint[];
 }) {
   const exam = EXAM_CATALOG[examSlug];
@@ -257,6 +261,7 @@ export function DashboardPageContent({
       ) : null}
 
       {studyCompletion ? <StudyProgressCard data={studyCompletion} /> : null}
+      {belowToday}
 
       <DashboardProgressFold plan={examDayPlan} studyLocked={studyLocked}>
         <RemediationPanel

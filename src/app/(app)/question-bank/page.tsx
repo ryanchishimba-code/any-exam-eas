@@ -10,6 +10,7 @@ import { buildTopicWeakness } from "@/lib/learning/weakness";
 import { requireStudyPage } from "@/lib/require-premium-page";
 import { runPageDb } from "@/lib/page-access-error";
 import { ROUTES } from "@/lib/routes";
+import { loadSubjectCountsForField } from "@/lib/study/load-subject-counts";
 import { resolveQuestionBankRoute } from "@/lib/study/question-bank-route";
 import {
   countEligibleWeakTopics,
@@ -75,6 +76,7 @@ async function QuestionBankContent({
   usmleStepLabel,
   blueprintTopics = [],
   onTopic = false,
+  countsPromise,
 }: {
   userId: string;
   examSlug: ExamSlug;
@@ -82,6 +84,7 @@ async function QuestionBankContent({
   usmleStepLabel?: string;
   blueprintTopics?: string[];
   onTopic?: boolean;
+  countsPromise?: Promise<Awaited<ReturnType<typeof loadSubjectCountsForField>>>;
 }) {
   // Retries live in the loader / Neon HTTP path. After they are exhausted,
   // this throws into question-bank/error.tsx (final fallback UI).
@@ -93,6 +96,7 @@ async function QuestionBankContent({
       usmleStepLabel={usmleStepLabel}
       blueprintTopics={blueprintTopics}
       onTopic={onTopic}
+      countsPromise={countsPromise}
     />
   );
 }
@@ -109,12 +113,17 @@ export default async function QuestionBankPage({
   }
 
   // Access and the board route are independent once the session exists.
-  // Running them together removes a serial wait on the question-bank critical path.
+  // Topic counts start as soon as the field is known so they overlap access.
+  const style = firstParam(sp.style);
+  const routePromise = runPageDb(() => resolveQuestionBankRoute(session.user.id, sp));
+  const countsPromise =
+    style === "review_incorrect" || style === "weak_areas"
+      ? undefined
+      : routePromise.then((route) => loadSubjectCountsForField(route.fieldParam));
   const [, route] = await Promise.all([
     requireStudyPage(ROUTES.questionBank),
-    runPageDb(() => resolveQuestionBankRoute(session.user.id, sp)),
+    routePromise,
   ]);
-  const style = firstParam(sp.style);
   const subjectId = firstParam(sp.subjectId);
   const examSessionId = firstParam(sp.examSessionId);
   const blueprintTopics =
@@ -175,6 +184,7 @@ export default async function QuestionBankPage({
           {...route}
           blueprintTopics={blueprintTopics}
           onTopic={firstParam(sp.weakArea) === "1"}
+          countsPromise={countsPromise}
         />
       </Suspense>
     </div>

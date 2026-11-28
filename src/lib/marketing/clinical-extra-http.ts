@@ -10,6 +10,8 @@ import { unstable_cache } from "next/cache";
 import { boardProfilesForField } from "@/lib/assessment/board-field";
 import {
   selectPublishedCatalog,
+  servedItemKeys,
+  type PublishedCatalog,
   type ServeCase,
   type ServeItem,
 } from "@/lib/assessment/serve";
@@ -21,8 +23,10 @@ import {
 import { sqlQuery } from "@/lib/db";
 import {
   ACTIVE_INVENTORY_CACHE_TAG,
+  ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
   BANK_COUNTS_QUERY_TIMEOUT_MS,
 } from "@/lib/inventory/active-inventory-cache";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 
 export type ClinicalItemRow = {
   id: string;
@@ -207,4 +211,141 @@ export async function loadNursingPublishedStandaloneNgnTypes(): Promise<Record<s
   } catch {
     return {};
   }
+}
+
+export type SlimClinicalItemRow = ClinicalItemRow & {
+  clientNeedsSubcategory: string;
+};
+
+export type SlimClinicalCaseRow = ClinicalCaseRow & {
+  primaryClientNeed: string;
+};
+
+function subjectList(fieldId: string): { id: string; label: string }[] {
+  try {
+    return getSubjectsForFieldId(fieldId).map((subject) => ({
+      id: subject.id,
+      label: subject.label,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+function asSlimItem(row: SlimClinicalItemRow): ServeItem {
+  const item = asItem(row);
+  return {
+    ...item,
+    clientNeeds: {
+      subcategory: row.clientNeedsSubcategory,
+    } as ServeItem["clientNeeds"],
+  };
+}
+
+function asSlimCase(row: SlimClinicalCaseRow): ServeCase {
+  return {
+    ...asCase(row),
+    primaryClientNeed: row.primaryClientNeed,
+  };
+}
+
+/**
+ * Same publish rules as the full chart catalog, without stems or charts.
+ * Topic attribution uses the client-need label the full loader uses.
+ */
+export function catalogFromSlimRows(input: {
+  fieldId: string;
+  items: readonly SlimClinicalItemRow[];
+  cases: readonly SlimClinicalCaseRow[];
+  subjects?: readonly { id: string; label: string }[];
+}): PublishedCatalog {
+  return selectPublishedCatalog({
+    items: input.items.map(asSlimItem),
+    cases: input.cases.map(asSlimCase),
+    subjects: input.subjects ?? subjectList(input.fieldId),
+    fieldId: input.fieldId,
+  });
+}
+
+async function readSlimClinicalRows(fieldId: string): Promise<{
+  items: SlimClinicalItemRow[];
+  cases: SlimClinicalCaseRow[];
+} | null> {
+  const profiles = boardProfilesForField(fieldId);
+  if (profiles.length === 0) return null;
+  const timeout = { timeoutMs: BANK_COUNTS_QUERY_TIMEOUT_MS };
+  const batches = await sqlQuery<Array<{ batchId: string }>>(
+    `
+    SELECT batch_id AS "batchId"
+    FROM ngn_import_batch
+    WHERE board_profile = ANY($1::text[])
+    `,
+    [profiles],
+    timeout
+  );
+  const batchIds = batches
+    .map((row) => row.batchId)
+    .filter((id): id is string => typeof id === "string" && id.length > 0);
+  if (batchIds.length === 0) return null;
+
+  const [items, cases] = await Promise.all([
+    sqlQuery<SlimClinicalItemRow[]>(
+      `
+      SELECT id, version, status,
+             case_id AS "caseId",
+             case_version AS "caseVersion",
+             case_step AS "caseStep",
+             item_type AS "itemType",
+             COALESCE(client_needs->>'subcategory', '') AS "clientNeedsSubcategory"
+      FROM ngn_item
+      WHERE batch_id = ANY($1::text[])
+      `,
+      [batchIds],
+      timeout
+    ),
+    sqlQuery<SlimClinicalCaseRow[]>(
+      `
+      SELECT id, version, status,
+             COALESCE(primary_client_need, '') AS "primaryClientNeed"
+      FROM ngn_case
+      WHERE batch_id = ANY($1::text[])
+      `,
+      [batchIds],
+      timeout
+    ),
+  ]);
+  return { items: items ?? [], cases: cases ?? [] };
+}
+
+async function loadSlimPublishedCatalogUncached(fieldId: string): Promise<PublishedCatalog> {
+  const subjects = subjectList(fieldId);
+  const rows = await readSlimClinicalRows(fieldId);
+  if (!rows) {
+    return selectPublishedCatalog({ items: [], cases: [], subjects, fieldId });
+  }
+  return catalogFromSlimRows({ fieldId, ...rows, subjects });
+}
+
+/**
+ * Published NGN catalog for counts and review keys.
+ * The full chart object is about 2.2MB and Next.js will not store it, so
+ * dashboard and question-bank reads use this id/status/label query instead.
+ */
+export async function loadSlimPublishedCatalog(fieldId: string): Promise<PublishedCatalog> {
+  const { readActiveInventoryStampKey } = await import("@/lib/inventory/active-inventory-stamp");
+  const stamp = await readActiveInventoryStampKey();
+  if (!stamp) return loadSlimPublishedCatalogUncached(fieldId);
+  return unstable_cache(
+    () => loadSlimPublishedCatalogUncached(fieldId),
+    ["published-clinical-slim-v1", fieldId, stamp],
+    {
+      revalidate: ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+      tags: [ACTIVE_INVENTORY_CACHE_TAG],
+    }
+  )();
+}
+
+/** Question keys a published catalog would serve. Does not load charts. */
+export async function loadPublishedClinicalKeys(fieldId: string): Promise<Set<string>> {
+  return new Set(servedItemKeys(await loadSlimPublishedCatalog(fieldId)));
 }
