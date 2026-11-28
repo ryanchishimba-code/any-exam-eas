@@ -4,6 +4,7 @@
  */
 export const GOOGLE_TAG_SCRIPT_HOSTS = [
   "https://www.googletagmanager.com",
+  "https://*.googletagmanager.com",
   "https://www.googleadservices.com",
   "https://www.google.com",
   "https://googleads.g.doubleclick.net",
@@ -11,8 +12,13 @@ export const GOOGLE_TAG_SCRIPT_HOSTS = [
 
 export const GOOGLE_TAG_CONNECT_HOSTS = [
   "https://www.google-analytics.com",
+  "https://region1.google-analytics.com",
+  "https://*.google-analytics.com",
   "https://analytics.google.com",
+  "https://region1.analytics.google.com",
+  "https://*.analytics.google.com",
   "https://www.googletagmanager.com",
+  "https://*.googletagmanager.com",
   "https://www.google.com",
   "https://googleads.g.doubleclick.net",
   "https://www.googleadservices.com",

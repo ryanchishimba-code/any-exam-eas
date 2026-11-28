@@ -9,15 +9,12 @@
  * Both are primary, one conversion per click, and set to always use the default
  * value ($8 and $27.99). The site must still send the real purchase value.
  *
- * Account 125-765-3442 is not readable with this login (USER_PERMISSION_DENIED).
- * Its Sign Up action listens for ads_conversion_Sign_Up_1. No AW- id for that
- * account appears in the repo, the production HTML, or the readable Ads account.
- * Set NEXT_PUBLIC_GOOGLE_ADS_ACCOUNT_125_ID to the AW- id from that action's tag
- * setup. Do not guess it.
- *
- * GA4 measurement id is NEXT_PUBLIC_GA_MEASUREMENT_ID. Production HTML does not
- * currently include a G- id. The imported "anyexameasy.com (web) purchase"
- * action receives a purchase only after that id is set.
+ * Account 125-765-3442 has no AW- tag. Both of its conversion actions are GA4
+ * imports from property anyexameasy.com (562268160):
+ *   Sign Up imports the GA4 event ads_conversion_Sign_Up_1
+ *   anyexameasy.com (web) purchase imports the GA4 event purchase
+ * Those events are sent with send_to NEXT_PUBLIC_GA_MEASUREMENT_ID, the G- id
+ * of the web stream on that property. There is no second Ads tag id.
  */
 
 export const GOOGLE_ADS_CUSTOMER_ID = "9177079098";
@@ -27,8 +24,11 @@ export const GOOGLE_ADS_PURCHASE_LABEL = "fqrSCMD49MAdEMS59pRE";
 export const GOOGLE_ADS_SIGNUP_SEND_TO = `${GOOGLE_ADS_TAG_ID}/${GOOGLE_ADS_SIGNUP_LABEL}`;
 export const GOOGLE_ADS_PURCHASE_SEND_TO = `${GOOGLE_ADS_TAG_ID}/${GOOGLE_ADS_PURCHASE_LABEL}`;
 
-/** Event name of the Sign Up conversion on account 125-765-3442. */
-export const GOOGLE_ADS_ACCOUNT_125_SIGNUP_EVENT = "ads_conversion_Sign_Up_1";
+/**
+ * GA4 event imported as Sign Up on account 125-765-3442.
+ * Sent to the measurement id, once per new account, with sign_up.
+ */
+export const GA4_IMPORTED_SIGNUP_EVENT = "ads_conversion_Sign_Up_1";
 
 export const ADS_SIGNUP_COOKIE = "aee_ads_signup";
 export const ADS_PURCHASE_COOKIE = "aee_ads_purchase";
@@ -37,7 +37,6 @@ export const ADS_PURCHASE_COOKIE = "aee_ads_purchase";
 export const STRIPE_CHECKOUT_SUCCESS_PATH =
   "/checkout/return?session_id={CHECKOUT_SESSION_ID}";
 
-const ADS_ID_PATTERN = /^AW-\d{8,15}$/;
 const GA_ID_PATTERN = /^G-[A-Z0-9]+$/;
 const METHOD_PATTERN = /^[a-z]{2,20}$/;
 const USER_ID_PATTERN = /^[A-Za-z0-9_-]{8,64}$/;
@@ -81,11 +80,6 @@ export type FiredStore = {
 
 export function gaMeasurementId(): string | null {
   return matchId(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, GA_ID_PATTERN);
-}
-
-/** AW- id for account 125-765-3442. Empty unless Ryan sets the env var. */
-export function account125AdsTagId(): string | null {
-  return matchId(process.env.NEXT_PUBLIC_GOOGLE_ADS_ACCOUNT_125_ID, ADS_ID_PATTERN);
 }
 
 export function googleTagScriptSrc(): string {
@@ -255,12 +249,15 @@ export function signUpGtagEvents(input: {
   method: string;
   trial: boolean;
   gaId: string | null;
-  account125Id: string | null;
 }): GtagEvent[] {
   const events: GtagEvent[] = [];
   if (input.gaId) {
     events.push({
       name: "sign_up",
+      params: { method: input.method, send_to: input.gaId },
+    });
+    events.push({
+      name: GA4_IMPORTED_SIGNUP_EVENT,
       params: { method: input.method, send_to: input.gaId },
     });
   }
@@ -269,15 +266,6 @@ export function signUpGtagEvents(input: {
       name: "conversion",
       params: {
         send_to: GOOGLE_ADS_SIGNUP_SEND_TO,
-        transaction_id: input.userId,
-      },
-    });
-  }
-  if (input.account125Id) {
-    events.push({
-      name: GOOGLE_ADS_ACCOUNT_125_SIGNUP_EVENT,
-      params: {
-        send_to: input.account125Id,
         transaction_id: input.userId,
       },
     });
@@ -329,7 +317,6 @@ export async function trackSignUpOnce(options: {
   email?: string | null;
   store: FiredStore;
   gaId?: string | null;
-  account125Id?: string | null;
   send: (events: GtagEvent[], emailHash: string | null) => void | Promise<void>;
 }): Promise<boolean> {
   const key = `${SIGNUP_FIRED_PREFIX}${options.signup.userId}`;
@@ -339,8 +326,6 @@ export async function trackSignUpOnce(options: {
     method: options.signup.method,
     trial: options.signup.trial,
     gaId: options.gaId === undefined ? gaMeasurementId() : options.gaId,
-    account125Id:
-      options.account125Id === undefined ? account125AdsTagId() : options.account125Id,
   });
   if (events.length === 0) return false;
   options.store.add(key);
@@ -384,12 +369,6 @@ export function googleTagBootstrapScript(): string {
   const configs = [
     `window.gtag('config', '${GOOGLE_ADS_TAG_ID}', { allow_enhanced_conversions: true });`,
   ];
-  const extra = account125AdsTagId();
-  if (extra && extra !== GOOGLE_ADS_TAG_ID) {
-    configs.push(
-      `window.gtag('config', '${extra}', { allow_enhanced_conversions: true });`
-    );
-  }
   const gaId = gaMeasurementId();
   if (gaId) configs.push(`window.gtag('config', '${gaId}');`);
   const regions = CONSENT_DENIED_REGIONS.map((code) => `'${code}'`).join(",");

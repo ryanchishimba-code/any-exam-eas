@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
-  GOOGLE_ADS_ACCOUNT_125_SIGNUP_EVENT,
+  GA4_IMPORTED_SIGNUP_EVENT,
   GOOGLE_ADS_PURCHASE_SEND_TO,
   GOOGLE_ADS_SIGNUP_SEND_TO,
   GOOGLE_ADS_TAG_ID,
@@ -39,7 +39,12 @@ describe("google ads conversion ids", () => {
 
   it("allows the Google tag in the production content security policy", () => {
     expect(GOOGLE_TAG_SCRIPT_HOSTS).toContain("https://www.googletagmanager.com");
+    expect(GOOGLE_TAG_SCRIPT_HOSTS).toContain("https://*.googletagmanager.com");
     expect(GOOGLE_TAG_CONNECT_HOSTS).toContain("https://www.google-analytics.com");
+    expect(GOOGLE_TAG_CONNECT_HOSTS).toContain("https://region1.google-analytics.com");
+    expect(GOOGLE_TAG_CONNECT_HOSTS).toContain("https://region1.analytics.google.com");
+    expect(GOOGLE_TAG_CONNECT_HOSTS).toContain("https://*.google-analytics.com");
+    expect(GOOGLE_TAG_CONNECT_HOSTS).toContain("https://www.googletagmanager.com");
     expect(GOOGLE_TAG_CONNECT_HOSTS).toContain("https://googleads.g.doubleclick.net");
   });
 });
@@ -60,25 +65,20 @@ describe("google tag bootstrap", () => {
     expect(script).toContain("'GB'");
     expect(script).toContain("ad_storage: 'granted'");
     expect(script).toContain("allow_enhanced_conversions: true");
-    expect(script).not.toContain(GOOGLE_ADS_ACCOUNT_125_SIGNUP_EVENT);
+    expect(script).not.toContain(GA4_IMPORTED_SIGNUP_EVENT);
+    expect(script).not.toContain("125-765-3442");
   });
 
-  it("adds GA4 and the account 125 tag only when those ids are set", () => {
+  it("adds the GA4 measurement id when it is set", () => {
     vi.stubEnv("NEXT_PUBLIC_GA_MEASUREMENT_ID", "G-TEST123");
-    vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ACCOUNT_125_ID", "AW-9990001111");
     const script = googleTagBootstrapScript();
     expect(script).toContain("gtag('config', 'G-TEST123')");
-    expect(script).toContain("gtag('config', 'AW-9990001111'");
-  });
-
-  it("ignores an ads id that is not an AW- tag", () => {
-    vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ACCOUNT_125_ID", "125-765-3442");
-    expect(googleTagBootstrapScript()).not.toContain("125-765-3442");
+    expect(script).not.toContain("AW-9990001111");
   });
 });
 
 describe("signup and purchase hits", () => {
-  it("fires GA4 sign_up, the trial label, and the account 125 event once", async () => {
+  it("fires GA4 sign_up, the imported Sign Up event, and the trial label once", async () => {
     const store = memoryFiredStore();
     const sent: { events: { name: string; params: Record<string, unknown> }[]; hash: string | null }[] =
       [];
@@ -89,7 +89,6 @@ describe("signup and purchase hits", () => {
       email: " Student@Example.com ",
       store,
       gaId: "G-TEST123",
-      account125Id: "AW-9990001111",
       send: async (events, hash) => {
         sent.push({ events, hash });
       },
@@ -99,7 +98,6 @@ describe("signup and purchase hits", () => {
       email: "student@example.com",
       store,
       gaId: "G-TEST123",
-      account125Id: "AW-9990001111",
       send: async () => {
         throw new Error("second signup must not send");
       },
@@ -111,12 +109,12 @@ describe("signup and purchase hits", () => {
     expect(sent[0]?.events).toEqual([
       { name: "sign_up", params: { method: "email", send_to: "G-TEST123" } },
       {
-        name: "conversion",
-        params: { send_to: GOOGLE_ADS_SIGNUP_SEND_TO, transaction_id: USER_ID },
+        name: GA4_IMPORTED_SIGNUP_EVENT,
+        params: { method: "email", send_to: "G-TEST123" },
       },
       {
-        name: GOOGLE_ADS_ACCOUNT_125_SIGNUP_EVENT,
-        params: { send_to: "AW-9990001111", transaction_id: USER_ID },
+        name: "conversion",
+        params: { send_to: GOOGLE_ADS_SIGNUP_SEND_TO, transaction_id: USER_ID },
       },
     ]);
     expect(sent[0]?.hash).toBe(
@@ -131,9 +129,25 @@ describe("signup and purchase hits", () => {
         method: "google",
         trial: false,
         gaId: "G-TEST123",
-        account125Id: null,
       })
-    ).toEqual([{ name: "sign_up", params: { method: "google", send_to: "G-TEST123" } }]);
+    ).toEqual([
+      { name: "sign_up", params: { method: "google", send_to: "G-TEST123" } },
+      {
+        name: GA4_IMPORTED_SIGNUP_EVENT,
+        params: { method: "google", send_to: "G-TEST123" },
+      },
+    ]);
+  });
+
+  it("sends the imported Sign Up event only to GA4", () => {
+    expect(
+      signUpGtagEvents({
+        userId: USER_ID,
+        method: "email",
+        trial: true,
+        gaId: null,
+      }).map((event) => event.name)
+    ).toEqual(["conversion"]);
   });
 
   it("fires purchase once per transaction with value, currency, and items", async () => {
