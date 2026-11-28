@@ -21,6 +21,7 @@ import { TRIAL_DAYS } from "@/lib/billing-config";
 import { resolveDisplayedTrial } from "@/lib/auth/trial-welcome-math";
 import { fetchSubscriptionStatus } from "@/lib/client/post-login";
 import { analytics } from "@/lib/analytics";
+import { requestGoogleAdsTrialConversion } from "@/lib/analytics/google-ads-client";
 
 type TrialWelcomeGate = {
   active: boolean;
@@ -49,6 +50,8 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
   const searchParams = useSearchParams();
   const { data: session, status } = useSession();
   const validated = useRef(false);
+  const emailRef = useRef<string | null>(null);
+  emailRef.current = session?.user?.email ?? null;
 
   // Do not read window/sessionStorage in the initial state. Server HTML and
   // the first client render must match; the layout effect below opens the
@@ -135,6 +138,7 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
 
       if (welcomeParam) {
         analytics.trialStarted({ plan_type: "trial" }, { persist: false });
+        void requestGoogleAdsTrialConversion(emailRef.current);
       }
     })();
   }, [pathname, router, searchParams, status, visible]);

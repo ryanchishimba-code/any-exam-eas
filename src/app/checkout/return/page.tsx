@@ -6,6 +6,10 @@ import { ROUTES } from "@/lib/routes";
 import { retrieveCheckoutSession } from "@/lib/stripe";
 import { isStripeConfigured } from "@/lib/payments";
 import { TRIAL_DAYS } from "@/lib/billing-config";
+import {
+  GOOGLE_ADS_CHECKOUT_SESSION_PARAM,
+  isStripeCheckoutSessionId,
+} from "@/lib/analytics/google-ads";
 
 export const metadata = {
   title: "Payment complete — AnyExamEasy",
@@ -48,8 +52,13 @@ export default async function CheckoutReturnPage({
   }
 
   if (status === "success") {
-    const welcome = isTrialCheckout ? "&welcome=trial" : "";
-    redirect(`${ROUTES.dashboard}?checkout=success${welcome}`);
+    if (isTrialCheckout) {
+      redirect(`${ROUTES.dashboard}?checkout=success&welcome=trial`);
+    }
+    const sessionQuery = isStripeCheckoutSessionId(sessionId)
+      ? `&${GOOGLE_ADS_CHECKOUT_SESSION_PARAM}=${sessionId}`
+      : "";
+    redirect(`${ROUTES.dashboard}?checkout=success${sessionQuery}`);
   }
 
   return (

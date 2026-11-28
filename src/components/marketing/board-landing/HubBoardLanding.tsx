@@ -16,7 +16,7 @@ import { FreePracticeLink } from "@/components/marketing/free-practice/FreePract
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
-import { HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
+import { BOARD_PHOTO_HERO_TRIAL_LABEL, HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
 import { getCachedSession } from "@/lib/auth/session";
 import { ROUTES } from "@/lib/routes";
 
@@ -31,6 +31,8 @@ export async function HubBoardLanding({
   const signedIn = Boolean(session?.user);
   const barHeadingId = `hub-bar-${model.layout.replace(/[^a-z0-9]/g, "-")}`;
   const stories = storiesBelowHero(model.stories, model.heroTestimonial?.quote);
+  const crosswordAfterPricing = model.layout === "pance" || model.layout === "aanp-fnp";
+  const heroTrialLabel = crosswordAfterPricing ? BOARD_PHOTO_HERO_TRIAL_LABEL : undefined;
 
   return (
     <div className={`board-landing board-landing--tesla board-landing--board-flow ${model.themeClass}`}>
@@ -45,14 +47,17 @@ export async function HubBoardLanding({
         proofFacts={boardHeroProofFacts(model.heroOffer)}
         boardName={model.boardName}
         signedIn={signedIn}
+        trialLabel={heroTrialLabel}
         trail={
           <>
       <div className="bl-band">
         <FreePracticeLink board={freeQuizBoard} prominent />
       </div>
-      <div className="bl-band">
-        <BoardCrosswordPromo board={freeQuizBoard} />
-      </div>
+      {crosswordAfterPricing ? null : (
+        <div className="bl-band">
+          <BoardCrosswordPromo board={freeQuizBoard} />
+        </div>
+      )}
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
       </div>
@@ -137,6 +142,11 @@ export async function HubBoardLanding({
           </div>
         </section>
       </div>
+      {crosswordAfterPricing ? (
+        <div className="bl-band">
+          <BoardCrosswordPromo board={freeQuizBoard} />
+        </div>
+      ) : null}
     </div>
   );
 }
